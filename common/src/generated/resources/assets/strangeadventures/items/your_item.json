@@ -1,0 +1,6 @@
+{
+  "model": {
+    "type": "minecraft:model",
+    "model": "strangeadventures:item/your_item"
+  }
+}
