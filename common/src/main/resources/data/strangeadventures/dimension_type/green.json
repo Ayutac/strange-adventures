@@ -24,10 +24,9 @@
   },
   "cardinal_light": "nether",
   "coordinate_scale": 8,
-  "default_clock": "minecraft:overworld",
   "has_ceiling": true,
   "has_ender_dragon_fight": false,
-  "has_fixed_time": false,
+  "has_fixed_time": true,
   "has_skylight": false,
   "height": 384,
   "infiniburn": "#minecraft:infiniburn_overworld",
@@ -36,5 +35,5 @@
   "monster_spawn_block_light_limit": 15,
   "monster_spawn_light_level": 7,
   "skybox": "none",
-  "timelines": "#minecraft:in_overworld"
+  "timelines": "#minecraft:in_nether"
 }
