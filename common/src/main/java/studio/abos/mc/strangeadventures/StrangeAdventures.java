@@ -5,7 +5,6 @@ import net.blay09.mods.balm.core.BalmRegistrars;
 import net.minecraft.resources.Identifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import studio.abos.mc.strangeadventures.api.StrangeAdventuresApi;
 import studio.abos.mc.strangeadventures.block.ModBlocks;
 import studio.abos.mc.strangeadventures.item.ModItems;
 
@@ -13,7 +12,7 @@ public class StrangeAdventures {
 
     public static final Logger logger = LoggerFactory.getLogger(StrangeAdventures.class);
 
-    public static final String MOD_ID = StrangeAdventuresApi.MOD_ID;
+    public static final String MOD_ID = "strangeadventures";
 
     public static Identifier id(String path) {
         return Identifier.fromNamespaceAndPath(MOD_ID, path);

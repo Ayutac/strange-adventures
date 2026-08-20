@@ -15,13 +15,13 @@ public class ModModelProvider extends FabricModelProvider {
 
     @Override
     public void generateBlockStateModels(BlockModelGenerators blockStateModelGenerator) {
-        blockStateModelGenerator.createTrivialCube(ModBlocks.yourBlock.asBlock());
-        blockStateModelGenerator.registerSimpleItemModel(ModBlocks.yourBlock.asBlock(), ModelLocationUtils.getModelLocation(ModBlocks.yourBlock.asItem()));
+        blockStateModelGenerator.createCrossBlock(ModBlocks.GREEN_FLOWER.asBlock(), BlockModelGenerators.PlantType.NOT_TINTED);
+        //blockStateModelGenerator.registerSimpleItemModel(ModBlocks.GREEN_FLOWER.asBlock(), ModelLocationUtils.getModelLocation(ModBlocks.GREEN_FLOWER.asItem()));
     }
 
     @Override
     public void generateItemModels(ItemModelGenerators itemModelGenerator) {
-        itemModelGenerator.generateFlatItem(ModItems.yourItem.asItem(), ModelTemplates.FLAT_ITEM);
+        itemModelGenerator.generateFlatItem(ModItems.GREEN_FLOWER.asItem(), ModelTemplates.FLAT_ITEM);
     }
 
 }

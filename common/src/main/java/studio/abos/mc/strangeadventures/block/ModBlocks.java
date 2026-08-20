@@ -2,14 +2,17 @@ package studio.abos.mc.strangeadventures.block;
 
 import net.blay09.mods.balm.world.level.block.BalmBlockRegistrar;
 import net.blay09.mods.balm.world.level.block.DeferredBlock;
-import net.minecraft.world.level.block.Block;
+import net.minecraft.world.item.DyeColor;
 
 public class ModBlocks {
 
-    public static DeferredBlock yourBlock;
+    public static DeferredBlock GREEN_FLOWER;
 
     public static void initialize(BalmBlockRegistrar blocks) {
-        yourBlock = blocks.register("your_block", Block::new, it -> it.strength(1.5f)).withDefaultItem().asDeferredBlock();
+        GREEN_FLOWER = blocks.register("green_flower", GreenFlowerBlock::new, props -> props
+                .instabreak()
+                .noCollision()
+                .mapColor(DyeColor.LIME)).asDeferredBlock();
     }
 
 }
