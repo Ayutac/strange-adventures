@@ -15,23 +15,23 @@
   },
 
   "license": "${license}",
-  "icon": "${mod_id}.png",
+  "icon": "${mod_id}-icon.png",
 
   "environment": "*",
   "entrypoints": {
     "main": [
-      "yourname.mods.yourmod.fabric.FabricYourMod"
+      "studio.abos.mc.strangeadventures.fabric.FabricStrangeAdventures"
     ],
     "client": [
-      "yourname.mods.yourmod.fabric.client.FabricYourModClient"
+      "studio.abos.mc.strangeadventures.fabric.client.FabricStrangeAdventuresClient"
     ],
     "fabric-datagen": [
-      "yourname.mods.yourmod.fabric.datagen.ModDataGenerator"
+      "studio.abos.mc.strangeadventures.fabric.datagen.ModDataGenerator"
     ]
   },
   "mixins": [
-    "yourmod.mixins.json",
-    "yourmod.fabric.mixins.json"
+    "strangeadventures.mixins.json",
+    "strangeadventures.fabric.mixins.json"
   ],
   "depends": {
     "java": ">=${java_version}",
