@@ -6,6 +6,7 @@ import net.minecraft.resources.Identifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import studio.abos.mc.strangeadventures.block.ModBlocks;
+import studio.abos.mc.strangeadventures.entity.ModEntities;
 import studio.abos.mc.strangeadventures.item.ModItems;
 
 public class StrangeAdventures {
@@ -27,6 +28,7 @@ public class StrangeAdventures {
 
         registrars.blocks(ModBlocks::initialize);
         registrars.items(ModItems::initialize);
+        registrars.entityTypes(ModEntities::initialize);
         registrars.creativeModeTabs(ModItems::initialize);
     }
 

@@ -13,7 +13,7 @@ public class ModBlocks {
     public static DeferredBlock GREEN_FLOWER;
     public static DeferredBlock GREEN_FARMBLOCK;
 
-    public static void initialize(BalmBlockRegistrar blocks) {
+    public static void initialize(final BalmBlockRegistrar blocks) {
         GREEN_FLOWER = blocks.register("green_flower", GreenFlowerBlock::new, props -> props
                 .instabreak()
                 .noCollision()

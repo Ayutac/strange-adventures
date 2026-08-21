@@ -11,11 +11,11 @@ public class ModItems {
 
     public static DeferredItem GREEN_SAFEGUARD;
 
-    public static void initialize(BalmItemRegistrar items) {
+    public static void initialize(final BalmItemRegistrar items) {
         GREEN_SAFEGUARD = items.register("green_safeguard", GreenSafeguardItem::new).asDeferredItem();
     }
 
-    public static void initialize(BalmCreativeModeTabRegistrar creativeModeTabs) {
+    public static void initialize(final BalmCreativeModeTabRegistrar creativeModeTabs) {
         creativeModeTabs.register(StrangeAdventures.MOD_ID, builder ->
                 builder.title(Component.translatable(StrangeAdventures.id(StrangeAdventures.MOD_ID).toLanguageKey("itemGroup")))
                         .icon(() -> ModBlocks.GREEN_FLOWER.createStack())
