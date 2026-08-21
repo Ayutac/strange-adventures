@@ -16,6 +16,6 @@ public class ModBlockTagProvider extends FabricTagsProvider.BlockTagsProvider {
     @Override
     protected void addTags(HolderLookup.Provider arg) {
         builder(BlockTags.SMALL_FLOWERS).add(ModBlocks.GREEN_FLOWER.asResourceKey());
-        //builder(ModBlockTags.YOUR_TAG).add(ModBlocks.GREEN_FLOWER.asResourceKey());
+        builder(BlockTags.SUPPORTS_CROPS).add(ModBlocks.GREEN_FARMBLOCK.asResourceKey());
     }
 }
