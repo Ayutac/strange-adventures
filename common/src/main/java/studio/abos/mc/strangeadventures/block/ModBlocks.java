@@ -3,6 +3,7 @@ package studio.abos.mc.strangeadventures.block;
 import net.blay09.mods.balm.world.level.block.BalmBlockRegistrar;
 import net.blay09.mods.balm.world.level.block.DeferredBlock;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
@@ -11,6 +12,7 @@ import net.minecraft.world.level.material.PushReaction;
 public class ModBlocks {
 
     public static DeferredBlock GREEN_FLOWER;
+    public static DeferredBlock POTTED_GREEN_FLOWER;
     public static DeferredBlock GREEN_FARMBLOCK;
 
     public static void initialize(final BalmBlockRegistrar blocks) {
@@ -21,6 +23,10 @@ public class ModBlocks {
                 .offsetType(BlockBehaviour.OffsetType.XZ)
                 .pushReaction(PushReaction.DESTROY)
                 .mapColor(MapColor.PLANT)).withDefaultItem().asDeferredBlock();
+        POTTED_GREEN_FLOWER = blocks.register("potted_green_flower", props -> new FlowerPotBlock(GREEN_FLOWER.asBlock(), props), props -> props
+                .instabreak()
+                .noOcclusion()
+                .pushReaction(PushReaction.DESTROY)).asDeferredBlock();
         GREEN_FARMBLOCK = blocks.register("green_farmblock", GreenFarmlandBlock::new, props -> props
                 .strength(0.6F)
                 .randomTicks()
