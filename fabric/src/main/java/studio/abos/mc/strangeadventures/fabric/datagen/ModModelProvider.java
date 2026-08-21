@@ -6,7 +6,6 @@ import net.minecraft.client.data.models.BlockModelGenerators;
 import net.minecraft.client.data.models.ItemModelGenerators;
 import net.minecraft.client.data.models.model.*;
 import studio.abos.mc.strangeadventures.block.ModBlocks;
-import studio.abos.mc.strangeadventures.item.ModItems;
 
 public class ModModelProvider extends FabricModelProvider {
     public ModModelProvider(FabricPackOutput output) {
@@ -16,12 +15,12 @@ public class ModModelProvider extends FabricModelProvider {
     @Override
     public void generateBlockStateModels(BlockModelGenerators blockStateModelGenerator) {
         blockStateModelGenerator.createCrossBlock(ModBlocks.GREEN_FLOWER.asBlock(), BlockModelGenerators.PlantType.NOT_TINTED);
-        //blockStateModelGenerator.registerSimpleItemModel(ModBlocks.GREEN_FLOWER.asBlock(), ModelLocationUtils.getModelLocation(ModBlocks.GREEN_FLOWER.asItem()));
+        blockStateModelGenerator.registerSimpleFlatItemModel(ModBlocks.GREEN_FLOWER.asBlock());
     }
 
     @Override
     public void generateItemModels(ItemModelGenerators itemModelGenerator) {
-        itemModelGenerator.generateFlatItem(ModItems.GREEN_FLOWER.asItem(), ModelTemplates.FLAT_ITEM);
+        //itemModelGenerator.generateFlatItem(ModItems.GREEN_FLOWER.asItem(), ModelTemplates.FLAT_ITEM);
     }
 
 }

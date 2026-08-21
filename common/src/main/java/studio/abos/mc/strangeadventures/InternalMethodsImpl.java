@@ -72,7 +72,7 @@ public class InternalMethodsImpl implements InternalMethods {
             }
             bestTpPos = Optional.of(idealTpPos);
         }
-        bestTpPos.ifPresent(pos -> toTeleport.teleportTo(green, pos.getX()+0.4, pos.getY(), pos.getZ()+0.4,
+        bestTpPos.ifPresent(pos -> toTeleport.teleportTo(green, pos.getX()+0.5, pos.getY(), pos.getZ()+0.5,
                 EnumSet.noneOf(Relative.class), toTeleport.getYRot(), toTeleport.getXRot(), false));
     }
 
@@ -99,7 +99,7 @@ public class InternalMethodsImpl implements InternalMethods {
             }
             bestTpPos = Optional.of(idealTpPos);
         }
-        bestTpPos.ifPresent(pos -> toTeleport.teleportTo(overworld, pos.getX()+0.4, pos.getY(), pos.getZ()+0.4,
+        bestTpPos.ifPresent(pos -> toTeleport.teleportTo(overworld, pos.getX()+0.5, pos.getY(), pos.getZ()+0.5,
                 EnumSet.noneOf(Relative.class), toTeleport.getYRot(), toTeleport.getXRot(), false));
     }
 
