@@ -2,15 +2,17 @@ package studio.abos.mc.strangeadventures.item;
 
 import net.blay09.mods.balm.world.item.BalmCreativeModeTabRegistrar;
 import net.blay09.mods.balm.world.item.BalmItemRegistrar;
+import net.blay09.mods.balm.world.item.DeferredItem;
 import net.minecraft.network.chat.Component;
 import studio.abos.mc.strangeadventures.StrangeAdventures;
 import studio.abos.mc.strangeadventures.block.ModBlocks;
 
 public class ModItems {
-    //public static DeferredItem GREEN_FLOWER;
+
+    public static DeferredItem GREEN_SAFEGUARD;
 
     public static void initialize(BalmItemRegistrar items) {
-        //GREEN_FLOWER = items.register("green_flower", props -> new BlockItem(ModBlocks.GREEN_FLOWER.asBlock(), props)).asDeferredItem();
+        GREEN_SAFEGUARD = items.register("green_safeguard", GreenSafeguardItem::new).asDeferredItem();
     }
 
     public static void initialize(BalmCreativeModeTabRegistrar creativeModeTabs) {
@@ -19,6 +21,7 @@ public class ModItems {
                         .icon(() -> ModBlocks.GREEN_FLOWER.createStack())
                         .displayItems((displayParameters, output) -> {
                             output.accept(ModBlocks.GREEN_FLOWER);
+                            output.accept(GREEN_SAFEGUARD);
                         })
         );
     }
