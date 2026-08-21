@@ -2,6 +2,7 @@ package studio.abos.mc.strangeadventures;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Relative;
@@ -9,19 +10,21 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
+import org.apache.commons.lang3.function.TriConsumer;
 import studio.abos.mc.strangeadventures.api.InternalMethods;
 import studio.abos.mc.strangeadventures.api.StrangeAdventuresApi;
 import studio.abos.mc.strangeadventures.block.ModBlocks;
 
 import java.util.EnumSet;
 import java.util.Optional;
+import java.util.function.UnaryOperator;
 
 public class InternalMethodsImpl implements InternalMethods {
 
     private static final int[] XZ_TP_RANGE = new int[] {0,-1,1,-2,2};
     private static final int[] Y_TP_RANGE = new int[] {0,-1,1,-2,2,-3,3,-4,4};
 
-    private Optional<BlockPos> findBestTpPosition(final LevelAccessor level, final BlockPos idealPos, final int height) {
+    private static Optional<BlockPos> findBestTpPosition(final LevelAccessor level, final BlockPos idealPos, final int height) {
         if (height <= 0) {
             throw new IllegalArgumentException("Height must be positive!");
         }
@@ -49,58 +52,49 @@ public class InternalMethodsImpl implements InternalMethods {
         return Optional.empty();
     }
 
-    @Override
-    public void tpOverworldToGreen(final LivingEntity toTeleport, final BlockPos startPos) {
-        if (!Level.OVERWORLD.equals(toTeleport.level().dimension())) {
+    private static void makeGreenSpace(final Level level, final BlockPos pos, final int height) {
+        if (height <= 0) {
+            throw new IllegalArgumentException("Height must be positive!");
+        }
+        level.setBlockAndUpdate(pos.below(), Blocks.MOSS_BLOCK.defaultBlockState());
+        level.setBlockAndUpdate(pos, ModBlocks.GREEN_FLOWER.defaultBlockState());
+        for (int i = 2; i <= height; i++) {
+            level.setBlockAndUpdate(pos.above(i), Blocks.AIR.defaultBlockState());
+        }
+    }
+
+    private static void tpFromTo(final ResourceKey<Level> from, final ResourceKey<Level> to, final LivingEntity toTeleport,
+                          final BlockPos startPos, final UnaryOperator<BlockPos> targetPosOperator, final TriConsumer<Level, BlockPos, Integer> makeSpaceIfNeeded) {
+        if (!from.equals(toTeleport.level().dimension())) {
             return;
         }
-        final BlockPos idealTpPos = new BlockPos(
-                startPos.getX() / StrangeAdventuresApi.GREEN_DIMENSION_FACTOR,
-                startPos.getY(),
-                startPos.getZ() / StrangeAdventuresApi.GREEN_DIMENSION_FACTOR);
+        final BlockPos idealTpPos = targetPosOperator.apply(startPos);
         final int entityHeight = (int)Math.ceil(toTeleport.getBbHeight());
-        final ServerLevel green = toTeleport.level().getServer().getLevel(StrangeAdventuresApi.GREEN_DIMENSION);
-        if (green == null) {
+        final ServerLevel level = toTeleport.level().getServer().getLevel(to);
+        if (level == null) {
             return;
         }
-        Optional<BlockPos> bestTpPos = findBestTpPosition(green, idealTpPos, entityHeight);
+        Optional<BlockPos> bestTpPos = findBestTpPosition(level, idealTpPos, entityHeight);
         if (bestTpPos.isEmpty()) {
-            green.setBlockAndUpdate(idealTpPos.below(), Blocks.MOSS_BLOCK.defaultBlockState());
-            green.setBlockAndUpdate(idealTpPos, ModBlocks.GREEN_FLOWER.defaultBlockState());
-            for (int i = 2; i <= entityHeight; i++) {
-                green.setBlockAndUpdate(idealTpPos.above(i), Blocks.AIR.defaultBlockState());
-            }
+            makeSpaceIfNeeded.accept(level, idealTpPos, entityHeight);
             bestTpPos = Optional.of(idealTpPos);
         }
-        bestTpPos.ifPresent(pos -> toTeleport.teleportTo(green, pos.getX()+0.5, pos.getY(), pos.getZ()+0.5,
+        bestTpPos.ifPresent(pos -> toTeleport.teleportTo(level, pos.getX()+0.5, pos.getY(), pos.getZ()+0.5,
                 EnumSet.noneOf(Relative.class), toTeleport.getYRot(), toTeleport.getXRot(), false));
     }
 
     @Override
+    public void tpOverworldToGreen(final LivingEntity toTeleport, final BlockPos startPos) {
+        tpFromTo(Level.OVERWORLD, StrangeAdventuresApi.GREEN_DIMENSION, toTeleport, startPos, pos -> new BlockPos(
+                pos.getX() / StrangeAdventuresApi.GREEN_DIMENSION_FACTOR, pos.getY(),
+                pos.getZ() / StrangeAdventuresApi.GREEN_DIMENSION_FACTOR), InternalMethodsImpl::makeGreenSpace);
+    }
+
+    @Override
     public void tpGreenToOverworld(final LivingEntity toTeleport, final BlockPos startPos) {
-        if (!StrangeAdventuresApi.GREEN_DIMENSION.equals(toTeleport.level().dimension())) {
-            return;
-        }
-        final BlockPos idealTpPos = new BlockPos(
-                startPos.getX() * StrangeAdventuresApi.GREEN_DIMENSION_FACTOR,
-                startPos.getY(),
-                startPos.getZ() * StrangeAdventuresApi.GREEN_DIMENSION_FACTOR);
-        final int entityHeight = (int)Math.ceil(toTeleport.getBbHeight());
-        final ServerLevel overworld = toTeleport.level().getServer().getLevel(Level.OVERWORLD);
-        if (overworld == null) {
-            return;
-        }
-        Optional<BlockPos> bestTpPos = findBestTpPosition(overworld, idealTpPos, entityHeight);
-        if (bestTpPos.isEmpty()) {
-            overworld.setBlockAndUpdate(idealTpPos.below(), Blocks.MOSS_BLOCK.defaultBlockState());
-            overworld.setBlockAndUpdate(idealTpPos, ModBlocks.GREEN_FLOWER.defaultBlockState());
-            for (int i = 2; i <= entityHeight; i++) {
-                overworld.setBlockAndUpdate(idealTpPos.above(i), Blocks.AIR.defaultBlockState());
-            }
-            bestTpPos = Optional.of(idealTpPos);
-        }
-        bestTpPos.ifPresent(pos -> toTeleport.teleportTo(overworld, pos.getX()+0.5, pos.getY(), pos.getZ()+0.5,
-                EnumSet.noneOf(Relative.class), toTeleport.getYRot(), toTeleport.getXRot(), false));
+        tpFromTo(StrangeAdventuresApi.GREEN_DIMENSION, Level.OVERWORLD, toTeleport, startPos, pos -> new BlockPos(
+                pos.getX() * StrangeAdventuresApi.GREEN_DIMENSION_FACTOR, pos.getY(),
+                pos.getZ() * StrangeAdventuresApi.GREEN_DIMENSION_FACTOR), InternalMethodsImpl::makeGreenSpace);
     }
 
 }
