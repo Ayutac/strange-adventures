@@ -2,14 +2,17 @@ package studio.abos.mc.strangeadventures.fabric.datagen;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
+import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.level.material.Fluid;
 import studio.abos.mc.strangeadventures.StrangeAdventures;
 import studio.abos.mc.strangeadventures.fluid.AbstractSapFluid;
 import studio.abos.mc.strangeadventures.fluid.ModFluids;
+import studio.abos.mc.strangeadventures.mixin.RecipeProviderAccessor;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -24,6 +27,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
             @Override
             public void buildRecipes() {
                 sapRecipes();
+                sapSipperRecipes();
             }
 
             private void sapRecipes() {
@@ -64,6 +68,14 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                         .define('G', Items.GLASS)
                         .unlockedBy("has_bucket", has(sap.getBucket()))
                         .save(exporter, bottleId + "_from_glass");
+            }
+
+            private void sapSipperRecipes() {
+
+            }
+
+            private SapSipperRecipeBuilder sapSipper(final Holder<Fluid> sapResult) {
+                return new SapSipperRecipeBuilder(((RecipeProviderAccessor)(Object)this).getItems(), sapResult);
             }
         };
     }
