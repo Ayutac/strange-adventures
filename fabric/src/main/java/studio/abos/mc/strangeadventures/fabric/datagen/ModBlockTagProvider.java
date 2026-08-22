@@ -18,8 +18,8 @@ public class ModBlockTagProvider extends FabricTagsProvider.BlockTagsProvider {
     @Override
     protected void addTags(HolderLookup.Provider arg) {
         builder(BlockTags.SMALL_FLOWERS).add(ModBlocks.GREEN_FLOWER.asResourceKey());
-        builder(BlockTags.SUPPORTS_CROPS).add(ModBlocks.GREEN_FARMBLOCK.asResourceKey());
-        builder(BlockTags.MINEABLE_WITH_SHOVEL).add(ModBlocks.GREEN_FARMBLOCK.asResourceKey());
+        builder(BlockTags.SUPPORTS_CROPS).add(ModBlocks.GREEN_FARMLAND_BLOCK.asResourceKey());
+        builder(BlockTags.MINEABLE_WITH_SHOVEL).add(ModBlocks.GREEN_FARMLAND_BLOCK.asResourceKey());
         builder(ModBlockTags.GREEN_FARMLAND_CONVERTIBLE).add(Blocks.FARMLAND.properties().blockId());
     }
 }

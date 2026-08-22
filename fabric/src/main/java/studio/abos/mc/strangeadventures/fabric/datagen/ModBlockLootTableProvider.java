@@ -17,6 +17,6 @@ public class ModBlockLootTableProvider extends FabricBlockLootSubProvider {
     public void generate() {
         dropSelf(ModBlocks.GREEN_FLOWER.asBlock());
         dropPottedContents(ModBlocks.POTTED_GREEN_FLOWER.asBlock());
-        dropOther(ModBlocks.GREEN_FARMBLOCK.asBlock(), Items.DIRT);
+        dropOther(ModBlocks.GREEN_FARMLAND_BLOCK.asBlock(), Items.DIRT);
     }
 }

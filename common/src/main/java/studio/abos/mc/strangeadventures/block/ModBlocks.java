@@ -16,7 +16,7 @@ public final class ModBlocks {
 
     public static DeferredBlock GREEN_FLOWER;
     public static DeferredBlock POTTED_GREEN_FLOWER;
-    public static DeferredBlock GREEN_FARMBLOCK;
+    public static DeferredBlock GREEN_FARMLAND_BLOCK;
 
     public static DeferredBlock ACACIA_SAP;
     public static DeferredBlock BIRCH_SAP;
@@ -42,7 +42,7 @@ public final class ModBlocks {
                 .instabreak()
                 .noOcclusion()
                 .pushReaction(PushReaction.DESTROY)).asDeferredBlock();
-        GREEN_FARMBLOCK = blocks.register("green_farmblock", GreenFarmlandBlock::new, props -> props
+        GREEN_FARMLAND_BLOCK = blocks.register("green_farmland", GreenFarmlandBlock::new, props -> props
                 .strength(0.6F)
                 .randomTicks()
                 .sound(SoundType.GRAVEL)

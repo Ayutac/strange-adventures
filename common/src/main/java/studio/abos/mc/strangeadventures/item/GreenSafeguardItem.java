@@ -3,7 +3,6 @@ package studio.abos.mc.strangeadventures.item;
 import net.minecraft.core.BlockPos;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
@@ -27,7 +26,7 @@ public class GreenSafeguardItem extends Item {
             target = target.below();
         }
         if (level.getBlockState(target).is(ModBlockTags.GREEN_FARMLAND_CONVERTIBLE)) {
-            level.setBlockAndUpdate(target, ModBlocks.GREEN_FARMBLOCK.defaultBlockState());
+            level.setBlockAndUpdate(target, ModBlocks.GREEN_FARMLAND_BLOCK.defaultBlockState());
             context.getItemInHand().consume(1, context.getPlayer());
             return InteractionResult.SUCCESS;
         }
