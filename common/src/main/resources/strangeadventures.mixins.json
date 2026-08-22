@@ -8,7 +8,6 @@
     "LiquidBlockAccessor"
   ],
   "client": [
-    "MinecraftMixin"
   ],
   "injectors": {
     "defaultRequire": 1
