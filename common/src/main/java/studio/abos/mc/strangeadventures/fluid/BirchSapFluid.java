@@ -1,0 +1,71 @@
+package studio.abos.mc.strangeadventures.fluid;
+
+import lombok.NonNull;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.material.Fluid;
+import net.minecraft.world.level.material.FluidState;
+import studio.abos.mc.strangeadventures.block.ModBlocks;
+import studio.abos.mc.strangeadventures.item.ModItems;
+
+public abstract class BirchSapFluid extends AbstractSapFluid {
+
+    @NonNull
+    @Override
+    public Fluid getFlowing() {
+        return ModFluids.BIRCH_SAP_FLOWING.value();
+    }
+
+    @NonNull
+    @Override
+    public Fluid getSource() {
+        return ModFluids.BIRCH_SAP_STILL.value();
+    }
+
+    @NonNull
+    @Override
+    protected BlockState createLegacyBlock(final @NonNull FluidState fluidState) {
+        return ModBlocks.BIRCH_SAP.defaultBlockState();
+    }
+
+    @NonNull
+    @Override
+    public Item getBucket() {
+        return ModItems.BIRCH_SAP_BUCKET.asItem();
+    }
+
+    public static class Source extends BirchSapFluid {
+
+        @Override
+        public boolean isSource(final @NonNull FluidState state) {
+            return true;
+        }
+
+        @Override
+        public int getAmount(final @NonNull FluidState state) {
+            return 8;
+        }
+
+    }
+
+    public static class Flowing extends BirchSapFluid {
+
+        @Override
+        protected void createFluidStateDefinition(final @NonNull StateDefinition.Builder<@NonNull Fluid, @NonNull FluidState> builder) {
+            super.createFluidStateDefinition(builder);
+            builder.add(LEVEL);
+        }
+
+        @Override
+        public boolean isSource(final @NonNull FluidState state) {
+            return false;
+        }
+
+        @Override
+        public int getAmount(final @NonNull FluidState state) {
+            return state.getValue(LEVEL);
+        }
+
+    }
+}

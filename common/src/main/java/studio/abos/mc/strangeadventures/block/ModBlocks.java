@@ -6,14 +6,18 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.material.FlowingFluid;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
+import studio.abos.mc.strangeadventures.fluid.ModFluids;
+import studio.abos.mc.strangeadventures.mixin.LiquidBlockAccessor;
 
-public class ModBlocks {
+public final class ModBlocks {
 
     public static DeferredBlock GREEN_FLOWER;
     public static DeferredBlock POTTED_GREEN_FLOWER;
     public static DeferredBlock GREEN_FARMBLOCK;
+    public static DeferredBlock BIRCH_SAP;
 
     public static void initialize(final BalmBlockRegistrar blocks) {
         GREEN_FLOWER = blocks.register("green_flower", GreenFlowerBlock::new, props -> props
@@ -34,6 +38,15 @@ public class ModBlocks {
                 .isViewBlocking((_, _, _) -> true)
                 .isSuffocating((_, _, _) -> true)
                 .mapColor(Blocks.FARMLAND.defaultMapColor())).asDeferredBlock();
+        BIRCH_SAP = blocks.register("birch_sap", props -> LiquidBlockAccessor.newLiquidBlock((FlowingFluid)ModFluids.BIRCH_SAP_STILL.value(), props), props -> props
+                .mapColor(MapColor.COLOR_ORANGE)
+                .replaceable()
+                .noCollision()
+                .strength(100.0F)
+                .pushReaction(PushReaction.DESTROY)
+                .noLootTable()
+                .liquid()
+                .sound(SoundType.EMPTY)).asDeferredBlock();
     }
 
 }

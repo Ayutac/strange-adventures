@@ -22,6 +22,7 @@ public class ModModelProvider extends FabricModelProvider {
     @Override
     public void generateItemModels(ItemModelGenerators itemModelGenerator) {
         itemModelGenerator.generateFlatItem(ModItems.GREEN_SAFEGUARD.asItem(), ModelTemplates.FLAT_ITEM);
+        itemModelGenerator.generateFlatItem(ModItems.BIRCH_SAP_BUCKET.asItem(), ModelTemplates.FLAT_ITEM);
     }
 
 }
