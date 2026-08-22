@@ -11,6 +11,7 @@ import studio.abos.mc.strangeadventures.blockentity.ModBlockEntities;
 import studio.abos.mc.strangeadventures.entity.ModEntities;
 import studio.abos.mc.strangeadventures.fluid.ModFluids;
 import studio.abos.mc.strangeadventures.item.ModItems;
+import studio.abos.mc.strangeadventures.recipe.ModRecipeTypes;
 
 public class StrangeAdventures {
 
@@ -34,6 +35,7 @@ public class StrangeAdventures {
         registrars.items(ModItems::initialize);
         registrars.blockEntityTypes(ModBlockEntities::initialize);
         registrars.entityTypes(ModEntities::initialize);
+        registrars.recipeTypes(ModRecipeTypes::initialize);
         registrars.creativeModeTabs(ModItems::initialize);
     }
 
