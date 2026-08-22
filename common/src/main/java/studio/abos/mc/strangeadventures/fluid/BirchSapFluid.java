@@ -35,6 +35,11 @@ public abstract class BirchSapFluid extends AbstractSapFluid {
         return ModItems.BIRCH_SAP_BUCKET.asItem();
     }
 
+    @Override
+    public boolean isSame(final @NonNull Fluid fluid) {
+        return fluid == ModFluids.BIRCH_SAP_STILL.value() || fluid == ModFluids.BIRCH_SAP_FLOWING.value();
+    }
+
     public static class Source extends BirchSapFluid {
 
         @Override
@@ -52,14 +57,14 @@ public abstract class BirchSapFluid extends AbstractSapFluid {
     public static class Flowing extends BirchSapFluid {
 
         @Override
-        protected void createFluidStateDefinition(final @NonNull StateDefinition.Builder<@NonNull Fluid, @NonNull FluidState> builder) {
-            super.createFluidStateDefinition(builder);
-            builder.add(LEVEL);
+        public boolean isSource(final @NonNull FluidState state) {
+            return false;
         }
 
         @Override
-        public boolean isSource(final @NonNull FluidState state) {
-            return false;
+        protected void createFluidStateDefinition(final @NonNull StateDefinition.Builder<@NonNull Fluid, @NonNull FluidState> builder) {
+            super.createFluidStateDefinition(builder);
+            builder.add(LEVEL);
         }
 
         @Override
