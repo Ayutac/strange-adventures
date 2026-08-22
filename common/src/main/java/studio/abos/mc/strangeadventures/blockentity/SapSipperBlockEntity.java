@@ -4,14 +4,19 @@ import net.blay09.mods.balm.platform.fluid.BalmFluidTankProvider;
 import net.blay09.mods.balm.platform.fluid.DefaultFluidTank;
 import net.blay09.mods.balm.platform.fluid.FluidTank;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.item.BucketItem;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
-import studio.abos.mc.strangeadventures.item.ModItems;
+import studio.abos.mc.strangeadventures.StrangeAdventures;
+import studio.abos.mc.strangeadventures.recipe.ModRecipeTypes;
+import studio.abos.mc.strangeadventures.recipe.SapSipperRecipe;
+import studio.abos.mc.strangeadventures.recipe.SingleBlockRecipeInput;
+
+import java.util.Optional;
 
 public class SapSipperBlockEntity extends BlockEntity implements BalmFluidTankProvider {
 
@@ -46,9 +51,12 @@ public class SapSipperBlockEntity extends BlockEntity implements BalmFluidTankPr
     }
 
     public static void tick(final Level level, final BlockPos pos, final BlockState state, final SapSipperBlockEntity entity) {
-        final BlockState blockBehind = level.getBlockState(pos.relative(state.getValue(HorizontalDirectionalBlock.FACING).getOpposite(), 1));
-        ((BucketItem)ModItems.BIRCH_SAP_BUCKET.asItem()).getContent();
-        //StrangeAdventures.logger.info("Facing: " + blockBehind.getBlock().getDescriptionId());
+        if (level.isClientSide()) {
+            return;
+        }
+        final BlockState blockBehind = level.getBlockState(pos.relative(state.getValue(HorizontalDirectionalBlock.FACING).getOpposite()));
+        final Optional<RecipeHolder<SapSipperRecipe>> recipe = ModRecipeTypes.SAP_SIPPER.getRecipeFor(level, new SingleBlockRecipeInput(blockBehind));
+        recipe.ifPresent(holder -> StrangeAdventures.logger.info("Sapping: " + holder.value().getSapResult().getRegisteredName()));
     }
 
     public class Tank extends DefaultFluidTank {
