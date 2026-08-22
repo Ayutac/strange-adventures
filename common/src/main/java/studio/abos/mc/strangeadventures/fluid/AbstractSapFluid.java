@@ -34,7 +34,7 @@ public abstract class AbstractSapFluid extends FlowingFluid {
 
     @Override
     protected int getDropOff(final @NonNull LevelReader level) {
-        return 1;
+        return 2;
     }
 
     @Override
@@ -44,7 +44,7 @@ public abstract class AbstractSapFluid extends FlowingFluid {
 
     @Override
     public int getTickDelay(final @NonNull LevelReader level) {
-        return 35;
+        return 30;
     }
 
     @Override

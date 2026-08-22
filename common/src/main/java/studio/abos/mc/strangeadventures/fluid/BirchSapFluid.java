@@ -2,6 +2,7 @@ package studio.abos.mc.strangeadventures.fluid;
 
 import lombok.NonNull;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.LiquidBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.material.Fluid;
@@ -25,8 +26,8 @@ public abstract class BirchSapFluid extends AbstractSapFluid {
 
     @NonNull
     @Override
-    protected BlockState createLegacyBlock(final @NonNull FluidState fluidState) {
-        return ModBlocks.BIRCH_SAP.defaultBlockState();
+    protected BlockState createLegacyBlock(final @NonNull FluidState state) {
+        return ModBlocks.BIRCH_SAP.defaultBlockState().setValue(LiquidBlock.LEVEL, getLegacyLevel(state));
     }
 
     @NonNull
