@@ -26,7 +26,7 @@ public class GreenSafeguardItem extends Item {
             target = target.below();
         }
         if (level.getBlockState(target).is(ModBlockTags.GREEN_FARMLAND_CONVERTIBLE)) {
-            level.setBlockAndUpdate(target, ModBlocks.GREEN_FARMLAND_BLOCK.defaultBlockState());
+            level.setBlockAndUpdate(target, ModBlocks.GREEN_FARMLAND.defaultBlockState());
             context.getItemInHand().consume(1, context.getPlayer());
             return InteractionResult.SUCCESS;
         }

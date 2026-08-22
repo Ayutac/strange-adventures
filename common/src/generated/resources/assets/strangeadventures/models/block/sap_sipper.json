@@ -1,0 +1,9 @@
+{
+  "parent": "minecraft:block/orientable_with_bottom",
+  "textures": {
+    "bottom": "strangeadventures:block/sap_sipper_bottom",
+    "front": "strangeadventures:block/sap_sipper_front",
+    "side": "strangeadventures:block/sap_sipper_side",
+    "top": "strangeadventures:block/sap_sipper_top"
+  }
+}

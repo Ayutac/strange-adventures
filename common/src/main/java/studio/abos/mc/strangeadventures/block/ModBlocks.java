@@ -6,6 +6,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.FlowingFluid;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
@@ -16,7 +17,8 @@ public final class ModBlocks {
 
     public static DeferredBlock GREEN_FLOWER;
     public static DeferredBlock POTTED_GREEN_FLOWER;
-    public static DeferredBlock GREEN_FARMLAND_BLOCK;
+    public static DeferredBlock GREEN_FARMLAND;
+    public static DeferredBlock SAP_SIPPER;
 
     public static DeferredBlock ACACIA_SAP;
     public static DeferredBlock BIRCH_SAP;
@@ -42,13 +44,18 @@ public final class ModBlocks {
                 .instabreak()
                 .noOcclusion()
                 .pushReaction(PushReaction.DESTROY)).asDeferredBlock();
-        GREEN_FARMLAND_BLOCK = blocks.register("green_farmland", GreenFarmlandBlock::new, props -> props
+        GREEN_FARMLAND = blocks.register("green_farmland", GreenFarmlandBlock::new, props -> props
                 .strength(0.6F)
                 .randomTicks()
                 .sound(SoundType.GRAVEL)
                 .isViewBlocking((_, _, _) -> true)
                 .isSuffocating((_, _, _) -> true)
                 .mapColor(Blocks.FARMLAND.defaultMapColor())).asDeferredBlock();
+        SAP_SIPPER = blocks.register("sap_sipper", SapSipperBlock::new, props -> props
+                .strength(5f,6f)
+                .instrument(NoteBlockInstrument.IRON_XYLOPHONE)
+                .sound(SoundType.IRON)
+                .mapColor(MapColor.METAL)).withDefaultItem().asDeferredBlock();
 
         ACACIA_SAP = blocks.register("acacia_sap", props -> LiquidBlockAccessor.newLiquidBlock((FlowingFluid)ModFluids.ACACIA_SAP_STILL.value(), props), props ->
                 sap(props)

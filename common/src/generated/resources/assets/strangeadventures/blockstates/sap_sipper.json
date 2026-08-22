@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "strangeadventures:block/sap_sipper",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "strangeadventures:block/sap_sipper"
+    },
+    "facing=south": {
+      "model": "strangeadventures:block/sap_sipper",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "strangeadventures:block/sap_sipper",
+      "y": 270
+    }
+  }
+}
