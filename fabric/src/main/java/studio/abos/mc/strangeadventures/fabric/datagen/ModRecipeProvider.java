@@ -3,16 +3,18 @@ package studio.abos.mc.strangeadventures.fabric.datagen;
 import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.minecraft.core.Holder;
+import net.minecraft.core.HolderGetter;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.material.Fluid;
 import studio.abos.mc.strangeadventures.StrangeAdventures;
 import studio.abos.mc.strangeadventures.fluid.AbstractSapFluid;
 import studio.abos.mc.strangeadventures.fluid.ModFluids;
-import studio.abos.mc.strangeadventures.mixin.RecipeProviderAccessor;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -23,7 +25,8 @@ public class ModRecipeProvider extends FabricRecipeProvider {
 
     @Override
     protected RecipeProvider createRecipeProvider(HolderLookup.Provider registryLookup, RecipeOutput exporter) {
-        return new RecipeProvider(registryLookup, exporter) {
+        return new AbstractRecipeProvider(registryLookup, exporter) {
+
             @Override
             public void buildRecipes() {
                 sapRecipes();
@@ -31,7 +34,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
             }
 
             private void sapRecipes() {
-                sapRecipes((AbstractSapFluid)ModFluids.ACACIA_SAP_STILL.value());
+                sapRecipes((AbstractSapFluid) ModFluids.ACACIA_SAP_STILL.value());
                 sapRecipes((AbstractSapFluid)ModFluids.BIRCH_SAP_STILL.value());
                 sapRecipes((AbstractSapFluid)ModFluids.CACTUS_SAP_STILL.value());
                 sapRecipes((AbstractSapFluid)ModFluids.CHERRY_SAP_STILL.value());
@@ -73,10 +76,6 @@ public class ModRecipeProvider extends FabricRecipeProvider {
             private void sapSipperRecipes() {
 
             }
-
-            private SapSipperRecipeBuilder sapSipper(final Holder<Fluid> sapResult) {
-                return new SapSipperRecipeBuilder(((RecipeProviderAccessor)(Object)this).getItems(), sapResult);
-            }
         };
     }
 
@@ -85,4 +84,17 @@ public class ModRecipeProvider extends FabricRecipeProvider {
         return StrangeAdventures.MOD_ID;
     }
 
+    public static abstract class AbstractRecipeProvider extends RecipeProvider {
+
+        protected final HolderGetter<Block> blocks;
+
+        public AbstractRecipeProvider(final HolderLookup.Provider registryLookup, final RecipeOutput exporter) {
+            super(registryLookup, exporter);
+            blocks = registries.lookupOrThrow(Registries.BLOCK);
+        }
+
+        protected SapSipperRecipeBuilder sapSipper(final Holder<Fluid> sapResult) {
+            return new SapSipperRecipeBuilder(blocks, sapResult);
+        }
+    }
 }

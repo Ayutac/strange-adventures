@@ -3,6 +3,7 @@ package studio.abos.mc.strangeadventures.fabric.datagen;
 import net.minecraft.advancements.triggers.Criterion;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderGetter;
+import net.minecraft.core.HolderSet;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.recipes.RecipeBuilder;
 import net.minecraft.data.recipes.RecipeCategory;
@@ -10,36 +11,39 @@ import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.RecipeUnlockAdvancementBuilder;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.TagKey;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.material.Fluid;
 import org.jspecify.annotations.Nullable;
 import studio.abos.mc.strangeadventures.recipe.SapSipperRecipe;
 
 public class SapSipperRecipeBuilder implements RecipeBuilder {
 
-    private final HolderGetter<Item> items;
+    protected final HolderGetter<Block> blocks;
     protected final Holder<Fluid> sapResult;
     @Nullable
-    protected Ingredient sapBlock;
+    protected HolderSet<Block> sapBlocks;
     protected int ticksPerSap;
     protected int amountPerSap; // in mB
     protected final RecipeUnlockAdvancementBuilder advancementBuilder = new RecipeUnlockAdvancementBuilder();
     @Nullable
     protected String group;
 
-    public SapSipperRecipeBuilder(final HolderGetter<Item> items, final Holder<Fluid> sapResult) {
-        this.items = items;
+    public SapSipperRecipeBuilder(final HolderGetter<Block> blocks, final Holder<Fluid> sapResult) {
+        this.blocks = blocks;
         this.sapResult = sapResult;
     }
 
-    public SapSipperRecipeBuilder requires(final TagKey<Item> tag) {
-        return this.requires(Ingredient.of(this.items.getOrThrow(tag)));
+    public SapSipperRecipeBuilder requires(final Holder<Block> block) {
+        return requires(HolderSet.direct(block));
     }
 
-    public SapSipperRecipeBuilder requires(final Ingredient ingredient) {
-        sapBlock = ingredient;
+    public SapSipperRecipeBuilder requires(final TagKey<Block> tag) {
+        return requires(blocks.getOrThrow(tag));
+    }
+
+    public SapSipperRecipeBuilder requires(final HolderSet<Block> blocks) {
+        sapBlocks = blocks;
         return this;
     }
 
@@ -78,8 +82,8 @@ public class SapSipperRecipeBuilder implements RecipeBuilder {
 
     @Override
     public void save(final RecipeOutput output, final ResourceKey<Recipe<?>> location) {
-        if (sapBlock == null) {
-            throw new IllegalStateException("Required BlockItem not specified!");
+        if (sapBlocks == null) {
+            throw new IllegalStateException("Required blocks not specified!");
         }
         if (ticksPerSap <= 0) {
             throw new IllegalStateException("Ticks per sap not specified!");
@@ -87,7 +91,7 @@ public class SapSipperRecipeBuilder implements RecipeBuilder {
         if (amountPerSap <= 0) {
             throw new IllegalStateException("Amount per sap not specified!");
         }
-        final SapSipperRecipe recipe = new SapSipperRecipe(sapResult, sapBlock, ticksPerSap, amountPerSap);
+        final SapSipperRecipe recipe = new SapSipperRecipe(sapResult, sapBlocks, ticksPerSap, amountPerSap);
         output.accept(location, recipe, this.advancementBuilder.build(output, location, RecipeCategory.MISC));
     }
 
