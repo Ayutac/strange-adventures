@@ -16,31 +16,53 @@ public final class ModItems {
     public static DeferredItem GREEN_SAFEGUARD;
 
     public static DeferredItem ACACIA_SAP_BUCKET;
+    public static DeferredItem ACACIA_SAP_BOTTLE;
     public static DeferredItem BIRCH_SAP_BUCKET;
+    public static DeferredItem BIRCH_SAP_BOTTLE;
     public static DeferredItem CACTUS_SAP_BUCKET;
+    public static DeferredItem CACTUS_SAP_BOTTLE;
     public static DeferredItem CHERRY_SAP_BUCKET;
+    public static DeferredItem CHERRY_SAP_BOTTLE;
     public static DeferredItem CHORUS_SAP_BUCKET;
+    public static DeferredItem CHORUS_SAP_BOTTLE;
     public static DeferredItem CRIMSON_SAP_BUCKET;
+    public static DeferredItem CRIMSON_SAP_BOTTLE;
     public static DeferredItem JUNGLE_SAP_BUCKET;
+    public static DeferredItem JUNGLE_SAP_BOTTLE;
     public static DeferredItem MANGROVE_SAP_BUCKET;
+    public static DeferredItem MANGROVE_SAP_BOTTLE;
     public static DeferredItem OAK_SAP_BUCKET;
+    public static DeferredItem OAK_SAP_BOTTLE;
     public static DeferredItem SPRUCE_SAP_BUCKET;
+    public static DeferredItem SPRUCE_SAP_BOTTLE;
     public static DeferredItem WARPED_SAP_BUCKET;
+    public static DeferredItem WARPED_SAP_BOTTLE;
 
     public static void initialize(final BalmItemRegistrar items) {
         GREEN_SAFEGUARD = items.register("green_safeguard", GreenSafeguardItem::new).asDeferredItem();
 
         ACACIA_SAP_BUCKET = items.register("acacia_sap_bucket", props -> new BucketItem(ModFluids.ACACIA_SAP_STILL.value(), sapBucket(props))).asDeferredItem();
+        ACACIA_SAP_BOTTLE = items.register("acacia_sap_bottle", props -> new Item(sapBottle(props))).asDeferredItem();
         BIRCH_SAP_BUCKET = items.register("birch_sap_bucket", props -> new BucketItem(ModFluids.BIRCH_SAP_STILL.value(), sapBucket(props))).asDeferredItem();
+        BIRCH_SAP_BOTTLE = items.register("birch_sap_bottle", props -> new Item(sapBottle(props))).asDeferredItem();
         CACTUS_SAP_BUCKET = items.register("cactus_sap_bucket", props -> new BucketItem(ModFluids.CACTUS_SAP_STILL.value(), sapBucket(props))).asDeferredItem();
+        CACTUS_SAP_BOTTLE = items.register("cactus_sap_bottle", props -> new Item(sapBottle(props))).asDeferredItem();
         CHERRY_SAP_BUCKET = items.register("cherry_sap_bucket", props -> new BucketItem(ModFluids.CHERRY_SAP_STILL.value(), sapBucket(props))).asDeferredItem();
+        CHERRY_SAP_BOTTLE = items.register("cherry_sap_bottle", props -> new Item(sapBottle(props))).asDeferredItem();
         CHORUS_SAP_BUCKET = items.register("chorus_sap_bucket", props -> new BucketItem(ModFluids.CHORUS_SAP_STILL.value(), sapBucket(props))).asDeferredItem();
+        CHORUS_SAP_BOTTLE = items.register("chorus_sap_bottle", props -> new Item(sapBottle(props))).asDeferredItem();
         CRIMSON_SAP_BUCKET = items.register("crimson_sap_bucket", props -> new BucketItem(ModFluids.CRIMSON_SAP_STILL.value(), sapBucket(props))).asDeferredItem();
+        CRIMSON_SAP_BOTTLE = items.register("crimson_sap_bottle", props -> new Item(sapBottle(props))).asDeferredItem();
         JUNGLE_SAP_BUCKET = items.register("jungle_sap_bucket", props -> new BucketItem(ModFluids.JUNGLE_SAP_STILL.value(), sapBucket(props))).asDeferredItem();
+        JUNGLE_SAP_BOTTLE = items.register("jungle_sap_bottle", props -> new Item(sapBottle(props))).asDeferredItem();
         MANGROVE_SAP_BUCKET = items.register("mangrove_sap_bucket", props -> new BucketItem(ModFluids.MANGROVE_SAP_STILL.value(), sapBucket(props))).asDeferredItem();
+        MANGROVE_SAP_BOTTLE = items.register("mangrove_sap_bottle", props -> new Item(sapBottle(props))).asDeferredItem();
         OAK_SAP_BUCKET = items.register("oak_sap_bucket", props -> new BucketItem(ModFluids.OAK_SAP_STILL.value(), sapBucket(props))).asDeferredItem();
+        OAK_SAP_BOTTLE = items.register("oak_sap_bottle", props -> new Item(sapBottle(props))).asDeferredItem();
         SPRUCE_SAP_BUCKET = items.register("spruce_sap_bucket", props -> new BucketItem(ModFluids.SPRUCE_SAP_STILL.value(), sapBucket(props))).asDeferredItem();
+        SPRUCE_SAP_BOTTLE = items.register("spruce_sap_bottle", props -> new Item(sapBottle(props))).asDeferredItem();
         WARPED_SAP_BUCKET = items.register("warped_sap_bucket", props -> new BucketItem(ModFluids.WARPED_SAP_STILL.value(), sapBucket(props))).asDeferredItem();
+        WARPED_SAP_BOTTLE = items.register("warped_sap_bottle", props -> new Item(sapBottle(props))).asDeferredItem();
     }
 
     public static void initialize(final BalmCreativeModeTabRegistrar creativeModeTabs) {
@@ -50,6 +72,18 @@ public final class ModItems {
                         .displayItems((_, output) -> {
                             output.accept(ModBlocks.GREEN_FLOWER);
                             output.accept(GREEN_SAFEGUARD);
+
+                            output.accept(OAK_SAP_BOTTLE);
+                            output.accept(SPRUCE_SAP_BOTTLE);
+                            output.accept(BIRCH_SAP_BOTTLE);
+                            output.accept(JUNGLE_SAP_BOTTLE);
+                            output.accept(ACACIA_SAP_BOTTLE);
+                            output.accept(MANGROVE_SAP_BOTTLE);
+                            output.accept(CHERRY_SAP_BOTTLE);
+                            output.accept(CACTUS_SAP_BOTTLE);
+                            output.accept(CRIMSON_SAP_BOTTLE);
+                            output.accept(WARPED_SAP_BOTTLE);
+                            output.accept(CHORUS_SAP_BOTTLE);
 
                             output.accept(OAK_SAP_BUCKET);
                             output.accept(SPRUCE_SAP_BUCKET);
@@ -70,6 +104,10 @@ public final class ModItems {
         return properties
                 .craftRemainder(Items.BUCKET)
                 .stacksTo(1);
+    }
+
+    public static Item.Properties sapBottle(Item.Properties properties) {
+        return properties.craftRemainder(Items.GLASS_BOTTLE);
     }
 
 }

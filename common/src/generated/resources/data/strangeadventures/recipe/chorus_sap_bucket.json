@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    "minecraft:bucket",
+    "strangeadventures:chorus_sap_bottle",
+    "strangeadventures:chorus_sap_bottle",
+    "strangeadventures:chorus_sap_bottle"
+  ],
+  "result": {
+    "id": "strangeadventures:chorus_sap_bucket"
+  }
+}

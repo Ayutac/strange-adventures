@@ -4,6 +4,7 @@ import lombok.NonNull;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
@@ -17,33 +18,33 @@ import net.minecraft.world.level.material.FluidState;
 public abstract class AbstractSapFluid extends FlowingFluid {
 
     @Override
-    protected boolean canConvertToSource(final @NonNull ServerLevel serverLevel) {
+    protected boolean canConvertToSource(final ServerLevel serverLevel) {
         return false;
     }
 
     @Override
-    protected void beforeDestroyingBlock(final @NonNull LevelAccessor level, final @NonNull BlockPos pos, final BlockState state) {
+    protected void beforeDestroyingBlock(final LevelAccessor level, final BlockPos pos, final BlockState state) {
         final BlockEntity blockEntity = state.hasBlockEntity() ? level.getBlockEntity(pos) : null;
         Block.dropResources(state, level, pos, blockEntity);
     }
 
     @Override
-    protected int getSlopeFindDistance(final @NonNull LevelReader level) {
+    protected int getSlopeFindDistance(final LevelReader level) {
         return 4;
     }
 
     @Override
-    protected int getDropOff(final @NonNull LevelReader level) {
+    protected int getDropOff(final LevelReader level) {
         return 2;
     }
 
     @Override
-    protected boolean canBeReplacedWith(final @NonNull FluidState fluidState, final @NonNull BlockGetter blockGetter, final @NonNull BlockPos blockPos, final @NonNull Fluid fluid, final @NonNull Direction direction) {
+    protected boolean canBeReplacedWith(final FluidState fluidState, final BlockGetter blockGetter, final BlockPos blockPos, final Fluid fluid, final Direction direction) {
         return false;
     }
 
     @Override
-    public int getTickDelay(final @NonNull LevelReader level) {
+    public int getTickDelay(final LevelReader level) {
         return 30;
     }
 
@@ -51,5 +52,7 @@ public abstract class AbstractSapFluid extends FlowingFluid {
     protected float getExplosionResistance() {
         return 100f;
     }
+
+    public abstract Item getBottle();
 
 }

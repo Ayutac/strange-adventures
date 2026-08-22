@@ -1,6 +1,5 @@
 package studio.abos.mc.strangeadventures.fluid;
 
-import lombok.NonNull;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.LiquidBlock;
 import net.minecraft.world.level.block.state.BlockState;
@@ -12,44 +11,45 @@ import studio.abos.mc.strangeadventures.item.ModItems;
 
 public abstract class JungleSapFluid extends AbstractSapFluid {
 
-    @NonNull
     @Override
     public Fluid getFlowing() {
         return ModFluids.JUNGLE_SAP_FLOWING.value();
     }
 
-    @NonNull
     @Override
     public Fluid getSource() {
         return ModFluids.JUNGLE_SAP_STILL.value();
     }
 
-    @NonNull
     @Override
-    protected BlockState createLegacyBlock(final @NonNull FluidState state) {
+    protected BlockState createLegacyBlock(final FluidState state) {
         return ModBlocks.JUNGLE_SAP.defaultBlockState().setValue(LiquidBlock.LEVEL, getLegacyLevel(state));
     }
 
-    @NonNull
     @Override
     public Item getBucket() {
         return ModItems.JUNGLE_SAP_BUCKET.asItem();
     }
 
     @Override
-    public boolean isSame(final @NonNull Fluid fluid) {
+    public Item getBottle() {
+        return ModItems.JUNGLE_SAP_BOTTLE.asItem();
+    }
+
+    @Override
+    public boolean isSame(final Fluid fluid) {
         return fluid == ModFluids.JUNGLE_SAP_STILL.value() || fluid == ModFluids.JUNGLE_SAP_FLOWING.value();
     }
 
     public static class Source extends JungleSapFluid {
 
         @Override
-        public boolean isSource(final @NonNull FluidState state) {
+        public boolean isSource(final FluidState state) {
             return true;
         }
 
         @Override
-        public int getAmount(final @NonNull FluidState state) {
+        public int getAmount(final FluidState state) {
             return 8;
         }
 
@@ -58,18 +58,18 @@ public abstract class JungleSapFluid extends AbstractSapFluid {
     public static class Flowing extends JungleSapFluid {
 
         @Override
-        public boolean isSource(final @NonNull FluidState state) {
+        public boolean isSource(final FluidState state) {
             return false;
         }
 
         @Override
-        protected void createFluidStateDefinition(final @NonNull StateDefinition.Builder<@NonNull Fluid, @NonNull FluidState> builder) {
+        protected void createFluidStateDefinition(final StateDefinition.Builder<Fluid, FluidState> builder) {
             super.createFluidStateDefinition(builder);
             builder.add(LEVEL);
         }
 
         @Override
-        public int getAmount(final @NonNull FluidState state) {
+        public int getAmount(final FluidState state) {
             return state.getValue(LEVEL);
         }
 

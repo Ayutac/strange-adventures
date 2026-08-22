@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "B": "strangeadventures:birch_sap_bucket",
+    "G": "minecraft:glass"
+  },
+  "pattern": [
+    "GBG",
+    " G "
+  ],
+  "result": {
+    "count": 3,
+    "id": "strangeadventures:birch_sap_bottle"
+  }
+}

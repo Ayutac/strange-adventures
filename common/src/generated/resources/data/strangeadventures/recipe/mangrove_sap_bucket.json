@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    "minecraft:bucket",
+    "strangeadventures:mangrove_sap_bottle",
+    "strangeadventures:mangrove_sap_bottle",
+    "strangeadventures:mangrove_sap_bottle"
+  ],
+  "result": {
+    "id": "strangeadventures:mangrove_sap_bucket"
+  }
+}

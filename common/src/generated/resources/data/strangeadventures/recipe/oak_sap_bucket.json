@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    "minecraft:bucket",
+    "strangeadventures:oak_sap_bottle",
+    "strangeadventures:oak_sap_bottle",
+    "strangeadventures:oak_sap_bottle"
+  ],
+  "result": {
+    "id": "strangeadventures:oak_sap_bucket"
+  }
+}
