@@ -50,9 +50,10 @@ public final class ModItems {
                         .displayItems((_, output) -> {
                             output.accept(ModBlocks.GREEN_FLOWER);
                             output.accept(GREEN_SAFEGUARD);
+
                             output.accept(OAK_SAP_BUCKET);
-                            output.accept(BIRCH_SAP_BUCKET);
                             output.accept(SPRUCE_SAP_BUCKET);
+                            output.accept(BIRCH_SAP_BUCKET);
                             output.accept(JUNGLE_SAP_BUCKET);
                             output.accept(ACACIA_SAP_BUCKET);
                             output.accept(MANGROVE_SAP_BUCKET);
