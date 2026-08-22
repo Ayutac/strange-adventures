@@ -10,5 +10,7 @@ public final class ModFluidIds {
 
     public static final ResourceKey<@NonNull Fluid> BIRCH_SAP_STILL = ResourceKey.create(Registries.FLUID, StrangeAdventures.id("birch_sap"));
     public static final ResourceKey<@NonNull Fluid> BIRCH_SAP_FLOWING = ResourceKey.create(Registries.FLUID, StrangeAdventures.id("flowing_birch_sap"));
+    public static final ResourceKey<@NonNull Fluid> OAK_SAP_STILL = ResourceKey.create(Registries.FLUID, StrangeAdventures.id("oak_sap"));
+    public static final ResourceKey<@NonNull Fluid> OAK_SAP_FLOWING = ResourceKey.create(Registries.FLUID, StrangeAdventures.id("flowing_oak_sap"));
 
 }

@@ -17,6 +17,9 @@ public class ModFluidTagProvider extends FabricTagsProvider.FluidTagsProvider {
     protected void addTags(HolderLookup.Provider arg) {
         builder(ModFluidTags.BIRCH_SAP).add(ModFluidIds.BIRCH_SAP_STILL);
         builder(ModFluidTags.BIRCH_SAP).add(ModFluidIds.BIRCH_SAP_FLOWING);
+        builder(ModFluidTags.OAK_SAP).add(ModFluidIds.OAK_SAP_STILL);
+        builder(ModFluidTags.OAK_SAP).add(ModFluidIds.OAK_SAP_FLOWING);
         builder(ModFluidTags.SAP).addTag(ModFluidTags.BIRCH_SAP);
+        builder(ModFluidTags.SAP).addTag(ModFluidTags.OAK_SAP);
     }
 }

@@ -18,6 +18,7 @@ public final class ModBlocks {
     public static DeferredBlock POTTED_GREEN_FLOWER;
     public static DeferredBlock GREEN_FARMBLOCK;
     public static DeferredBlock BIRCH_SAP;
+    public static DeferredBlock OAK_SAP;
 
     public static void initialize(final BalmBlockRegistrar blocks) {
         GREEN_FLOWER = blocks.register("green_flower", GreenFlowerBlock::new, props -> props
@@ -38,15 +39,23 @@ public final class ModBlocks {
                 .isViewBlocking((_, _, _) -> true)
                 .isSuffocating((_, _, _) -> true)
                 .mapColor(Blocks.FARMLAND.defaultMapColor())).asDeferredBlock();
-        BIRCH_SAP = blocks.register("birch_sap", props -> LiquidBlockAccessor.newLiquidBlock((FlowingFluid)ModFluids.BIRCH_SAP_STILL.value(), props), props -> props
-                .mapColor(MapColor.COLOR_ORANGE)
+        BIRCH_SAP = blocks.register("birch_sap", props -> LiquidBlockAccessor.newLiquidBlock((FlowingFluid)ModFluids.BIRCH_SAP_STILL.value(), props), props ->
+                sap(props)
+                .mapColor(MapColor.COLOR_ORANGE)).asDeferredBlock();
+        OAK_SAP = blocks.register("oak_sap", props -> LiquidBlockAccessor.newLiquidBlock((FlowingFluid)ModFluids.OAK_SAP_STILL.value(), props), props ->
+                sap(props)
+                .mapColor(MapColor.COLOR_ORANGE)).asDeferredBlock();
+    }
+
+    public static BlockBehaviour.Properties sap(BlockBehaviour.Properties properties) {
+        return properties
                 .replaceable()
                 .noCollision()
                 .strength(100.0F)
                 .pushReaction(PushReaction.DESTROY)
                 .noLootTable()
                 .liquid()
-                .sound(SoundType.EMPTY)).asDeferredBlock();
+                .sound(SoundType.EMPTY);
     }
 
 }

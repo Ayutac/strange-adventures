@@ -9,6 +9,7 @@ import studio.abos.mc.strangeadventures.StrangeAdventures;
 public final class ModFluidTags {
 
     public static final TagKey<Fluid> BIRCH_SAP = TagKey.create(Registries.FLUID, StrangeAdventures.id("birch_sap"));
+    public static final TagKey<Fluid> OAK_SAP = TagKey.create(Registries.FLUID, StrangeAdventures.id("oak_sap"));
     public static final TagKey<Fluid> SAP = TagKey.create(Registries.FLUID, Identifier.fromNamespaceAndPath("c", "sap"));
 
 }
