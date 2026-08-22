@@ -13,8 +13,10 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.material.Fluid;
 import studio.abos.mc.strangeadventures.StrangeAdventures;
+import studio.abos.mc.strangeadventures.block.ModBlocks;
 import studio.abos.mc.strangeadventures.fluid.AbstractSapFluid;
 import studio.abos.mc.strangeadventures.fluid.ModFluids;
+import studio.abos.mc.strangeadventures.tag.ModBlockTags;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -74,7 +76,72 @@ public class ModRecipeProvider extends FabricRecipeProvider {
             }
 
             private void sapSipperRecipes() {
-
+                sapSipper(ModFluids.ACACIA_SAP_STILL)
+                        .requires(ModBlockTags.MAKES_ACACIA_SAP)
+                        .ticks(10)
+                        .amount(2)
+                        .unlockedBy("has_sipper", has(ModBlocks.SAP_SIPPER))
+                        .save(exporter);
+                sapSipper(ModFluids.BIRCH_SAP_STILL)
+                        .requires(ModBlockTags.MAKES_BIRCH_SAP)
+                        .ticks(10)
+                        .amount(2)
+                        .unlockedBy("has_sipper", has(ModBlocks.SAP_SIPPER))
+                        .save(exporter);
+                sapSipper(ModFluids.CACTUS_SAP_STILL)
+                        .requires(ModBlockTags.MAKES_CACTUS_SAP)
+                        .ticks(10)
+                        .amount(2)
+                        .unlockedBy("has_sipper", has(ModBlocks.SAP_SIPPER))
+                        .save(exporter);
+                sapSipper(ModFluids.CHERRY_SAP_STILL)
+                        .requires(ModBlockTags.MAKES_CHERRY_SAP)
+                        .ticks(10)
+                        .amount(2)
+                        .unlockedBy("has_sipper", has(ModBlocks.SAP_SIPPER))
+                        .save(exporter);
+                sapSipper(ModFluids.CHORUS_SAP_STILL)
+                        .requires(ModBlockTags.MAKES_CHORUS_SAP)
+                        .ticks(10)
+                        .amount(2)
+                        .unlockedBy("has_sipper", has(ModBlocks.SAP_SIPPER))
+                        .save(exporter);
+                sapSipper(ModFluids.CRIMSON_SAP_STILL)
+                        .requires(ModBlockTags.MAKES_CRIMSON_SAP)
+                        .ticks(10)
+                        .amount(2)
+                        .unlockedBy("has_sipper", has(ModBlocks.SAP_SIPPER))
+                        .save(exporter);
+                sapSipper(ModFluids.JUNGLE_SAP_STILL)
+                        .requires(ModBlockTags.MAKES_JUNGLE_SAP)
+                        .ticks(10)
+                        .amount(2)
+                        .unlockedBy("has_sipper", has(ModBlocks.SAP_SIPPER))
+                        .save(exporter);
+                sapSipper(ModFluids.MANGROVE_SAP_STILL)
+                        .requires(ModBlockTags.MAKES_MANGROVE_SAP)
+                        .ticks(10)
+                        .amount(2)
+                        .unlockedBy("has_sipper", has(ModBlocks.SAP_SIPPER))
+                        .save(exporter);
+                sapSipper(ModFluids.OAK_SAP_STILL)
+                        .requires(ModBlockTags.MAKES_OAK_SAP)
+                        .ticks(10)
+                        .amount(2)
+                        .unlockedBy("has_sipper", has(ModBlocks.SAP_SIPPER))
+                        .save(exporter);
+                sapSipper(ModFluids.SPRUCE_SAP_STILL)
+                        .requires(ModBlockTags.MAKES_SPRUCE_SAP)
+                        .ticks(10)
+                        .amount(2)
+                        .unlockedBy("has_sipper", has(ModBlocks.SAP_SIPPER))
+                        .save(exporter);
+                sapSipper(ModFluids.WARPED_SAP_STILL)
+                        .requires(ModBlockTags.MAKES_WARPED_SAP)
+                        .ticks(10)
+                        .amount(2)
+                        .unlockedBy("has_sipper", has(ModBlocks.SAP_SIPPER))
+                        .save(exporter);
             }
         };
     }

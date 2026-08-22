@@ -1,0 +1,7 @@
+{
+  "type": "strangeadventures:sap_sipper",
+  "amountPerSap": 2,
+  "sapBlocks": "#strangeadventures:makes_spruce_sap",
+  "sapResult": "strangeadventures:spruce_sap",
+  "ticksPerSap": 10
+}

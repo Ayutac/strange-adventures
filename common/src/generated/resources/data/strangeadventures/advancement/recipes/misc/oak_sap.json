@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_sipper": {
+      "conditions": {
+        "items": [
+          {
+            "items": "strangeadventures:sap_sipper"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "strangeadventures:oak_sap"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_sipper"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "strangeadventures:oak_sap"
+    ]
+  }
+}

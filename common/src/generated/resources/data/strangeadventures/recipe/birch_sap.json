@@ -1,0 +1,7 @@
+{
+  "type": "strangeadventures:sap_sipper",
+  "amountPerSap": 2,
+  "sapBlocks": "#strangeadventures:makes_birch_sap",
+  "sapResult": "strangeadventures:birch_sap",
+  "ticksPerSap": 10
+}

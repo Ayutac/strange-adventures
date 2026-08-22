@@ -1,0 +1,7 @@
+{
+  "type": "strangeadventures:sap_sipper",
+  "amountPerSap": 2,
+  "sapBlocks": "#strangeadventures:makes_acadia_sap",
+  "sapResult": "strangeadventures:acacia_sap",
+  "ticksPerSap": 10
+}
