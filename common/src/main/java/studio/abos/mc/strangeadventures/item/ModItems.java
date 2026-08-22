@@ -14,13 +14,25 @@ import studio.abos.mc.strangeadventures.fluid.ModFluids;
 public final class ModItems {
 
     public static DeferredItem GREEN_SAFEGUARD;
+
+    public static DeferredItem ACACIA_SAP_BUCKET;
     public static DeferredItem BIRCH_SAP_BUCKET;
+    public static DeferredItem CHERRY_SAP_BUCKET;
+    public static DeferredItem JUNGLE_SAP_BUCKET;
+    public static DeferredItem MANGROVE_SAP_BUCKET;
     public static DeferredItem OAK_SAP_BUCKET;
+    public static DeferredItem SPRUCE_SAP_BUCKET;
 
     public static void initialize(final BalmItemRegistrar items) {
         GREEN_SAFEGUARD = items.register("green_safeguard", GreenSafeguardItem::new).asDeferredItem();
+
+        ACACIA_SAP_BUCKET = items.register("acacia_sap_bucket", props -> new BucketItem(ModFluids.ACACIA_SAP_STILL.value(), sapBucket(props))).asDeferredItem();
         BIRCH_SAP_BUCKET = items.register("birch_sap_bucket", props -> new BucketItem(ModFluids.BIRCH_SAP_STILL.value(), sapBucket(props))).asDeferredItem();
+        CHERRY_SAP_BUCKET = items.register("cherry_sap_bucket", props -> new BucketItem(ModFluids.CHERRY_SAP_STILL.value(), sapBucket(props))).asDeferredItem();
+        JUNGLE_SAP_BUCKET = items.register("jungle_sap_bucket", props -> new BucketItem(ModFluids.JUNGLE_SAP_STILL.value(), sapBucket(props))).asDeferredItem();
+        MANGROVE_SAP_BUCKET = items.register("mangrove_sap_bucket", props -> new BucketItem(ModFluids.MANGROVE_SAP_STILL.value(), sapBucket(props))).asDeferredItem();
         OAK_SAP_BUCKET = items.register("oak_sap_bucket", props -> new BucketItem(ModFluids.OAK_SAP_STILL.value(), sapBucket(props))).asDeferredItem();
+        SPRUCE_SAP_BUCKET = items.register("spruce_sap_bucket", props -> new BucketItem(ModFluids.SPRUCE_SAP_STILL.value(), sapBucket(props))).asDeferredItem();
     }
 
     public static void initialize(final BalmCreativeModeTabRegistrar creativeModeTabs) {
@@ -30,8 +42,13 @@ public final class ModItems {
                         .displayItems((_, output) -> {
                             output.accept(ModBlocks.GREEN_FLOWER);
                             output.accept(GREEN_SAFEGUARD);
-                            output.accept(BIRCH_SAP_BUCKET);
                             output.accept(OAK_SAP_BUCKET);
+                            output.accept(BIRCH_SAP_BUCKET);
+                            output.accept(SPRUCE_SAP_BUCKET);
+                            output.accept(JUNGLE_SAP_BUCKET);
+                            output.accept(ACACIA_SAP_BUCKET);
+                            output.accept(MANGROVE_SAP_BUCKET);
+                            output.accept(CHERRY_SAP_BUCKET);
                         })
         );
     }

@@ -17,8 +17,13 @@ public final class ModBlocks {
     public static DeferredBlock GREEN_FLOWER;
     public static DeferredBlock POTTED_GREEN_FLOWER;
     public static DeferredBlock GREEN_FARMBLOCK;
+    public static DeferredBlock ACACIA_SAP;
     public static DeferredBlock BIRCH_SAP;
+    public static DeferredBlock CHERRY_SAP;
+    public static DeferredBlock JUNGLE_SAP;
+    public static DeferredBlock MANGROVE_SAP;
     public static DeferredBlock OAK_SAP;
+    public static DeferredBlock SPRUCE_SAP;
 
     public static void initialize(final BalmBlockRegistrar blocks) {
         GREEN_FLOWER = blocks.register("green_flower", GreenFlowerBlock::new, props -> props
@@ -39,10 +44,25 @@ public final class ModBlocks {
                 .isViewBlocking((_, _, _) -> true)
                 .isSuffocating((_, _, _) -> true)
                 .mapColor(Blocks.FARMLAND.defaultMapColor())).asDeferredBlock();
+        ACACIA_SAP = blocks.register("acacia_sap", props -> LiquidBlockAccessor.newLiquidBlock((FlowingFluid)ModFluids.ACACIA_SAP_STILL.value(), props), props ->
+                sap(props)
+                .mapColor(MapColor.COLOR_ORANGE)).asDeferredBlock();
         BIRCH_SAP = blocks.register("birch_sap", props -> LiquidBlockAccessor.newLiquidBlock((FlowingFluid)ModFluids.BIRCH_SAP_STILL.value(), props), props ->
                 sap(props)
                 .mapColor(MapColor.COLOR_ORANGE)).asDeferredBlock();
+        CHERRY_SAP = blocks.register("cherry_sap", props -> LiquidBlockAccessor.newLiquidBlock((FlowingFluid)ModFluids.CHERRY_SAP_STILL.value(), props), props ->
+                sap(props)
+                .mapColor(MapColor.COLOR_ORANGE)).asDeferredBlock();
+        JUNGLE_SAP = blocks.register("jungle_sap", props -> LiquidBlockAccessor.newLiquidBlock((FlowingFluid)ModFluids.JUNGLE_SAP_STILL.value(), props), props ->
+                sap(props)
+                .mapColor(MapColor.COLOR_ORANGE)).asDeferredBlock();
+        MANGROVE_SAP = blocks.register("mangrove_sap", props -> LiquidBlockAccessor.newLiquidBlock((FlowingFluid)ModFluids.MANGROVE_SAP_STILL.value(), props), props ->
+                sap(props)
+                .mapColor(MapColor.COLOR_ORANGE)).asDeferredBlock();
         OAK_SAP = blocks.register("oak_sap", props -> LiquidBlockAccessor.newLiquidBlock((FlowingFluid)ModFluids.OAK_SAP_STILL.value(), props), props ->
+                sap(props)
+                .mapColor(MapColor.COLOR_ORANGE)).asDeferredBlock();
+        SPRUCE_SAP = blocks.register("spruce_sap", props -> LiquidBlockAccessor.newLiquidBlock((FlowingFluid)ModFluids.SPRUCE_SAP_STILL.value(), props), props ->
                 sap(props)
                 .mapColor(MapColor.COLOR_ORANGE)).asDeferredBlock();
     }
