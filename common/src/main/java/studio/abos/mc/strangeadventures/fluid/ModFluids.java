@@ -11,8 +11,14 @@ public final class ModFluids {
     public static Holder<@NonNull Fluid> ACACIA_SAP_FLOWING;
     public static Holder<@NonNull Fluid> BIRCH_SAP_STILL;
     public static Holder<@NonNull Fluid> BIRCH_SAP_FLOWING;
+    public static Holder<@NonNull Fluid> CACTUS_SAP_STILL;
+    public static Holder<@NonNull Fluid> CACTUS_SAP_FLOWING;
     public static Holder<@NonNull Fluid> CHERRY_SAP_STILL;
     public static Holder<@NonNull Fluid> CHERRY_SAP_FLOWING;
+    public static Holder<@NonNull Fluid> CHORUS_SAP_STILL;
+    public static Holder<@NonNull Fluid> CHORUS_SAP_FLOWING;
+    public static Holder<@NonNull Fluid> CRIMSON_SAP_STILL;
+    public static Holder<@NonNull Fluid> CRIMSON_SAP_FLOWING;
     public static Holder<@NonNull Fluid> JUNGLE_SAP_STILL;
     public static Holder<@NonNull Fluid> JUNGLE_SAP_FLOWING;
     public static Holder<@NonNull Fluid> MANGROVE_SAP_STILL;
@@ -21,14 +27,22 @@ public final class ModFluids {
     public static Holder<@NonNull Fluid> OAK_SAP_FLOWING;
     public static Holder<@NonNull Fluid> SPRUCE_SAP_STILL;
     public static Holder<@NonNull Fluid> SPRUCE_SAP_FLOWING;
+    public static Holder<@NonNull Fluid> WARPED_SAP_STILL;
+    public static Holder<@NonNull Fluid> WARPED_SAP_FLOWING;
 
     public static void initialize(BalmRegistrar.Scoped<@NonNull Fluid> fluids) {
         ACACIA_SAP_STILL = fluids.register(ModFluidIds.ACACIA_SAP_STILL.identifier().getPath(), _ -> new AcaciaSapFluid.Source());
         ACACIA_SAP_FLOWING = fluids.register(ModFluidIds.ACACIA_SAP_FLOWING.identifier().getPath(), _ -> new AcaciaSapFluid.Flowing());
         BIRCH_SAP_STILL = fluids.register(ModFluidIds.BIRCH_SAP_STILL.identifier().getPath(), _ -> new BirchSapFluid.Source());
         BIRCH_SAP_FLOWING = fluids.register(ModFluidIds.BIRCH_SAP_FLOWING.identifier().getPath(), _ -> new BirchSapFluid.Flowing());
+        CACTUS_SAP_STILL = fluids.register(ModFluidIds.CACTUS_SAP_STILL.identifier().getPath(), _ -> new CactusSapFluid.Source());
+        CACTUS_SAP_FLOWING = fluids.register(ModFluidIds.CACTUS_SAP_FLOWING.identifier().getPath(), _ -> new CactusSapFluid.Flowing());
         CHERRY_SAP_STILL = fluids.register(ModFluidIds.CHERRY_SAP_STILL.identifier().getPath(), _ -> new CherrySapFluid.Source());
         CHERRY_SAP_FLOWING = fluids.register(ModFluidIds.CHERRY_SAP_FLOWING.identifier().getPath(), _ -> new CherrySapFluid.Flowing());
+        CHORUS_SAP_STILL = fluids.register(ModFluidIds.CHORUS_SAP_STILL.identifier().getPath(), _ -> new ChorusSapFluid.Source());
+        CHORUS_SAP_FLOWING = fluids.register(ModFluidIds.CHORUS_SAP_FLOWING.identifier().getPath(), _ -> new ChorusSapFluid.Flowing());
+        CRIMSON_SAP_STILL = fluids.register(ModFluidIds.CRIMSON_SAP_STILL.identifier().getPath(), _ -> new CrimsonSapFluid.Source());
+        CRIMSON_SAP_FLOWING = fluids.register(ModFluidIds.CRIMSON_SAP_FLOWING.identifier().getPath(), _ -> new CrimsonSapFluid.Flowing());
         JUNGLE_SAP_STILL = fluids.register(ModFluidIds.JUNGLE_SAP_STILL.identifier().getPath(), _ -> new JungleSapFluid.Source());
         JUNGLE_SAP_FLOWING = fluids.register(ModFluidIds.JUNGLE_SAP_FLOWING.identifier().getPath(), _ -> new JungleSapFluid.Flowing());
         MANGROVE_SAP_STILL = fluids.register(ModFluidIds.MANGROVE_SAP_STILL.identifier().getPath(), _ -> new MangroveSapFluid.Source());
@@ -37,5 +51,8 @@ public final class ModFluids {
         OAK_SAP_FLOWING = fluids.register(ModFluidIds.OAK_SAP_FLOWING.identifier().getPath(), _ -> new OakSapFluid.Flowing());
         SPRUCE_SAP_STILL = fluids.register(ModFluidIds.SPRUCE_SAP_STILL.identifier().getPath(), _ -> new SpruceSapFluid.Source());
         SPRUCE_SAP_FLOWING = fluids.register(ModFluidIds.SPRUCE_SAP_FLOWING.identifier().getPath(), _ -> new SpruceSapFluid.Flowing());
+        WARPED_SAP_STILL = fluids.register(ModFluidIds.WARPED_SAP_STILL.identifier().getPath(), _ -> new WarpedSapFluid.Source());
+        WARPED_SAP_FLOWING = fluids.register(ModFluidIds.WARPED_SAP_FLOWING.identifier().getPath(), _ -> new WarpedSapFluid.Flowing());
     }
+
 }

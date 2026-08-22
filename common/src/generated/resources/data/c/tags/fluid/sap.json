@@ -2,10 +2,14 @@
   "values": [
     "#strangeadventures:acacia_sap",
     "#strangeadventures:birch_sap",
+    "#strangeadventures:cactus_sap",
     "#strangeadventures:cherry_sap",
+    "#strangeadventures:chorus_sap",
+    "#strangeadventures:crimson_sap",
     "#strangeadventures:jungle_sap",
     "#strangeadventures:mangrove_sap",
     "#strangeadventures:oak_sap",
-    "#strangeadventures:spruce_sap"
+    "#strangeadventures:spruce_sap",
+    "#strangeadventures:warped_sap"
   ]
 }
