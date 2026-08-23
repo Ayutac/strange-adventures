@@ -51,8 +51,8 @@ public final class ModBlocks {
                 .sound(SoundType.GRAVEL)
                 .isViewBlocking((_, _, _) -> true)
                 .isSuffocating((_, _, _) -> true)
-                .mapColor(Blocks.FARMLAND.defaultMapColor())).asDeferredBlock();
-        GREEN_CACTUS = blocks.register("green_cactus", GreenFarmlandBlock::new, props -> props
+                .mapColor(Blocks.FARMLAND.defaultMapColor())).withDefaultItem().asDeferredBlock();
+        GREEN_CACTUS = blocks.register("green_cactus", GreenCactusBlock::new, props -> props
                 .strength(0.4F)
                 .randomTicks()
                 .sound(SoundType.WOOL)

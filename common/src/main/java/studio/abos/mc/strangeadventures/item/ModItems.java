@@ -72,6 +72,8 @@ public final class ModItems {
                         .displayItems((_, output) -> {
                             output.accept(ModBlocks.GREEN_FLOWER);
                             output.accept(GREEN_SAFEGUARD);
+                            output.accept(ModBlocks.GREEN_FARMLAND);
+                            output.accept(ModBlocks.GREEN_CACTUS);
                             output.accept(ModBlocks.SAP_SIPPER);
 
                             output.accept(OAK_SAP_BOTTLE);
