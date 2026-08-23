@@ -1,6 +1,8 @@
 {
   "block.strangeadventures.green_flower": "Flower of the Green",
   "block.strangeadventures.potted_green_flower": "Potted Flower of the Green",
+  "gui.strangeadventures.sap_sipper": "Sap Sipper contains %1$s mB of ",
+  "gui.strangeadventures.sap_sipper.empty": "Sap Sipper is empty.",
   "item.strangeadventures.green_safeguard": "Farmland Safeguard",
   "itemGroup.strangeadventures.strangeadventures": "Strange Adventures"
 }

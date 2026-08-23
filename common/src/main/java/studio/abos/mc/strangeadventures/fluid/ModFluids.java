@@ -1,36 +1,38 @@
 package studio.abos.mc.strangeadventures.fluid;
 
-import lombok.NonNull;
 import net.blay09.mods.balm.core.BalmRegistrar;
 import net.minecraft.core.Holder;
 import net.minecraft.world.level.material.Fluid;
 
 public final class ModFluids {
 
-    public static Holder<@NonNull Fluid> ACACIA_SAP_STILL;
-    public static Holder<@NonNull Fluid> ACACIA_SAP_FLOWING;
-    public static Holder<@NonNull Fluid> BIRCH_SAP_STILL;
-    public static Holder<@NonNull Fluid> BIRCH_SAP_FLOWING;
-    public static Holder<@NonNull Fluid> CACTUS_SAP_STILL;
-    public static Holder<@NonNull Fluid> CACTUS_SAP_FLOWING;
-    public static Holder<@NonNull Fluid> CHERRY_SAP_STILL;
-    public static Holder<@NonNull Fluid> CHERRY_SAP_FLOWING;
-    public static Holder<@NonNull Fluid> CHORUS_SAP_STILL;
-    public static Holder<@NonNull Fluid> CHORUS_SAP_FLOWING;
-    public static Holder<@NonNull Fluid> CRIMSON_SAP_STILL;
-    public static Holder<@NonNull Fluid> CRIMSON_SAP_FLOWING;
-    public static Holder<@NonNull Fluid> JUNGLE_SAP_STILL;
-    public static Holder<@NonNull Fluid> JUNGLE_SAP_FLOWING;
-    public static Holder<@NonNull Fluid> MANGROVE_SAP_STILL;
-    public static Holder<@NonNull Fluid> MANGROVE_SAP_FLOWING;
-    public static Holder<@NonNull Fluid> OAK_SAP_STILL;
-    public static Holder<@NonNull Fluid> OAK_SAP_FLOWING;
-    public static Holder<@NonNull Fluid> SPRUCE_SAP_STILL;
-    public static Holder<@NonNull Fluid> SPRUCE_SAP_FLOWING;
-    public static Holder<@NonNull Fluid> WARPED_SAP_STILL;
-    public static Holder<@NonNull Fluid> WARPED_SAP_FLOWING;
+    public static int BOTTLE_AMOUNT = 333; // in mB
+    public static int BUCKET_AMOUNT = 1000; // in mB
 
-    public static void initialize(BalmRegistrar.Scoped<@NonNull Fluid> fluids) {
+    public static Holder<Fluid> ACACIA_SAP_STILL;
+    public static Holder<Fluid> ACACIA_SAP_FLOWING;
+    public static Holder<Fluid> BIRCH_SAP_STILL;
+    public static Holder<Fluid> BIRCH_SAP_FLOWING;
+    public static Holder<Fluid> CACTUS_SAP_STILL;
+    public static Holder<Fluid> CACTUS_SAP_FLOWING;
+    public static Holder<Fluid> CHERRY_SAP_STILL;
+    public static Holder<Fluid> CHERRY_SAP_FLOWING;
+    public static Holder<Fluid> CHORUS_SAP_STILL;
+    public static Holder<Fluid> CHORUS_SAP_FLOWING;
+    public static Holder<Fluid> CRIMSON_SAP_STILL;
+    public static Holder<Fluid> CRIMSON_SAP_FLOWING;
+    public static Holder<Fluid> JUNGLE_SAP_STILL;
+    public static Holder<Fluid> JUNGLE_SAP_FLOWING;
+    public static Holder<Fluid> MANGROVE_SAP_STILL;
+    public static Holder<Fluid> MANGROVE_SAP_FLOWING;
+    public static Holder<Fluid> OAK_SAP_STILL;
+    public static Holder<Fluid> OAK_SAP_FLOWING;
+    public static Holder<Fluid> SPRUCE_SAP_STILL;
+    public static Holder<Fluid> SPRUCE_SAP_FLOWING;
+    public static Holder<Fluid> WARPED_SAP_STILL;
+    public static Holder<Fluid> WARPED_SAP_FLOWING;
+
+    public static void initialize(final BalmRegistrar.Scoped<Fluid> fluids) {
         ACACIA_SAP_STILL = fluids.register(ModFluidIds.ACACIA_SAP_STILL.identifier().getPath(), _ -> new AcaciaSapFluid.Source());
         ACACIA_SAP_FLOWING = fluids.register(ModFluidIds.ACACIA_SAP_FLOWING.identifier().getPath(), _ -> new AcaciaSapFluid.Flowing());
         BIRCH_SAP_STILL = fluids.register(ModFluidIds.BIRCH_SAP_STILL.identifier().getPath(), _ -> new BirchSapFluid.Source());
