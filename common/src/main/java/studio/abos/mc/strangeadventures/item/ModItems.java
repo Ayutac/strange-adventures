@@ -80,6 +80,7 @@ public final class ModItems {
                             output.accept(GREEN_SAFEGUARD);
                             output.accept(ModBlocks.GREEN_FARMLAND);
                             output.accept(ModBlocks.GREEN_CACTUS);
+                            output.accept(ModBlocks.WEIR_CORE);
                             output.accept(ModBlocks.SLEEPING_WOOD);
                             output.accept(ModBlocks.LIVING_WOOD);
                             output.accept(LIVING_ROD);

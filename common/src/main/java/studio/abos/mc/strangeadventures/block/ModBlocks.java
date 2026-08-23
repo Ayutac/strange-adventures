@@ -3,6 +3,7 @@ package studio.abos.mc.strangeadventures.block;
 import net.blay09.mods.balm.world.level.block.BalmBlockRegistrar;
 import net.blay09.mods.balm.world.level.block.DeferredBlock;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraft.world.level.block.RotatedPillarBlock;
@@ -21,6 +22,8 @@ public final class ModBlocks {
     public static DeferredBlock POTTED_GREEN_FLOWER;
     public static DeferredBlock GREEN_FARMLAND;
     public static DeferredBlock GREEN_CACTUS;
+
+    public static DeferredBlock WEIR_CORE;
 
     public static DeferredBlock SLEEPING_WOOD;
     public static DeferredBlock LIVING_WOOD;
@@ -66,6 +69,12 @@ public final class ModBlocks {
                 .pushReaction(PushReaction.DESTROY)
                 .mapColor(MapColor.PLANT)).withDefaultItem().asDeferredBlock();
 
+        WEIR_CORE = blocks.register("weir_core", Block::new, props -> props
+                .strength(10f)
+                .requiresCorrectToolForDrops()
+                .sound(SoundType.CREAKING_HEART)
+                .instrument(NoteBlockInstrument.BASEDRUM)
+                .mapColor(MapColor.COLOR_BROWN)).withDefaultItem().asDeferredBlock();
         SLEEPING_WOOD = blocks.register("sleeping_wood", RotatedPillarBlock::new, props -> props
                 .strength(30f, 1000f)
                 .requiresCorrectToolForDrops()
