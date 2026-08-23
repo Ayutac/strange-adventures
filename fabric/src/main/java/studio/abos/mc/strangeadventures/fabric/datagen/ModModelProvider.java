@@ -24,27 +24,28 @@ public class ModModelProvider extends FabricModelProvider {
     public void generateItemModels(ItemModelGenerators itemModelGenerator) {
         itemModelGenerator.generateFlatItem(ModItems.GREEN_SAFEGUARD.asItem(), ModelTemplates.FLAT_ITEM);
 
-        itemModelGenerator.generateFlatItem(ModItems.ACACIA_SAP_BUCKET.asItem(), ModelTemplates.FLAT_ITEM);
         itemModelGenerator.generateFlatItem(ModItems.ACACIA_SAP_BOTTLE.asItem(), ModelTemplates.FLAT_ITEM);
-        itemModelGenerator.generateFlatItem(ModItems.BIRCH_SAP_BUCKET.asItem(), ModelTemplates.FLAT_ITEM);
+        itemModelGenerator.generateFlatItem(ModItems.ACACIA_SAP_BUCKET.asItem(), ModelTemplates.FLAT_ITEM);
         itemModelGenerator.generateFlatItem(ModItems.BIRCH_SAP_BOTTLE.asItem(), ModelTemplates.FLAT_ITEM);
+        itemModelGenerator.generateFlatItem(ModItems.BIRCH_SAP_BUCKET.asItem(), ModelTemplates.FLAT_ITEM);
+        itemModelGenerator.generateFlatItem(ModItems.CACTUS_SAP_BOTTLE.asItem(), ModelTemplates.FLAT_ITEM);
         itemModelGenerator.generateFlatItem(ModItems.CACTUS_SAP_BUCKET.asItem(), ModelTemplates.FLAT_ITEM);
-        itemModelGenerator.generateFlatItem(ModItems.CHERRY_SAP_BUCKET.asItem(), ModelTemplates.FLAT_ITEM);
         itemModelGenerator.generateFlatItem(ModItems.CHERRY_SAP_BOTTLE.asItem(), ModelTemplates.FLAT_ITEM);
-        itemModelGenerator.generateFlatItem(ModItems.CHORUS_SAP_BUCKET.asItem(), ModelTemplates.FLAT_ITEM);
+        itemModelGenerator.generateFlatItem(ModItems.CHERRY_SAP_BUCKET.asItem(), ModelTemplates.FLAT_ITEM);
         itemModelGenerator.generateFlatItem(ModItems.CHORUS_SAP_BOTTLE.asItem(), ModelTemplates.FLAT_ITEM);
-        itemModelGenerator.generateFlatItem(ModItems.CRIMSON_SAP_BUCKET.asItem(), ModelTemplates.FLAT_ITEM);
+        itemModelGenerator.generateFlatItem(ModItems.CHORUS_SAP_BUCKET.asItem(), ModelTemplates.FLAT_ITEM);
         itemModelGenerator.generateFlatItem(ModItems.CRIMSON_SAP_BOTTLE.asItem(), ModelTemplates.FLAT_ITEM);
-        itemModelGenerator.generateFlatItem(ModItems.JUNGLE_SAP_BUCKET.asItem(), ModelTemplates.FLAT_ITEM);
+        itemModelGenerator.generateFlatItem(ModItems.CRIMSON_SAP_BUCKET.asItem(), ModelTemplates.FLAT_ITEM);
         itemModelGenerator.generateFlatItem(ModItems.JUNGLE_SAP_BOTTLE.asItem(), ModelTemplates.FLAT_ITEM);
-        itemModelGenerator.generateFlatItem(ModItems.MANGROVE_SAP_BUCKET.asItem(), ModelTemplates.FLAT_ITEM);
+        itemModelGenerator.generateFlatItem(ModItems.JUNGLE_SAP_BUCKET.asItem(), ModelTemplates.FLAT_ITEM);
         itemModelGenerator.generateFlatItem(ModItems.MANGROVE_SAP_BOTTLE.asItem(), ModelTemplates.FLAT_ITEM);
-        itemModelGenerator.generateFlatItem(ModItems.OAK_SAP_BUCKET.asItem(), ModelTemplates.FLAT_ITEM);
+        itemModelGenerator.generateFlatItem(ModItems.MANGROVE_SAP_BUCKET.asItem(), ModelTemplates.FLAT_ITEM);
         itemModelGenerator.generateFlatItem(ModItems.OAK_SAP_BOTTLE.asItem(), ModelTemplates.FLAT_ITEM);
-        itemModelGenerator.generateFlatItem(ModItems.SPRUCE_SAP_BUCKET.asItem(), ModelTemplates.FLAT_ITEM);
+        itemModelGenerator.generateFlatItem(ModItems.OAK_SAP_BUCKET.asItem(), ModelTemplates.FLAT_ITEM);
         itemModelGenerator.generateFlatItem(ModItems.SPRUCE_SAP_BOTTLE.asItem(), ModelTemplates.FLAT_ITEM);
-        itemModelGenerator.generateFlatItem(ModItems.WARPED_SAP_BUCKET.asItem(), ModelTemplates.FLAT_ITEM);
+        itemModelGenerator.generateFlatItem(ModItems.SPRUCE_SAP_BUCKET.asItem(), ModelTemplates.FLAT_ITEM);
         itemModelGenerator.generateFlatItem(ModItems.WARPED_SAP_BOTTLE.asItem(), ModelTemplates.FLAT_ITEM);
+        itemModelGenerator.generateFlatItem(ModItems.WARPED_SAP_BUCKET.asItem(), ModelTemplates.FLAT_ITEM);
     }
 
 }
