@@ -59,10 +59,9 @@ public final class ModBlocks {
                 .pushReaction(PushReaction.DESTROY)
                 .mapColor(MapColor.PLANT)).withDefaultItem().asDeferredBlock();
         SAP_SIPPER = blocks.register("sap_sipper", SapSipperBlock::new, props -> props
-                .strength(5f,6f)
-                .instrument(NoteBlockInstrument.IRON_XYLOPHONE)
-                .sound(SoundType.IRON)
-                .mapColor(MapColor.METAL)).withDefaultItem().asDeferredBlock();
+                .strength(3.5f)
+                .instrument(NoteBlockInstrument.BASEDRUM)
+                .mapColor(MapColor.STONE)).withDefaultItem().asDeferredBlock();
 
         ACACIA_SAP = blocks.register("acacia_sap", props -> LiquidBlockAccessor.newLiquidBlock((FlowingFluid)ModFluids.ACACIA_SAP_STILL.value(), props), props ->
                 sap(props)
