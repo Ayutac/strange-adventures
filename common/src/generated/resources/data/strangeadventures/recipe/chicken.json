@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    "minecraft:cooked_chicken",
+    "strangeadventures:living_sap_bottle"
+  ],
+  "result": {
+    "id": "minecraft:chicken"
+  }
+}

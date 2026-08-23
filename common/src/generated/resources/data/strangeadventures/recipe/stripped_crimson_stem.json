@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    "minecraft:crimson_planks",
+    "minecraft:crimson_planks",
+    "minecraft:crimson_planks",
+    "minecraft:crimson_planks",
+    "strangeadventures:living_sap_bottle",
+    "strangeadventures:crimson_sap_bottle"
+  ],
+  "result": {
+    "id": "minecraft:stripped_crimson_stem"
+  }
+}

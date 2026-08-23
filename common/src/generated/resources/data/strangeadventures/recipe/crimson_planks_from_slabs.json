@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    "minecraft:crimson_slab",
+    "minecraft:crimson_slab",
+    "strangeadventures:living_sap_bottle"
+  ],
+  "result": {
+    "id": "minecraft:crimson_planks"
+  }
+}

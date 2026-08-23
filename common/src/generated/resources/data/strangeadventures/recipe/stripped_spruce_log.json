@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    "minecraft:spruce_planks",
+    "minecraft:spruce_planks",
+    "minecraft:spruce_planks",
+    "minecraft:spruce_planks",
+    "strangeadventures:living_sap_bottle",
+    "strangeadventures:spruce_sap_bottle"
+  ],
+  "result": {
+    "id": "minecraft:stripped_spruce_log"
+  }
+}

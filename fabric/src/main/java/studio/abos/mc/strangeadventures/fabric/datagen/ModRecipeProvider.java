@@ -9,10 +9,12 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.RecipeProvider;
+import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.data.recipes.SimpleCookingRecipeBuilder;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.CookingBookCategory;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.material.Fluid;
 import studio.abos.mc.strangeadventures.StrangeAdventures;
@@ -38,6 +40,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 sapRecipes();
                 cookingRecipes();
                 miscRecipes();
+                livingSapRevivalRecipes();
                 sapSipperRecipes();
             }
 
@@ -95,6 +98,162 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                         .requires(ModItems.GREEN_SAFEGUARD)
                         .unlockedBy("has_farmland", has(Items.FARMLAND))
                         .save(exporter);
+            }
+
+            private void livingSapRevivalRecipes() {
+                livingSapCoralRevivalRecipes();
+                livingSapWoodRepairRecipes();
+                reviveWithBottle(Items.COOKED_BEEF, Items.BEEF, false);
+                reviveWithBottle(Items.COOKED_CHICKEN, Items.CHICKEN, false);
+                reviveWithBottle(Items.COOKED_COD, Items.COD, true);
+                reviveWithBottle(Items.COOKED_MUTTON, Items.MUTTON, false);
+                reviveWithBottle(Items.COOKED_PORKCHOP, Items.PORKCHOP, false);
+                reviveWithBottle(Items.COOKED_RABBIT, Items.RABBIT, false);
+                reviveWithBottle(Items.COOKED_SALMON, Items.SALMON, true);
+                reviveWithBottle(Items.DRIED_KELP, Items.KELP, true);
+                reviveWithBottle(Items.POPPED_CHORUS_FRUIT, Items.CHORUS_FRUIT, false);
+                shapeless(RecipeCategory.MISC, Items.CHORUS_FLOWER)
+                        .requires(Items.CHORUS_FRUIT)
+                        .requires(((AbstractSapFluid)ModFluids.CHORUS_SAP_STILL.value()).getBottle())
+                        .requires(ModItems.LIVING_SAP_BOTTLE)
+                        .unlockedBy("has_chorus_sap", has(((AbstractSapFluid)ModFluids.CHORUS_SAP_STILL.value()).getBottle()))
+                        .save(exporter);
+            }
+
+            private void livingSapCoralRevivalRecipes() {
+                reviveWithBucket(Items.DEAD_BRAIN_CORAL_BLOCK, Items.BRAIN_CORAL_BLOCK, true);
+                reviveWithBucket(Items.DEAD_BUBBLE_CORAL_BLOCK, Items.BUBBLE_CORAL_BLOCK, true);
+                reviveWithBucket(Items.DEAD_FIRE_CORAL_BLOCK, Items.FIRE_CORAL_BLOCK, true);
+                reviveWithBucket(Items.DEAD_HORN_CORAL_BLOCK, Items.HORN_CORAL_BLOCK, true);
+                reviveWithBucket(Items.DEAD_TUBE_CORAL_BLOCK, Items.TUBE_CORAL_BLOCK, true);
+                reviveWithBottle(Items.DEAD_BRAIN_CORAL_FAN, Items.BRAIN_CORAL_FAN, true);
+                reviveWithBottle(Items.DEAD_BUBBLE_CORAL_FAN, Items.BUBBLE_CORAL_FAN, true);
+                reviveWithBottle(Items.DEAD_FIRE_CORAL_FAN, Items.FIRE_CORAL_FAN, true);
+                reviveWithBottle(Items.DEAD_HORN_CORAL_FAN, Items.HORN_CORAL_FAN, true);
+                reviveWithBottle(Items.DEAD_TUBE_CORAL_FAN, Items.TUBE_CORAL_FAN, true);
+                reviveWithBottle(Items.DEAD_BRAIN_CORAL, Items.BRAIN_CORAL, true);
+                reviveWithBottle(Items.DEAD_BUBBLE_CORAL, Items.BUBBLE_CORAL, true);
+                reviveWithBottle(Items.DEAD_FIRE_CORAL, Items.FIRE_CORAL, true);
+                reviveWithBottle(Items.DEAD_HORN_CORAL, Items.HORN_CORAL, true);
+                reviveWithBottle(Items.DEAD_TUBE_CORAL, Items.TUBE_CORAL, true);
+            }
+
+            private void reviveWithBucket(final ItemLike dead, final ItemLike living, final boolean requiresWater) {
+                ShapelessRecipeBuilder buider = shapeless(RecipeCategory.MISC, living)
+                        .requires(dead)
+                        .requires(ModItems.LIVING_SAP_BUCKET);
+                if (requiresWater) {
+                    buider = buider.requires(Items.WATER_BUCKET);
+                }
+                buider.unlockedBy("has_living_sap_bucket", has(ModItems.LIVING_SAP_BUCKET))
+                        .save(exporter);
+            }
+
+            private void reviveWithBottle(final ItemLike dead, final ItemLike living, final boolean requiresWater) {
+                ShapelessRecipeBuilder builder = shapeless(RecipeCategory.MISC, living)
+                        .requires(dead)
+                        .requires(ModItems.LIVING_SAP_BOTTLE);
+                if (requiresWater) {
+                    builder = builder.requires(Items.WATER_BUCKET);
+                }
+                builder.unlockedBy("has_living_sap_bottle", has(ModItems.LIVING_SAP_BOTTLE))
+                        .save(exporter);
+            }
+
+            private void livingSapWoodRepairRecipes() {
+                // acacia
+                strippedWoodToWood(Items.STRIPPED_ACACIA_LOG, (AbstractSapFluid)ModFluids.ACACIA_SAP_STILL.value(), Items.ACACIA_LOG);
+                planksToStrippedWood(Items.ACACIA_PLANKS, (AbstractSapFluid)ModFluids.ACACIA_SAP_STILL.value(), Items.STRIPPED_ACACIA_LOG);
+                stairsToPlanks(Items.ACACIA_STAIRS, Items.ACACIA_PLANKS);
+                slabsToPlanks(Items.ACACIA_SLAB, Items.ACACIA_PLANKS);
+                // birch
+                strippedWoodToWood(Items.STRIPPED_BIRCH_LOG, (AbstractSapFluid)ModFluids.BIRCH_SAP_STILL.value(), Items.BIRCH_LOG);
+                planksToStrippedWood(Items.BIRCH_PLANKS, (AbstractSapFluid)ModFluids.BIRCH_SAP_STILL.value(), Items.STRIPPED_BIRCH_LOG);
+                stairsToPlanks(Items.BIRCH_STAIRS, Items.BIRCH_PLANKS);
+                slabsToPlanks(Items.BIRCH_SLAB, Items.BIRCH_PLANKS);
+                // cherry
+                strippedWoodToWood(Items.STRIPPED_CHERRY_LOG, (AbstractSapFluid)ModFluids.CHERRY_SAP_STILL.value(), Items.CHERRY_LOG);
+                planksToStrippedWood(Items.CHERRY_PLANKS, (AbstractSapFluid)ModFluids.CHERRY_SAP_STILL.value(), Items.STRIPPED_CHERRY_LOG);
+                stairsToPlanks(Items.CHERRY_STAIRS, Items.CHERRY_PLANKS);
+                slabsToPlanks(Items.CHERRY_SLAB, Items.CHERRY_PLANKS);
+                // crimson
+                strippedWoodToWood(Items.STRIPPED_CRIMSON_STEM, (AbstractSapFluid)ModFluids.CRIMSON_SAP_STILL.value(), Items.CRIMSON_STEM);
+                planksToStrippedWood(Items.CRIMSON_PLANKS, (AbstractSapFluid)ModFluids.CRIMSON_SAP_STILL.value(), Items.STRIPPED_CRIMSON_STEM);
+                stairsToPlanks(Items.CRIMSON_STAIRS, Items.CRIMSON_PLANKS);
+                slabsToPlanks(Items.CRIMSON_SLAB, Items.CRIMSON_PLANKS);
+                // dark oak
+                strippedWoodToWood(Items.STRIPPED_DARK_OAK_LOG, (AbstractSapFluid)ModFluids.OAK_SAP_STILL.value(), Items.DARK_OAK_LOG);
+                planksToStrippedWood(Items.DARK_OAK_PLANKS, (AbstractSapFluid)ModFluids.OAK_SAP_STILL.value(), Items.STRIPPED_DARK_OAK_LOG);
+                stairsToPlanks(Items.DARK_OAK_STAIRS, Items.DARK_OAK_PLANKS);
+                slabsToPlanks(Items.DARK_OAK_SLAB, Items.DARK_OAK_PLANKS);
+                // jungle
+                strippedWoodToWood(Items.STRIPPED_JUNGLE_LOG, (AbstractSapFluid)ModFluids.JUNGLE_SAP_STILL.value(), Items.JUNGLE_LOG);
+                planksToStrippedWood(Items.JUNGLE_PLANKS, (AbstractSapFluid)ModFluids.JUNGLE_SAP_STILL.value(), Items.STRIPPED_JUNGLE_LOG);
+                stairsToPlanks(Items.JUNGLE_STAIRS, Items.JUNGLE_PLANKS);
+                slabsToPlanks(Items.JUNGLE_SLAB, Items.JUNGLE_PLANKS);
+                // mangrove
+                strippedWoodToWood(Items.STRIPPED_MANGROVE_LOG, (AbstractSapFluid)ModFluids.MANGROVE_SAP_STILL.value(), Items.MANGROVE_LOG);
+                planksToStrippedWood(Items.MANGROVE_PLANKS, (AbstractSapFluid)ModFluids.MANGROVE_SAP_STILL.value(), Items.STRIPPED_MANGROVE_LOG);
+                stairsToPlanks(Items.MANGROVE_STAIRS, Items.MANGROVE_PLANKS);
+                slabsToPlanks(Items.MANGROVE_SLAB, Items.MANGROVE_PLANKS);
+                // oak
+                strippedWoodToWood(Items.STRIPPED_OAK_LOG, (AbstractSapFluid)ModFluids.OAK_SAP_STILL.value(), Items.OAK_LOG);
+                planksToStrippedWood(Items.OAK_PLANKS, (AbstractSapFluid)ModFluids.OAK_SAP_STILL.value(), Items.STRIPPED_OAK_LOG);
+                stairsToPlanks(Items.OAK_STAIRS, Items.OAK_PLANKS);
+                slabsToPlanks(Items.OAK_SLAB, Items.OAK_PLANKS);
+                // pale oak
+                strippedWoodToWood(Items.STRIPPED_PALE_OAK_LOG, (AbstractSapFluid)ModFluids.OAK_SAP_STILL.value(), Items.PALE_OAK_LOG);
+                planksToStrippedWood(Items.PALE_OAK_PLANKS, (AbstractSapFluid)ModFluids.OAK_SAP_STILL.value(), Items.STRIPPED_PALE_OAK_LOG);
+                stairsToPlanks(Items.PALE_OAK_STAIRS, Items.PALE_OAK_PLANKS);
+                slabsToPlanks(Items.PALE_OAK_SLAB, Items.PALE_OAK_PLANKS);
+                // spruce
+                strippedWoodToWood(Items.STRIPPED_SPRUCE_LOG, (AbstractSapFluid)ModFluids.SPRUCE_SAP_STILL.value(), Items.SPRUCE_LOG);
+                planksToStrippedWood(Items.SPRUCE_PLANKS, (AbstractSapFluid)ModFluids.SPRUCE_SAP_STILL.value(), Items.STRIPPED_SPRUCE_LOG);
+                stairsToPlanks(Items.SPRUCE_STAIRS, Items.SPRUCE_PLANKS);
+                slabsToPlanks(Items.SPRUCE_SLAB, Items.SPRUCE_PLANKS);
+                // warped
+                strippedWoodToWood(Items.STRIPPED_WARPED_STEM, (AbstractSapFluid)ModFluids.WARPED_SAP_STILL.value(), Items.WARPED_STEM);
+                planksToStrippedWood(Items.WARPED_PLANKS, (AbstractSapFluid)ModFluids.WARPED_SAP_STILL.value(), Items.STRIPPED_WARPED_STEM);
+                stairsToPlanks(Items.WARPED_STAIRS, Items.WARPED_PLANKS);
+                slabsToPlanks(Items.WARPED_SLAB, Items.WARPED_PLANKS);
+            }
+
+            private void strippedWoodToWood(ItemLike strippedLog, AbstractSapFluid treeSap, ItemLike log) {
+                shapeless(RecipeCategory.BUILDING_BLOCKS, log)
+                        .requires(strippedLog)
+                        .requires(ModItems.LIVING_SAP_BOTTLE)
+                        .requires(treeSap.getBottle())
+                        .unlockedBy("has_tree_sap_bottle", has(treeSap.getBottle()))
+                        .save(exporter);
+            }
+
+            private void planksToStrippedWood(ItemLike planks, AbstractSapFluid treeSap, ItemLike strippedLog) {
+                shapeless(RecipeCategory.BUILDING_BLOCKS, strippedLog)
+                        .requires(planks, 4)
+                        .requires(ModItems.LIVING_SAP_BOTTLE)
+                        .requires(treeSap.getBottle())
+                        .unlockedBy("has_tree_sap_bottle", has(treeSap.getBottle()))
+                        .save(exporter);
+            }
+
+            private void stairsToPlanks(ItemLike stairs, ItemLike planks) {
+                String description = planks.asItem().getDescriptionId();
+                description = description.substring(description.lastIndexOf('.') + 1) + "_from_stairs";
+                shapeless(RecipeCategory.BUILDING_BLOCKS, planks, 3)
+                        .requires(stairs, 4)
+                        .requires(ModItems.LIVING_SAP_BOTTLE)
+                        .unlockedBy("has_living_sap_bottle", has(ModItems.LIVING_SAP_BOTTLE))
+                        .save(exporter, description);
+            }
+
+            private void slabsToPlanks(ItemLike slabs, ItemLike planks) {
+                String description = planks.asItem().getDescriptionId();
+                description = description.substring(description.lastIndexOf('.') + 1) + "_from_slabs";
+                shapeless(RecipeCategory.BUILDING_BLOCKS, planks)
+                        .requires(slabs, 2)
+                        .requires(ModItems.LIVING_SAP_BOTTLE)
+                        .unlockedBy("has_living_sap_bottle", has(ModItems.LIVING_SAP_BOTTLE))
+                        .save(exporter, description);
             }
 
             private void sapSipperRecipes() {

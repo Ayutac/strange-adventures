@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    "minecraft:stripped_birch_log",
+    "strangeadventures:living_sap_bottle",
+    "strangeadventures:birch_sap_bottle"
+  ],
+  "result": {
+    "id": "minecraft:birch_log"
+  }
+}

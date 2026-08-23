@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    "minecraft:chorus_fruit",
+    "strangeadventures:chorus_sap_bottle",
+    "strangeadventures:living_sap_bottle"
+  ],
+  "result": {
+    "id": "minecraft:chorus_flower"
+  }
+}

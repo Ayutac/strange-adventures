@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    "minecraft:cooked_cod",
+    "strangeadventures:living_sap_bottle",
+    "minecraft:water_bucket"
+  ],
+  "result": {
+    "id": "minecraft:cod"
+  }
+}

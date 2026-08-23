@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    "minecraft:dead_bubble_coral_fan",
+    "strangeadventures:living_sap_bottle",
+    "minecraft:water_bucket"
+  ],
+  "result": {
+    "id": "minecraft:bubble_coral_fan"
+  }
+}

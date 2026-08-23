@@ -57,8 +57,8 @@ public final class ModItems {
         CRIMSON_SAP_BOTTLE = items.register("crimson_sap_bottle", props -> new Item(sapBottle(props))).asDeferredItem();
         JUNGLE_SAP_BUCKET = items.register("jungle_sap_bucket", props -> new BucketItem(ModFluids.JUNGLE_SAP_STILL.value(), sapBucket(props))).asDeferredItem();
         JUNGLE_SAP_BOTTLE = items.register("jungle_sap_bottle", props -> new Item(sapBottle(props))).asDeferredItem();
-        LIVING_SAP_BUCKET = items.register("living_sap_bucket", props -> new BucketItem(ModFluids.LIVING_SAP_STILL.value(), sapBucket(props))).asDeferredItem();
-        LIVING_SAP_BOTTLE = items.register("living_sap_bottle", props -> new Item(sapBottle(props))).asDeferredItem();
+        LIVING_SAP_BUCKET = items.register("living_sap_bucket", props -> new LivingSapBucketItem(sapBucket(props))).asDeferredItem();
+        LIVING_SAP_BOTTLE = items.register("living_sap_bottle", props -> new LivingSapBottleItem(sapBottle(props))).asDeferredItem();
         MANGROVE_SAP_BUCKET = items.register("mangrove_sap_bucket", props -> new BucketItem(ModFluids.MANGROVE_SAP_STILL.value(), sapBucket(props))).asDeferredItem();
         MANGROVE_SAP_BOTTLE = items.register("mangrove_sap_bottle", props -> new Item(sapBottle(props))).asDeferredItem();
         OAK_SAP_BUCKET = items.register("oak_sap_bucket", props -> new BucketItem(ModFluids.OAK_SAP_STILL.value(), sapBucket(props))).asDeferredItem();

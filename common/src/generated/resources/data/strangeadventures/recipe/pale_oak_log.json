@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    "minecraft:stripped_pale_oak_log",
+    "strangeadventures:living_sap_bottle",
+    "strangeadventures:oak_sap_bottle"
+  ],
+  "result": {
+    "id": "minecraft:pale_oak_log"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    "minecraft:stripped_warped_stem",
+    "strangeadventures:living_sap_bottle",
+    "strangeadventures:warped_sap_bottle"
+  ],
+  "result": {
+    "id": "minecraft:warped_stem"
+  }
+}

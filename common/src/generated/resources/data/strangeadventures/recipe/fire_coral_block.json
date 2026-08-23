@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    "minecraft:dead_fire_coral_block",
+    "strangeadventures:living_sap_bucket",
+    "minecraft:water_bucket"
+  ],
+  "result": {
+    "id": "minecraft:fire_coral_block"
+  }
+}

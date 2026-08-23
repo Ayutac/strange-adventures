@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_living_sap_bottle": {
+      "conditions": {
+        "items": [
+          {
+            "items": "strangeadventures:living_sap_bottle"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "strangeadventures:porkchop"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_living_sap_bottle"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "strangeadventures:porkchop"
+    ]
+  }
+}

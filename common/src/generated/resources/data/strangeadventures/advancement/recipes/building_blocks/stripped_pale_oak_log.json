@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "strangeadventures:stripped_pale_oak_log"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_tree_sap_bottle": {
+      "conditions": {
+        "items": [
+          {
+            "items": "strangeadventures:oak_sap_bottle"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_tree_sap_bottle"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "strangeadventures:stripped_pale_oak_log"
+    ]
+  }
+}

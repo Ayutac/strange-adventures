@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_living_sap_bucket": {
+      "conditions": {
+        "items": [
+          {
+            "items": "strangeadventures:living_sap_bucket"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "strangeadventures:brain_coral_block"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_living_sap_bucket"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "strangeadventures:brain_coral_block"
+    ]
+  }
+}

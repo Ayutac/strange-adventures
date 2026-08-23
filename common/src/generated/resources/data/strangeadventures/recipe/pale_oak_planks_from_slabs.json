@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    "minecraft:pale_oak_slab",
+    "minecraft:pale_oak_slab",
+    "strangeadventures:living_sap_bottle"
+  ],
+  "result": {
+    "id": "minecraft:pale_oak_planks"
+  }
+}
