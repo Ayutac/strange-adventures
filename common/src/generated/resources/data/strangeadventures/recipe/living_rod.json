@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "W": "strangeadventures:living_wood"
+  },
+  "pattern": [
+    "W",
+    "W"
+  ],
+  "result": {
+    "count": 8,
+    "id": "strangeadventures:living_rod"
+  }
+}

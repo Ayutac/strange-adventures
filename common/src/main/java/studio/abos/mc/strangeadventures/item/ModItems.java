@@ -14,6 +14,7 @@ import studio.abos.mc.strangeadventures.fluid.ModFluids;
 public final class ModItems {
 
     public static DeferredItem GREEN_SAFEGUARD;
+    public static DeferredItem LIVING_ROD;
 
     public static DeferredItem ACACIA_SAP_BOTTLE;
     public static DeferredItem ACACIA_SAP_BUCKET;
@@ -42,6 +43,7 @@ public final class ModItems {
 
     public static void initialize(final BalmItemRegistrar items) {
         GREEN_SAFEGUARD = items.register("green_safeguard", GreenSafeguardItem::new).asDeferredItem();
+        LIVING_ROD = items.register("living_rod", props -> new Item(props.fireResistant())).asDeferredItem();
 
         ACACIA_SAP_BUCKET = items.register("acacia_sap_bucket", props -> new BucketItem(ModFluids.ACACIA_SAP_STILL.value(), sapBucket(props))).asDeferredItem();
         ACACIA_SAP_BOTTLE = items.register("acacia_sap_bottle", props -> new Item(sapBottle(props))).asDeferredItem();
@@ -79,6 +81,8 @@ public final class ModItems {
                             output.accept(ModBlocks.GREEN_FARMLAND);
                             output.accept(ModBlocks.GREEN_CACTUS);
                             output.accept(ModBlocks.LIVING_WOOD);
+                            output.accept(LIVING_ROD);
+
                             output.accept(ModBlocks.SAP_SIPPER);
 
                             output.accept(OAK_SAP_BOTTLE);
