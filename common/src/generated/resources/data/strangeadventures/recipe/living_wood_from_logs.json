@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "B": "strangeadventures:living_sap_bucket",
+    "L": "#minecraft:logs",
+    "N": "minecraft:nether_star"
+  },
+  "pattern": [
+    "BLB",
+    "LNL",
+    "BLB"
+  ],
+  "result": {
+    "count": 4,
+    "id": "strangeadventures:living_wood"
+  }
+}
