@@ -15,28 +15,28 @@ public final class ModItems {
 
     public static DeferredItem GREEN_SAFEGUARD;
 
-    public static DeferredItem ACACIA_SAP_BUCKET;
     public static DeferredItem ACACIA_SAP_BOTTLE;
-    public static DeferredItem BIRCH_SAP_BUCKET;
+    public static DeferredItem ACACIA_SAP_BUCKET;
     public static DeferredItem BIRCH_SAP_BOTTLE;
-    public static DeferredItem CACTUS_SAP_BUCKET;
+    public static DeferredItem BIRCH_SAP_BUCKET;
     public static DeferredItem CACTUS_SAP_BOTTLE;
-    public static DeferredItem CHERRY_SAP_BUCKET;
+    public static DeferredItem CACTUS_SAP_BUCKET;
     public static DeferredItem CHERRY_SAP_BOTTLE;
-    public static DeferredItem CHORUS_SAP_BUCKET;
+    public static DeferredItem CHERRY_SAP_BUCKET;
     public static DeferredItem CHORUS_SAP_BOTTLE;
-    public static DeferredItem CRIMSON_SAP_BUCKET;
+    public static DeferredItem CHORUS_SAP_BUCKET;
     public static DeferredItem CRIMSON_SAP_BOTTLE;
-    public static DeferredItem JUNGLE_SAP_BUCKET;
+    public static DeferredItem CRIMSON_SAP_BUCKET;
     public static DeferredItem JUNGLE_SAP_BOTTLE;
-    public static DeferredItem MANGROVE_SAP_BUCKET;
+    public static DeferredItem JUNGLE_SAP_BUCKET;
     public static DeferredItem MANGROVE_SAP_BOTTLE;
-    public static DeferredItem OAK_SAP_BUCKET;
+    public static DeferredItem MANGROVE_SAP_BUCKET;
     public static DeferredItem OAK_SAP_BOTTLE;
-    public static DeferredItem SPRUCE_SAP_BUCKET;
+    public static DeferredItem OAK_SAP_BUCKET;
     public static DeferredItem SPRUCE_SAP_BOTTLE;
-    public static DeferredItem WARPED_SAP_BUCKET;
+    public static DeferredItem SPRUCE_SAP_BUCKET;
     public static DeferredItem WARPED_SAP_BOTTLE;
+    public static DeferredItem WARPED_SAP_BUCKET;
 
     public static void initialize(final BalmItemRegistrar items) {
         GREEN_SAFEGUARD = items.register("green_safeguard", GreenSafeguardItem::new).asDeferredItem();
