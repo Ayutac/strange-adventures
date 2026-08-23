@@ -5,7 +5,6 @@ import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagsProvider;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.references.BlockItemIds;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.world.level.block.Blocks;
 import studio.abos.mc.strangeadventures.block.ModBlocks;
 import studio.abos.mc.strangeadventures.tag.ModBlockTags;
 
@@ -28,7 +27,7 @@ public class ModBlockTagProvider extends FabricTagsProvider.BlockTagsProvider {
         builder(BlockTags.MINEABLE_WITH_PICKAXE).add(ModBlocks.SAP_SIPPER.asResourceKey());
         builder(BlockTags.NEEDS_DIAMOND_TOOL).add(ModBlocks.LIVING_WOOD.asResourceKey());
 
-        builder(ModBlockTags.GREEN_FARMLAND_CONVERTIBLE).add(Blocks.FARMLAND.properties().blockId());
+        builder(ModBlockTags.GREEN_FARMLAND_CONVERTIBLE).add(BlockItemIds.FARMLAND);
 
         builder(ModBlockTags.MAKES_ACACIA_SAP).add(
                 BlockItemIds.ACACIA_LOG, BlockItemIds.STRIPPED_ACACIA_LOG,
