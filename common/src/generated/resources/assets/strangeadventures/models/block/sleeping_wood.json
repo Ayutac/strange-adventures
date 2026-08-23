@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "strangeadventures:block/sleeping_wood",
+    "side": "strangeadventures:block/sleeping_wood"
+  }
+}

@@ -22,6 +22,7 @@ public final class ModBlocks {
     public static DeferredBlock GREEN_FARMLAND;
     public static DeferredBlock GREEN_CACTUS;
 
+    public static DeferredBlock SLEEPING_WOOD;
     public static DeferredBlock LIVING_WOOD;
 
     public static DeferredBlock SAP_SIPPER;
@@ -65,6 +66,11 @@ public final class ModBlocks {
                 .pushReaction(PushReaction.DESTROY)
                 .mapColor(MapColor.PLANT)).withDefaultItem().asDeferredBlock();
 
+        SLEEPING_WOOD = blocks.register("sleeping_wood", RotatedPillarBlock::new, props -> props
+                .strength(30f, 1000f)
+                .requiresCorrectToolForDrops()
+                .sound(SoundType.ANCIENT_DEBRIS)
+                .mapColor(MapColor.COLOR_BROWN)).withDefaultItem().asDeferredBlock();
         LIVING_WOOD = blocks.register("living_wood", RotatedPillarBlock::new, props -> props
                 .strength(30f, 1000f)
                 .requiresCorrectToolForDrops()

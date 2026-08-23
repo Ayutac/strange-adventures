@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    "strangeadventures:sleeping_wood",
+    "strangeadventures:living_sap_bucket",
+    "strangeadventures:living_sap_bucket",
+    "strangeadventures:living_sap_bucket",
+    "strangeadventures:living_sap_bucket",
+    "strangeadventures:living_sap_bucket",
+    "strangeadventures:living_sap_bucket",
+    "strangeadventures:living_sap_bucket",
+    "strangeadventures:living_sap_bucket"
+  ],
+  "result": {
+    "id": "strangeadventures:living_wood"
+  }
+}

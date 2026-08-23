@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_ancient_debris": {
+    "has_sleeping_wood": {
       "conditions": {
         "items": [
           {
-            "items": "minecraft:ancient_debris"
+            "items": "strangeadventures:sleeping_wood"
           }
         ]
       },
@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "strangeadventures:living_wood_from_ancient_debris"
+        "recipe": "strangeadventures:living_wood"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -21,12 +21,12 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_ancient_debris"
+      "has_sleeping_wood"
     ]
   ],
   "rewards": {
     "recipes": [
-      "strangeadventures:living_wood_from_ancient_debris"
+      "strangeadventures:living_wood"
     ]
   }
 }

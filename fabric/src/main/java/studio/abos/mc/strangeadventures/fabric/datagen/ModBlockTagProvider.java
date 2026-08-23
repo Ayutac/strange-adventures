@@ -18,13 +18,16 @@ public class ModBlockTagProvider extends FabricTagsProvider.BlockTagsProvider {
     @Override
     protected void addTags(HolderLookup.Provider arg) {
         builder(BlockTags.SMALL_FLOWERS).add(ModBlocks.GREEN_FLOWER.asResourceKey());
+        builder(BlockTags.LOGS).add(ModBlocks.SLEEPING_WOOD.asResourceKey());
         builder(BlockTags.LOGS).add(ModBlocks.LIVING_WOOD.asResourceKey());
         builder(BlockTags.SUPPORTS_CROPS).add(ModBlocks.GREEN_FARMLAND.asResourceKey());
         builder(BlockTags.SUPPORTS_CACTUS).add(ModBlocks.GREEN_CACTUS.asResourceKey());
         builder(BlockTags.SUPPORT_OVERRIDE_CACTUS_FLOWER).add(ModBlocks.GREEN_CACTUS.asResourceKey());
         builder(BlockTags.MINEABLE_WITH_SHOVEL).add(ModBlocks.GREEN_FARMLAND.asResourceKey());
+        builder(BlockTags.MINEABLE_WITH_AXE).add(ModBlocks.SLEEPING_WOOD.asResourceKey());
         builder(BlockTags.MINEABLE_WITH_AXE).add(ModBlocks.LIVING_WOOD.asResourceKey());
         builder(BlockTags.MINEABLE_WITH_PICKAXE).add(ModBlocks.SAP_SIPPER.asResourceKey());
+        builder(BlockTags.NEEDS_DIAMOND_TOOL).add(ModBlocks.SLEEPING_WOOD.asResourceKey());
         builder(BlockTags.NEEDS_DIAMOND_TOOL).add(ModBlocks.LIVING_WOOD.asResourceKey());
 
         builder(ModBlockTags.GREEN_FARMLAND_CONVERTIBLE).add(BlockItemIds.FARMLAND);
@@ -48,7 +51,7 @@ public class ModBlockTagProvider extends FabricTagsProvider.BlockTagsProvider {
         builder(ModBlockTags.MAKES_JUNGLE_SAP).add(
                 BlockItemIds.JUNGLE_LOG, BlockItemIds.STRIPPED_JUNGLE_LOG,
                 BlockItemIds.JUNGLE_WOOD, BlockItemIds.STRIPPED_JUNGLE_WOOD);
-        builder(ModBlockTags.MAKES_LIVING_SAP).add(ModBlocks.LIVING_WOOD.asResourceKey());
+//        builder(ModBlockTags.MAKES_LIVING_SAP).add(ModBlocks.LIVING_WOOD.asResourceKey());
         builder(ModBlockTags.MAKES_MANGROVE_SAP).add(
                 BlockItemIds.MANGROVE_LOG, BlockItemIds.STRIPPED_MANGROVE_LOG,
                 BlockItemIds.MANGROVE_WOOD, BlockItemIds.STRIPPED_MANGROVE_WOOD);

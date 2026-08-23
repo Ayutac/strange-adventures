@@ -11,7 +11,6 @@ import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.data.recipes.SimpleCookingRecipeBuilder;
-import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.CookingBookCategory;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -105,22 +104,18 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                         .define('W', ModBlocks.LIVING_WOOD)
                         .unlockedBy("has_living_wood", has(ModBlocks.LIVING_WOOD))
                         .save(exporter);
-                String description = ModBlocks.LIVING_WOOD.asItem().getDescriptionId();
-                description = description.substring(description.lastIndexOf('.') + 1);
-                shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.LIVING_WOOD, 4)
-                        .pattern("BLB")
-                        .pattern("LNL")
-                        .pattern("BLB")
-                        .define('B', ModItems.LIVING_SAP_BUCKET)
-                        .define('L', ItemTags.LOGS)
-                        .define('N', Items.NETHER_STAR)
-                        .unlockedBy("has_nether_star", has(Items.NETHER_STAR))
-                        .save(exporter, description + "_from_logs");
-                shapeless(RecipeCategory.BUILDING_BLOCKS, ModBlocks.LIVING_WOOD)
+//                String description = ModBlocks.SLEEPING_WOOD.asItem().getDescriptionId();
+//                description = description.substring(description.lastIndexOf('.') + 1);
+                shapeless(RecipeCategory.BUILDING_BLOCKS, ModBlocks.SLEEPING_WOOD)
                         .requires(Items.ANCIENT_DEBRIS)
-                        .requires(ModItems.LIVING_SAP_BUCKET)
+                        .requires(ModItems.LIVING_SAP_BUCKET, 8)
                         .unlockedBy("has_ancient_debris", has(Items.ANCIENT_DEBRIS))
-                        .save(exporter, description + "_from_ancient_debris");
+                        .save(exporter);
+                shapeless(RecipeCategory.BUILDING_BLOCKS, ModBlocks.LIVING_WOOD)
+                        .requires(ModBlocks.SLEEPING_WOOD)
+                        .requires(ModItems.LIVING_SAP_BUCKET, 8)
+                        .unlockedBy("has_sleeping_wood", has(ModBlocks.SLEEPING_WOOD))
+                        .save(exporter);
             }
 
             private void livingSapRevivalRecipes() {

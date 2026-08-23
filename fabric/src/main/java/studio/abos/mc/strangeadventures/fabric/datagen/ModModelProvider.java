@@ -23,6 +23,7 @@ public class ModModelProvider extends FabricModelProvider {
         blockStateModelGenerator.registerSimpleFlatItemModel(ModBlocks.GREEN_FLOWER.asBlock());
         createGreenFarmland(blockStateModelGenerator);
         blockStateModelGenerator.createNonTemplateModelBlock(ModBlocks.GREEN_CACTUS.asBlock());
+        blockStateModelGenerator.woodProvider(ModBlocks.SLEEPING_WOOD.asBlock()).wood(ModBlocks.SLEEPING_WOOD.asBlock());
         blockStateModelGenerator.woodProvider(ModBlocks.LIVING_WOOD.asBlock()).wood(ModBlocks.LIVING_WOOD.asBlock());
         blockStateModelGenerator.createHorizontallyRotatedBlock(ModBlocks.SAP_SIPPER.asBlock(), TexturedModel.ORIENTABLE);
     }
