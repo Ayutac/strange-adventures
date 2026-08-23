@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    "minecraft:bucket",
+    "strangeadventures:living_sap_bottle",
+    "strangeadventures:living_sap_bottle",
+    "strangeadventures:living_sap_bottle"
+  ],
+  "result": {
+    "id": "strangeadventures:living_sap_bucket"
+  }
+}

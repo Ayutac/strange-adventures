@@ -33,6 +33,7 @@ public final class ModBlocks {
     public static DeferredBlock CHORUS_SAP;
     public static DeferredBlock CRIMSON_SAP;
     public static DeferredBlock JUNGLE_SAP;
+    public static DeferredBlock LIVING_SAP;
     public static DeferredBlock MANGROVE_SAP;
     public static DeferredBlock OAK_SAP;
     public static DeferredBlock SPRUCE_SAP;
@@ -94,6 +95,9 @@ public final class ModBlocks {
                 sap(props)
                 .mapColor(MapColor.COLOR_ORANGE)).asDeferredBlock();
         JUNGLE_SAP = blocks.register("jungle_sap", props -> LiquidBlockAccessor.newLiquidBlock((FlowingFluid)ModFluids.JUNGLE_SAP_STILL.value(), props), props ->
+                sap(props)
+                .mapColor(MapColor.COLOR_ORANGE)).asDeferredBlock();
+        LIVING_SAP = blocks.register("living_sap", props -> LiquidBlockAccessor.newLiquidBlock((FlowingFluid)ModFluids.LIVING_SAP_STILL.value(), props), props ->
                 sap(props)
                 .mapColor(MapColor.COLOR_ORANGE)).asDeferredBlock();
         MANGROVE_SAP = blocks.register("mangrove_sap", props -> LiquidBlockAccessor.newLiquidBlock((FlowingFluid)ModFluids.MANGROVE_SAP_STILL.value(), props), props ->

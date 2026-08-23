@@ -23,6 +23,8 @@ public final class ModFluids {
     public static Holder<Fluid> CRIMSON_SAP_FLOWING;
     public static Holder<Fluid> JUNGLE_SAP_STILL;
     public static Holder<Fluid> JUNGLE_SAP_FLOWING;
+    public static Holder<Fluid> LIVING_SAP_STILL;
+    public static Holder<Fluid> LIVING_SAP_FLOWING;
     public static Holder<Fluid> MANGROVE_SAP_STILL;
     public static Holder<Fluid> MANGROVE_SAP_FLOWING;
     public static Holder<Fluid> OAK_SAP_STILL;
@@ -47,6 +49,8 @@ public final class ModFluids {
         CRIMSON_SAP_FLOWING = fluids.register(ModFluidIds.CRIMSON_SAP_FLOWING.identifier().getPath(), _ -> new CrimsonSapFluid.Flowing());
         JUNGLE_SAP_STILL = fluids.register(ModFluidIds.JUNGLE_SAP_STILL.identifier().getPath(), _ -> new JungleSapFluid.Source());
         JUNGLE_SAP_FLOWING = fluids.register(ModFluidIds.JUNGLE_SAP_FLOWING.identifier().getPath(), _ -> new JungleSapFluid.Flowing());
+        LIVING_SAP_STILL = fluids.register(ModFluidIds.LIVING_SAP_STILL.identifier().getPath(), _ -> new LivingSapFluid.Source());
+        LIVING_SAP_FLOWING = fluids.register(ModFluidIds.LIVING_SAP_FLOWING.identifier().getPath(), _ -> new LivingSapFluid.Flowing());
         MANGROVE_SAP_STILL = fluids.register(ModFluidIds.MANGROVE_SAP_STILL.identifier().getPath(), _ -> new MangroveSapFluid.Source());
         MANGROVE_SAP_FLOWING = fluids.register(ModFluidIds.MANGROVE_SAP_FLOWING.identifier().getPath(), _ -> new MangroveSapFluid.Flowing());
         OAK_SAP_STILL = fluids.register(ModFluidIds.OAK_SAP_STILL.identifier().getPath(), _ -> new OakSapFluid.Source());
