@@ -99,7 +99,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                         .requires(ModItems.GREEN_SAFEGUARD)
                         .unlockedBy("has_farmland", has(Items.FARMLAND))
                         .save(exporter);
-                shaped(RecipeCategory.MISC, ModItems.LIVING_ROD, 8)
+                shaped(RecipeCategory.MISC, ModItems.LIVING_ROD, 4)
                         .pattern("W")
                         .pattern("W")
                         .define('W', ModBlocks.LIVING_WOOD)
