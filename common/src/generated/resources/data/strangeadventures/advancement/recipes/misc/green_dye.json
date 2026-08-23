@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_green_cactus": {
+      "conditions": {
+        "items": [
+          {
+            "items": "strangeadventures:green_cactus"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "strangeadventures:green_dye"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_green_cactus"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "strangeadventures:green_dye"
+    ]
+  }
+}

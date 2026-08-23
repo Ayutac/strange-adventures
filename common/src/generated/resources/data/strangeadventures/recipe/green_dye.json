@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:smelting",
+  "experience": 1.0,
+  "ingredient": "strangeadventures:green_cactus",
+  "result": {
+    "id": "minecraft:green_dye"
+  }
+}

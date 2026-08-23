@@ -9,13 +9,17 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.RecipeProvider;
+import net.minecraft.data.recipes.SimpleCookingRecipeBuilder;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.CookingBookCategory;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.material.Fluid;
 import studio.abos.mc.strangeadventures.StrangeAdventures;
 import studio.abos.mc.strangeadventures.block.ModBlocks;
 import studio.abos.mc.strangeadventures.fluid.AbstractSapFluid;
 import studio.abos.mc.strangeadventures.fluid.ModFluids;
+import studio.abos.mc.strangeadventures.item.ModItems;
 import studio.abos.mc.strangeadventures.tag.ModBlockTags;
 
 import java.util.concurrent.CompletableFuture;
@@ -32,6 +36,8 @@ public class ModRecipeProvider extends FabricRecipeProvider {
             @Override
             public void buildRecipes() {
                 sapRecipes();
+                cookingRecipes();
+                miscRecipes();
                 sapSipperRecipes();
             }
 
@@ -52,16 +58,12 @@ public class ModRecipeProvider extends FabricRecipeProvider {
             private void sapRecipes(AbstractSapFluid sap) {
                 shapeless(RecipeCategory.MISC, sap.getBucket())
                         .requires(Items.BUCKET)
-                        .requires(sap.getBottle())
-                        .requires(sap.getBottle())
-                        .requires(sap.getBottle())
+                        .requires(sap.getBottle(), 3)
                         .unlockedBy("has_bottle", has(sap.getBottle()))
                         .save(exporter);
                 shapeless(RecipeCategory.MISC, sap.getBottle(), 3)
                         .requires(sap.getBucket())
-                        .requires(Items.GLASS_BOTTLE)
-                        .requires(Items.GLASS_BOTTLE)
-                        .requires(Items.GLASS_BOTTLE)
+                        .requires(Items.GLASS_BOTTLE, 3)
                         .unlockedBy("has_bucket", has(sap.getBucket()))
                         .save(exporter);
                 String bottleId = sap.getBottle().getDescriptionId();
@@ -73,6 +75,25 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                         .define('G', Items.GLASS)
                         .unlockedBy("has_bucket", has(sap.getBucket()))
                         .save(exporter, bottleId + "_from_glass");
+            }
+
+            private void cookingRecipes() {
+                SimpleCookingRecipeBuilder.smelting(Ingredient.of(ModBlocks.GREEN_CACTUS.asItem()), RecipeCategory.MISC, CookingBookCategory.MISC, Items.DYE.green(), 1.0F, 200)
+                        .unlockedBy("has_green_cactus", has(ModBlocks.GREEN_CACTUS))
+                        .save(exporter);
+            }
+
+            private void miscRecipes() {
+                shapeless(RecipeCategory.MISC, ModBlocks.GREEN_CACTUS)
+                        .requires(Items.CACTUS)
+                        .requires(ModItems.GREEN_SAFEGUARD)
+                        .unlockedBy("has_cactus", has(Items.CACTUS))
+                        .save(exporter);
+                shapeless(RecipeCategory.MISC, ModBlocks.GREEN_FARMLAND)
+                        .requires(Items.FARMLAND)
+                        .requires(ModItems.GREEN_SAFEGUARD)
+                        .unlockedBy("has_farmland", has(Items.FARMLAND))
+                        .save(exporter);
             }
 
             private void sapSipperRecipes() {
