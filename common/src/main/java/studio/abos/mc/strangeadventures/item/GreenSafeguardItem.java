@@ -1,6 +1,7 @@
 package studio.abos.mc.strangeadventures.item;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.references.BlockItemIds;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.item.Item;
@@ -25,8 +26,20 @@ public class GreenSafeguardItem extends Item {
         if (level.getBlockState(target).is(BlockTags.CROPS)) {
             target = target.below();
         }
+        // safeguard farmland
         if (level.getBlockState(target).is(ModBlockTags.GREEN_FARMLAND_CONVERTIBLE)) {
             level.setBlockAndUpdate(target, ModBlocks.GREEN_FARMLAND.defaultBlockState());
+            context.getItemInHand().consume(1, context.getPlayer());
+            return InteractionResult.SUCCESS;
+        }
+        // safeguard cacti
+        if (level.getBlockState(target).is(BlockItemIds.CACTUS.block())) {
+            // get the base cactus
+            BlockPos below;
+            while (level.getBlockState(below = target.below()).is(BlockItemIds.CACTUS.block())) {
+                target = below;
+            }
+            level.setBlockAndUpdate(target, ModBlocks.GREEN_CACTUS.defaultBlockState());
             context.getItemInHand().consume(1, context.getPlayer());
             return InteractionResult.SUCCESS;
         }

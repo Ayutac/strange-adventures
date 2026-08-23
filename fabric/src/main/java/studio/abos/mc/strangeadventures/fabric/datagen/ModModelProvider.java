@@ -4,7 +4,11 @@ import net.fabricmc.fabric.api.client.datagen.v1.provider.FabricModelProvider;
 import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 import net.minecraft.client.data.models.BlockModelGenerators;
 import net.minecraft.client.data.models.ItemModelGenerators;
+import net.minecraft.client.data.models.MultiVariant;
+import net.minecraft.client.data.models.blockstates.MultiVariantGenerator;
 import net.minecraft.client.data.models.model.*;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import studio.abos.mc.strangeadventures.block.ModBlocks;
 import studio.abos.mc.strangeadventures.item.ModItems;
 
@@ -14,10 +18,28 @@ public class ModModelProvider extends FabricModelProvider {
     }
 
     @Override
-    public void generateBlockStateModels(BlockModelGenerators blockStateModelGenerator) {
+    public void generateBlockStateModels(final BlockModelGenerators blockStateModelGenerator) {
         blockStateModelGenerator.createPlant(ModBlocks.GREEN_FLOWER.asBlock(), ModBlocks.POTTED_GREEN_FLOWER.asBlock(), BlockModelGenerators.PlantType.NOT_TINTED);
         blockStateModelGenerator.registerSimpleFlatItemModel(ModBlocks.GREEN_FLOWER.asBlock());
+        createGreenFarmland(blockStateModelGenerator);
+        blockStateModelGenerator.createTrivialCube(ModBlocks.GREEN_CACTUS.asBlock());
         blockStateModelGenerator.createHorizontallyRotatedBlock(ModBlocks.SAP_SIPPER.asBlock(), TexturedModel.ORIENTABLE);
+    }
+
+    protected void createGreenFarmland(final BlockModelGenerators blockStateModelGenerator) {
+        TextureMapping dryTextures = new TextureMapping()
+                .put(TextureSlot.DIRT, TextureMapping.getBlockTexture(Blocks.DIRT))
+                .put(TextureSlot.TOP, TextureMapping.getBlockTexture(ModBlocks.GREEN_FARMLAND.asBlock()));
+        TextureMapping moistTextures = new TextureMapping()
+                .put(TextureSlot.DIRT, TextureMapping.getBlockTexture(Blocks.DIRT))
+                .put(TextureSlot.TOP, TextureMapping.getBlockTexture(ModBlocks.GREEN_FARMLAND.asBlock(), "_moist"));
+        MultiVariant dryModel = BlockModelGenerators.plainVariant(ModelTemplates.FARMLAND.create(ModBlocks.GREEN_FARMLAND.asBlock(), dryTextures, blockStateModelGenerator.modelOutput));
+        MultiVariant moistModel = BlockModelGenerators.plainVariant(
+                ModelTemplates.FARMLAND.create(ModelLocationUtils.getModelLocation(ModBlocks.GREEN_FARMLAND.asBlock(), "_moist"), moistTextures, blockStateModelGenerator.modelOutput)
+        );
+        blockStateModelGenerator.blockStateOutput.accept(MultiVariantGenerator
+                .dispatch(ModBlocks.GREEN_FARMLAND.asBlock())
+                .with(BlockModelGenerators.createEmptyOrFullDispatch(BlockStateProperties.MOISTURE, 7, moistModel, dryModel)));
     }
 
     @Override

@@ -20,6 +20,7 @@ public class ModBlockTagProvider extends FabricTagsProvider.BlockTagsProvider {
     protected void addTags(HolderLookup.Provider arg) {
         builder(BlockTags.SMALL_FLOWERS).add(ModBlocks.GREEN_FLOWER.asResourceKey());
         builder(BlockTags.SUPPORTS_CROPS).add(ModBlocks.GREEN_FARMLAND.asResourceKey());
+        builder(BlockTags.SUPPORTS_CACTUS).add(ModBlocks.GREEN_CACTUS.asResourceKey());
         builder(BlockTags.MINEABLE_WITH_SHOVEL).add(ModBlocks.GREEN_FARMLAND.asResourceKey());
         builder(BlockTags.MINEABLE_WITH_PICKAXE).add(ModBlocks.SAP_SIPPER.asResourceKey());
         
@@ -31,7 +32,8 @@ public class ModBlockTagProvider extends FabricTagsProvider.BlockTagsProvider {
         builder(ModBlockTags.MAKES_BIRCH_SAP).add(
                 BlockItemIds.BIRCH_LOG, BlockItemIds.STRIPPED_BIRCH_LOG,
                 BlockItemIds.BIRCH_WOOD, BlockItemIds.STRIPPED_BIRCH_WOOD);
-        builder(ModBlockTags.MAKES_CACTUS_SAP).add(BlockItemIds.CACTUS);
+        builder(ModBlockTags.MAKES_CACTUS_SAP).add(
+                BlockItemIds.CACTUS, ModBlocks.GREEN_CACTUS.asBlockItemId());
         builder(ModBlockTags.MAKES_CHERRY_SAP).add(
                 BlockItemIds.CHERRY_LOG, BlockItemIds.STRIPPED_CHERRY_LOG,
                 BlockItemIds.CHERRY_WOOD, BlockItemIds.STRIPPED_CHERRY_WOOD);

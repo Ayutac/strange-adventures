@@ -18,6 +18,7 @@ public final class ModBlocks {
     public static DeferredBlock GREEN_FLOWER;
     public static DeferredBlock POTTED_GREEN_FLOWER;
     public static DeferredBlock GREEN_FARMLAND;
+    public static DeferredBlock GREEN_CACTUS;
     public static DeferredBlock SAP_SIPPER;
 
     public static DeferredBlock ACACIA_SAP;
@@ -51,6 +52,12 @@ public final class ModBlocks {
                 .isViewBlocking((_, _, _) -> true)
                 .isSuffocating((_, _, _) -> true)
                 .mapColor(Blocks.FARMLAND.defaultMapColor())).asDeferredBlock();
+        GREEN_CACTUS = blocks.register("green_cactus", GreenFarmlandBlock::new, props -> props
+                .strength(0.4F)
+                .randomTicks()
+                .sound(SoundType.WOOL)
+                .pushReaction(PushReaction.DESTROY)
+                .mapColor(MapColor.PLANT)).withDefaultItem().asDeferredBlock();
         SAP_SIPPER = blocks.register("sap_sipper", SapSipperBlock::new, props -> props
                 .strength(5f,6f)
                 .instrument(NoteBlockInstrument.IRON_XYLOPHONE)
