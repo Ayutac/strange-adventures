@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/leaves",
+  "textures": {
+    "all": "strangeadventures:block/weir_leaves"
+  }
+}

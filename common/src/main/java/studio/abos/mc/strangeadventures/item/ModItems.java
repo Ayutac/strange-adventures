@@ -80,7 +80,24 @@ public final class ModItems {
                             output.accept(GREEN_SAFEGUARD);
                             output.accept(ModBlocks.GREEN_FARMLAND);
                             output.accept(ModBlocks.GREEN_CACTUS);
+
+                            output.accept(ModBlocks.WEIR_LOG);
+                            output.accept(ModBlocks.WEIR_WOOD);
+                            output.accept(ModBlocks.STRIPPED_WEIR_LOG);
+                            output.accept(ModBlocks.STRIPPED_WEIR_WOOD);
                             output.accept(ModBlocks.WEIR_CORE);
+                            output.accept(ModBlocks.WEIR_LEAVES);
+                            output.accept(ModBlocks.WEIR_PLANKS);
+                            output.accept(ModBlocks.WEIR_STAIRS);
+                            output.accept(ModBlocks.WEIR_SLAB);
+                            output.accept(ModBlocks.WEIR_FENCE);
+                            output.accept(ModBlocks.WEIR_FENCE_GATE);
+                            output.accept(ModBlocks.WEIR_DOOR);
+                            output.accept(ModBlocks.WEIR_TRAPDOOR);
+                            output.accept(ModBlocks.WEIR_PRESSURE_PLATE);
+                            output.accept(ModBlocks.WEIR_SHELF);
+                            output.accept(ModBlocks.WEIR_BUTTON);
+
                             output.accept(ModBlocks.SLEEPING_WOOD);
                             output.accept(ModBlocks.LIVING_WOOD);
                             output.accept(LIVING_ROD);

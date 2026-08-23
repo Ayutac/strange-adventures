@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/door_top_right_open",
+  "textures": {
+    "bottom": "strangeadventures:block/weir_door_bottom",
+    "top": "strangeadventures:block/weir_door_top"
+  }
+}

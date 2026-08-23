@@ -5,8 +5,13 @@
   "refmap": "strangeadventures.refmap.json",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
+    "ButtonBlockAccessor",
+    "DoorBlockAccessor",
     "LiquidBlockAccessor",
-    "StemBlockAccessor"
+    "PressurePlateBlockAccessor",
+    "StairBlockAccessor",
+    "StemBlockAccessor",
+    "TrapdoorBlockAccessor"
   ],
   "client": [
   ],

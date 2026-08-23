@@ -19,6 +19,7 @@ public class ModBlockLootTableProvider extends FabricBlockLootSubProvider {
         dropPottedContents(ModBlocks.POTTED_GREEN_FLOWER.asBlock());
         dropOther(ModBlocks.GREEN_FARMLAND.asBlock(), Items.DIRT);
         dropOther(ModBlocks.GREEN_CACTUS.asBlock(), Items.CACTUS);
+        // TODO drop tables for weir family
         dropSelf(ModBlocks.WEIR_CORE.asBlock());
         dropSelf(ModBlocks.SLEEPING_WOOD.asBlock());
         dropSelf(ModBlocks.LIVING_WOOD.asBlock());

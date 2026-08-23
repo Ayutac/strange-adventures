@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "group": "wooden_pressure_plate",
+  "key": {
+    "#": "strangeadventures:weir_planks"
+  },
+  "pattern": [
+    "##"
+  ],
+  "result": {
+    "id": "strangeadventures:weir_pressure_plate"
+  }
+}

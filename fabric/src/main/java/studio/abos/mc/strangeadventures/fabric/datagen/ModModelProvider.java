@@ -9,6 +9,7 @@ import net.minecraft.client.data.models.blockstates.MultiVariantGenerator;
 import net.minecraft.client.data.models.model.*;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import studio.abos.mc.strangeadventures.block.ModBlockFamilies;
 import studio.abos.mc.strangeadventures.block.ModBlocks;
 import studio.abos.mc.strangeadventures.item.ModItems;
 
@@ -23,6 +24,15 @@ public class ModModelProvider extends FabricModelProvider {
         blockStateModelGenerator.registerSimpleFlatItemModel(ModBlocks.GREEN_FLOWER.asBlock());
         createGreenFarmland(blockStateModelGenerator);
         blockStateModelGenerator.createNonTemplateModelBlock(ModBlocks.GREEN_CACTUS.asBlock());
+        blockStateModelGenerator.family(ModBlocks.WEIR_PLANKS.asBlock()).generateFor(ModBlockFamilies.WEIR_PLANKS);
+        blockStateModelGenerator.createShelf(ModBlocks.WEIR_SHELF.asBlock(), ModBlocks.STRIPPED_WEIR_LOG.asBlock());
+        blockStateModelGenerator.woodProvider(ModBlocks.WEIR_LOG.asBlock())
+                .log(ModBlocks.WEIR_LOG.asBlock())
+                .wood(ModBlocks.WEIR_WOOD.asBlock());
+        blockStateModelGenerator.woodProvider(ModBlocks.STRIPPED_WEIR_LOG.asBlock())
+                .log(ModBlocks.STRIPPED_WEIR_LOG.asBlock())
+                .wood(ModBlocks.STRIPPED_WEIR_WOOD.asBlock());
+        blockStateModelGenerator.createTintedLeaves(ModBlocks.WEIR_LEAVES.asBlock(), TexturedModel.LEAVES, -12012264 /* copied blindly from acacia leaves */);
         blockStateModelGenerator.createTrivialCube(ModBlocks.WEIR_CORE.asBlock());
         blockStateModelGenerator.woodProvider(ModBlocks.SLEEPING_WOOD.asBlock()).wood(ModBlocks.SLEEPING_WOOD.asBlock());
         blockStateModelGenerator.woodProvider(ModBlocks.LIVING_WOOD.asBlock()).wood(ModBlocks.LIVING_WOOD.asBlock());

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "wooden_hanging_sign",
+  "key": {
+    "#": "strangeadventures:stripped_weir_log",
+    "X": "minecraft:iron_chain"
+  },
+  "pattern": [
+    "X X",
+    "###",
+    "###"
+  ],
+  "result": {
+    "count": 6,
+    "id": "strangeadventures:weir_hanging_sign"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "redstone",
+  "group": "wooden_button",
+  "ingredients": [
+    "strangeadventures:weir_planks"
+  ],
+  "result": {
+    "id": "strangeadventures:weir_button"
+  }
+}

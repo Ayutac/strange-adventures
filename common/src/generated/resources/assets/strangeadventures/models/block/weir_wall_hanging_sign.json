@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/template_wall_hanging_sign",
+  "textures": {
+    "all": "strangeadventures:block/weir_hanging_sign",
+    "particle": "strangeadventures:block/stripped_weir_log"
+  }
+}

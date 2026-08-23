@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "strangeadventures:block/weir_slab"
+    },
+    "type=double": {
+      "model": "strangeadventures:block/weir_planks"
+    },
+    "type=top": {
+      "model": "strangeadventures:block/weir_slab_top"
+    }
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "strangeadventures:block/weir_log",
+    "side": "strangeadventures:block/weir_log"
+  }
+}

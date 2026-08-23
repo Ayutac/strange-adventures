@@ -11,6 +11,8 @@ import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.data.recipes.SimpleCookingRecipeBuilder;
+import net.minecraft.world.flag.FeatureFlagSet;
+import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.CookingBookCategory;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -18,11 +20,13 @@ import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.material.Fluid;
 import studio.abos.mc.strangeadventures.StrangeAdventures;
+import studio.abos.mc.strangeadventures.block.ModBlockFamilies;
 import studio.abos.mc.strangeadventures.block.ModBlocks;
 import studio.abos.mc.strangeadventures.fluid.AbstractSapFluid;
 import studio.abos.mc.strangeadventures.fluid.ModFluids;
 import studio.abos.mc.strangeadventures.item.ModItems;
 import studio.abos.mc.strangeadventures.tag.ModBlockTags;
+import studio.abos.mc.strangeadventures.tag.ModItemTags;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -37,6 +41,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
 
             @Override
             public void buildRecipes() {
+                weirRecipes();
                 sapRecipes();
                 cookingRecipes();
                 miscRecipes();
@@ -44,8 +49,17 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 sapSipperRecipes();
             }
 
+            private void weirRecipes() {
+                planksFromLogs(ModBlocks.WEIR_PLANKS, ModItemTags.WEIR_LOGS, 4);
+                woodFromLogs(ModBlocks.WEIR_WOOD, ModBlocks.WEIR_LOG);
+                woodFromLogs(ModBlocks.STRIPPED_WEIR_WOOD, ModBlocks.STRIPPED_WEIR_LOG);
+                // TODO woodenBoat
+                shelf(ModBlocks.WEIR_SHELF, ModBlocks.STRIPPED_WEIR_LOG);
+                generateRecipes(ModBlockFamilies.WEIR_PLANKS, FeatureFlagSet.of(FeatureFlags.VANILLA));
+            }
+
             private void sapRecipes() {
-                sapRecipes((AbstractSapFluid) ModFluids.ACACIA_SAP_STILL.value());
+                sapRecipes((AbstractSapFluid)ModFluids.ACACIA_SAP_STILL.value());
                 sapRecipes((AbstractSapFluid)ModFluids.BIRCH_SAP_STILL.value());
                 sapRecipes((AbstractSapFluid)ModFluids.CACTUS_SAP_STILL.value());
                 sapRecipes((AbstractSapFluid)ModFluids.CHERRY_SAP_STILL.value());

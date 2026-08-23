@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.gen.Invoker;
 public interface LiquidBlockAccessor {
 
     @Invoker("<init>")
-    static LiquidBlock newLiquidBlock(FlowingFluid fluid, BlockBehaviour.Properties properties) {
+    static LiquidBlock newLiquidBlock(final FlowingFluid fluid, final BlockBehaviour.Properties properties) {
         throw new AssertionError("Untransformed @Accessor");
     }
 

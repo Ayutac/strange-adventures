@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/template_shelf_body",
+  "textures": {
+    "all": "strangeadventures:block/weir_shelf",
+    "particle": "strangeadventures:block/stripped_weir_log"
+  }
+}

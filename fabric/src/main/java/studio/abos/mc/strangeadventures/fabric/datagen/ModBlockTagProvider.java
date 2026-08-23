@@ -4,6 +4,7 @@ import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagsProvider;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.references.BlockItemIds;
+import net.minecraft.tags.BlockItemTags;
 import net.minecraft.tags.BlockTags;
 import studio.abos.mc.strangeadventures.block.ModBlocks;
 import studio.abos.mc.strangeadventures.tag.ModBlockTags;
@@ -20,6 +21,16 @@ public class ModBlockTagProvider extends FabricTagsProvider.BlockTagsProvider {
         builder(BlockTags.SMALL_FLOWERS).add(ModBlocks.GREEN_FLOWER.asResourceKey());
         builder(BlockTags.LOGS).add(ModBlocks.SLEEPING_WOOD.asResourceKey());
         builder(BlockTags.LOGS).add(ModBlocks.LIVING_WOOD.asResourceKey());
+        builder(BlockItemTags.LOGS_THAT_BURN.block()).addTag(ModBlockTags.WEIR_LOGS);
+        builder(BlockItemTags.PLANKS.block()).add(ModBlocks.WEIR_PLANKS.asResourceKey());
+        builder(BlockItemTags.WOODEN_BUTTONS.block()).add(ModBlocks.WEIR_BUTTON.asResourceKey());
+        builder(BlockItemTags.WOODEN_DOORS.block()).add(ModBlocks.WEIR_DOOR.asResourceKey());
+        builder(BlockItemTags.WOODEN_FENCES.block()).add(ModBlocks.WEIR_FENCE.asResourceKey());
+        builder(BlockItemTags.WOODEN_PRESSURE_PLATES.block()).add(ModBlocks.WEIR_PRESSURE_PLATE.asResourceKey());
+        builder(BlockItemTags.WOODEN_SHELVES.block()).add(ModBlocks.WEIR_SHELF.asResourceKey());
+        builder(BlockItemTags.WOODEN_SLABS.block()).add(ModBlocks.WEIR_SLAB.asResourceKey());
+        builder(BlockItemTags.WOODEN_STAIRS.block()).add(ModBlocks.WEIR_STAIRS.asResourceKey());
+        builder(BlockItemTags.WOODEN_TRAPDOORS.block()).add(ModBlocks.WEIR_TRAPDOOR.asResourceKey());
         builder(BlockTags.SUPPORTS_CROPS).add(ModBlocks.GREEN_FARMLAND.asResourceKey());
         builder(BlockTags.SUPPORTS_CACTUS).add(ModBlocks.GREEN_CACTUS.asResourceKey());
         builder(BlockTags.SUPPORT_OVERRIDE_CACTUS_FLOWER).add(ModBlocks.GREEN_CACTUS.asResourceKey());
@@ -33,6 +44,9 @@ public class ModBlockTagProvider extends FabricTagsProvider.BlockTagsProvider {
         builder(BlockTags.NEEDS_DIAMOND_TOOL).add(ModBlocks.LIVING_WOOD.asResourceKey());
 
         builder(ModBlockTags.GREEN_FARMLAND_CONVERTIBLE).add(BlockItemIds.FARMLAND);
+        builder(ModBlockTags.WEIR_LOGS).add(
+                ModBlocks.WEIR_LOG.asResourceKey(), ModBlocks.STRIPPED_WEIR_LOG.asResourceKey(),
+                ModBlocks.WEIR_WOOD.asResourceKey(), ModBlocks.STRIPPED_WEIR_WOOD.asResourceKey());
 
         builder(ModBlockTags.MAKES_ACACIA_SAP).add(
                 BlockItemIds.ACACIA_LOG, BlockItemIds.STRIPPED_ACACIA_LOG,
