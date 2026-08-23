@@ -2,8 +2,10 @@ package studio.abos.mc.strangeadventures.block;
 
 import net.blay09.mods.balm.world.level.block.BalmBlockRegistrar;
 import net.blay09.mods.balm.world.level.block.DeferredBlock;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FlowerPotBlock;
+import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
@@ -19,6 +21,9 @@ public final class ModBlocks {
     public static DeferredBlock POTTED_GREEN_FLOWER;
     public static DeferredBlock GREEN_FARMLAND;
     public static DeferredBlock GREEN_CACTUS;
+
+    public static DeferredBlock LIVING_WOOD;
+
     public static DeferredBlock SAP_SIPPER;
 
     public static DeferredBlock ACACIA_SAP;
@@ -58,6 +63,13 @@ public final class ModBlocks {
                 .sound(SoundType.WOOL)
                 .pushReaction(PushReaction.DESTROY)
                 .mapColor(MapColor.PLANT)).withDefaultItem().asDeferredBlock();
+
+        LIVING_WOOD = blocks.register("living_wood", RotatedPillarBlock::new, props -> props
+                .strength(30f, 1000f)
+                .requiresCorrectToolForDrops()
+                .sound(SoundType.ANCIENT_DEBRIS)
+                .mapColor(MapColor.COLOR_BROWN)).withDefaultItem(Item.Properties::fireResistant).asDeferredBlock();
+
         SAP_SIPPER = blocks.register("sap_sipper", SapSipperBlock::new, props -> props
                 .strength(3.5f)
                 .instrument(NoteBlockInstrument.BASEDRUM)

@@ -74,6 +74,7 @@ public final class ModItems {
                             output.accept(GREEN_SAFEGUARD);
                             output.accept(ModBlocks.GREEN_FARMLAND);
                             output.accept(ModBlocks.GREEN_CACTUS);
+                            output.accept(ModBlocks.LIVING_WOOD);
                             output.accept(ModBlocks.SAP_SIPPER);
 
                             output.accept(OAK_SAP_BOTTLE);
