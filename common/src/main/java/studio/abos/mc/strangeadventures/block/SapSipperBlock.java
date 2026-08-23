@@ -53,11 +53,11 @@ public class SapSipperBlock extends BaseEntityBlock {
     @Override
     protected InteractionResult useWithoutItem(final BlockState state, final Level level, final BlockPos pos, final Player player, final BlockHitResult hitResult) {
         if (level.isClientSide()) {
-            return InteractionResult.PASS;
+            return InteractionResult.SUCCESS;
         }
         final BlockEntity entity = level.getBlockEntity(pos);
         if (!(entity instanceof SapSipperBlockEntity sipper)) {
-            return InteractionResult.PASS;
+            return InteractionResult.FAIL;
         }
         final FluidTank tank = sipper.getFluidTank();
         if (tank.getAmount(0) > 0) {
@@ -73,11 +73,11 @@ public class SapSipperBlock extends BaseEntityBlock {
     @Override
     protected InteractionResult useItemOn(final ItemStack itemStack, final BlockState state, final Level level, final BlockPos pos, final Player player, final InteractionHand hand, final BlockHitResult hitResult) {
         if (level.isClientSide()) {
-            return InteractionResult.PASS;
+            return InteractionResult.SUCCESS;
         }
         final BlockEntity entity = level.getBlockEntity(pos);
         if (!(entity instanceof SapSipperBlockEntity sipper)) {
-            return InteractionResult.PASS;
+            return InteractionResult.FAIL;
         }
         final FluidTank tank = sipper.getFluidTank();
         if (tank.getFluid(0) instanceof AbstractSapFluid sap) {
