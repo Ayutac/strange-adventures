@@ -8,10 +8,11 @@ import net.neoforged.fml.common.Mod;
 import studio.abos.mc.strangeadventures.StrangeAdventures;
 
 @Mod(StrangeAdventures.MOD_ID)
-public class NeoForgeStrangeAdventures {
+public final class NeoForgeStrangeAdventures {
 
-    public NeoForgeStrangeAdventures(ModContainer modContainer, IEventBus modEventBus) {
+    public NeoForgeStrangeAdventures(final ModContainer modContainer, final IEventBus modEventBus) {
         final var context = new NeoForgeLoadContext(modContainer, modEventBus);
         Balm.initializeMod(StrangeAdventures.MOD_ID, context, StrangeAdventures::initialize);
     }
+
 }
