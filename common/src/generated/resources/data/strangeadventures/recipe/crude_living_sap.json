@@ -1,0 +1,7 @@
+{
+  "type": "strangeadventures:sap_sipper",
+  "amountPerSap": 1,
+  "sapBlocks": "#strangeadventures:makes_crude_living_sap",
+  "sapResult": "strangeadventures:crude_living_sap",
+  "ticksPerSap": 10
+}

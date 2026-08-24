@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "strangeadventures:item/crude_living_sap_bucket"
+  }
+}

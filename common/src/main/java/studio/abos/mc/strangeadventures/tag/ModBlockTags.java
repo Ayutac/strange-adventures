@@ -15,6 +15,7 @@ public final class ModBlockTags {
     public static final TagKey<Block> MAKES_CHERRY_SAP = TagKey.create(Registries.BLOCK, StrangeAdventures.id("makes_cherry_sap"));
     public static final TagKey<Block> MAKES_CHORUS_SAP = TagKey.create(Registries.BLOCK, StrangeAdventures.id("makes_chorus_sap"));
     public static final TagKey<Block> MAKES_CRIMSON_SAP = TagKey.create(Registries.BLOCK, StrangeAdventures.id("makes_crimson_sap"));
+    public static final TagKey<Block> MAKES_CRUDE_LIVING_SAP = TagKey.create(Registries.BLOCK, StrangeAdventures.id("makes_crude_living_sap"));
     public static final TagKey<Block> MAKES_JUNGLE_SAP = TagKey.create(Registries.BLOCK, StrangeAdventures.id("makes_jungle_sap"));
     public static final TagKey<Block> MAKES_LIVING_SAP = TagKey.create(Registries.BLOCK, StrangeAdventures.id("makes_living_sap"));
     public static final TagKey<Block> MAKES_MANGROVE_SAP = TagKey.create(Registries.BLOCK, StrangeAdventures.id("makes_mangrove_sap"));

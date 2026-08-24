@@ -65,6 +65,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 sapRecipes((AbstractSapFluid)ModFluids.CHERRY_SAP_STILL.value());
                 sapRecipes((AbstractSapFluid)ModFluids.CHORUS_SAP_STILL.value());
                 sapRecipes((AbstractSapFluid)ModFluids.CRIMSON_SAP_STILL.value());
+                sapRecipes((AbstractSapFluid)ModFluids.CRUDE_LIVING_SAP_STILL.value());
                 sapRecipes((AbstractSapFluid)ModFluids.JUNGLE_SAP_STILL.value());
                 sapRecipes((AbstractSapFluid)ModFluids.LIVING_SAP_STILL.value());
                 sapRecipes((AbstractSapFluid)ModFluids.MANGROVE_SAP_STILL.value());
@@ -323,6 +324,12 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                         .requires(ModBlockTags.MAKES_CRIMSON_SAP)
                         .ticks(10)
                         .amount(2)
+                        .unlockedBy("has_sipper", has(ModBlocks.SAP_SIPPER))
+                        .save(exporter);
+                sapSipper(ModFluids.CRUDE_LIVING_SAP_STILL)
+                        .requires(ModBlockTags.MAKES_CRUDE_LIVING_SAP)
+                        .ticks(10)
+                        .amount(1)
                         .unlockedBy("has_sipper", has(ModBlocks.SAP_SIPPER))
                         .save(exporter);
                 sapSipper(ModFluids.JUNGLE_SAP_STILL)

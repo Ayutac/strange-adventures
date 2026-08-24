@@ -27,6 +27,8 @@ public class ModFluidTagProvider extends FabricTagsProvider.FluidTagsProvider {
         builder(ModFluidTags.CHORUS_SAP).add(ModFluidIds.CHORUS_SAP_FLOWING);
         builder(ModFluidTags.CRIMSON_SAP).add(ModFluidIds.CRIMSON_SAP_STILL);
         builder(ModFluidTags.CRIMSON_SAP).add(ModFluidIds.CRIMSON_SAP_FLOWING);
+        builder(ModFluidTags.CRUDE_LIVING_SAP).add(ModFluidIds.CRUDE_LIVING_SAP_STILL);
+        builder(ModFluidTags.CRUDE_LIVING_SAP).add(ModFluidIds.CRUDE_LIVING_SAP_FLOWING);
         builder(ModFluidTags.JUNGLE_SAP).add(ModFluidIds.JUNGLE_SAP_STILL);
         builder(ModFluidTags.JUNGLE_SAP).add(ModFluidIds.JUNGLE_SAP_FLOWING);
         builder(ModFluidTags.LIVING_SAP).add(ModFluidIds.LIVING_SAP_STILL);

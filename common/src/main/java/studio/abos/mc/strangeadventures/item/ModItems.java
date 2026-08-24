@@ -28,6 +28,8 @@ public final class ModItems {
     public static DeferredItem CHORUS_SAP_BUCKET;
     public static DeferredItem CRIMSON_SAP_BOTTLE;
     public static DeferredItem CRIMSON_SAP_BUCKET;
+    public static DeferredItem CRUDE_LIVING_SAP_BOTTLE;
+    public static DeferredItem CRUDE_LIVING_SAP_BUCKET;
     public static DeferredItem JUNGLE_SAP_BOTTLE;
     public static DeferredItem JUNGLE_SAP_BUCKET;
     public static DeferredItem LIVING_SAP_BOTTLE;
@@ -57,6 +59,8 @@ public final class ModItems {
         CHORUS_SAP_BOTTLE = items.register("chorus_sap_bottle", props -> new Item(sapBottle(props))).asDeferredItem();
         CRIMSON_SAP_BUCKET = items.register("crimson_sap_bucket", props -> new BucketItem(ModFluids.CRIMSON_SAP_STILL.value(), sapBucket(props))).asDeferredItem();
         CRIMSON_SAP_BOTTLE = items.register("crimson_sap_bottle", props -> new Item(sapBottle(props))).asDeferredItem();
+        CRUDE_LIVING_SAP_BUCKET = items.register("crude_living_sap_bucket", props -> new BucketItem(ModFluids.CRUDE_LIVING_SAP_STILL.value(), sapBucket(props))).asDeferredItem();
+        CRUDE_LIVING_SAP_BOTTLE = items.register("crude_living_sap_bottle", props -> new Item(sapBottle(props))).asDeferredItem();
         JUNGLE_SAP_BUCKET = items.register("jungle_sap_bucket", props -> new BucketItem(ModFluids.JUNGLE_SAP_STILL.value(), sapBucket(props))).asDeferredItem();
         JUNGLE_SAP_BOTTLE = items.register("jungle_sap_bottle", props -> new Item(sapBottle(props))).asDeferredItem();
         LIVING_SAP_BUCKET = items.register("living_sap_bucket", props -> new LivingSapBucketItem(sapBucket(props))).asDeferredItem();
@@ -118,6 +122,7 @@ public final class ModItems {
                             output.accept(CRIMSON_SAP_BOTTLE);
                             output.accept(WARPED_SAP_BOTTLE);
                             output.accept(CHORUS_SAP_BOTTLE);
+                            output.accept(CRUDE_LIVING_SAP_BOTTLE);
                             output.accept(LIVING_SAP_BOTTLE);
 
                             output.accept(OAK_SAP_BUCKET);
@@ -131,6 +136,7 @@ public final class ModItems {
                             output.accept(CRIMSON_SAP_BUCKET);
                             output.accept(WARPED_SAP_BUCKET);
                             output.accept(CHORUS_SAP_BUCKET);
+                            output.accept(CRUDE_LIVING_SAP_BUCKET);
                             output.accept(LIVING_SAP_BUCKET);
                         })
         );

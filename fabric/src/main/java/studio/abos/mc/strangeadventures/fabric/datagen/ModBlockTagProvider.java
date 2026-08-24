@@ -71,6 +71,9 @@ public class ModBlockTagProvider extends FabricTagsProvider.BlockTagsProvider {
         builder(ModBlockTags.MAKES_CRIMSON_SAP).add(
                 BlockItemIds.CRIMSON_STEM, BlockItemIds.STRIPPED_CRIMSON_STEM,
                 BlockItemIds.CRIMSON_HYPHAE, BlockItemIds.STRIPPED_CRIMSON_HYPHAE);
+        builder(ModBlockTags.MAKES_CRUDE_LIVING_SAP).add(
+                ModBlocks.WEIR_LOG.asResourceKey(), ModBlocks.STRIPPED_WEIR_LOG.asResourceKey(),
+                ModBlocks.WEIR_WOOD.asResourceKey(), ModBlocks.STRIPPED_WEIR_WOOD.asResourceKey());
         builder(ModBlockTags.MAKES_JUNGLE_SAP).add(
                 BlockItemIds.JUNGLE_LOG, BlockItemIds.STRIPPED_JUNGLE_LOG,
                 BlockItemIds.JUNGLE_WOOD, BlockItemIds.STRIPPED_JUNGLE_WOOD);
