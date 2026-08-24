@@ -22,6 +22,13 @@ public class ModBlockTagProvider extends FabricTagsProvider.BlockTagsProvider {
         builder(BlockTags.LOGS).add(ModBlocks.SLEEPING_WOOD.asResourceKey());
         builder(BlockTags.LOGS).add(ModBlocks.LIVING_WOOD.asResourceKey());
         builder(BlockItemTags.LOGS_THAT_BURN.block()).addTag(ModBlockTags.WEIR_LOGS);
+        builder(BlockItemTags.LEAVES.block()).add(ModBlocks.WEIR_LEAVES.asResourceKey());
+        builder(BlockItemTags.SAPLINGS.block()).add(ModBlocks.WEIR_SAPLING.asResourceKey());
+        builder(BlockTags.WALL_SIGNS).add(ModBlocks.WEIR_WALL_SIGN.asResourceKey());
+        builder(BlockTags.WALL_HANGING_SIGNS).add(ModBlocks.WEIR_WALL_HANGING_SIGN.asResourceKey());
+        builder(BlockTags.STANDING_SIGNS).add(ModBlocks.WEIR_SIGN.asResourceKey());
+        builder(BlockTags.CEILING_HANGING_SIGNS).add(ModBlocks.WEIR_HANGING_SIGN.asResourceKey());
+        builder(BlockItemTags.FENCE_GATES.block()).add(ModBlocks.WEIR_FENCE_GATE.asResourceKey());
         builder(BlockItemTags.PLANKS.block()).add(ModBlocks.WEIR_PLANKS.asResourceKey());
         builder(BlockItemTags.WOODEN_BUTTONS.block()).add(ModBlocks.WEIR_BUTTON.asResourceKey());
         builder(BlockItemTags.WOODEN_DOORS.block()).add(ModBlocks.WEIR_DOOR.asResourceKey());

@@ -18,6 +18,9 @@ public class ModItemTagProvider extends FabricTagsProvider.ItemTagsProvider {
     @Override
     protected void addTags(HolderLookup.Provider lookup) {
         builder(BlockItemTags.LOGS_THAT_BURN.item()).addTag(ModItemTags.WEIR_LOGS);
+        builder(BlockItemTags.LEAVES.item()).add(ModBlocks.WEIR_LEAVES.asBlockItemId());
+        builder(BlockItemTags.SAPLINGS.item()).add(ModBlocks.WEIR_SAPLING.asBlockItemId());
+        builder(BlockItemTags.FENCE_GATES.item()).add(ModBlocks.WEIR_FENCE_GATE.asBlockItemId());
         builder(BlockItemTags.PLANKS.item()).add(ModBlocks.WEIR_PLANKS.asBlockItemId());
         builder(BlockItemTags.WOODEN_BUTTONS.item()).add(ModBlocks.WEIR_BUTTON.asBlockItemId());
         builder(BlockItemTags.WOODEN_DOORS.item()).add(ModBlocks.WEIR_DOOR.asBlockItemId());

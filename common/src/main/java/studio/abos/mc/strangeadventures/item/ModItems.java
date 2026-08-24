@@ -87,6 +87,7 @@ public final class ModItems {
                             output.accept(ModBlocks.STRIPPED_WEIR_WOOD);
                             output.accept(ModBlocks.WEIR_CORE);
                             output.accept(ModBlocks.WEIR_LEAVES);
+                            output.accept(ModBlocks.WEIR_SAPLING);
                             output.accept(ModBlocks.WEIR_PLANKS);
                             output.accept(ModBlocks.WEIR_STAIRS);
                             output.accept(ModBlocks.WEIR_SLAB);
@@ -96,6 +97,8 @@ public final class ModItems {
                             output.accept(ModBlocks.WEIR_TRAPDOOR);
                             output.accept(ModBlocks.WEIR_PRESSURE_PLATE);
                             output.accept(ModBlocks.WEIR_SHELF);
+                            output.accept(ModBlocks.WEIR_SIGN);
+                            output.accept(ModBlocks.WEIR_HANGING_SIGN);
                             output.accept(ModBlocks.WEIR_BUTTON);
 
                             output.accept(ModBlocks.SLEEPING_WOOD);

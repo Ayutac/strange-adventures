@@ -21,6 +21,7 @@ public class ModModelProvider extends FabricModelProvider {
     @Override
     public void generateBlockStateModels(final BlockModelGenerators blockStateModelGenerator) {
         blockStateModelGenerator.createPlant(ModBlocks.GREEN_FLOWER.asBlock(), ModBlocks.POTTED_GREEN_FLOWER.asBlock(), BlockModelGenerators.PlantType.NOT_TINTED);
+        blockStateModelGenerator.createPlant(ModBlocks.WEIR_SAPLING.asBlock(), ModBlocks.POTTED_WEIR_SAPLING.asBlock(), BlockModelGenerators.PlantType.NOT_TINTED);
         blockStateModelGenerator.registerSimpleFlatItemModel(ModBlocks.GREEN_FLOWER.asBlock());
         createGreenFarmland(blockStateModelGenerator);
         blockStateModelGenerator.createNonTemplateModelBlock(ModBlocks.GREEN_CACTUS.asBlock());

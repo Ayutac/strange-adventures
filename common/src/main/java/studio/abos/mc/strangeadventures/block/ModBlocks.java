@@ -29,8 +29,10 @@ import studio.abos.mc.strangeadventures.mixin.ButtonBlockAccessor;
 import studio.abos.mc.strangeadventures.mixin.DoorBlockAccessor;
 import studio.abos.mc.strangeadventures.mixin.LiquidBlockAccessor;
 import studio.abos.mc.strangeadventures.mixin.PressurePlateBlockAccessor;
+import studio.abos.mc.strangeadventures.mixin.SaplingBlockAccessor;
 import studio.abos.mc.strangeadventures.mixin.StairBlockAccessor;
 import studio.abos.mc.strangeadventures.mixin.TrapdoorBlockAccessor;
+import studio.abos.mc.strangeadventures.worldgen.ModTreeFeatures;
 
 public final class ModBlocks {
 
@@ -48,8 +50,8 @@ public final class ModBlocks {
     public static DeferredBlock STRIPPED_WEIR_WOOD;
     public static DeferredBlock WEIR_CORE;
     public static DeferredBlock WEIR_LEAVES;
-//    public static DeferredBlock WEIR_SAPLING;
-//    public static DeferredBlock POTTED_WEIR_SAPLING;
+    public static DeferredBlock WEIR_SAPLING;
+    public static DeferredBlock POTTED_WEIR_SAPLING;
     public static DeferredBlock WEIR_PLANKS;
     public static DeferredBlock WEIR_SHELF;
     public static DeferredBlock WEIR_SIGN;
@@ -145,6 +147,17 @@ public final class ModBlocks {
                 .ignitedByLava()
                 .pushReaction(PushReaction.DESTROY)
                 .mapColor(MapColor.PLANT)).withDefaultItem().asDeferredBlock();
+        WEIR_SAPLING = blocks.register("weir_sapling", props -> SaplingBlockAccessor.newSaplingBlock(ModTreeFeatures.WEIR_GROWER, props), props -> props
+                .instabreak()
+                .randomTicks()
+                .noCollision()
+                .sound(SoundType.GRASS)
+                .pushReaction(PushReaction.DESTROY)
+                .mapColor(MapColor.PLANT)).withDefaultItem().asDeferredBlock();
+        POTTED_WEIR_SAPLING = blocks.register("potted_weir_sapling", props -> new FlowerPotBlock(WEIR_SAPLING.asBlock(), props), props -> props
+                .instabreak()
+                .noOcclusion()
+                .pushReaction(PushReaction.DESTROY)).asDeferredBlock();
         WEIR_CORE = blocks.register("weir_core", Block::new, props -> props
                 .strength(10f)
                 .requiresCorrectToolForDrops()
