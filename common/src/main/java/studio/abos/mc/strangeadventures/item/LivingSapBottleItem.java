@@ -7,7 +7,6 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.context.UseOnContext;
@@ -21,14 +20,15 @@ import net.minecraft.world.level.block.PitcherCropBlock;
 import net.minecraft.world.level.block.StemBlock;
 import net.minecraft.world.level.block.TorchflowerCropBlock;
 import net.minecraft.world.level.block.state.BlockState;
+import studio.abos.mc.strangeadventures.fluid.ModFluids;
 import studio.abos.mc.strangeadventures.mixin.StemBlockAccessor;
 
 import java.util.Optional;
 
-public class LivingSapBottleItem extends Item {
+public class LivingSapBottleItem extends BottleItem {
 
     public LivingSapBottleItem(final Properties properties) {
-        super(properties);
+        super(ModFluids.LIVING_SAP_STILL.value(), properties);
     }
 
     @Override

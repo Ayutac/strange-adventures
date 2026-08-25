@@ -48,31 +48,31 @@ public final class ModItems {
         LIVING_ROD = items.register("living_rod", props -> new Item(props.fireResistant())).asDeferredItem();
 
         ACACIA_SAP_BUCKET = items.register("acacia_sap_bucket", props -> new BucketItem(ModFluids.ACACIA_SAP_STILL.value(), sapBucket(props))).asDeferredItem();
-        ACACIA_SAP_BOTTLE = items.register("acacia_sap_bottle", props -> new Item(sapBottle(props))).asDeferredItem();
+        ACACIA_SAP_BOTTLE = items.register("acacia_sap_bottle", props -> new BottleItem(ModFluids.ACACIA_SAP_STILL.value(), sapBottle(props))).asDeferredItem();
         BIRCH_SAP_BUCKET = items.register("birch_sap_bucket", props -> new BucketItem(ModFluids.BIRCH_SAP_STILL.value(), sapBucket(props))).asDeferredItem();
-        BIRCH_SAP_BOTTLE = items.register("birch_sap_bottle", props -> new Item(sapBottle(props))).asDeferredItem();
+        BIRCH_SAP_BOTTLE = items.register("birch_sap_bottle", props -> new BottleItem(ModFluids.BIRCH_SAP_STILL.value(), sapBottle(props))).asDeferredItem();
         CACTUS_SAP_BUCKET = items.register("cactus_sap_bucket", props -> new BucketItem(ModFluids.CACTUS_SAP_STILL.value(), sapBucket(props))).asDeferredItem();
-        CACTUS_SAP_BOTTLE = items.register("cactus_sap_bottle", props -> new Item(sapBottle(props))).asDeferredItem();
+        CACTUS_SAP_BOTTLE = items.register("cactus_sap_bottle", props -> new BottleItem(ModFluids.CACTUS_SAP_STILL.value(), sapBottle(props))).asDeferredItem();
         CHERRY_SAP_BUCKET = items.register("cherry_sap_bucket", props -> new BucketItem(ModFluids.CHERRY_SAP_STILL.value(), sapBucket(props))).asDeferredItem();
-        CHERRY_SAP_BOTTLE = items.register("cherry_sap_bottle", props -> new Item(sapBottle(props))).asDeferredItem();
+        CHERRY_SAP_BOTTLE = items.register("cherry_sap_bottle", props -> new BottleItem(ModFluids.CHERRY_SAP_STILL.value(), sapBottle(props))).asDeferredItem();
         CHORUS_SAP_BUCKET = items.register("chorus_sap_bucket", props -> new BucketItem(ModFluids.CHORUS_SAP_STILL.value(), sapBucket(props))).asDeferredItem();
-        CHORUS_SAP_BOTTLE = items.register("chorus_sap_bottle", props -> new Item(sapBottle(props))).asDeferredItem();
+        CHORUS_SAP_BOTTLE = items.register("chorus_sap_bottle", props -> new BottleItem(ModFluids.CHORUS_SAP_STILL.value(), sapBottle(props))).asDeferredItem();
         CRIMSON_SAP_BUCKET = items.register("crimson_sap_bucket", props -> new BucketItem(ModFluids.CRIMSON_SAP_STILL.value(), sapBucket(props))).asDeferredItem();
-        CRIMSON_SAP_BOTTLE = items.register("crimson_sap_bottle", props -> new Item(sapBottle(props))).asDeferredItem();
+        CRIMSON_SAP_BOTTLE = items.register("crimson_sap_bottle", props -> new BottleItem(ModFluids.CRIMSON_SAP_STILL.value(), sapBottle(props))).asDeferredItem();
         CRUDE_LIVING_SAP_BUCKET = items.register("crude_living_sap_bucket", props -> new BucketItem(ModFluids.CRUDE_LIVING_SAP_STILL.value(), sapBucket(props))).asDeferredItem();
-        CRUDE_LIVING_SAP_BOTTLE = items.register("crude_living_sap_bottle", props -> new Item(sapBottle(props))).asDeferredItem();
+        CRUDE_LIVING_SAP_BOTTLE = items.register("crude_living_sap_bottle", props -> new BottleItem(ModFluids.CRUDE_LIVING_SAP_STILL.value(), sapBottle(props))).asDeferredItem();
         JUNGLE_SAP_BUCKET = items.register("jungle_sap_bucket", props -> new BucketItem(ModFluids.JUNGLE_SAP_STILL.value(), sapBucket(props))).asDeferredItem();
-        JUNGLE_SAP_BOTTLE = items.register("jungle_sap_bottle", props -> new Item(sapBottle(props))).asDeferredItem();
+        JUNGLE_SAP_BOTTLE = items.register("jungle_sap_bottle", props -> new BottleItem(ModFluids.JUNGLE_SAP_STILL.value(), sapBottle(props))).asDeferredItem();
         LIVING_SAP_BUCKET = items.register("living_sap_bucket", props -> new LivingSapBucketItem(sapBucket(props))).asDeferredItem();
         LIVING_SAP_BOTTLE = items.register("living_sap_bottle", props -> new LivingSapBottleItem(sapBottle(props))).asDeferredItem();
         MANGROVE_SAP_BUCKET = items.register("mangrove_sap_bucket", props -> new BucketItem(ModFluids.MANGROVE_SAP_STILL.value(), sapBucket(props))).asDeferredItem();
-        MANGROVE_SAP_BOTTLE = items.register("mangrove_sap_bottle", props -> new Item(sapBottle(props))).asDeferredItem();
+        MANGROVE_SAP_BOTTLE = items.register("mangrove_sap_bottle", props -> new BottleItem(ModFluids.MANGROVE_SAP_STILL.value(), sapBottle(props))).asDeferredItem();
         OAK_SAP_BUCKET = items.register("oak_sap_bucket", props -> new BucketItem(ModFluids.OAK_SAP_STILL.value(), sapBucket(props))).asDeferredItem();
-        OAK_SAP_BOTTLE = items.register("oak_sap_bottle", props -> new Item(sapBottle(props))).asDeferredItem();
+        OAK_SAP_BOTTLE = items.register("oak_sap_bottle", props -> new BottleItem(ModFluids.OAK_SAP_STILL.value(), sapBottle(props))).asDeferredItem();
         SPRUCE_SAP_BUCKET = items.register("spruce_sap_bucket", props -> new BucketItem(ModFluids.SPRUCE_SAP_STILL.value(), sapBucket(props))).asDeferredItem();
-        SPRUCE_SAP_BOTTLE = items.register("spruce_sap_bottle", props -> new Item(sapBottle(props))).asDeferredItem();
+        SPRUCE_SAP_BOTTLE = items.register("spruce_sap_bottle", props -> new BottleItem(ModFluids.SPRUCE_SAP_STILL.value(), sapBottle(props))).asDeferredItem();
         WARPED_SAP_BUCKET = items.register("warped_sap_bucket", props -> new BucketItem(ModFluids.WARPED_SAP_STILL.value(), sapBucket(props))).asDeferredItem();
-        WARPED_SAP_BOTTLE = items.register("warped_sap_bottle", props -> new Item(sapBottle(props))).asDeferredItem();
+        WARPED_SAP_BOTTLE = items.register("warped_sap_bottle", props -> new BottleItem(ModFluids.WARPED_SAP_STILL.value(), sapBottle(props))).asDeferredItem();
     }
 
     public static void initialize(final BalmCreativeModeTabRegistrar creativeModeTabs) {
