@@ -98,7 +98,7 @@ public class SapSipperBlock extends BaseEntityBlock {
     }
 
     @Override
-    public @Nullable BlockEntity newBlockEntity(final BlockPos pos, final BlockState state) {
+    public BlockEntity newBlockEntity(final BlockPos pos, final BlockState state) {
         return new SapSipperBlockEntity(pos, state);
     }
 
@@ -107,4 +107,5 @@ public class SapSipperBlock extends BaseEntityBlock {
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(final Level level, final BlockState blockState, final BlockEntityType<T> type) {
         return createTickerHelper(type, ModBlockEntities.SAP_SIPPER.value(), SapSipperBlockEntity::tick);
     }
+
 }

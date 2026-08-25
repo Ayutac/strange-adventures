@@ -67,7 +67,7 @@ public class SapSipperBlockEntity extends BlockEntity implements BalmFluidTankPr
         final BlockState blockBehind = level.getBlockState(pos.relative(state.getValue(HorizontalDirectionalBlock.FACING).getOpposite()));
         final SingleBlockRecipeInput input = new SingleBlockRecipeInput(blockBehind);
         final RecipeHolder<SapSipperRecipe> recipe = entity.quickCheck.getRecipeFor(input, (ServerLevel)level).orElse(null);
-        boolean dirty = false;
+        boolean dirty;
         if (recipe != null) {
             final Holder<Fluid> result = recipe.value().getSapResult();
             if (entity.tank.canFill(0, result.value())) {
@@ -109,6 +109,7 @@ public class SapSipperBlockEntity extends BlockEntity implements BalmFluidTankPr
             SapSipperBlockEntity.this.setChanged();
             isDirty = true;
         }
+
     }
 
 }
