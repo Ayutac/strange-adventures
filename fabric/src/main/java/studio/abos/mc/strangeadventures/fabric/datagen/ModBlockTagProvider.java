@@ -46,6 +46,7 @@ public class ModBlockTagProvider extends FabricTagsProvider.BlockTagsProvider {
         builder(BlockTags.MINEABLE_WITH_AXE).add(ModBlocks.SLEEPING_WOOD.asResourceKey());
         builder(BlockTags.MINEABLE_WITH_AXE).add(ModBlocks.LIVING_WOOD.asResourceKey());
         builder(BlockTags.MINEABLE_WITH_PICKAXE).add(ModBlocks.SAP_SIPPER.asResourceKey());
+        builder(BlockTags.MINEABLE_WITH_PICKAXE).add(ModBlocks.ESSENCE_CAULDRON.asResourceKey());
         builder(BlockTags.NEEDS_IRON_TOOL).add(ModBlocks.WEIR_CORE.asResourceKey());
         builder(BlockTags.NEEDS_DIAMOND_TOOL).add(ModBlocks.SLEEPING_WOOD.asResourceKey());
         builder(BlockTags.NEEDS_DIAMOND_TOOL).add(ModBlocks.LIVING_WOOD.asResourceKey());

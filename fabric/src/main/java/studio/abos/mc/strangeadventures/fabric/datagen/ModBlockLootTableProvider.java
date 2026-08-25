@@ -42,5 +42,6 @@ public class ModBlockLootTableProvider extends FabricBlockLootSubProvider {
         dropSelf(ModBlocks.SLEEPING_WOOD.asBlock());
         dropSelf(ModBlocks.LIVING_WOOD.asBlock());
         dropSelf(ModBlocks.SAP_SIPPER.asBlock());
+        dropSelf(ModBlocks.ESSENCE_CAULDRON.asBlock());
     }
 }

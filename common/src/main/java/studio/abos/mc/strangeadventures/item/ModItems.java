@@ -110,6 +110,7 @@ public final class ModItems {
                             output.accept(LIVING_ROD);
 
                             output.accept(ModBlocks.SAP_SIPPER);
+                            output.accept(ModBlocks.ESSENCE_CAULDRON);
 
                             output.accept(OAK_SAP_BOTTLE);
                             output.accept(SPRUCE_SAP_BOTTLE);

@@ -8,9 +8,11 @@ import studio.abos.mc.strangeadventures.block.ModBlocks;
 public final class ModBlockEntities {
 
     public static Holder<BlockEntityType<SapSipperBlockEntity>> SAP_SIPPER;
+    public static Holder<BlockEntityType<EssenceCauldronBlockEntity>> ESSENCE_CAULDRON;
 
     public static void initialize(final BalmBlockEntityTypeRegistrar blockEntities) {
         SAP_SIPPER = blockEntities.register("sap_sipper", SapSipperBlockEntity::new, ModBlocks.SAP_SIPPER).asHolder();
+        ESSENCE_CAULDRON = blockEntities.register("essence_cauldron", EssenceCauldronBlockEntity::new, ModBlocks.ESSENCE_CAULDRON).asHolder();
     }
 
 }

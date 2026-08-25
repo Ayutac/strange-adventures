@@ -71,6 +71,7 @@ public final class ModBlocks {
     public static DeferredBlock LIVING_WOOD;
 
     public static DeferredBlock SAP_SIPPER;
+    public static DeferredBlock ESSENCE_CAULDRON;
 
     public static DeferredBlock ACACIA_SAP;
     public static DeferredBlock BIRCH_SAP;
@@ -274,6 +275,10 @@ public final class ModBlocks {
         SAP_SIPPER = blocks.register("sap_sipper", SapSipperBlock::new, props -> props
                 .strength(3.5f)
                 .instrument(NoteBlockInstrument.BASEDRUM)
+                .mapColor(MapColor.STONE)).withDefaultItem().asDeferredBlock();
+        ESSENCE_CAULDRON = blocks.register("essence_cauldron", EssenceCauldronBlock::new, props -> props
+                .strength(2f)
+                .noOcclusion()
                 .mapColor(MapColor.STONE)).withDefaultItem().asDeferredBlock();
 
         ACACIA_SAP = blocks.register("acacia_sap", props -> LiquidBlockAccessor.newLiquidBlock((FlowingFluid)ModFluids.ACACIA_SAP_STILL.value(), props), props ->

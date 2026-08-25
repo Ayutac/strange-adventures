@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "strangeadventures:block/essence_cauldron",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "strangeadventures:block/essence_cauldron"
+    },
+    "facing=south": {
+      "model": "strangeadventures:block/essence_cauldron",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "strangeadventures:block/essence_cauldron",
+      "y": 270
+    }
+  }
+}
