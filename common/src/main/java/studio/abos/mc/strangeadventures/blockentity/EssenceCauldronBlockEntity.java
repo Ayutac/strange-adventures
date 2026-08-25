@@ -6,8 +6,12 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.protocol.Packet;
+import net.minecraft.network.protocol.game.ClientGamePacketListener;
+import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluid;
@@ -16,7 +20,11 @@ import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
 import studio.abos.mc.strangeadventures.fluid.ModFluids;
 
+import java.util.Collections;
+
 public class EssenceCauldronBlockEntity extends BlockEntity implements BalmFluidTankProvider {
+
+    public static final int MAX_FLUIDS = 3;
 
     protected EssenceCauldronBlockEntity.Tank tank = new EssenceCauldronBlockEntity.Tank();
 
@@ -46,13 +54,28 @@ public class EssenceCauldronBlockEntity extends BlockEntity implements BalmFluid
         return saveWithoutMetadata(registryLookup);
     }
 
+    @Override
+    public Packet<ClientGamePacketListener> getUpdatePacket() {
+        return ClientboundBlockEntityDataPacket.create(this);
+    }
+
+    @Override
+    public void setChanged() {
+        super.setChanged();
+        if (level == null) {
+            return;
+        }
+        final BlockState blockState = getBlockState();
+        level.sendBlockUpdated(getBlockPos(), blockState, blockState, Block.UPDATE_ALL);
+    }
+
     public static void tick(final Level level, final BlockPos pos, final BlockState state, final EssenceCauldronBlockEntity entity) {
 
     }
 
     public class Tank implements FluidTank {
 
-        protected Fluid[] fluids = new Fluid[]{Fluids.EMPTY, Fluids.EMPTY, Fluids.EMPTY};
+        protected Fluid[] fluids = Collections.nCopies(MAX_FLUIDS, Fluids.EMPTY).toArray(Fluid[]::new);
 
         @Override
         public int fill(final int slot, final Fluid fluid, final int maxFill, final boolean simulate) {
@@ -220,6 +243,19 @@ public class EssenceCauldronBlockEntity extends BlockEntity implements BalmFluid
                 return fluid;
             }
             return Fluids.EMPTY;
+        }
+
+        /**
+         * Sum of all fluid slots used.
+         */
+        public int getAmountOfBottles() {
+            int sum = 0;
+            for (int i = 0; i < fluids.length; i++) {
+                if (!getFluid(i).isSame(Fluids.EMPTY)) {
+                    sum++;
+                }
+            }
+            return sum;
         }
 
         public void serialize(ValueOutput output) {
