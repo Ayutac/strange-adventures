@@ -1,10 +1,8 @@
 package studio.abos.mc.strangeadventures.fluid;
 
-import lombok.NonNull;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
@@ -15,7 +13,7 @@ import net.minecraft.world.level.material.FlowingFluid;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.FluidState;
 
-public abstract class AbstractSapFluid extends FlowingFluid {
+public abstract class AbstractSapFluid extends FlowingFluid implements FluidWithBottle {
 
     @Override
     protected boolean canConvertToSource(final ServerLevel serverLevel) {
@@ -52,7 +50,5 @@ public abstract class AbstractSapFluid extends FlowingFluid {
     protected float getExplosionResistance() {
         return 100f;
     }
-
-    public abstract Item getBottle();
 
 }

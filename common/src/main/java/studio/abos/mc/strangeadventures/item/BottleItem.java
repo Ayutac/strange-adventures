@@ -12,4 +12,8 @@ public class BottleItem extends Item {
         this.fluid = fluid;
     }
 
+    public Fluid getContent() {
+        return fluid;
+    }
+
 }
