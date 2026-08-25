@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "B": "minecraft:bucket",
+    "G": "minecraft:gold_ingot",
+    "N": "minecraft:copper_nugget",
+    "P": "#minecraft:planks"
+  },
+  "pattern": [
+    "GNG",
+    "PBP",
+    "GPG"
+  ],
+  "result": {
+    "id": "strangeadventures:sap_sipper"
+  }
+}

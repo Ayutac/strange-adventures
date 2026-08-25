@@ -11,6 +11,7 @@ import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.data.recipes.SimpleCookingRecipeBuilder;
+import net.minecraft.tags.BlockItemTags;
 import net.minecraft.world.flag.FeatureFlagSet;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Items;
@@ -112,6 +113,16 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                         .requires(Items.FARMLAND)
                         .requires(ModItems.GREEN_SAFEGUARD)
                         .unlockedBy("has_farmland", has(Items.FARMLAND))
+                        .save(exporter);
+                shaped(RecipeCategory.MISC, ModBlocks.SAP_SIPPER)
+                        .pattern("GNG")
+                        .pattern("PBP")
+                        .pattern("GPG")
+                        .define('B', Items.BUCKET)
+                        .define('G', Items.GOLD_INGOT)
+                        .define('N', Items.COPPER_NUGGET)
+                        .define('P', BlockItemTags.PLANKS.item())
+                        .unlockedBy("has_bucket", has(Items.BUCKET))
                         .save(exporter);
                 shaped(RecipeCategory.MISC, ModItems.LIVING_ROD, 4)
                         .pattern("W")
