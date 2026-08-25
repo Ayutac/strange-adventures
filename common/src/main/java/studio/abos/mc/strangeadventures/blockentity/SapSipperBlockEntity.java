@@ -2,7 +2,6 @@ package studio.abos.mc.strangeadventures.blockentity;
 
 import net.blay09.mods.balm.platform.fluid.BalmFluidTankProvider;
 import net.blay09.mods.balm.platform.fluid.DefaultFluidTank;
-import net.blay09.mods.balm.platform.fluid.FluidTank;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
@@ -29,7 +28,6 @@ public class SapSipperBlockEntity extends BlockEntity implements BalmFluidTankPr
     protected Tank tank = new Tank();
 
     protected final RecipeManager.CachedCheck<SingleBlockRecipeInput, SapSipperRecipe> quickCheck;
-    protected boolean isDirty;
 
     public SapSipperBlockEntity(final BlockPos pos, final BlockState state) {
         super(ModBlockEntities.SAP_SIPPER.value(), pos, state);
@@ -37,7 +35,7 @@ public class SapSipperBlockEntity extends BlockEntity implements BalmFluidTankPr
     }
 
     @Override
-    public FluidTank getFluidTank() {
+    public Tank getFluidTank() {
         return tank;
     }
 
@@ -107,7 +105,6 @@ public class SapSipperBlockEntity extends BlockEntity implements BalmFluidTankPr
         @Override
         public void setChanged() {
             SapSipperBlockEntity.this.setChanged();
-            isDirty = true;
         }
 
     }
