@@ -4,12 +4,15 @@ import net.blay09.mods.balm.platform.fluid.BalmFluidTankProvider;
 import net.blay09.mods.balm.platform.fluid.FluidTank;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.NonNullList;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.resources.Identifier;
+import net.minecraft.world.ContainerHelper;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -21,15 +24,42 @@ import net.minecraft.world.level.storage.ValueOutput;
 import studio.abos.mc.strangeadventures.fluid.ModFluids;
 
 import java.util.Collections;
+import java.util.Optional;
 
 public class EssenceCauldronBlockEntity extends BlockEntity implements BalmFluidTankProvider {
 
     public static final int MAX_FLUIDS = 3;
+    public static final int MAX_ITEMS = 3;
 
-    protected EssenceCauldronBlockEntity.Tank tank = new EssenceCauldronBlockEntity.Tank();
+    protected final NonNullList<ItemStack> items = NonNullList.withSize(MAX_ITEMS, ItemStack.EMPTY);
+    protected final EssenceCauldronBlockEntity.Tank tank = new EssenceCauldronBlockEntity.Tank();
 
     public EssenceCauldronBlockEntity(final BlockPos pos, final BlockState state) {
         super(ModBlockEntities.ESSENCE_CAULDRON.value(), pos, state);
+    }
+
+    public boolean storeItem(final ItemStack stack) {
+        if (stack.isEmpty()) {
+            return false;
+        }
+        for (int i = 0; i < items.size(); i++) {
+            if (items.get(i).isEmpty()) {
+                items.set(i, stack);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public Optional<ItemStack> retrieveItem() {
+        for (int i = 0; i < items.size(); i++) {
+            if (!items.get(i).isEmpty()) {
+                final ItemStack item = items.get(i);
+                items.set(i, ItemStack.EMPTY);
+                return Optional.of(item);
+            }
+        }
+        return Optional.empty();
     }
 
     @Override
@@ -40,12 +70,14 @@ public class EssenceCauldronBlockEntity extends BlockEntity implements BalmFluid
     @Override
     protected void saveAdditional(final ValueOutput output) {
         tank.serialize(output.child("Tank"));
+        ContainerHelper.saveAllItems(output, items); // identifier: "Items"
         super.saveAdditional(output);
     }
 
     @Override
     protected void loadAdditional(final ValueInput input) {
         super.loadAdditional(input);
+        ContainerHelper.loadAllItems(input, items); // identifier: "Items"
         input.child("Tank").ifPresent(tank::deserialize);
     }
 

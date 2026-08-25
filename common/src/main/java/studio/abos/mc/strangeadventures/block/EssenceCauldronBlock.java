@@ -69,6 +69,19 @@ public class EssenceCauldronBlock extends BaseEntityBlock {
     }
 
     @Override
+    protected InteractionResult useWithoutItem(final BlockState state, final Level level, final BlockPos pos, final Player player, final BlockHitResult hitResult) {
+        if (level.isClientSide()) {
+            return InteractionResult.SUCCESS;
+        }
+        final BlockEntity entity = level.getBlockEntity(pos);
+        if (!(entity instanceof EssenceCauldronBlockEntity cauldron)) {
+            return InteractionResult.FAIL;
+        }
+        cauldron.retrieveItem().ifPresent(stack -> player.getInventory().add(stack));
+        return InteractionResult.SUCCESS;
+    }
+
+    @Override
     protected InteractionResult useItemOn(final ItemStack itemStack, final BlockState state, final Level level, final BlockPos pos, final Player player, final InteractionHand hand, final BlockHitResult hitResult) {
         if (level.isClientSide()) {
             return InteractionResult.SUCCESS;
@@ -142,7 +155,15 @@ public class EssenceCauldronBlock extends BaseEntityBlock {
                 return InteractionResult.SUCCESS;
             }
         }
-        return InteractionResult.TRY_WITH_EMPTY_HAND;
+        if (itemStack.getItem() != Items.STICK) {
+            if (!itemStack.isEmpty() && cauldron.storeItem(itemStack.copyWithCount(1))) {
+                itemStack.consume(1, player);
+                return InteractionResult.SUCCESS;
+            }
+            return InteractionResult.TRY_WITH_EMPTY_HAND;
+        }
+        // TODO stick logic
+        return InteractionResult.SUCCESS;
     }
 
     @Override
