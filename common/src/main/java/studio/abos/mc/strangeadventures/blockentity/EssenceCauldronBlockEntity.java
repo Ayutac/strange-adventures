@@ -84,6 +84,7 @@ public class EssenceCauldronBlockEntity extends BlockEntity implements BalmFluid
     @Override
     protected void loadAdditional(final ValueInput input) {
         super.loadAdditional(input);
+        items.clear();
         ContainerHelper.loadAllItems(input, items); // identifier: "Items"
         input.child("Tank").ifPresent(tank::deserialize);
     }
