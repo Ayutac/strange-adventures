@@ -43,8 +43,10 @@ public class EssenceCauldronBlockEntityRenderer implements BlockEntityRenderer<E
     public static final float MAX_X_3_2 = 2 / 3f;
     public static final float MIN_X_3_3 = MAX_X_3_2;
     public static final float MAX_X_3_3 = MAX_XY;
+    public static final double NO_FLUID_XY = Math.sqrt(0.5);
     public static final float[] Y = new float[]{7 / 16f, 11 / 16f, 15 / 16f};
     public static final double[] SHIFT = new double[]{0d, 240d, 480d};
+    public static final float[] ROT_DEG = new float[]{0f, 120f, 240f};
 
     private final FluidStateModelSet fluidModels;
     private final ItemModelResolver itemModels;
@@ -116,54 +118,85 @@ public class EssenceCauldronBlockEntityRenderer implements BlockEntityRenderer<E
     @Override
     public void submit(final EssenceCauldronBlockEntityRenderState renderState, final PoseStack poseStack, final SubmitNodeCollector queue, final CameraRenderState cameraRenderState) {
         final float height = renderState.getHeight();
-        if (height == 0f) {
-            return;
-        }
+        final var items = renderState.getItems();
         final var fluids = renderState.getFluids();
         // count fluids (assumed they are ordered with nulls last)
-        int count = 0;
+        int countF = 0;
         for (int i = 0; i < fluids.length; i++) {
             if (fluids[i] != null) {
-                count++;
+                countF++;
             }
             else {
                 break;
             }
         }
-        final int fluidCount = count;
+        final int fluidCount = countF;
+        // count items (assumed they are ordered with nulls last)
+        int countI = 0;
+        for (int i = 0; i < items.length; i++) {
+            if (items[i] != null) {
+                countI++;
+            }
+            else {
+                break;
+            }
+        }
+        if (fluidCount == 0 && countI == 0) {
+            return;
+        }
         // center everything for rotation and back
         poseStack.pushPose();
         poseStack.translate(0.5f, 0f, 0.5f);
         poseStack.mulPose(Axis.YP.rotationDegrees(renderState.getRotation()));
         poseStack.translate(-0.5f, 0f, -0.5f);
         final int light = renderState.lightCoords;
-        // draw items
-        for (final var itemRenderState : renderState.getItems()) {
-            if (itemRenderState == null) { // the compiler warning is wrong
-                continue;
+        if (fluidCount == 0) {
+            // draw lying items
+            for (int i = 0; i < items.length; i++) {
+                final var itemRenderState = items[i];
+                if (itemRenderState == null) { // the compiler warning is wrong
+                    break;
+                }
+                poseStack.pushPose();
+                poseStack.translate(NO_FLUID_XY, 0.25, NO_FLUID_XY);
+                poseStack.pushPose();
+                poseStack.scale(0.333f, 0.333f, 0.333f);
+                poseStack.translate(-0.5f, 0f, -0.5f);
+                poseStack.mulPose(Axis.YP.rotationDegrees(ROT_DEG[i]));
+                poseStack.translate(0.5f, 0f, 0.5f);
+                poseStack.mulPose(Axis.XP.rotationDegrees(90f));
+                itemRenderState.renderState().submit(poseStack, queue, light, OverlayTexture.NO_OVERLAY, 0);
+                poseStack.popPose();
+                poseStack.popPose();
             }
-            poseStack.pushPose();
-            poseStack.translate(0f, height, 0f);
-            poseStack.translate(itemRenderState.relPos());
-            poseStack.scale(0.333f, 0.333f, 0.333f);
-            poseStack.pushPose();
-            poseStack.mulPose(Axis.YP.rotation(itemRenderState.rotation()));
-            itemRenderState.renderState().submit(poseStack, queue, light, OverlayTexture.NO_OVERLAY, 0);
-            poseStack.popPose();
-            poseStack.popPose();
         }
-        // draw fluids
-        queue.submitCustomGeometry(poseStack, RenderTypes.translucentMovingBlock(), (pose, consumer) -> {
-            if (fluidCount == 1) {
-                drawOneFluid(pose, consumer, fluids[0], light, height);
+        else {
+            // draw floating items
+            for (final var itemRenderState : items) {
+                if (itemRenderState == null) { // the compiler warning is wrong
+                    break;
+                }
+                poseStack.pushPose();
+                poseStack.translate(0f, height, 0f);
+                poseStack.translate(itemRenderState.relPos());
+                poseStack.scale(0.333f, 0.333f, 0.333f);
+                poseStack.pushPose();
+                poseStack.mulPose(Axis.YP.rotation(itemRenderState.rotation()));
+                itemRenderState.renderState().submit(poseStack, queue, light, OverlayTexture.NO_OVERLAY, 0);
+                poseStack.popPose();
+                poseStack.popPose();
             }
-            else if (fluidCount == 2) {
-                drawTwoFluids(pose, consumer, fluids[0], fluids[1], light, height);
-            }
-            else {
-                drawThreeFluids(pose, consumer, fluids[0], fluids[1], fluids[2], light, height);
-            }
-        });
+            // draw fluids
+            queue.submitCustomGeometry(poseStack, RenderTypes.translucentMovingBlock(), (pose, consumer) -> {
+                if (fluidCount == 1) {
+                    drawOneFluid(pose, consumer, fluids[0], light, height);
+                } else if (fluidCount == 2) {
+                    drawTwoFluids(pose, consumer, fluids[0], fluids[1], light, height);
+                } else {
+                    drawThreeFluids(pose, consumer, fluids[0], fluids[1], fluids[2], light, height);
+                }
+            });
+        }
         poseStack.popPose();
     }
 
