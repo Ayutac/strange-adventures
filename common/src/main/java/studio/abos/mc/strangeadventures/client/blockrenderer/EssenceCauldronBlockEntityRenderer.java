@@ -10,10 +10,14 @@ import net.minecraft.client.renderer.block.FluidStateModelSet;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.feature.ModelFeatureRenderer;
+import net.minecraft.client.renderer.item.ItemModelResolver;
+import net.minecraft.client.renderer.item.ItemStackRenderState;
 import net.minecraft.client.renderer.rendertype.RenderTypes;
 import net.minecraft.client.renderer.state.level.CameraRenderState;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.core.Direction;
+import net.minecraft.world.item.ItemDisplayContext;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.FluidState;
@@ -23,6 +27,7 @@ import org.jspecify.annotations.Nullable;
 import studio.abos.mc.strangeadventures.blockentity.EssenceCauldronBlockEntity;
 
 import java.util.Arrays;
+import java.util.List;
 
 public class EssenceCauldronBlockEntityRenderer implements BlockEntityRenderer<EssenceCauldronBlockEntity, EssenceCauldronBlockEntityRenderState> {
 
@@ -41,8 +46,10 @@ public class EssenceCauldronBlockEntityRenderer implements BlockEntityRenderer<E
     public static final float[] Y = new float[]{7 / 16f, 11 / 16f, 15 / 16f};
 
     private final FluidStateModelSet fluidModels;
+    private final ItemModelResolver itemModels;
 
     public EssenceCauldronBlockEntityRenderer(BlockEntityRendererProvider.Context context) {
+        itemModels = context.itemModelResolver();
         fluidModels = Minecraft.getInstance().getModelManager().getFluidStateModelSet();
     }
 
@@ -54,6 +61,24 @@ public class EssenceCauldronBlockEntityRenderer implements BlockEntityRenderer<E
     @Override
     public void extractRenderState(final EssenceCauldronBlockEntity blockEntity, final EssenceCauldronBlockEntityRenderState renderState, final float partialTicks, final Vec3 cameraPosition, final ModelFeatureRenderer.@Nullable CrumblingOverlay breakProgress) {
         BlockEntityRenderer.super.extractRenderState(blockEntity, renderState, partialTicks, cameraPosition, breakProgress);
+        if (!(blockEntity.getLevel() instanceof final ClientLevel level)) {
+            return;
+        }
+        // prepare items
+        final List<ItemStack> items = blockEntity.getItems();
+        final long gameTime = level.getGameTime();
+        final var itemRenderStates = new EssenceCauldronBlockEntityRenderState.ItemRenderState[items.size()];
+        for (int i = 0; i < items.size(); i++) {
+            final ItemStack item = items.get(i);
+            if (!item.isEmpty()) {
+                final ItemStackRenderState itemStackRenderState = new ItemStackRenderState();
+                itemModels.updateForTopItem(itemStackRenderState, item, ItemDisplayContext.FIXED, level, null, 0);
+                itemRenderStates[i] = new EssenceCauldronBlockEntityRenderState.ItemRenderState(itemStackRenderState, new Vec3(0.5, 0.5, 0));
+            }
+        }
+        Arrays.sort(itemRenderStates, EssenceCauldronBlockEntityRenderState.ITEM_NULL_LAST_COMPARATOR);
+        renderState.setItems(itemRenderStates);
+        // prepare fluids
         final EssenceCauldronBlockEntity.Tank tank = blockEntity.getFluidTank();
         final int slotCount = tank.getSlotCount();
         final var fluidRenderStates = new EssenceCauldronBlockEntityRenderState.FluidRenderState[slotCount];
@@ -64,12 +89,13 @@ public class EssenceCauldronBlockEntityRenderer implements BlockEntityRenderer<E
                 final var fluidTintSource = fluidModels.get(fluidState).tintSource();
                 fluidRenderStates[i] = new EssenceCauldronBlockEntityRenderState.FluidRenderState(
                         fluidModels.get(fluidState).stillMaterial().sprite(),
-                        fluidTintSource != null ? fluidTintSource.colorInWorld(fluidState.createLegacyBlock(), (ClientLevel)blockEntity.getLevel(), blockEntity.getBlockPos()) : -1
+                        fluidTintSource != null ? fluidTintSource.colorInWorld(fluidState.createLegacyBlock(), level, blockEntity.getBlockPos()) : -1
                 );
             }
         }
-        Arrays.sort(fluidRenderStates, EssenceCauldronBlockEntityRenderState.NULL_LAST_COMPARATOR);
+        Arrays.sort(fluidRenderStates, EssenceCauldronBlockEntityRenderState.FLUID_NULL_LAST_COMPARATOR);
         renderState.setFluids(fluidRenderStates);
+        // prepare rest
         final int amountOfBottles = tank.getAmountOfBottles();
         renderState.setHeight(amountOfBottles == 0 ? 0f : Y[amountOfBottles-1]);
         final Direction direction = blockEntity.getBlockState().getValue(HorizontalDirectionalBlock.FACING);
@@ -99,11 +125,23 @@ public class EssenceCauldronBlockEntityRenderer implements BlockEntityRenderer<E
             }
         }
         final int fluidCount = count;
+        // center everything for rotation and back
         poseStack.pushPose();
         poseStack.translate(0.5f, 0f, 0.5f);
         poseStack.mulPose(Axis.YP.rotationDegrees(renderState.getRotation()));
         poseStack.translate(-0.5f, 0f, -0.5f);
         final int light = renderState.lightCoords;
+        // draw items
+        for (final var itemRenderState : renderState.getItems()) {
+            if (itemRenderState == null) { // the compiler warning is wrong
+                continue;
+            }
+            poseStack.pushPose();
+            poseStack.translate(itemRenderState.relPos());
+            itemRenderState.renderState().submit(poseStack, queue, light, OverlayTexture.NO_OVERLAY, 0);
+            poseStack.popPose();
+        }
+        // draw fluids
         queue.submitCustomGeometry(poseStack, RenderTypes.translucentMovingBlock(), (pose, consumer) -> {
             if (fluidCount == 1) {
                 drawOneFluid(pose, consumer, fluids[0], light, height);

@@ -24,6 +24,7 @@ import net.minecraft.world.level.storage.ValueOutput;
 import studio.abos.mc.strangeadventures.fluid.ModFluids;
 
 import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 
 public class EssenceCauldronBlockEntity extends BlockEntity implements BalmFluidTankProvider {
@@ -45,6 +46,7 @@ public class EssenceCauldronBlockEntity extends BlockEntity implements BalmFluid
         for (int i = 0; i < items.size(); i++) {
             if (items.get(i).isEmpty()) {
                 items.set(i, stack);
+                setChanged();
                 return true;
             }
         }
@@ -56,10 +58,15 @@ public class EssenceCauldronBlockEntity extends BlockEntity implements BalmFluid
             if (!items.get(i).isEmpty()) {
                 final ItemStack item = items.get(i);
                 items.set(i, ItemStack.EMPTY);
+                setChanged();
                 return Optional.of(item);
             }
         }
         return Optional.empty();
+    }
+
+    public List<ItemStack> getItems() {
+        return Collections.unmodifiableList(items);
     }
 
     @Override
