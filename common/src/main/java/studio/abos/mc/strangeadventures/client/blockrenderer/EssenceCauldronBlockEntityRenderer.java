@@ -158,7 +158,7 @@ public class EssenceCauldronBlockEntityRenderer implements BlockEntityRenderer<E
                     break;
                 }
                 poseStack.pushPose();
-                poseStack.translate(NO_FLUID_XY, 0.25, NO_FLUID_XY);
+                poseStack.translate(NO_FLUID_XY, 0.3, NO_FLUID_XY);
                 poseStack.pushPose();
                 poseStack.scale(0.333f, 0.333f, 0.333f);
                 poseStack.translate(-0.5f, 0f, -0.5f);
