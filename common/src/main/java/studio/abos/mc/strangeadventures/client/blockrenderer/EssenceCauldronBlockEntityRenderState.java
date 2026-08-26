@@ -21,7 +21,7 @@ public class EssenceCauldronBlockEntityRenderState extends BlockEntityRenderStat
     private float rotation;
     private float height;
 
-    public record ItemRenderState(ItemStackRenderState renderState, Vec3 relPos) {}
+    public record ItemRenderState(ItemStackRenderState renderState, Vec3 relPos, float rotation) {}
 
     public record FluidRenderState(TextureAtlasSprite sprite, int tint) {}
 

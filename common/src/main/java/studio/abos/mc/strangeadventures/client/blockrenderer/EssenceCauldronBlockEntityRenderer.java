@@ -44,6 +44,7 @@ public class EssenceCauldronBlockEntityRenderer implements BlockEntityRenderer<E
     public static final float MIN_X_3_3 = MAX_X_3_2;
     public static final float MAX_X_3_3 = MAX_XY;
     public static final float[] Y = new float[]{7 / 16f, 11 / 16f, 15 / 16f};
+    public static final double[] SHIFT = new double[]{0d, 240d, 480d};
 
     private final FluidStateModelSet fluidModels;
     private final ItemModelResolver itemModels;
@@ -67,13 +68,18 @@ public class EssenceCauldronBlockEntityRenderer implements BlockEntityRenderer<E
         // prepare items
         final List<ItemStack> items = blockEntity.getItems();
         final long gameTime = level.getGameTime();
+        final float angleDegrees = gameTime + partialTicks * 0.5f;
         final var itemRenderStates = new EssenceCauldronBlockEntityRenderState.ItemRenderState[items.size()];
         for (int i = 0; i < items.size(); i++) {
             final ItemStack item = items.get(i);
             if (!item.isEmpty()) {
                 final ItemStackRenderState itemStackRenderState = new ItemStackRenderState();
                 itemModels.updateForTopItem(itemStackRenderState, item, ItemDisplayContext.FIXED, level, null, 0);
-                itemRenderStates[i] = new EssenceCauldronBlockEntityRenderState.ItemRenderState(itemStackRenderState, new Vec3(0.5, 0.5, 0));
+                itemRenderStates[i] = new EssenceCauldronBlockEntityRenderState.ItemRenderState(itemStackRenderState, new Vec3(
+                        0.5 + cauldronX(angleDegrees, SHIFT[i]),
+                        cauldronY(angleDegrees, SHIFT[i] / 4) - 0.02,
+                        0.5 + cauldronZ(angleDegrees, SHIFT[i])),
+                        (float)Math.toRadians(0.5 * angleDegrees + SHIFT[i]));
             }
         }
         Arrays.sort(itemRenderStates, EssenceCauldronBlockEntityRenderState.ITEM_NULL_LAST_COMPARATOR);
@@ -137,8 +143,13 @@ public class EssenceCauldronBlockEntityRenderer implements BlockEntityRenderer<E
                 continue;
             }
             poseStack.pushPose();
+            poseStack.translate(0f, height, 0f);
             poseStack.translate(itemRenderState.relPos());
+            poseStack.scale(0.333f, 0.333f, 0.333f);
+            poseStack.pushPose();
+            poseStack.mulPose(Axis.YP.rotation(itemRenderState.rotation()));
             itemRenderState.renderState().submit(poseStack, queue, light, OverlayTexture.NO_OVERLAY, 0);
+            poseStack.popPose();
             poseStack.popPose();
         }
         // draw fluids
@@ -154,6 +165,20 @@ public class EssenceCauldronBlockEntityRenderer implements BlockEntityRenderer<E
             }
         });
         poseStack.popPose();
+    }
+
+    private static double cauldronX(final double angleDegree, final double shift) {
+        final double radians = Math.toRadians(angleDegree + shift);
+        return 0.08 * (2 * Math.cos(radians) + Math.cos(0.5 * radians));
+    }
+
+    private static double cauldronY(final float angleDegrees, final double shift) {
+        return 0.035 * Math.sin(Math.toRadians(angleDegrees + shift));
+    }
+
+    private static double cauldronZ(final double angleDegree, final double shift) {
+        final double radians = Math.toRadians(angleDegree + shift);
+        return 0.08 * (2 * Math.sin(radians) - Math.sin(0.5 * radians));
     }
 
     private static void drawOneFluid(final PoseStack.Pose pose, final VertexConsumer consumer, final EssenceCauldronBlockEntityRenderState.FluidRenderState renderState, final int light, final float height) {
