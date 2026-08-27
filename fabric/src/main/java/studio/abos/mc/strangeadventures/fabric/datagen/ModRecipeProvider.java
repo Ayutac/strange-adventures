@@ -12,7 +12,6 @@ import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.data.recipes.SimpleCookingRecipeBuilder;
 import net.minecraft.tags.BlockItemTags;
-import net.minecraft.tags.ItemTags;
 import net.minecraft.world.flag.FeatureFlagSet;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Item;
@@ -387,7 +386,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
 
             private void essenceCauldronRecipes() {
                 essenceCauldron(ModItems.GREEN_SAFEGUARD.asHolder(), 3)
-                        .requiresItem(ItemTags.VILLAGER_PLANTABLE_SEEDS)
+                        .requiresItem(ModItemTags.SEEDS)
                         .requiresFluid(ModFluidTags.OVERWORLD_TREE_SAP)
                         .requiresFluid(ModFluidTags.OVERWORLD_TREE_SAP)
                         .requiresFluid(ModFluidTags.OVERWORLD_TREE_SAP)

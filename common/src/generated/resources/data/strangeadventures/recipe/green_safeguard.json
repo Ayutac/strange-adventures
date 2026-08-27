@@ -7,7 +7,7 @@
     "#strangeadventures:overworld_tree_sap"
   ],
   "items": [
-    "#minecraft:villager_plantable_seeds"
+    "#c:seeds"
   ],
   "result": "strangeadventures:green_safeguard"
 }

@@ -3,6 +3,7 @@ package studio.abos.mc.strangeadventures.fabric.datagen;
 import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagsProvider;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.references.BlockItemIds;
 import net.minecraft.tags.BlockItemTags;
 import studio.abos.mc.strangeadventures.block.ModBlocks;
 import studio.abos.mc.strangeadventures.tag.ModItemTags;
@@ -34,6 +35,12 @@ public class ModItemTagProvider extends FabricTagsProvider.ItemTagsProvider {
         builder(ModItemTags.WEIR_LOGS).add(
                 ModBlocks.WEIR_LOG.asBlockItemId(), ModBlocks.STRIPPED_WEIR_LOG.asBlockItemId(),
                 ModBlocks.WEIR_WOOD.asBlockItemId(), ModBlocks.STRIPPED_WEIR_LOG.asBlockItemId()
+        );
+
+        builder(ModItemTags.SEEDS).add(
+                BlockItemIds.WHEAT_CROP.item(), BlockItemIds.BEETROOT_CROP.item(),
+                BlockItemIds.PUMPKIN_CROP.item(), BlockItemIds.MELON_CROP.item(),
+                BlockItemIds.TORCHFLOWER_CROP.item(), BlockItemIds.PITCHER_CROP.item()
         );
     }
 
