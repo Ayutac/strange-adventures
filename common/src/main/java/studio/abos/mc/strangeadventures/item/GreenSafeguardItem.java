@@ -7,6 +7,9 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.CactusBlock;
+import net.minecraft.world.level.block.FarmlandBlock;
+import net.minecraft.world.level.block.state.BlockState;
 import studio.abos.mc.strangeadventures.block.ModBlocks;
 import studio.abos.mc.strangeadventures.tag.ModBlockTags;
 
@@ -27,19 +30,29 @@ public class GreenSafeguardItem extends Item {
             target = target.below();
         }
         // safeguard farmland
-        if (level.getBlockState(target).is(ModBlockTags.GREEN_FARMLAND_CONVERTIBLE)) {
-            level.setBlockAndUpdate(target, ModBlocks.GREEN_FARMLAND.defaultBlockState());
+        BlockState oldState = level.getBlockState(target);
+        if (oldState.is(ModBlockTags.GREEN_FARMLAND_CONVERTIBLE)) {
+            BlockState newState = ModBlocks.GREEN_FARMLAND.defaultBlockState();
+            if (oldState.hasProperty(FarmlandBlock.MOISTURE)) {
+                newState = newState.setValue(FarmlandBlock.MOISTURE, oldState.getValue(FarmlandBlock.MOISTURE));
+            }
+            level.setBlockAndUpdate(target, newState);
             context.getItemInHand().consume(1, context.getPlayer());
             return InteractionResult.SUCCESS;
         }
         // safeguard cacti
-        if (level.getBlockState(target).is(BlockItemIds.CACTUS.block())) {
+        if (oldState.is(BlockItemIds.CACTUS.block())) {
             // get the base cactus
             BlockPos below;
             while (level.getBlockState(below = target.below()).is(BlockItemIds.CACTUS.block())) {
                 target = below;
             }
-            level.setBlockAndUpdate(target, ModBlocks.GREEN_CACTUS.defaultBlockState());
+            oldState = level.getBlockState(target);
+            BlockState newState = ModBlocks.GREEN_CACTUS.defaultBlockState();
+            if (oldState.hasProperty(CactusBlock.AGE)) {
+                newState = newState.setValue(CactusBlock.AGE, oldState.getValue(CactusBlock.AGE));
+            }
+            level.setBlockAndUpdate(target, newState);
             context.getItemInHand().consume(1, context.getPlayer());
             return InteractionResult.SUCCESS;
         }
