@@ -29,6 +29,7 @@ import java.util.Optional;
 
 public class EssenceCauldronBlockEntity extends BlockEntity implements BalmFluidTankProvider {
 
+    // if any of those two constants is changed, the renderer must be changed accordingly
     public static final int MAX_FLUIDS = 3;
     public static final int MAX_ITEMS = 3;
 
@@ -72,6 +73,14 @@ public class EssenceCauldronBlockEntity extends BlockEntity implements BalmFluid
     @Override
     public Tank getFluidTank() {
         return tank;
+    }
+
+    public void clearInventory() {
+        items.clear();
+        for (int i = 0; i < MAX_FLUIDS; i++) {
+            tank.drain(false, false);
+        }
+        setChanged();
     }
 
     @Override

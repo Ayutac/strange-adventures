@@ -47,6 +47,11 @@ public class ItemFluidRecipeInput implements RecipeInput {
         return itemCount();
     }
 
+    @Override
+    public boolean isEmpty() {
+        return false;
+    }
+
     public List<Holder<Item>> getProperItems() {
         return Arrays.asList(items);
     }

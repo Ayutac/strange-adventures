@@ -2,17 +2,20 @@ package studio.abos.mc.strangeadventures.block;
 
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.util.Util;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.BucketItem;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.PotionContents;
 import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BaseEntityBlock;
@@ -36,6 +39,8 @@ import studio.abos.mc.strangeadventures.blockentity.ModBlockEntities;
 import studio.abos.mc.strangeadventures.fluid.FluidWithBottle;
 import studio.abos.mc.strangeadventures.fluid.ModFluids;
 import studio.abos.mc.strangeadventures.item.BottleItem;
+import studio.abos.mc.strangeadventures.recipe.EssenceCauldronRecipeInput;
+import studio.abos.mc.strangeadventures.recipe.ModRecipeTypes;
 
 public class EssenceCauldronBlock extends BaseEntityBlock {
 
@@ -162,7 +167,26 @@ public class EssenceCauldronBlock extends BaseEntityBlock {
             }
             return InteractionResult.TRY_WITH_EMPTY_HAND;
         }
-        // TODO stick logic
+        // stick is used to brew / create the recipe
+        final Holder<Item>[] inputItems = cauldron.getItems().stream()
+                .filter(stack -> !stack.isEmpty())
+                .map(ItemStack::typeHolder)
+                .toArray(Holder[]::new);
+        final Holder<Fluid>[] inputFluids = new Holder[tank.getAmountOfBottles()];
+        int index = 0;
+        for (int i = 0; i < EssenceCauldronBlockEntity.MAX_FLUIDS; i++) {
+            final Fluid fluid = tank.getFluid(i);
+            if (!fluid.isSame(Fluids.EMPTY)) {
+                inputFluids[index++] = fluid.defaultFluidState().typeHolder();
+            }
+        }
+        final var input = new EssenceCauldronRecipeInput(inputItems, inputFluids);
+        final var recipe = ModRecipeTypes.ESSENCE_CAULDRON.getRecipeFor(level, input);
+        final ItemStack result = recipe.map(RecipeHolder::value).map(ecr -> ecr.assemble(input)).orElse(ItemStack.EMPTY);
+        if (!result.isEmpty()) {
+            cauldron.clearInventory();
+            Block.popResource(level, pos.above(), result);
+        }
         return InteractionResult.SUCCESS;
     }
 
