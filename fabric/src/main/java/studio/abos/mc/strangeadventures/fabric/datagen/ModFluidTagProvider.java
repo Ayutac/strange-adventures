@@ -41,6 +41,15 @@ public class ModFluidTagProvider extends FabricTagsProvider.FluidTagsProvider {
         builder(ModFluidTags.SPRUCE_SAP).add(ModFluidIds.SPRUCE_SAP_FLOWING);
         builder(ModFluidTags.WARPED_SAP).add(ModFluidIds.WARPED_SAP_STILL);
         builder(ModFluidTags.WARPED_SAP).add(ModFluidIds.WARPED_SAP_FLOWING);
+
+        builder(ModFluidTags.OVERWORLD_TREE_SAP).addTag(ModFluidTags.ACACIA_SAP);
+        builder(ModFluidTags.OVERWORLD_TREE_SAP).addTag(ModFluidTags.BIRCH_SAP);
+        builder(ModFluidTags.OVERWORLD_TREE_SAP).addTag(ModFluidTags.CHERRY_SAP);
+        builder(ModFluidTags.OVERWORLD_TREE_SAP).addTag(ModFluidTags.JUNGLE_SAP);
+        builder(ModFluidTags.OVERWORLD_TREE_SAP).addTag(ModFluidTags.MANGROVE_SAP);
+        builder(ModFluidTags.OVERWORLD_TREE_SAP).addTag(ModFluidTags.OAK_SAP);
+        builder(ModFluidTags.OVERWORLD_TREE_SAP).addTag(ModFluidTags.SPRUCE_SAP);
+
         builder(ModFluidTags.SAP).addTag(ModFluidTags.ACACIA_SAP);
         builder(ModFluidTags.SAP).addTag(ModFluidTags.BIRCH_SAP);
         builder(ModFluidTags.SAP).addTag(ModFluidTags.CACTUS_SAP);

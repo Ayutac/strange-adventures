@@ -12,8 +12,10 @@ import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.data.recipes.SimpleCookingRecipeBuilder;
 import net.minecraft.tags.BlockItemTags;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.flag.FeatureFlagSet;
 import net.minecraft.world.flag.FeatureFlags;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.CookingBookCategory;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -27,6 +29,7 @@ import studio.abos.mc.strangeadventures.fluid.AbstractSapFluid;
 import studio.abos.mc.strangeadventures.fluid.ModFluids;
 import studio.abos.mc.strangeadventures.item.ModItems;
 import studio.abos.mc.strangeadventures.tag.ModBlockTags;
+import studio.abos.mc.strangeadventures.tag.ModFluidTags;
 import studio.abos.mc.strangeadventures.tag.ModItemTags;
 
 import java.util.concurrent.CompletableFuture;
@@ -48,6 +51,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 miscRecipes();
                 livingSapRevivalRecipes();
                 sapSipperRecipes();
+                essenceCauldronRecipes();
             }
 
             private void weirRecipes() {
@@ -380,6 +384,17 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                         .unlockedBy("has_sipper", has(ModBlocks.SAP_SIPPER))
                         .save(exporter);
             }
+
+            private void essenceCauldronRecipes() {
+                essenceCauldron(ModItems.GREEN_SAFEGUARD.asHolder(), 3)
+                        .requiresItem(ItemTags.VILLAGER_PLANTABLE_SEEDS)
+                        .requiresFluid(ModFluidTags.OVERWORLD_TREE_SAP)
+                        .requiresFluid(ModFluidTags.OVERWORLD_TREE_SAP)
+                        .requiresFluid(ModFluidTags.OVERWORLD_TREE_SAP)
+                        .unlockedBy("has_essence_cauldron", has(ModBlocks.ESSENCE_CAULDRON))
+                        .save(exporter);
+            }
+
         };
     }
 
@@ -390,15 +405,27 @@ public class ModRecipeProvider extends FabricRecipeProvider {
 
     public static abstract class AbstractRecipeProvider extends RecipeProvider {
 
+        protected final HolderGetter<Item> items;
         protected final HolderGetter<Block> blocks;
+        protected final HolderGetter<Fluid> fluids;
 
         public AbstractRecipeProvider(final HolderLookup.Provider registryLookup, final RecipeOutput exporter) {
             super(registryLookup, exporter);
+            items = registries.lookupOrThrow(Registries.ITEM);
             blocks = registries.lookupOrThrow(Registries.BLOCK);
+            fluids = registries.lookupOrThrow(Registries.FLUID);
         }
 
         protected SapSipperRecipeBuilder sapSipper(final Holder<Fluid> sapResult) {
             return new SapSipperRecipeBuilder(blocks, sapResult);
+        }
+
+        protected EssenceCauldronRecipeBuilder essenceCauldron(final Holder<Item> result, final int amount) {
+            return new EssenceCauldronRecipeBuilder(items, fluids, result, amount);
+        }
+
+        protected EssenceCauldronRecipeBuilder essenceCauldron(final Holder<Item> result) {
+            return essenceCauldron(result, 1);
         }
     }
 }

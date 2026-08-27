@@ -1,0 +1,13 @@
+{
+  "type": "strangeadventures:essence_cauldron",
+  "amount": 3,
+  "fluids": [
+    "#strangeadventures:overworld_tree_sap",
+    "#strangeadventures:overworld_tree_sap",
+    "#strangeadventures:overworld_tree_sap"
+  ],
+  "items": [
+    "#minecraft:villager_plantable_seeds"
+  ],
+  "result": "strangeadventures:green_safeguard"
+}
