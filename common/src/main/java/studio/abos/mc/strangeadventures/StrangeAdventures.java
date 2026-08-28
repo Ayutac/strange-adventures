@@ -6,12 +6,14 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.Identifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import studio.abos.mc.strangeadventures.api.StrangeAdventuresApi;
 import studio.abos.mc.strangeadventures.block.ModBlocks;
 import studio.abos.mc.strangeadventures.blockentity.ModBlockEntities;
 import studio.abos.mc.strangeadventures.entity.ModEntityTypes;
 import studio.abos.mc.strangeadventures.fluid.ModFluids;
 import studio.abos.mc.strangeadventures.item.ModItems;
 import studio.abos.mc.strangeadventures.recipe.ModRecipeTypes;
+import studio.abos.mc.strangeadventures.targetingmode.ModTargetingModes;
 
 public class StrangeAdventures {
 
@@ -30,6 +32,8 @@ public class StrangeAdventures {
     public static void initialize(BalmRegistrars registrars) {
         Balm.config().registerConfig(StrangeAdventuresConfig.class);
 
+        registrars.registrar().createCustomRegistry(StrangeAdventuresApi.TARGETING_MODE_REGISTRY_KEY);
+
         registrars.registrar(Registries.FLUID, ModFluids::initialize);
         registrars.blocks(ModBlocks::initialize);
         registrars.items(ModItems::initialize);
@@ -37,6 +41,7 @@ public class StrangeAdventures {
         registrars.entityTypes(ModEntityTypes::initialize);
         registrars.recipeTypes(ModRecipeTypes::initialize);
         registrars.creativeModeTabs(ModItems::initialize);
+        registrars.registrar(StrangeAdventuresApi.TARGETING_MODE_REGISTRY_KEY, ModTargetingModes::initialize);
     }
 
 }
