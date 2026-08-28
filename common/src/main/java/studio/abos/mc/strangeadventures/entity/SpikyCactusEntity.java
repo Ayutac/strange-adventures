@@ -21,7 +21,7 @@ public class SpikyCactusEntity extends AbstractPlantEntity {
     public void tick() {
         super.tick();
         if (++ticks % 20 == 0) {
-            final List<LivingEntity> targets = ModTargetingModes.NORTH.value().target(level().getEntitiesOfClass(LivingEntity.class, AABB.ofSize(position(), 128d, 128d, 128d)));
+            final List<LivingEntity> targets = ModTargetingModes.FURTHEST.value().target(position(), level().getEntitiesOfClass(LivingEntity.class, AABB.ofSize(position(), 128d, 128d, 128d)));
             StrangeAdventures.logger.info("Targets: {}", targets.size());
             if (!targets.isEmpty()) {
                 StrangeAdventures.logger.info("First: {}", targets.getFirst().getType().getDescriptionId());
@@ -29,4 +29,5 @@ public class SpikyCactusEntity extends AbstractPlantEntity {
             ticks = 0;
         }
     }
+
 }

@@ -20,7 +20,7 @@ public class FurthestAlong implements TargetingMode {
     }
 
     @Override
-    public List<LivingEntity> target(final List<LivingEntity> possibleTargets) {
+    public List<LivingEntity> target(final Vec3 targeterPosition, final List<LivingEntity> possibleTargets) {
         if (possibleTargets.isEmpty()) {
             return List.of();
         }

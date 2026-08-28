@@ -1,22 +1,13 @@
 package studio.abos.mc.strangeadventures.targetingmode;
 
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.phys.Vec3;
 
 import java.util.List;
 
 public interface TargetingMode {
 
-    List<LivingEntity> target(List<LivingEntity> possibleTargets);
+    List<LivingEntity> target(final Vec3 targeterPosition, List<LivingEntity> possibleTargets);
 
-
-    /*NORTH,
-    EAST,
-    SOUTH,
-    WEST,
-    UP,
-    DOWN,
-    NEAREST,
-    FURTHEST,
-    ALL*/
 
 }
