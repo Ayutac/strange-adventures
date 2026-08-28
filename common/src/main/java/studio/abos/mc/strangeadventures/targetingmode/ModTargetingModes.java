@@ -4,6 +4,8 @@ import net.blay09.mods.balm.core.BalmRegistrar;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
 
+import java.util.Random;
+
 public final class ModTargetingModes {
 
     public static Holder<TargetingMode> ALL;
@@ -15,6 +17,7 @@ public final class ModTargetingModes {
     public static Holder<TargetingMode> DOWN;
     public static Holder<TargetingMode> NEAREST;
     public static Holder<TargetingMode> FURTHEST;
+    public static Holder<TargetingMode> RANDOM;
 
     public static void initialize(BalmRegistrar.Scoped<TargetingMode> targetingModes) {
         ALL = targetingModes.register("all", _ -> new All());
@@ -26,6 +29,7 @@ public final class ModTargetingModes {
         DOWN = targetingModes.register("down", _ -> new FurthestAlong(Direction.DOWN.getUnitVec3()));
         NEAREST = targetingModes.register("nearest", _ -> new Nearest());
         FURTHEST = targetingModes.register("furthest", _ -> new Furthest());
+        RANDOM = targetingModes.register("random", _ -> new Randomize(new Random()));
     }
 
 }
