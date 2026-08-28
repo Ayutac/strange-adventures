@@ -9,5 +9,4 @@ public interface TargetingMode {
 
     List<LivingEntity> target(final Vec3 targeterPosition, List<LivingEntity> possibleTargets);
 
-
 }
