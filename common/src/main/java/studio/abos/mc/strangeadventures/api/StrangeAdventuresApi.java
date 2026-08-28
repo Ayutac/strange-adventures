@@ -5,6 +5,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.Level;
 import studio.abos.mc.strangeadventures.StrangeAdventures;
+import studio.abos.mc.strangeadventures.targetingspace.TargetingSpace;
 import studio.abos.mc.strangeadventures.targetingmode.TargetingMode;
 
 import java.lang.reflect.InvocationTargetException;
@@ -12,6 +13,7 @@ import java.lang.reflect.InvocationTargetException;
 public class StrangeAdventuresApi {
 
     public static final ResourceKey<Registry<TargetingMode>> TARGETING_MODE_REGISTRY_KEY = ResourceKey.createRegistryKey(StrangeAdventures.id("targeting_mode"));
+    public static final ResourceKey<Registry<TargetingSpace>> TARGETING_SPACE_REGISTRY_KEY = ResourceKey.createRegistryKey(StrangeAdventures.id("targeting_space"));
 
     public static final ResourceKey<Level> GREEN_DIMENSION = ResourceKey.create(Registries.DIMENSION, StrangeAdventures.id("green"));
     public static final int GREEN_DIMENSION_FACTOR = 8;

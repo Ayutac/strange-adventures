@@ -14,6 +14,7 @@ import studio.abos.mc.strangeadventures.fluid.ModFluids;
 import studio.abos.mc.strangeadventures.item.ModItems;
 import studio.abos.mc.strangeadventures.recipe.ModRecipeTypes;
 import studio.abos.mc.strangeadventures.targetingmode.ModTargetingModes;
+import studio.abos.mc.strangeadventures.targetingspace.ModTargetingSpaces;
 
 public class StrangeAdventures {
 
@@ -33,6 +34,7 @@ public class StrangeAdventures {
         Balm.config().registerConfig(StrangeAdventuresConfig.class);
 
         registrars.registrar().createCustomRegistry(StrangeAdventuresApi.TARGETING_MODE_REGISTRY_KEY);
+        registrars.registrar().createCustomRegistry(StrangeAdventuresApi.TARGETING_SPACE_REGISTRY_KEY);
 
         registrars.registrar(Registries.FLUID, ModFluids::initialize);
         registrars.blocks(ModBlocks::initialize);
@@ -42,6 +44,7 @@ public class StrangeAdventures {
         registrars.recipeTypes(ModRecipeTypes::initialize);
         registrars.creativeModeTabs(ModItems::initialize);
         registrars.registrar(StrangeAdventuresApi.TARGETING_MODE_REGISTRY_KEY, ModTargetingModes::initialize);
+        registrars.registrar(StrangeAdventuresApi.TARGETING_SPACE_REGISTRY_KEY, ModTargetingSpaces::initialize);
     }
 
 }
