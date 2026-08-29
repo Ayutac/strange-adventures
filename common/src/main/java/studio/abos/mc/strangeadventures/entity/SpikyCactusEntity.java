@@ -1,15 +1,20 @@
 package studio.abos.mc.strangeadventures.entity;
 
+import net.minecraft.core.Holder;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.phys.AABB;
 import studio.abos.mc.strangeadventures.StrangeAdventures;
 import studio.abos.mc.strangeadventures.targetingmode.ModTargetingModes;
+import studio.abos.mc.strangeadventures.targetingmode.TargetingMode;
+import studio.abos.mc.strangeadventures.targetingspace.ModTargetingSpaces;
+import studio.abos.mc.strangeadventures.targetingspace.TargetingSpace;
 
 import java.util.List;
+import java.util.function.Predicate;
 
-public class SpikyCactusEntity extends AbstractPlantEntity {
+public class SpikyCactusEntity extends AbstractPlantEntity implements AutonomousAttacker {
 
     protected int ticks;
 
@@ -20,14 +25,54 @@ public class SpikyCactusEntity extends AbstractPlantEntity {
     @Override
     public void tick() {
         super.tick();
-        if (++ticks % 20 == 0) {
-            final List<LivingEntity> targets = ModTargetingModes.FURTHEST.value().target(position(), level().getEntitiesOfClass(LivingEntity.class, AABB.ofSize(position(), 128d, 128d, 128d)));
+        if (++ticks % attackInterval() == 0) {
+            final List<LivingEntity> targets = prepareAttack();
             StrangeAdventures.logger.info("Targets: {}", targets.size());
             if (!targets.isEmpty()) {
                 StrangeAdventures.logger.info("First: {}", targets.getFirst().getType().getDescriptionId());
             }
             ticks = 0;
         }
+    }
+
+    @Override
+    public float getHorizontalRange() {
+        return 128;
+    }
+
+    @Override
+    public float getVerticalRange() {
+        return 128;
+    }
+
+    @Override
+    public int attackInterval() {
+        return 20;
+    }
+
+    @Override
+    public Holder<TargetingMode> getTargetingMode() {
+        return ModTargetingModes.ALL;
+    }
+
+    @Override
+    public Holder<TargetingSpace> getTargetingSpace() {
+        return ModTargetingSpaces.ELLIPSOID;
+    }
+
+    @Override
+    public Entity attacker() {
+        return this;
+    }
+
+    @Override
+    public Predicate<Entity> validTargets() {
+        return _ -> true;
+    }
+
+    @Override
+    public void attack(final List<Entity> targets) {
+
     }
 
 }
