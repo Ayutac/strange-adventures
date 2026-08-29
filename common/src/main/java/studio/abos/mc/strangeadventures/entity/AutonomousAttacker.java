@@ -1,6 +1,8 @@
 package studio.abos.mc.strangeadventures.entity;
 
 import net.minecraft.core.Holder;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntitySelector;
 import net.minecraft.world.entity.LivingEntity;
@@ -20,9 +22,17 @@ public interface AutonomousAttacker {
 
     float getVerticalRange();
 
+    /**
+     * In ticks.
+     */
     int attackInterval();
 
     Level level();
+
+    @Nullable
+    default LivingEntity owner() {
+        return null;
+    }
 
     Vec3 position();
 
@@ -34,6 +44,10 @@ public interface AutonomousAttacker {
     Holder<TargetingMode> getTargetingMode();
 
     Holder<TargetingSpace> getTargetingSpace();
+
+    DamageSource getDamageSource();
+
+    float getDamagePerAttack();
 
     /**
      * What can be attacked by this attacker. Creative Players, Spectators and dead entities will be sorted out automatically.
@@ -49,5 +63,13 @@ public interface AutonomousAttacker {
         return getTargetingMode().value().target(position(), entities);
     }
 
-    void attack(final List<Entity> targets);
+    /**
+     * Only call on server-side!
+     */
+    default void attack(final List<LivingEntity> targets) {
+        for (final LivingEntity entity : targets) {
+            entity.hurtServer((ServerLevel)level(), getDamageSource(), getDamagePerAttack());
+        }
+    }
+
 }

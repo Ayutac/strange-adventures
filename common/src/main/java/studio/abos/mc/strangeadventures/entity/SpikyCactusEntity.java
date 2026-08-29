@@ -1,11 +1,11 @@
 package studio.abos.mc.strangeadventures.entity;
 
 import net.minecraft.core.Holder;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
-import studio.abos.mc.strangeadventures.StrangeAdventures;
 import studio.abos.mc.strangeadventures.targetingmode.ModTargetingModes;
 import studio.abos.mc.strangeadventures.targetingmode.TargetingMode;
 import studio.abos.mc.strangeadventures.targetingspace.ModTargetingSpaces;
@@ -26,23 +26,27 @@ public class SpikyCactusEntity extends AbstractPlantEntity implements Autonomous
     public void tick() {
         super.tick();
         if (++ticks % attackInterval() == 0) {
+            if (level().isClientSide()) {
+                return;
+            }
             final List<LivingEntity> targets = prepareAttack();
-            StrangeAdventures.logger.info("Targets: {}", targets.size());
+            /*StrangeAdventures.logger.info("Targets: {}", targets.size());
             if (!targets.isEmpty()) {
                 StrangeAdventures.logger.info("First: {}", targets.getFirst().getType().getDescriptionId());
-            }
+            }*/
+            attack(targets);
             ticks = 0;
         }
     }
 
     @Override
     public float getHorizontalRange() {
-        return 128;
+        return 5f;
     }
 
     @Override
     public float getVerticalRange() {
-        return 128;
+        return 5f;
     }
 
     @Override
@@ -61,18 +65,23 @@ public class SpikyCactusEntity extends AbstractPlantEntity implements Autonomous
     }
 
     @Override
+    public DamageSource getDamageSource() {
+        return level().damageSources().cactus();
+    }
+
+    @Override
+    public float getDamagePerAttack() {
+        return 1f;
+    }
+
+    @Override
     public Entity attacker() {
         return this;
     }
 
     @Override
     public Predicate<Entity> validTargets() {
-        return _ -> true;
-    }
-
-    @Override
-    public void attack(final List<Entity> targets) {
-
+        return entity -> entity != owner() && hasLineOfSight(entity);
     }
 
 }
