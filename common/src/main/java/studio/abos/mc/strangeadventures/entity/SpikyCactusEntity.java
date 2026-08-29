@@ -26,9 +26,6 @@ public class SpikyCactusEntity extends AbstractPlantEntity implements Autonomous
     public void tick() {
         super.tick();
         if (++ticks % attackInterval() == 0) {
-            if (level().isClientSide()) {
-                return;
-            }
             final List<LivingEntity> targets = prepareAttack();
             /*StrangeAdventures.logger.info("Targets: {}", targets.size());
             if (!targets.isEmpty()) {
@@ -66,7 +63,7 @@ public class SpikyCactusEntity extends AbstractPlantEntity implements Autonomous
 
     @Override
     public DamageSource getDamageSource() {
-        return level().damageSources().cactus();
+        return level().damageSources().mobProjectile(this, this);
     }
 
     @Override

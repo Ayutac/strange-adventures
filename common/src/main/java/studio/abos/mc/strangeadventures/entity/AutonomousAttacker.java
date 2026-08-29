@@ -63,12 +63,18 @@ public interface AutonomousAttacker {
         return getTargetingMode().value().target(position(), entities);
     }
 
-    /**
-     * Only call on server-side!
-     */
     default void attack(final List<LivingEntity> targets) {
         for (final LivingEntity entity : targets) {
-            entity.hurtServer((ServerLevel)level(), getDamageSource(), getDamagePerAttack());
+            /*if (entity.isBlocking()) {
+                final ItemStack blocker = entity.getItemBlockingWith();
+                if (blocker != null) {
+                    blocker.hurtAndBreak(1, entity, entity.getEquipmentSlotForItem(blocker));
+                    continue;
+                }
+            }*/
+            if (!level().isClientSide()) {
+                entity.hurtServer((ServerLevel) level(), getDamageSource(), getDamagePerAttack());
+            }
         }
     }
 
