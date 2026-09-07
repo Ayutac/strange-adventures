@@ -31,4 +31,9 @@ public interface TargetingSpace {
         return inRange(center, horizontalRange, verticalRange, entityToCheck.getBoundingBox());
     }
 
+    default AABB boundingBox(final Vec3 center, final float horizontalRange, final float verticalRange) {
+        return new AABB(center.x - horizontalRange, center.y - verticalRange, center.z - horizontalRange,
+                center.x + horizontalRange, center.y + verticalRange, center.z + horizontalRange);
+    }
+
 }

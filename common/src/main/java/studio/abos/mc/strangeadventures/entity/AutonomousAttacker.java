@@ -8,7 +8,6 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntitySelector;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import org.jspecify.annotations.Nullable;
 import studio.abos.mc.strangeadventures.targetingmode.TargetingMode;
@@ -64,7 +63,7 @@ public interface AutonomousAttacker {
     Predicate<Entity> validTargets();
 
     default List<LivingEntity> prepareAttack() {
-        final List<LivingEntity> entities = level().getEntities(attacker(), AABB.ofSize(position(), 2*getHorizontalRange(), 2*getVerticalRange(), 2*getHorizontalRange()),
+        final List<LivingEntity> entities = level().getEntities(attacker(), getTargetingSpace().value().boundingBox(position(), getHorizontalRange(), getVerticalRange()),
                         validTargets().and(EntitySelector.LIVING_ENTITY_STILL_ALIVE).and(EntitySelector.NO_CREATIVE_OR_SPECTATOR)).stream()
                 .map(LivingEntity.class::cast)
                 .filter(entity -> getTargetingSpace().value().inRange(position(), getHorizontalRange(), getVerticalRange(), entity))
