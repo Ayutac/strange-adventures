@@ -3,6 +3,7 @@ package studio.abos.mc.strangeadventures.entity;
 import net.minecraft.core.Holder;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntitySelector;
 import net.minecraft.world.entity.LivingEntity;
@@ -49,6 +50,14 @@ public interface AutonomousAttacker {
 
     float getDamagePerAttack();
 
+    default List<MobEffectInstance> prepareEffectsForAttack() {
+        return List.of();
+    }
+
+    default boolean blockingStopsEffects() {
+        return true;
+    }
+
     /**
      * What can be attacked by this attacker. Creative Players, Spectators and dead entities will be sorted out automatically.
      */
@@ -73,7 +82,14 @@ public interface AutonomousAttacker {
                 }
             }*/
             if (!level().isClientSide()) {
-                entity.hurtServer((ServerLevel) level(), getDamageSource(), getDamagePerAttack());
+                if (getDamagePerAttack() != 0f) {
+                    entity.hurtServer((ServerLevel) level(), getDamageSource(), getDamagePerAttack());
+                }
+                if (!entity.isBlocking() || !blockingStopsEffects()) {
+                    for (var effect : prepareEffectsForAttack()) {
+                        entity.addEffect(effect);
+                    }
+                }
             }
         }
     }
