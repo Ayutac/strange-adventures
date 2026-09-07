@@ -14,7 +14,7 @@ public final class ModEntityTypes {
     public static void initialize(final BalmEntityTypeRegistrar entityTypes) {
         HINDERING_ROOTS = entityTypes.register("hindering_roots", () ->
                         EntityType.Builder.of(HinderingRootsEntity::new, MobCategory.MISC)
-                                .sized(1f, 0.2f))
+                                .sized(1f, 0.25f))
                 .withDefaultAttributes(PathfinderMob::createMobAttributes)
                 .asHolder();
         SPIKY_CACTUS = entityTypes.register("spiky_cactus", () ->

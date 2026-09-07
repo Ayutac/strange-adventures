@@ -10,4 +10,9 @@ public abstract class AbstractPlantEntity extends PathfinderMob {
         super(type, level);
     }
 
+    @Override
+    public boolean isPushable() {
+        return false;
+    }
+
 }
