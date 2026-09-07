@@ -9,6 +9,7 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
 import org.jspecify.annotations.Nullable;
+import studio.abos.mc.strangeadventures.tag.ModBlockTags;
 import studio.abos.mc.strangeadventures.targetingmode.ModTargetingModes;
 import studio.abos.mc.strangeadventures.targetingmode.TargetingMode;
 import studio.abos.mc.strangeadventures.targetingspace.ModTargetingSpaces;
@@ -28,11 +29,16 @@ public class HinderingRootsEntity extends AbstractPlantEntity implements Autonom
     @Override
     public void tick() {
         super.tick();
-        if (++ticks % attackInterval() == 0) {
+        if (isAlive() && ++ticks % attackInterval() == 0) {
             final List<LivingEntity> targets = prepareAttack();
             attack(targets);
             ticks = 0;
         }
+    }
+
+    @Override
+    public boolean isOnSupportingBlock() {
+        return super.isOnSupportingBlock() || level().getBlockState(getOnPos()).is(ModBlockTags.SUPPORTS_ROOTS);
     }
 
     @Override

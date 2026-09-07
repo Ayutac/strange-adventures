@@ -95,5 +95,10 @@ public class ModBlockTagProvider extends FabricTagsProvider.BlockTagsProvider {
         builder(ModBlockTags.MAKES_WARPED_SAP).add(
                 BlockItemIds.WARPED_STEM, BlockItemIds.STRIPPED_WARPED_STEM,
                 BlockItemIds.WARPED_HYPHAE, BlockItemIds.STRIPPED_WARPED_HYPHAE);
+
+        builder(ModBlockTags.SUPPORTS_DESERT_PLANTS).forceAddTag(BlockItemTags.SAND.block());
+        builder(ModBlockTags.SUPPORTS_ROOTS).forceAddTag(BlockItemTags.DIRT.block());
+        builder(ModBlockTags.SUPPORTS_ROOTS).forceAddTag(BlockItemTags.GRASS_BLOCKS.block());
     }
+
 }

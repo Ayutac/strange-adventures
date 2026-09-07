@@ -6,6 +6,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
+import studio.abos.mc.strangeadventures.tag.ModBlockTags;
 import studio.abos.mc.strangeadventures.targetingmode.ModTargetingModes;
 import studio.abos.mc.strangeadventures.targetingmode.TargetingMode;
 import studio.abos.mc.strangeadventures.targetingspace.ModTargetingSpaces;
@@ -25,7 +26,7 @@ public class SpikyCactusEntity extends AbstractPlantEntity implements Autonomous
     @Override
     public void tick() {
         super.tick();
-        if (++ticks % attackInterval() == 0) {
+        if (isAlive() && ++ticks % attackInterval() == 0) {
             final List<LivingEntity> targets = prepareAttack();
             /*StrangeAdventures.logger.info("Targets: {}", targets.size());
             if (!targets.isEmpty()) {
@@ -34,6 +35,11 @@ public class SpikyCactusEntity extends AbstractPlantEntity implements Autonomous
             attack(targets);
             ticks = 0;
         }
+    }
+
+    @Override
+    public boolean isOnSupportingBlock() {
+        return super.isOnSupportingBlock() || level().getBlockState(getOnPos()).is(ModBlockTags.SUPPORTS_DESERT_PLANTS);
     }
 
     @Override

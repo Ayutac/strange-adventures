@@ -22,4 +22,8 @@ public final class ModBlockTags {
     public static final TagKey<Block> MAKES_OAK_SAP = TagKey.create(Registries.BLOCK, StrangeAdventures.id("makes_oak_sap"));
     public static final TagKey<Block> MAKES_SPRUCE_SAP = TagKey.create(Registries.BLOCK, StrangeAdventures.id("makes_spruce_sap"));
     public static final TagKey<Block> MAKES_WARPED_SAP = TagKey.create(Registries.BLOCK, StrangeAdventures.id("makes_warped_sap"));
+
+    public static final TagKey<Block> SUPPORTS_DESERT_PLANTS = TagKey.create(Registries.BLOCK, StrangeAdventures.id("supports_desert_plants"));
+    public static final TagKey<Block> SUPPORTS_ROOTS = TagKey.create(Registries.BLOCK, StrangeAdventures.id("supports_roots"));
+
 }
