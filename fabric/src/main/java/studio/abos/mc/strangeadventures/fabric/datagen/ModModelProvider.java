@@ -63,6 +63,7 @@ public class ModModelProvider extends FabricModelProvider {
     public void generateItemModels(ItemModelGenerators itemModelGenerator) {
         itemModelGenerator.generateFlatItem(ModItems.GREEN_SAFEGUARD.asItem(), ModelTemplates.FLAT_ITEM);
         itemModelGenerator.generateFlatItem(ModItems.LIVING_ROD.asItem(), ModelTemplates.FLAT_ITEM);
+        itemModelGenerator.generateFlatItem(ModItems.TREE_TRANSFORMATOR.asItem(), ModelTemplates.FLAT_ITEM);
 
         itemModelGenerator.generateFlatItem(ModItems.ACACIA_SAP_BOTTLE.asItem(), ModelTemplates.FLAT_ITEM);
         itemModelGenerator.generateFlatItem(ModItems.ACACIA_SAP_BUCKET.asItem(), ModelTemplates.FLAT_ITEM);

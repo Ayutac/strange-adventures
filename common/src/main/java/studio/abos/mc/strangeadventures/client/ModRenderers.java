@@ -6,6 +6,7 @@ import studio.abos.mc.strangeadventures.blockentity.ModBlockEntities;
 import studio.abos.mc.strangeadventures.client.blockrenderer.EssenceCauldronBlockEntityRenderer;
 import studio.abos.mc.strangeadventures.client.entityrenderer.HinderingRootsEntityRenderer;
 import studio.abos.mc.strangeadventures.client.entityrenderer.SpikyCactusEntityRenderer;
+import studio.abos.mc.strangeadventures.client.entityrenderer.TreeTransformatorProjectileRenderer;
 import studio.abos.mc.strangeadventures.entity.ModEntityTypes;
 
 public final class ModRenderers {
@@ -13,6 +14,8 @@ public final class ModRenderers {
     public static void initialize(BalmEntityRendererRegistrar renderers) {
         renderers.register(ModEntityTypes.SPIKY_CACTUS, SpikyCactusEntityRenderer::new);
         renderers.register(ModEntityTypes.HINDERING_ROOTS, HinderingRootsEntityRenderer::new);
+
+        renderers.register(ModEntityTypes.TREE_TRANSFORMATOR_PROJECTILE, TreeTransformatorProjectileRenderer::new);
     }
 
     public static void initialize(BalmBlockEntityRendererRegistrar renderers) {
