@@ -1,0 +1,13 @@
+{
+  "type": "strangeadventures:essence_cauldron",
+  "amount": 1,
+  "fluids": [
+    "#strangeadventures:any_living_sap"
+  ],
+  "items": [
+    "minecraft:hanging_roots",
+    "minecraft:mangrove_roots",
+    "minecraft:cobweb"
+  ],
+  "result": "strangeadventures:hindering_roots"
+}

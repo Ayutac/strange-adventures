@@ -5,6 +5,7 @@ import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
@@ -21,7 +22,6 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.material.Fluid;
-import studio.abos.mc.strangeadventures.StrangeAdventures;
 import studio.abos.mc.strangeadventures.block.ModBlockFamilies;
 import studio.abos.mc.strangeadventures.block.ModBlocks;
 import studio.abos.mc.strangeadventures.fluid.AbstractSapFluid;
@@ -390,6 +390,13 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                         .requiresFluid(ModFluidTags.OVERWORLD_TREE_SAP)
                         .requiresFluid(ModFluidTags.OVERWORLD_TREE_SAP)
                         .requiresFluid(ModFluidTags.OVERWORLD_TREE_SAP)
+                        .unlockedBy("has_essence_cauldron", has(ModBlocks.ESSENCE_CAULDRON))
+                        .save(exporter);
+                essenceCauldron(ModItems.HINDERING_ROOTS.asHolder())
+                        .requiresItem(BuiltInRegistries.ITEM.wrapAsHolder(Items.HANGING_ROOTS))
+                        .requiresItem(BuiltInRegistries.ITEM.wrapAsHolder(Items.MANGROVE_ROOTS))
+                        .requiresItem(BuiltInRegistries.ITEM.wrapAsHolder(Items.COBWEB))
+                        .requiresFluid(ModFluidTags.ANY_LIVING_SAP)
                         .unlockedBy("has_essence_cauldron", has(ModBlocks.ESSENCE_CAULDRON))
                         .save(exporter);
             }
