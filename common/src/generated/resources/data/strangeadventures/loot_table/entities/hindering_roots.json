@@ -1,0 +1,36 @@
+{
+  "type": "minecraft:entity",
+  "pools": [
+    {
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "condition": "minecraft:entity_properties",
+              "entity": "target_entity",
+              "predicate": {
+                "minecraft:flags": {
+                  "is_on_fire": false
+                }
+              }
+            }
+          ],
+          "functions": [
+            {
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 1.0,
+                "min": 0.0
+              },
+              "enchantment": "minecraft:looting",
+              "function": "minecraft:enchanted_count_increase"
+            }
+          ],
+          "name": "minecraft:hanging_roots"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ]
+}
