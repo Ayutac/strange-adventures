@@ -1,12 +1,17 @@
 package studio.abos.mc.strangeadventures.item;
 
-import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.stats.Stats;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import studio.abos.mc.strangeadventures.api.BiomeTree;
+import studio.abos.mc.strangeadventures.entity.TreeTransformatorProjectile;
 
 public class TreeTransformatorItem extends Item {
 
@@ -15,14 +20,24 @@ public class TreeTransformatorItem extends Item {
     }
 
     @Override
-    public InteractionResult useOn(final UseOnContext context) {
-        final Level level = context.getLevel();
-        if (level.isClientSide()) {
-            return super.useOn(context);
+    public InteractionResult use(final Level level, final Player player, final InteractionHand hand) {
+        final ItemStack itemStack = player.getItemInHand(hand);
+        level.playSound(
+                null,
+                player.getX(),
+                player.getY(),
+                player.getZ(),
+                SoundEvents.SNOWBALL_THROW,
+                SoundSource.NEUTRAL,
+                0.5F,
+                0.4F / (level.getRandom().nextFloat() * 0.4F + 0.8F)
+        );
+        if (level instanceof ServerLevel serverLevel) {
+            Projectile.spawnProjectileFromRotation(TreeTransformatorProjectile::create, serverLevel, itemStack, player, 0.0F, 1.5F, 1.0F);
         }
-        // FIXME just experimental
-        final BlockPos target = context.getClickedPos();
-        BiomeTree.plant((ServerLevel)level, target);
+        player.awardStat(Stats.ITEM_USED.get(this));
+        itemStack.consume(1, player);
         return InteractionResult.SUCCESS;
     }
+
 }

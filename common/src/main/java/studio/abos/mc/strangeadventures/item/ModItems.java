@@ -47,7 +47,7 @@ public final class ModItems {
     public static void initialize(final BalmItemRegistrar items) {
         GREEN_SAFEGUARD = items.register("green_safeguard", GreenSafeguardItem::new).asDeferredItem();
         LIVING_ROD = items.register("living_rod", props -> new Item(props.fireResistant())).asDeferredItem();
-        TREE_TRANSFORMATOR = items.register("tree_transformator", TreeTransformatorItem::new).asDeferredItem();
+        TREE_TRANSFORMATOR = items.register("tree_transformator", props -> new TreeTransformatorItem(props.stacksTo(16).useCooldown(3f))).asDeferredItem();
 
         ACACIA_SAP_BUCKET = items.register("acacia_sap_bucket", props -> new BucketItem(ModFluids.ACACIA_SAP_STILL.value(), sapBucket(props))).asDeferredItem();
         ACACIA_SAP_BOTTLE = items.register("acacia_sap_bottle", props -> new BottleItem(ModFluids.ACACIA_SAP_STILL.value(), sapBottle(props))).asDeferredItem();
