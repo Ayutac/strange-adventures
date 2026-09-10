@@ -1,4 +1,5 @@
 {
   "biome": "minecraft:desert",
+  "fallbackBlock": "minecraft:acacia_leaves",
   "treeGrower": "acacia"
 }

@@ -1,4 +1,5 @@
 {
   "biome": "minecraft:jungle",
+  "fallbackBlock": "minecraft:jungle_leaves",
   "treeGrower": "jungle"
 }

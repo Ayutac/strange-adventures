@@ -1,4 +1,5 @@
 {
   "biome": "minecraft:savanna_plateau",
+  "fallbackBlock": "minecraft:acacia_leaves",
   "treeGrower": "acacia"
 }

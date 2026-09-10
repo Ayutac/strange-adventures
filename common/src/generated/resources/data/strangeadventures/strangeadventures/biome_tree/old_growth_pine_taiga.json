@@ -1,4 +1,5 @@
 {
   "biome": "minecraft:old_growth_pine_taiga",
+  "fallbackBlock": "minecraft:spruce_leaves",
   "treeGrower": "spruce"
 }

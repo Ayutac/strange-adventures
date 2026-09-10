@@ -1,4 +1,5 @@
 {
   "biome": "minecraft:windswept_hills",
+  "fallbackBlock": "minecraft:spruce_leaves",
   "treeGrower": "spruce"
 }

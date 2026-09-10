@@ -1,4 +1,5 @@
 {
   "biome": "minecraft:frozen_river",
+  "fallbackBlock": "minecraft:oak_leaves",
   "treeGrower": "oak"
 }

@@ -1,4 +1,5 @@
 {
   "biome": "minecraft:lush_caves",
+  "fallbackBlock": "minecraft:azalea_leaves",
   "treeGrower": "azalea"
 }

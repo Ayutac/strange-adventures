@@ -1,4 +1,5 @@
 {
   "biome": "minecraft:birch_forest",
+  "fallbackBlock": "minecraft:birch_leaves",
   "treeGrower": "birch"
 }

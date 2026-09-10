@@ -1,4 +1,5 @@
 {
   "biome": "minecraft:dark_forest",
+  "fallbackBlock": "minecraft:dark_oak_leaves",
   "treeGrower": "dark_oak"
 }

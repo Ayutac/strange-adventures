@@ -1,4 +1,5 @@
 {
   "biome": "minecraft:wooded_badlands",
+  "fallbackBlock": "minecraft:oak_leaves",
   "treeGrower": "oak"
 }

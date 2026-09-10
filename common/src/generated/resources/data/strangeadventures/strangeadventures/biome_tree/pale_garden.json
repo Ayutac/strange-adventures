@@ -1,4 +1,5 @@
 {
   "biome": "minecraft:pale_garden",
+  "fallbackBlock": "minecraft:pale_oak_leaves",
   "treeGrower": "pale_oak"
 }

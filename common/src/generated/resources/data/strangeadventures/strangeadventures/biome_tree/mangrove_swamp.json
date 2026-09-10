@@ -1,4 +1,5 @@
 {
   "biome": "minecraft:mangrove_swamp",
+  "fallbackBlock": "minecraft:mangrove_leaves",
   "treeGrower": "mangrove"
 }

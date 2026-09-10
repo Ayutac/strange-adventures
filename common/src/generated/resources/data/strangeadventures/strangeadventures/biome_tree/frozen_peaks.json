@@ -1,4 +1,5 @@
 {
   "biome": "minecraft:frozen_peaks",
+  "fallbackBlock": "minecraft:spruce_leaves",
   "treeGrower": "spruce"
 }

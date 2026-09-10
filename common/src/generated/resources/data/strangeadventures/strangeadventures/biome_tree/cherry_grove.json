@@ -1,4 +1,5 @@
 {
   "biome": "minecraft:cherry_grove",
+  "fallbackBlock": "minecraft:cherry_leaves",
   "treeGrower": "cherry"
 }

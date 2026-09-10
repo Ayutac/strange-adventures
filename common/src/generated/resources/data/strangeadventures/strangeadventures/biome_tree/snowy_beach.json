@@ -1,4 +1,5 @@
 {
   "biome": "minecraft:snowy_beach",
+  "fallbackBlock": "minecraft:spruce_leaves",
   "treeGrower": "spruce"
 }
