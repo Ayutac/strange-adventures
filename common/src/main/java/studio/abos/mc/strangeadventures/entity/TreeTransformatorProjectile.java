@@ -5,12 +5,14 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.throwableitemprojectile.ThrowableItemProjectile;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
+import org.jspecify.annotations.Nullable;
 import studio.abos.mc.strangeadventures.api.BiomeTree;
 import studio.abos.mc.strangeadventures.item.ModItems;
 import studio.abos.mc.strangeadventures.tag.ModEntityTags;
@@ -21,8 +23,14 @@ public class TreeTransformatorProjectile extends ThrowableItemProjectile {
         super(type, level);
     }
 
+    @Nullable
     public static TreeTransformatorProjectile create(final ServerLevel serverLevel, final LivingEntity living, final ItemStack itemStack) {
-        return ModEntityTypes.TREE_TRANSFORMATOR_PROJECTILE.value().create(serverLevel, EntitySpawnReason.SPAWN_ITEM_USE);
+        final var projectile = ModEntityTypes.TREE_TRANSFORMATOR_PROJECTILE.value().create(serverLevel, EntitySpawnReason.SPAWN_ITEM_USE);
+        if (projectile != null) {
+            projectile.setOwner(living);
+            projectile.setPos(living.getEyePosition());
+        }
+        return projectile;
     }
 
     @Override
@@ -36,20 +44,23 @@ public class TreeTransformatorProjectile extends ThrowableItemProjectile {
             return;
         }
         final Entity entity = hitResult.getEntity();
-        if (!(entity instanceof final LivingEntity living) || living.isDeadOrDying()) {
+        if (!(entity instanceof final LivingEntity living) || living.isDeadOrDying() || living == getOwner()) {
+            return;
+        }
+        if (living instanceof final Player player && (player.isCreative() || player.isSpectator())) {
             return;
         }
         if (living.isBlocking() || entity.is(ModEntityTags.TREE_TRANSFORMATOR_IMMUNE)) {
             discard();
             return;
         }
-        final float healthTreshold = living.getMaxHealth() / 2;
-        if (living.getHealth() <= healthTreshold) {
+        final float healthThreshold = living.getMaxHealth() / 2;
+        if (living.getHealth() <= healthThreshold) {
             // FIXME custom damage type
-            living.hurtServer((ServerLevel)level(), level().damageSources().mobProjectile(this, null), healthTreshold);
+            living.hurtServer((ServerLevel)level(), level().damageSources().mobProjectile(this, null), healthThreshold);
             BiomeTree.plant((ServerLevel)level(), living.blockPosition());
-            discard();
         }
+        discard();
     }
 
     @Override
