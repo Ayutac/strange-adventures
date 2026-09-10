@@ -12,7 +12,8 @@
     "SaplingBlockAccessor",
     "StairBlockAccessor",
     "StemBlockAccessor",
-    "TrapdoorBlockAccessor"
+    "TrapdoorBlockAccessor",
+    "TreeGrowerAccessor"
   ],
   "client": [
   ],

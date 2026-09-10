@@ -11,7 +11,7 @@ import net.minecraft.world.level.block.grower.TreeGrower;
 import studio.abos.mc.strangeadventures.StrangeAdventures;
 import studio.abos.mc.strangeadventures.api.StrangeAdventuresApi;
 import studio.abos.mc.strangeadventures.api.BiomeTree;
-import studio.abos.mc.strangeadventures.fabric.mixin.TreeGrowerAccessor;
+import studio.abos.mc.strangeadventures.mixin.TreeGrowerAccessor;
 
 import java.util.concurrent.CompletableFuture;
 
