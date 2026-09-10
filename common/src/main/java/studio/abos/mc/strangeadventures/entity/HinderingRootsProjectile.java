@@ -13,6 +13,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
+import net.minecraft.world.phys.Vec3;
 import org.jspecify.annotations.Nullable;
 import studio.abos.mc.strangeadventures.item.ModItems;
 
@@ -60,7 +61,21 @@ public class HinderingRootsProjectile extends ThrowableItemProjectile {
 
     @Override
     protected void onHitBlock(final BlockHitResult hitResult) {
-        super.onHitBlock(hitResult);
+        final BlockPos hitBlockPos = hitResult.getBlockPos();
+        final Vec3 targetPos = switch (hitResult.getDirection()) {
+            case UP -> new Vec3(hitBlockPos.getX() + 0.5, hitBlockPos.getY() + 1d, hitBlockPos.getZ() + 0.5);
+            case DOWN -> new Vec3(hitBlockPos.getX() + 0.5, hitBlockPos.getY() - 1d, hitBlockPos.getZ() + 0.5);
+            case EAST -> new Vec3(hitBlockPos.getX() + 1.5, hitBlockPos.getY(), hitBlockPos.getZ() + 0.5);
+            case WEST -> new Vec3(hitBlockPos.getX() - 0.5, hitBlockPos.getY(), hitBlockPos.getZ() + 0.5);
+            case NORTH -> new Vec3(hitBlockPos.getX() + 0.5, hitBlockPos.getY(), hitBlockPos.getZ() - 0.5);
+            case SOUTH -> new Vec3(hitBlockPos.getX() + 0.5, hitBlockPos.getY(), hitBlockPos.getZ() + 1.5);
+            default -> new Vec3(hitBlockPos.getX() + 0.5, hitBlockPos.getY(), hitBlockPos.getZ() + 0.5);
+        };
+        final var roots = ModEntityTypes.HINDERING_ROOTS.value().create(level(), EntitySpawnReason.CONVERSION);
+        if (roots != null) {
+            roots.setPos(targetPos);
+            level().addFreshEntity(roots);
+        }
         discard();
     }
 
