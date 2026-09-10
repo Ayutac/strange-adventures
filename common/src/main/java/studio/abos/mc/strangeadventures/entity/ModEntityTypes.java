@@ -11,6 +11,7 @@ public final class ModEntityTypes {
     public static Holder<EntityType<HinderingRootsEntity>> HINDERING_ROOTS;
     public static Holder<EntityType<SpikyCactusEntity>> SPIKY_CACTUS;
 
+    public static Holder<EntityType<HinderingRootsProjectile>> HINDERING_ROOTS_PROJECTILE;
     public static Holder<EntityType<TreeTransformatorProjectile>> TREE_TRANSFORMATOR_PROJECTILE;
 
     public static void initialize(final BalmEntityTypeRegistrar entityTypes) {
@@ -23,6 +24,11 @@ public final class ModEntityTypes {
                         EntityType.Builder.of(SpikyCactusEntity::new, MobCategory.MISC)
                                 .sized(1f, 1f))
                 .withDefaultAttributes(PathfinderMob::createMobAttributes)
+                .asHolder();
+
+        HINDERING_ROOTS_PROJECTILE = entityTypes.register("hindering_roots_projectile", () ->
+                EntityType.Builder.of(HinderingRootsProjectile::new, MobCategory.MISC)
+                        .sized(0.5f, 0.5f))
                 .asHolder();
         TREE_TRANSFORMATOR_PROJECTILE = entityTypes.register("tree_transformator_projectile", () ->
                 EntityType.Builder.of(TreeTransformatorProjectile::new, MobCategory.MISC)

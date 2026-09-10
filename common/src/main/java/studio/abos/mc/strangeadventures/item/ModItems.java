@@ -14,6 +14,7 @@ import studio.abos.mc.strangeadventures.fluid.ModFluids;
 public final class ModItems {
 
     public static DeferredItem GREEN_SAFEGUARD;
+    public static DeferredItem HINDERING_ROOTS;
     public static DeferredItem LIVING_ROD;
     public static DeferredItem TREE_TRANSFORMATOR;
 
@@ -46,6 +47,7 @@ public final class ModItems {
 
     public static void initialize(final BalmItemRegistrar items) {
         GREEN_SAFEGUARD = items.register("green_safeguard", GreenSafeguardItem::new).asDeferredItem();
+        HINDERING_ROOTS = items.register("hindering_roots", props -> new HinderingRootsItem(props.stacksTo(16).useCooldown(1f))).asDeferredItem();
         LIVING_ROD = items.register("living_rod", props -> new Item(props.fireResistant())).asDeferredItem();
         TREE_TRANSFORMATOR = items.register("tree_transformator", props -> new TreeTransformatorItem(props.stacksTo(16).useCooldown(3f))).asDeferredItem();
 
@@ -113,6 +115,7 @@ public final class ModItems {
 
                             output.accept(ModBlocks.SAP_SIPPER);
                             output.accept(ModBlocks.ESSENCE_CAULDRON);
+                            output.accept(HINDERING_ROOTS);
                             output.accept(TREE_TRANSFORMATOR);
 
                             output.accept(OAK_SAP_BOTTLE);
