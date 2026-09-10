@@ -7,6 +7,7 @@ import net.minecraft.resources.Identifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import studio.abos.mc.strangeadventures.api.StrangeAdventuresApi;
+import studio.abos.mc.strangeadventures.api.BiomeTree;
 import studio.abos.mc.strangeadventures.block.ModBlocks;
 import studio.abos.mc.strangeadventures.blockentity.ModBlockEntities;
 import studio.abos.mc.strangeadventures.entity.ModEntityTypes;
@@ -35,6 +36,7 @@ public class StrangeAdventures {
 
         registrars.registrar().createCustomRegistry(StrangeAdventuresApi.TARGETING_MODE_REGISTRY_KEY);
         registrars.registrar().createCustomRegistry(StrangeAdventuresApi.TARGETING_SPACE_REGISTRY_KEY);
+        registrars.registrar().createDynamicRegistry(StrangeAdventuresApi.BIOME_TREE_REGISTRY_KEY, BiomeTree.CODEC);
 
         registrars.registrar(Registries.FLUID, ModFluids::initialize);
         registrars.blocks(ModBlocks::initialize);
