@@ -2,8 +2,11 @@ package studio.abos.mc.strangeadventures;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Relative;
 import net.minecraft.world.level.Level;
@@ -11,6 +14,7 @@ import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import org.apache.commons.lang3.function.TriConsumer;
+import org.jspecify.annotations.Nullable;
 import studio.abos.mc.strangeadventures.api.InternalMethods;
 import studio.abos.mc.strangeadventures.api.StrangeAdventuresApi;
 import studio.abos.mc.strangeadventures.block.ModBlocks;
@@ -95,6 +99,11 @@ public class InternalMethodsImpl implements InternalMethods {
         tpFromTo(StrangeAdventuresApi.GREEN_DIMENSION, Level.OVERWORLD, toTeleport, startPos, pos -> new BlockPos(
                 pos.getX() * StrangeAdventuresApi.GREEN_DIMENSION_FACTOR, pos.getY(),
                 pos.getZ() * StrangeAdventuresApi.GREEN_DIMENSION_FACTOR), InternalMethodsImpl::makeGreenSpace);
+    }
+
+    @Override
+    public DamageSource createTreeTransformatorDamageSource(final Level level, final @Nullable Entity attacker) {
+        return new DamageSource(level.registryAccess().lookupOrThrow(Registries.DAMAGE_TYPE).getOrThrow(StrangeAdventuresApi.TREE_TRANSFORMATOR_DAMAGE_TYPE), attacker);
     }
 
 }

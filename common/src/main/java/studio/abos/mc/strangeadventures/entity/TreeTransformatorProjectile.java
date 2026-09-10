@@ -14,6 +14,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
 import org.jspecify.annotations.Nullable;
 import studio.abos.mc.strangeadventures.api.BiomeTree;
+import studio.abos.mc.strangeadventures.api.StrangeAdventuresApi;
 import studio.abos.mc.strangeadventures.item.ModItems;
 import studio.abos.mc.strangeadventures.tag.ModEntityTags;
 
@@ -56,8 +57,7 @@ public class TreeTransformatorProjectile extends ThrowableItemProjectile {
         }
         final float healthThreshold = living.getMaxHealth() / 2;
         if (living.getHealth() <= healthThreshold) {
-            // FIXME custom damage type
-            living.hurtServer((ServerLevel)level(), level().damageSources().mobProjectile(this, null), healthThreshold);
+            living.hurtServer((ServerLevel)level(), StrangeAdventuresApi.INTERNAL_METHODS.createTreeTransformatorDamageSource(level(), getOwner()), healthThreshold);
             BiomeTree.plant((ServerLevel)level(), living.blockPosition());
         }
         discard();
