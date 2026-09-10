@@ -399,7 +399,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
 
     @Override
     public String getName() {
-        return StrangeAdventures.MOD_ID;
+        return "Recipes";
     }
 
     public static abstract class AbstractRecipeProvider extends RecipeProvider {
