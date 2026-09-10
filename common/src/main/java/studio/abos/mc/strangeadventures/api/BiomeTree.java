@@ -5,6 +5,7 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.Identifier;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.grower.TreeGrower;
 import studio.abos.mc.strangeadventures.mixin.TreeGrowerAccessor;
 
@@ -16,7 +17,9 @@ public record BiomeTree(Identifier biome, String treeGrower) {
         ).apply(instance, BiomeTree::new));
 
     public static void plant(final ServerLevel level, final BlockPos pos) {
-        find(level, pos).growTree(level, level.getChunkSource().getGenerator(), pos, level.getBlockState(pos), level.getRandom());
+        if (!find(level, pos).growTree(level, level.getChunkSource().getGenerator(), pos, level.getBlockState(pos), level.getRandom())) {
+            level.setBlockAndUpdate(pos, Blocks.OAK_LEAVES.defaultBlockState());
+        }
     }
 
     private static TreeGrower find(final ServerLevel level, final BlockPos pos) {
