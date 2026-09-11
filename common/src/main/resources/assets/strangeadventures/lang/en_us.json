@@ -71,6 +71,7 @@
   "fluid.strangeadventures.warped_sap": "Warped Sap",
   "fluid.strangeadventures.flowing_warped_sap": "Flowing Warped Sap",
   "gui.strangeadventures.accept_blocks_tag": "Accepts Blocks of Tag:",
+  "gui.strangeadventures.accept_fluids_tag": "Accepts Fluids of Tag:",
   "gui.strangeadventures.sap_sipper": "Sap Sipper contains %1$s mB of ",
   "gui.strangeadventures.sap_sipper.empty": "Sap Sipper is empty.",
   "item.strangeadventures.acacia_sap_bottle": "Acacia Sap Bottle",
