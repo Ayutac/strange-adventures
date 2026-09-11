@@ -195,15 +195,15 @@ public class ModJeiPlugin implements IModPlugin {
         public SippingCategory(final IGuiHelper guiHelper) {
             super(SAP_SIPPER, Component.translatable("jei.strangeadventures.sap_sipper"),
                     guiHelper.createDrawableItemLike(ModBlocks.SAP_SIPPER),
-                    58, 18);
+                    116, 18);
         }
 
         @Override
         public void setRecipe(final IRecipeLayoutBuilder builder, final SapSipperRecipe recipe, final IFocusGroup focuses) {
-            builder.addInputSlot(1, 1)
+            builder.addInputSlot(13, 1)
                     .setStandardSlotBackground()
                     .add(BlocksIngredient.TYPE, new BlocksIngredient(recipe.getSapBlocks()));
-            builder.addOutputSlot(42, 1)
+            builder.addOutputSlot(84, 1)
                     .setFluidRenderer(FluidUtil.MB_PER_BUCKET, true, 16, 16)
                     .add(recipe.getSapResult().value(), FluidUtil.DROPLETS_PER_MB * recipe.getAmountPerSap());
         }
@@ -211,7 +211,7 @@ public class ModJeiPlugin implements IModPlugin {
         @Override
         public void createRecipeExtras(final IRecipeExtrasBuilder builder, final SapSipperRecipe recipe, final IFocusGroup focuses) {
             builder.addAnimatedRecipeArrowWidget(recipe.getTicksPerSap())
-                    .setPosition(19, 1);
+                    .setPosition(45, 1);
         }
     }
 
