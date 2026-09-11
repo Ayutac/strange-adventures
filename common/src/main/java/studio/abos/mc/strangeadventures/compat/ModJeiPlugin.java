@@ -5,6 +5,7 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
+import mezz.jei.api.gui.widgets.IRecipeExtrasBuilder;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.ingredients.IIngredientHelper;
 import mezz.jei.api.ingredients.IIngredientRenderer;
@@ -20,24 +21,25 @@ import mezz.jei.api.registration.IRecipeRegistration;
 import net.blay09.mods.balm.Balm;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
-import net.minecraft.core.Holder;
 import net.minecraft.core.HolderSet;
 import net.minecraft.core.RegistryCodecs;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
-import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.block.Block;
 import org.jspecify.annotations.Nullable;
+import studio.abos.mc.strangeadventures.FluidUtil;
 import studio.abos.mc.strangeadventures.StrangeAdventures;
 import studio.abos.mc.strangeadventures.block.ModBlocks;
 import studio.abos.mc.strangeadventures.recipe.EssenceCauldronRecipe;
 import studio.abos.mc.strangeadventures.recipe.ModRecipeTypes;
 import studio.abos.mc.strangeadventures.recipe.SapSipperRecipe;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @JeiPlugin
 public class ModJeiPlugin implements IModPlugin {
@@ -63,7 +65,7 @@ public class ModJeiPlugin implements IModPlugin {
 
     @Override
     public void registerIngredients(final IModIngredientRegistration registration) {
-        registration.register(BlocksIngredient.TYPE, List.of(), new BlocksIngredientHelper(), new BlocksIngredientRenderer(RandomSource.create()), BlocksIngredient.CODEC);
+        registration.register(BlocksIngredient.TYPE, List.of(), new BlocksIngredientHelper(), new BlocksIngredientRenderer(), BlocksIngredient.CODEC);
     }
 
     @Override
@@ -106,7 +108,7 @@ public class ModJeiPlugin implements IModPlugin {
         @Override
         public String getDisplayName(final BlocksIngredient ingredient) {
             if (ingredient.blocks() instanceof HolderSet.Named<Block> named) {
-                return named.key().toString();
+                return "Accepts tag: #" + named.key().location();
             }
             return "various blocks";
         }
@@ -143,44 +145,41 @@ public class ModJeiPlugin implements IModPlugin {
 
         public final int DISPLAY_DURATION = 10; // in ticks
 
-        protected final RandomSource random;
-
-        protected BlocksIngredient currentIngredient;
-
-        protected int index;
-
-        protected Holder<Block> currentBlock;
+        protected final Map<BlocksIngredient, Integer> ingredientIndex = new HashMap<>();
 
         protected long lastGameTick = -1;
-
-        public BlocksIngredientRenderer(final RandomSource random) {
-            this.random = random;
-        }
 
         @Override
         public void render(final GuiGraphicsExtractor guiGraphics, final BlocksIngredient ingredient) {
             final long currentGameTick = Minecraft.getInstance().level.getGameTime();
-            if (currentIngredient != ingredient) {
-                currentIngredient = ingredient;
-                index = 0;
+            if (lastGameTick == -1) {
                 lastGameTick = currentGameTick;
             }
-            else {
-                if (currentGameTick >= lastGameTick + DISPLAY_DURATION) {
-                    lastGameTick = currentGameTick;
-                    if (++index >= currentIngredient.blocks.size()) {
-                        index = 0;
+            if (!ingredientIndex.containsKey(ingredient)) {
+                ingredientIndex.put(ingredient, 0);
+            }
+            if (currentGameTick >= lastGameTick + DISPLAY_DURATION) {
+                lastGameTick = currentGameTick;
+                for (final BlocksIngredient ingredientKey : ingredientIndex.keySet()) {
+                    final int newIndex = ingredientIndex.get(ingredientKey) + 1;
+                    if (newIndex >= ingredientKey.blocks.size()) {
+                        ingredientIndex.put(ingredientKey, 0);
+                    } else {
+                        ingredientIndex.put(ingredientKey, newIndex);
                     }
                 }
             }
-            currentBlock = currentIngredient.blocks().get(index);
-            guiGraphics.item(currentBlock.value().asItem().getDefaultInstance(), 0, 0);
+            guiGraphics.item(ingredient.blocks().get(ingredientIndex.get(ingredient))
+                    .value().asItem().getDefaultInstance(), 0, 0);
         }
 
         @Override
         public List<Component> getTooltip(final BlocksIngredient ingredient, final TooltipFlag tooltipFlag) {
             if (ingredient.blocks() instanceof HolderSet.Named<Block> named) {
-                return List.of(Component.literal(named.key().toString()));
+                return List.of(
+                        ingredient.blocks().get(ingredientIndex.get(ingredient)).value().getName(),
+                        Component.translatable("gui.strangeadventures.accept_blocks_tag"),
+                        Component.literal("#" + named.key().location()));
             }
             return List.of();
         }
@@ -191,19 +190,24 @@ public class ModJeiPlugin implements IModPlugin {
         public SippingCategory(final IGuiHelper guiHelper) {
             super(SAP_SIPPER, Component.translatable("jei.strangeadventures.sap_sipper"),
                     guiHelper.createDrawableItemLike(ModBlocks.SAP_SIPPER),
-                    116, 54);
+                    116, 18);
         }
 
         @Override
         public void setRecipe(final IRecipeLayoutBuilder builder, final SapSipperRecipe recipe, final IFocusGroup focuses) {
-            builder.addInputSlot(1, 19)
+            builder.addInputSlot(1, 1)
                     .setStandardSlotBackground()
                     .add(BlocksIngredient.TYPE, new BlocksIngredient(recipe.getSapBlocks()));
-            builder.addOutputSlot(95, 19)
-                    .setFluidRenderer(1000L, true, 16, 16)
-                    .add(recipe.getSapResult().value(), recipe.getAmountPerSap());
+            builder.addOutputSlot(95, 1)
+                    .setFluidRenderer(FluidUtil.MB_PER_BUCKET, true, 16, 16)
+                    .add(recipe.getSapResult().value(), FluidUtil.DROPLETS_PER_MB * recipe.getAmountPerSap());
         }
 
+        @Override
+        public void createRecipeExtras(final IRecipeExtrasBuilder builder, final SapSipperRecipe recipe, final IFocusGroup focuses) {
+            builder.addAnimatedRecipeArrowWidget(recipe.getTicksPerSap())
+                    .setPosition(45, 1);
+        }
     }
 
     /*//public class Fluid
