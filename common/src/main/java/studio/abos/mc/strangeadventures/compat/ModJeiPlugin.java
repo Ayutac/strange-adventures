@@ -18,6 +18,7 @@ import mezz.jei.api.registration.IRecipeCatalystRegistration;
 import mezz.jei.api.registration.IRecipeCategoryRegistration;
 import mezz.jei.api.registration.IRecipeRegistration;
 import net.blay09.mods.balm.Balm;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderSet;
@@ -26,8 +27,6 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.block.Block;
@@ -64,7 +63,7 @@ public class ModJeiPlugin implements IModPlugin {
 
     @Override
     public void registerIngredients(final IModIngredientRegistration registration) {
-        registration.register(BlocksIngredient.TYPE, List.of(), new BlocksIngredientHelper(), new BlocksIngredientRenderer(), BlocksIngredient.CODEC);
+        registration.register(BlocksIngredient.TYPE, List.of(), new BlocksIngredientHelper(), new BlocksIngredientRenderer(RandomSource.create()), BlocksIngredient.CODEC);
     }
 
     @Override
@@ -123,7 +122,7 @@ public class ModJeiPlugin implements IModPlugin {
         @Override
         public Identifier getIdentifier(final BlocksIngredient ingredient) {
             if (ingredient.blocks() instanceof HolderSet.Named<Block> named) {
-                return StrangeAdventures.id(named.key().toString());
+                return named.key().location();
             }
             return StrangeAdventures.id(ingredient.toString());
         }
@@ -142,14 +141,40 @@ public class ModJeiPlugin implements IModPlugin {
 
     public static class BlocksIngredientRenderer implements IIngredientRenderer<BlocksIngredient> {
 
+        public final int DISPLAY_DURATION = 10; // in ticks
+
+        protected final RandomSource random;
+
+        protected BlocksIngredient currentIngredient;
+
+        protected int index;
+
+        protected Holder<Block> currentBlock;
+
+        protected long lastGameTick = -1;
+
+        public BlocksIngredientRenderer(final RandomSource random) {
+            this.random = random;
+        }
+
         @Override
         public void render(final GuiGraphicsExtractor guiGraphics, final BlocksIngredient ingredient) {
-            guiGraphics.item(ingredient.blocks
-                    .getRandomElement(RandomSource.create())
-                    .map(Holder::value)
-                    .map(Block::asItem)
-                    .map(Item::getDefaultInstance)
-                    .orElse(ItemStack.EMPTY), 0, 0);
+            final long currentGameTick = Minecraft.getInstance().level.getGameTime();
+            if (currentIngredient != ingredient) {
+                currentIngredient = ingredient;
+                index = 0;
+                lastGameTick = currentGameTick;
+            }
+            else {
+                if (currentGameTick >= lastGameTick + DISPLAY_DURATION) {
+                    lastGameTick = currentGameTick;
+                    if (++index >= currentIngredient.blocks.size()) {
+                        index = 0;
+                    }
+                }
+            }
+            currentBlock = currentIngredient.blocks().get(index);
+            guiGraphics.item(currentBlock.value().asItem().getDefaultInstance(), 0, 0);
         }
 
         @Override
