@@ -110,7 +110,7 @@ public class ModJeiPlugin implements IModPlugin {
             if (ingredient.blocks() instanceof HolderSet.Named<Block> named) {
                 return "Accepts tag: #" + named.key().location();
             }
-            return "various blocks";
+            throw new IllegalStateException("Only named holder sets are allowed!");
         }
 
         @Override
@@ -118,7 +118,7 @@ public class ModJeiPlugin implements IModPlugin {
             if (ingredient.blocks() instanceof HolderSet.Named<Block> named) {
                 return named.key().toString();
             }
-            return ingredient.toString();
+            throw new IllegalStateException("Only named holder sets are allowed!");
         }
 
         @Override
@@ -126,7 +126,7 @@ public class ModJeiPlugin implements IModPlugin {
             if (ingredient.blocks() instanceof HolderSet.Named<Block> named) {
                 return named.key().location();
             }
-            return StrangeAdventures.id(ingredient.toString());
+            throw new IllegalStateException("Only named holder sets are allowed!");
         }
 
         @Override
@@ -139,11 +139,16 @@ public class ModJeiPlugin implements IModPlugin {
             return String.valueOf(ingredient);
         }
 
+        @Override
+        public boolean isValidIngredient(final BlocksIngredient ingredient) {
+            return ingredient.blocks() instanceof HolderSet.Named<Block>;
+        }
+
     }
 
     public static class BlocksIngredientRenderer implements IIngredientRenderer<BlocksIngredient> {
 
-        public final int DISPLAY_DURATION = 10; // in ticks
+        public final int DISPLAY_DURATION = 15; // in ticks
 
         protected final Map<BlocksIngredient, Integer> ingredientIndex = new HashMap<>();
 
