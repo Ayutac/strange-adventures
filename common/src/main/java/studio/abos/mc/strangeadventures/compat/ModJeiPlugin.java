@@ -322,7 +322,7 @@ public class ModJeiPlugin implements IModPlugin {
     public static class SapSipperCategory extends AbstractRecipeCategory<SapSipperRecipe> {
 
         public SapSipperCategory(final IGuiHelper guiHelper) {
-            super(SAP_SIPPER, Component.translatable("jei.strangeadventures.sap_sipper"),
+            super(SAP_SIPPER, Component.translatable("gui.strangeadventures.title.sap_sipper"),
                     guiHelper.createDrawableItemLike(ModBlocks.SAP_SIPPER),
                     116, 18);
         }
@@ -348,7 +348,7 @@ public class ModJeiPlugin implements IModPlugin {
     public static class EssenceCauldronCategory extends AbstractRecipeCategory<EssenceCauldronRecipe> {
 
         public EssenceCauldronCategory(final IGuiHelper guiHelper) {
-            super(ESSENCE_CAULDRON, Component.translatable("jei.strangeadventures.essence_cauldron"),
+            super(ESSENCE_CAULDRON, Component.translatable("gui.strangeadventures.title.essence_cauldron"),
                     guiHelper.createDrawableItemLike(ModBlocks.ESSENCE_CAULDRON),
                     116, 36);
         }

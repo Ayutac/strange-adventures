@@ -74,6 +74,8 @@
   "gui.strangeadventures.accept_fluids_tag": "Accepts Fluids of Tag:",
   "gui.strangeadventures.sap_sipper": "Sap Sipper contains %1$s mB of ",
   "gui.strangeadventures.sap_sipper.empty": "Sap Sipper is empty.",
+  "gui.strangeadventures.title.sap_sipper": "Sap Sipper",
+  "gui.strangeadventures.title.essence_cauldron": "Essence Cauldron",
   "item.strangeadventures.acacia_sap_bottle": "Acacia Sap Bottle",
   "item.strangeadventures.acacia_sap_bucket": "Acacia Sap Bucket",
   "item.strangeadventures.birch_sap_bottle": "Birch Sap Bottle",
@@ -104,7 +106,5 @@
   "item.strangeadventures.tree_transformator": "Tree Transformator",
   "item.strangeadventures.warped_sap_bottle": "Warped Sap Bottle",
   "item.strangeadventures.warped_sap_bucket": "Warped Sap Bucket",
-  "itemGroup.strangeadventures.strangeadventures": "Strange Adventures",
-  "jei.strangeadventures.sap_sipper": "Sap Sipper",
-  "jei.strangeadventures.essence_cauldron": "Essence Cauldron"
+  "itemGroup.strangeadventures.strangeadventures": "Strange Adventures"
 }
