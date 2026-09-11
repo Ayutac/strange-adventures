@@ -27,6 +27,9 @@
     ],
     "fabric-datagen": [
       "studio.abos.mc.strangeadventures.fabric.datagen.ModDataGenerator"
+    ],
+    "jei_mod_plugin": [
+      "studio.abos.mc.strangeadventures.compat.ModJeiPlugin"
     ]
   },
   "mixins": [

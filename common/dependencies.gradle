@@ -9,4 +9,7 @@ dependencies {
 
     testCompileOnly("org.projectlombok:lombok:1.18.46")
     testAnnotationProcessor("org.projectlombok:lombok:1.18.46")
+
+    // compile against the JEI API but do not include it at runtime
+    compileOnly("mezz.jei:jei-${libs.versions.minecraft.get()}-common-api:${libs.versions.jei.get()}")
 }
