@@ -8,7 +8,7 @@
           "conditions": [
             {
               "condition": "minecraft:entity_properties",
-              "entity": "target_entity",
+              "entity": "this",
               "predicate": {
                 "minecraft:flags": {
                   "is_on_fire": false

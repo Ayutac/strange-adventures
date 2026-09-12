@@ -30,7 +30,7 @@ public class ModEntityLootTableProvider extends FabricEntityLootSubProvider {
                         LootItem.lootTableItem(Items.HANGING_ROOTS)
                                 .apply(EnchantedCountIncreaseFunction.lootingMultiplier(registries, UniformGenerator.between(0f, 1f)))
                                 .when(LootItemEntityPropertyCondition.hasProperties(
-                                        LootContext.EntityTarget.TARGET_ENTITY,
+                                        LootContext.EntityTarget.THIS,
                                         EntityPredicate.Builder.entity().flags(EntityFlagsPredicate.Builder.flags().setOnFire(false)))
                                 )
                 )
