@@ -8,17 +8,24 @@ import snownee.jade.api.BlockAccessor;
 import snownee.jade.api.IBlockComponentProvider;
 import snownee.jade.api.ITooltip;
 import snownee.jade.api.IWailaClientRegistration;
+import snownee.jade.api.IWailaCommonRegistration;
 import snownee.jade.api.IWailaPlugin;
 import snownee.jade.api.WailaPlugin;
 import snownee.jade.api.config.IPluginConfig;
 import snownee.jade.api.fluid.JadeFluidObject;
 import snownee.jade.api.ui.JadeUI;
+import snownee.jade.api.view.HideThingsExtensionProvider;
 import studio.abos.mc.strangeadventures.block.SapSipperBlock;
 import studio.abos.mc.strangeadventures.blockentity.SapSipperBlockEntity;
 import studio.abos.mc.strangeadventures.compat.ModJadePlugin;
 
 @WailaPlugin
 public class ModJadePluginFabric extends ModJadePlugin implements IWailaPlugin {
+
+    @Override
+    public void register(final IWailaCommonRegistration registration) {
+        registration.registerFluidStorage(HideThingsExtensionProvider.instance(), SapSipperBlock.class);
+    }
 
     @Override
     public void registerClient(final IWailaClientRegistration registration) {
@@ -32,12 +39,13 @@ public class ModJadePluginFabric extends ModJadePlugin implements IWailaPlugin {
         @Override
         public void appendTooltip(final ITooltip tooltip, final BlockAccessor blockAccessor, final IPluginConfig pluginConfig) {
             if (blockAccessor.getBlockEntity() instanceof SapSipperBlockEntity sapSipper) {
-                final Fluid fluid = sapSipper.getFluidTank().getFluid(0);
+                final var tank = sapSipper.getFluidTank();
+                final Fluid fluid = tank.getFluid(0);
                 if (!fluid.isSame(Fluids.EMPTY)) {
                     final var sapIcon = JadeUI.fluid(JadeFluidObject.of(fluid));
                     tooltip.add(sapIcon);
-                    tooltip.append(Component.translatable("fluid." + BuiltInRegistries.FLUID.getKey(fluid)));
-                    tooltip.append(Component.literal("%d/%dmB".formatted(sapSipper.getFluidTank().getAmount(0), sapSipper.getFluidTank().getCapacity(0))));
+                    tooltip.add(Component.translatable("fluid." + BuiltInRegistries.FLUID.getKey(fluid).toString().replace(':','.')));
+                    tooltip.add(Component.literal("%d/%dmB ".formatted(tank.getAmount(0), tank.getCapacity(0))));
                 }
             }
         }

@@ -32,12 +32,13 @@ public class ModJadePluginNeoForge extends ModJadePlugin implements IWailaPlugin
         @Override
         public void appendTooltip(final ITooltip tooltip, final BlockAccessor blockAccessor, final IPluginConfig pluginConfig) {
             if (blockAccessor.getBlockEntity() instanceof SapSipperBlockEntity sapSipper) {
-                final Fluid fluid = sapSipper.getFluidTank().getFluid(0);
+                final var tank = sapSipper.getFluidTank();
+                final Fluid fluid = tank.getFluid(0);
                 if (!fluid.isSame(Fluids.EMPTY)) {
                     final var sapIcon = JadeUI.fluid(JadeFluidObject.of(fluid));
                     tooltip.add(sapIcon);
-                    tooltip.append(Component.translatable("fluid." + BuiltInRegistries.FLUID.getKey(fluid)));
-                    tooltip.append(Component.literal("%d/%dmB".formatted(sapSipper.getFluidTank().getAmount(0), sapSipper.getFluidTank().getCapacity(0))));
+                    tooltip.add(Component.translatable("fluid." + BuiltInRegistries.FLUID.getKey(fluid).toString().replace(':','.')));
+                    tooltip.add(Component.literal("%d/%dmB ".formatted(tank.getAmount(0), tank.getCapacity(0))));
                 }
             }
         }
