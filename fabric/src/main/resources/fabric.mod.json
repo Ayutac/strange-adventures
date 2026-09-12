@@ -30,6 +30,9 @@
     ],
     "jei_mod_plugin": [
       "studio.abos.mc.strangeadventures.compat.ModJeiPlugin"
+    ],
+    "jade": [
+      "studio.abos.mc.strangeadventures.fabric.compat.ModJadePluginFabric"
     ]
   },
   "mixins": [

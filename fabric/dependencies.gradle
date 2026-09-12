@@ -13,4 +13,6 @@ dependencies {
     compileOnly("mezz.jei:jei-${libs.versions.minecraft.get()}-fabric-api:${libs.versions.jei.get()}")
     // at runtime, use the full JEI jar for Fabric
     //runtimeOnly("mezz.jei:jei-${libs.versions.minecraft.get()}-fabric:${libs.versions.jei.get()}")
+
+    implementation("maven.modrinth:jade:${libs.versions.jade.get()}+fabric")
 }

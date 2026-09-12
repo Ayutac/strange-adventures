@@ -40,6 +40,7 @@
   "block.strangeadventures.weir_trapdoor": "Weir Trapdoor",
   "block.strangeadventures.weir_wood": "Weir Wood",
   "block.strangeadventures.stripped_weir_wood": "Stripped Weir Wood",
+  "config.jade.plugin_strangeadventures.sap_sipper": "Sap Sipper",
   "death.attack.strangeadventures.tree_transformator": "%1$s was turned into a tree",
   "death.attack.strangeadventures.tree_transformator.item": "%1$s was turned into a tree while fighting %2$s who was wielding %3$s",
   "death.attack.strangeadventures.tree_transformator.player": "%1$s was turned into a tree by %2$s",

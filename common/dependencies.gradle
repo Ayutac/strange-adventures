@@ -12,4 +12,5 @@ dependencies {
 
     // compile against the JEI API but do not include it at runtime
     compileOnly("mezz.jei:jei-${libs.versions.minecraft.get()}-common-api:${libs.versions.jei.get()}")
+
 }

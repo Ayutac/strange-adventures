@@ -13,4 +13,6 @@ dependencies {
     compileOnly("mezz.jei:jei-${libs.versions.minecraft.get()}-neoforge-api:${libs.versions.jei.get()}")
     // at runtime, use the full JEI jar for NeoForge
     //runtimeOnly("mezz.jei:jei-${libs.versions.minecraft.get()}-neoforge:${libs.versions.jei.get()}")
+
+    implementation("maven.modrinth:jade:${libs.versions.jade.get()}+neoforge")
 }

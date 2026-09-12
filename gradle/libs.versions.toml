@@ -13,6 +13,8 @@ fabricApi = "0.158.0+26.2"
 fabricLoader = "0.19.3"
 # See https://github.com/mezz/JustEnoughItems
 jei = "30.32.0.212"
+# See https://modrinth.com/mod/jade/versions
+jade = "26.2.10"
 
 [libraries]
 minecraft = { module = "com.mojang:minecraft", version.ref = "minecraft" }
