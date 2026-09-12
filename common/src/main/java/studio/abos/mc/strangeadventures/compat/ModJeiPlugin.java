@@ -19,6 +19,7 @@ import mezz.jei.api.registration.IRecipeCatalystRegistration;
 import mezz.jei.api.registration.IRecipeCategoryRegistration;
 import mezz.jei.api.registration.IRecipeRegistration;
 import net.blay09.mods.balm.Balm;
+import net.blay09.mods.balm.platform.LoaderPlatforms;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.renderer.RenderPipelines;
@@ -334,7 +335,7 @@ public class ModJeiPlugin implements IModPlugin {
                     .add(BlocksIngredient.TYPE, new BlocksIngredient(recipe.getSapBlocks()));
             builder.addOutputSlot(84, 1)
                     .setFluidRenderer(FluidUtil.MB_PER_BUCKET, true, 16, 16)
-                    .add(recipe.getSapResult().value(), FluidUtil.DROPLETS_PER_MB * recipe.getAmountPerSap());
+                    .add(recipe.getSapResult().value(), (Balm.platform().name().equals(LoaderPlatforms.FABRIC) ? FluidUtil.DROPLETS_PER_MB : 1L) * recipe.getAmountPerSap());
         }
 
         @Override

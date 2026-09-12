@@ -4,6 +4,7 @@
   "package": "studio.abos.mc.strangeadventures.neoforge.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
+    "AbstractSapFluidMixin"
   ],
   "client": [
   ],
