@@ -4,12 +4,15 @@ import net.blay09.mods.balm.Balm;
 import net.blay09.mods.balm.core.BalmRegistrars;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.Identifier;
+import org.jspecify.annotations.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import studio.abos.mc.strangeadventures.api.StrangeAdventuresApi;
 import studio.abos.mc.strangeadventures.api.BiomeTree;
 import studio.abos.mc.strangeadventures.block.ModBlocks;
 import studio.abos.mc.strangeadventures.blockentity.ModBlockEntities;
+import studio.abos.mc.strangeadventures.command.ModCommands;
+import studio.abos.mc.strangeadventures.data.ModDataAttachments;
 import studio.abos.mc.strangeadventures.entity.ModEntityTypes;
 import studio.abos.mc.strangeadventures.fluid.ModFluids;
 import studio.abos.mc.strangeadventures.item.ModItems;
@@ -17,11 +20,15 @@ import studio.abos.mc.strangeadventures.recipe.ModRecipeTypes;
 import studio.abos.mc.strangeadventures.targetingmode.ModTargetingModes;
 import studio.abos.mc.strangeadventures.targetingspace.ModTargetingSpaces;
 
+import java.util.Objects;
+
 public class StrangeAdventures {
 
     public static final Logger logger = LoggerFactory.getLogger(StrangeAdventures.class);
 
     public static final String MOD_ID = "strangeadventures";
+
+    private static @Nullable ModDataAttachments dataAttachments;
 
     public static Identifier id(String path) {
         return Identifier.fromNamespaceAndPath(MOD_ID, path);
@@ -29,6 +36,10 @@ public class StrangeAdventures {
 
     public static StrangeAdventuresConfig config() {
         return Balm.config().getActiveConfig(StrangeAdventuresConfig.class);
+    }
+
+    public static ModDataAttachments dataAttachments() {
+        return Objects.requireNonNull(dataAttachments);
     }
 
     public static void initialize(BalmRegistrars registrars) {
@@ -47,6 +58,10 @@ public class StrangeAdventures {
         registrars.creativeModeTabs(ModItems::initialize);
         registrars.registrar(StrangeAdventuresApi.TARGETING_MODE_REGISTRY_KEY, ModTargetingModes::initialize);
         registrars.registrar(StrangeAdventuresApi.TARGETING_SPACE_REGISTRY_KEY, ModTargetingSpaces::initialize);
+
+        registrars.dataAttachmentTypes(registrar -> dataAttachments = new ModDataAttachments(registrar));
+
+        ModCommands.initialize(Balm.commands());
     }
 
 }
