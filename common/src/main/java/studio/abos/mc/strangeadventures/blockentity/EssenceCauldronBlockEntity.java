@@ -70,6 +70,16 @@ public class EssenceCauldronBlockEntity extends BlockEntity implements BalmFluid
         return Collections.unmodifiableList(items);
     }
 
+    public int getItemCount() {
+        int sum = 0;
+        for (final ItemStack stack : items) {
+            if (!stack.isEmpty()) {
+                sum++;
+            }
+        }
+        return sum;
+    }
+
     @Override
     public Tank getFluidTank() {
         return tank;

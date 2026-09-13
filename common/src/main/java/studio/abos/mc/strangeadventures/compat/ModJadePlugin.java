@@ -37,4 +37,12 @@ public class ModJadePlugin {
 
     }
 
+    public static class EssenceCauldronComponentProvider {
+
+        public Identifier getUid() {
+            return ModBlocks.ESSENCE_CAULDRON.asBlockItemId().block().identifier();
+        }
+
+    }
+
 }
