@@ -9,7 +9,11 @@ public final class ModDataAttachments {
 
     public ModDataAttachments(final BalmDataAttachmentTypeRegistrar registrar) {
         GREEN_AVATAR_DATA = registrar
-                .register("green_avatar_data", GreenAvatarData.CODEC, GreenAvatarData::new, true)
+                .<GreenAvatarData>register("green_avatar_data", builder -> builder
+                        .initializer(GreenAvatarData::new)
+                        .persistent(GreenAvatarData.CODEC)
+                        .networkSynchronized(GreenAvatarData.STREAM_CODEC)
+                        .copyOnDeath())
                 .asLookup();
     }
 
