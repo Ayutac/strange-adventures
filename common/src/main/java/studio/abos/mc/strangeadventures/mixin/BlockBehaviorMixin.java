@@ -23,11 +23,17 @@ public abstract class BlockBehaviorMixin {
     protected void strangeadventures$walkThroughTrees(final BlockState state, final BlockGetter level, final BlockPos pos, final CollisionContext context, final CallbackInfoReturnable<VoxelShape> cir) {
         if (context instanceof final EntityCollisionContext ecc &&
                 ecc.getEntity() instanceof final Player player &&
-                (!player.getOnPos().equals(pos) || player.isCrouching()) && // do only let player fall through blocks if crouching
                 cir.getReturnValue() != Shapes.empty()) {
-            final var lookup = StrangeAdventures.dataAttachments().GREEN_AVATAR_DATA;
-            if (lookup.has(player) && lookup.get(player).isActive() && state.is(ModBlockTags.IGNORED_BY_GREEN_AVATAR)) {
-                cir.setReturnValue(Shapes.empty());
+            if (state.is(ModBlockTags.IGNORED_BY_GREEN_AVATAR)) {
+                final var lookup = StrangeAdventures.dataAttachments().GREEN_AVATAR_DATA;
+                if (lookup.has(player) && lookup.get(player).isActive()) {
+                    if ((!player.getOnPos().equals(pos) || player.isCrouching())) { // do only let player fall through blocks if crouching
+                        cir.setReturnValue(Shapes.empty());
+                    }
+                    else if (player.getOnPos().equals(pos) && player.getY() - player.getOnPos().getY() > 0.9375) {
+                        player.setPos(player.getX(), Math.ceil(player.getY()), player.getZ());
+                    }
+                }
             }
         }
     }
