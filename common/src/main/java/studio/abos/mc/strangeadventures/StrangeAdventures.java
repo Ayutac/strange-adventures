@@ -13,6 +13,7 @@ import studio.abos.mc.strangeadventures.block.ModBlocks;
 import studio.abos.mc.strangeadventures.blockentity.ModBlockEntities;
 import studio.abos.mc.strangeadventures.command.ModCommands;
 import studio.abos.mc.strangeadventures.data.ModDataAttachments;
+import studio.abos.mc.strangeadventures.effect.ModEffects;
 import studio.abos.mc.strangeadventures.entity.ModEntityTypes;
 import studio.abos.mc.strangeadventures.fluid.ModFluids;
 import studio.abos.mc.strangeadventures.item.ModItems;
@@ -54,6 +55,7 @@ public class StrangeAdventures {
         registrars.items(ModItems::initialize);
         registrars.blockEntityTypes(ModBlockEntities::initialize);
         registrars.entityTypes(ModEntityTypes::initialize);
+        registrars.registrar(Registries.MOB_EFFECT, ModEffects::initialize);
         registrars.recipeTypes(ModRecipeTypes::initialize);
         registrars.creativeModeTabs(ModItems::initialize);
         registrars.registrar(StrangeAdventuresApi.TARGETING_MODE_REGISTRY_KEY, ModTargetingModes::initialize);

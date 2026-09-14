@@ -46,6 +46,7 @@
   "death.attack.strangeadventures.tree_transformator.item": "%1$s was turned into a tree while fighting %2$s who was wielding %3$s",
   "death.attack.strangeadventures.tree_transformator.player": "%1$s was turned into a tree by %2$s",
   "death.attack.strangeadventures.tree_transformator.player.item": "%1$s turned into a tree by %2$s who was wielding %3$s",
+  "effect.strangeadventures.green_avatar_revival_block": "Revival Block for Avatar of the Green",
   "fluid.strangeadventures.acacia_sap": "Acacia Sap",
   "fluid.strangeadventures.flowing_acacia_sap": "Flowing Acacia Sap",
   "fluid.strangeadventures.birch_sap": "Birch Sap",
