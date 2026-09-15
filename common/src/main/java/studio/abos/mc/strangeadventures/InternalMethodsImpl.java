@@ -120,27 +120,28 @@ public class InternalMethodsImpl implements InternalMethods {
     @Override
     public boolean greenAvatarActivate(final ServerPlayer player) {
         final var lookup = StrangeAdventures.dataAttachments().GREEN_AVATAR_DATA;
-        if (lookup.has(player) && lookup.get(player).isActive()) {
+        if (lookup.has(player) && lookup.get(player).active()) {
             return false;
         }
         final GreenAvatarData data = lookup.getOrCreate(player);
-        data.setActive(true);
+        lookup.update(player, data.withActive(true));
         return false;
     }
 
     @Override
     public boolean greenAvatarActive(final Player player) {
         final var lookup = StrangeAdventures.dataAttachments().GREEN_AVATAR_DATA;
-        return lookup.has(player) && lookup.get(player).isActive();
+        return lookup.has(player) && lookup.get(player).active();
     }
 
     @Override
     public boolean greenAvatarDeactivate(final ServerPlayer player) {
         final var lookup = StrangeAdventures.dataAttachments().GREEN_AVATAR_DATA;
-        if (!lookup.has(player) || !lookup.get(player).isActive()) {
+        if (!lookup.has(player) || !lookup.get(player).active()) {
             return false;
         }
-        lookup.get(player).setActive(false);
+        final GreenAvatarData data = lookup.get(player);
+        lookup.update(player, data.withActive(false));
         return true;
     }
 
