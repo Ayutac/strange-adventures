@@ -9,6 +9,7 @@
     "ButtonBlockAccessor",
     "DoorBlockAccessor",
     "LiquidBlockAccessor",
+    "PlayerMixin",
     "PressurePlateBlockAccessor",
     "SaplingBlockAccessor",
     "StairBlockAccessor",

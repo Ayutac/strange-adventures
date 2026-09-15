@@ -23,7 +23,6 @@ import studio.abos.mc.strangeadventures.entity.ModEntityTypes;
 import studio.abos.mc.strangeadventures.fluid.ModFluids;
 import studio.abos.mc.strangeadventures.item.ModItems;
 import studio.abos.mc.strangeadventures.recipe.ModRecipeTypes;
-import studio.abos.mc.strangeadventures.tag.ModDamageTypeTags;
 import studio.abos.mc.strangeadventures.targetingmode.ModTargetingModes;
 import studio.abos.mc.strangeadventures.targetingspace.ModTargetingSpaces;
 
@@ -73,9 +72,7 @@ public class StrangeAdventures {
 
         LivingEntityCallback.Damage.Before.EVENT.register((entity, damageSource, damageAmount) -> {
             if (entity instanceof final ServerPlayer player && StrangeAdventuresApi.INTERNAL_METHODS.greenAvatarActive(player)) {
-                if (damageSource.is(ModDamageTypeTags.GREEN_AVATAR_IMMUNITIES)) {
-                    return 0f;
-                }
+                // invulnerabilities are in PlayerMixin
                 if (damageSource.is(DamageTypeTags.IS_FIRE)) {
                     damageAmount *= 2;
                 }
