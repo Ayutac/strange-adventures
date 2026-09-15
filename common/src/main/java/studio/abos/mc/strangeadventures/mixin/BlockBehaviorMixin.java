@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-import studio.abos.mc.strangeadventures.StrangeAdventures;
+import studio.abos.mc.strangeadventures.api.StrangeAdventuresApi;
 import studio.abos.mc.strangeadventures.tag.ModBlockTags;
 
 @Mixin(BlockBehaviour.class)
@@ -25,8 +25,7 @@ public abstract class BlockBehaviorMixin {
                 ecc.getEntity() instanceof final Player player &&
                 cir.getReturnValue() != Shapes.empty()) {
             if (state.is(ModBlockTags.IGNORED_BY_GREEN_AVATAR)) {
-                final var lookup = StrangeAdventures.dataAttachments().GREEN_AVATAR_DATA;
-                if (lookup.has(player) && lookup.get(player).isActive()) {
+                if (StrangeAdventuresApi.INTERNAL_METHODS.greenAvatarActive(player)) {
                     if ((!player.getOnPos().equals(pos) || player.isCrouching())) { // do only let player fall through blocks if crouching
                         cir.setReturnValue(Shapes.empty());
                     }

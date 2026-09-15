@@ -10,6 +10,7 @@ import net.minecraft.commands.arguments.EntityArgument;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.server.permissions.Permissions;
 import studio.abos.mc.strangeadventures.StrangeAdventures;
+import studio.abos.mc.strangeadventures.api.StrangeAdventuresApi;
 
 public final class ModCommands {
 
@@ -34,7 +35,7 @@ public final class ModCommands {
     private static int activateGreenAvatar(final CommandContext<CommandSourceStack> context) {
         try {
             for (final ServerPlayer player : EntityArgument.getPlayers(context, "players")) {
-                StrangeAdventures.dataAttachments().GREEN_AVATAR_DATA.getOrCreate(player).setActive(true);
+                StrangeAdventuresApi.INTERNAL_METHODS.greenAvatarActivate(player);
             }
         } catch (final CommandSyntaxException ex) {
             return 0;
@@ -45,7 +46,7 @@ public final class ModCommands {
     private static int deactivateGreenAvatar(final CommandContext<CommandSourceStack> context) {
         try {
             for (final ServerPlayer player : EntityArgument.getPlayers(context, "players")) {
-                StrangeAdventures.dataAttachments().GREEN_AVATAR_DATA.getOrCreate(player).setActive(false);
+                StrangeAdventuresApi.INTERNAL_METHODS.greenAvatarDeactivate(player);
             }
         } catch (final CommandSyntaxException ex) {
             return 0;

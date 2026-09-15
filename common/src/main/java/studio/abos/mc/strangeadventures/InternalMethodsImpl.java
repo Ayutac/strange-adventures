@@ -11,6 +11,7 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Relative;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Blocks;
@@ -20,6 +21,7 @@ import org.jspecify.annotations.Nullable;
 import studio.abos.mc.strangeadventures.api.InternalMethods;
 import studio.abos.mc.strangeadventures.api.StrangeAdventuresApi;
 import studio.abos.mc.strangeadventures.block.ModBlocks;
+import studio.abos.mc.strangeadventures.data.GreenAvatarData;
 import studio.abos.mc.strangeadventures.effect.ModEffects;
 import studio.abos.mc.strangeadventures.tag.ModBlockTags;
 
@@ -111,6 +113,33 @@ public class InternalMethodsImpl implements InternalMethods {
     @Override
     public DamageSource createTreeTransformatorDamageSource(final Level level, final @Nullable Entity attacker) {
         return new DamageSource(level.registryAccess().lookupOrThrow(Registries.DAMAGE_TYPE).getOrThrow(StrangeAdventuresApi.TREE_TRANSFORMATOR_DAMAGE_TYPE), attacker);
+    }
+
+    @Override
+    public boolean greenAvatarActivate(final ServerPlayer player) {
+        final var lookup = StrangeAdventures.dataAttachments().GREEN_AVATAR_DATA;
+        if (lookup.has(player) && lookup.get(player).isActive()) {
+            return false;
+        }
+        final GreenAvatarData data = lookup.getOrCreate(player);
+        data.setActive(true);
+        return false;
+    }
+
+    @Override
+    public boolean greenAvatarActive(final Player player) {
+        final var lookup = StrangeAdventures.dataAttachments().GREEN_AVATAR_DATA;
+        return lookup.has(player) && lookup.get(player).isActive();
+    }
+
+    @Override
+    public boolean greenAvatarDeactivate(final ServerPlayer player) {
+        final var lookup = StrangeAdventures.dataAttachments().GREEN_AVATAR_DATA;
+        if (!lookup.has(player) || !lookup.get(player).isActive()) {
+            return false;
+        }
+        lookup.get(player).setActive(false);
+        return true;
     }
 
     @Override

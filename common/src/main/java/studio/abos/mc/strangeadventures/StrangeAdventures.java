@@ -68,10 +68,11 @@ public class StrangeAdventures {
         ModCommands.initialize(Balm.commands());
 
         LivingEntityCallback.Damage.Before.EVENT.register((entity, damageSource, damageAmount) -> {
-            final var lookup = StrangeAdventures.dataAttachments().GREEN_AVATAR_DATA;
-            if (damageAmount >= entity.getHealth() && entity instanceof final ServerPlayer player && lookup.has(player) && !player.hasEffect(ModEffects.GREEN_AVATAR_REGROW_BLOCK)) {
-                if (StrangeAdventuresApi.INTERNAL_METHODS.greenAvatarRegrow(player)) {
-                    return 0f;
+            if (entity instanceof final ServerPlayer player && StrangeAdventuresApi.INTERNAL_METHODS.greenAvatarActive(player)) {
+                if (damageAmount >= entity.getHealth() && !player.hasEffect(ModEffects.GREEN_AVATAR_REGROW_BLOCK)) {
+                    if (StrangeAdventuresApi.INTERNAL_METHODS.greenAvatarRegrow(player)) {
+                        return 0f;
+                    }
                 }
             }
             return damageAmount;
