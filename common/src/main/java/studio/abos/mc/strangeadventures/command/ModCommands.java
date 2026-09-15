@@ -1,6 +1,7 @@
 package studio.abos.mc.strangeadventures.command;
 
 import com.mojang.brigadier.CommandDispatcher;
+import com.mojang.brigadier.arguments.FloatArgumentType;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import net.blay09.mods.balm.commands.BalmCommands;
@@ -27,6 +28,18 @@ public final class ModCommands {
                                         .executes(ModCommands::activateGreenAvatar))
                                 .then(Commands.literal("deactivate")
                                         .executes(ModCommands::deactivateGreenAvatar))
+                                .then(Commands.literal("mass")
+                                        .then(Commands.literal("set")
+                                                .then(Commands.argument("amount", FloatArgumentType.floatArg())
+                                                        .executes(ModCommands::setGreenAvatarMass)
+                                                )
+                                        )
+                                        .then(Commands.literal("add")
+                                                .then(Commands.argument("amount", FloatArgumentType.floatArg())
+                                                        .executes(ModCommands::addGreenAvatarMass)
+                                                )
+                                        )
+                                )
                         )
                 )
         );
@@ -53,4 +66,29 @@ public final class ModCommands {
         }
         return 1;
     }
+
+    private static int setGreenAvatarMass(CommandContext<CommandSourceStack> context) {
+        final float amount = FloatArgumentType.getFloat(context, "amount");
+        try {
+            for (final ServerPlayer player : EntityArgument.getPlayers(context, "players")) {
+                StrangeAdventuresApi.INTERNAL_METHODS.greenAvatarSetMass(player, amount);
+            }
+        } catch (final CommandSyntaxException ex) {
+            return 0;
+        }
+        return 1;
+    }
+
+    private static int addGreenAvatarMass(CommandContext<CommandSourceStack> context) {
+        final float amount = FloatArgumentType.getFloat(context, "amount");
+        try {
+            for (final ServerPlayer player : EntityArgument.getPlayers(context, "players")) {
+                StrangeAdventuresApi.INTERNAL_METHODS.greenAvatarAddMass(player, amount);
+            }
+        } catch (final CommandSyntaxException ex) {
+            return 0;
+        }
+        return 1;
+    }
+
 }

@@ -7,6 +7,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.util.Mth;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
@@ -146,6 +147,24 @@ public class InternalMethodsImpl implements InternalMethods {
     }
 
     @Override
+    public float greenAvatarSetMass(final ServerPlayer player, final float amount) {
+        final var lookup = StrangeAdventures.dataAttachments().GREEN_AVATAR_DATA;
+        final GreenAvatarData data = lookup.getOrCreate(player);
+        final float newMass = Mth.clamp(amount, StrangeAdventuresApi.GREEN_AVATAR_MASS_MIN, StrangeAdventuresApi.GREEN_AVATAR_MASS_MAX);
+        lookup.update(player, data.withMass(newMass));
+        return newMass;
+    }
+
+    @Override
+    public float greenAvatarAddMass(final ServerPlayer player, final float amount) {
+        final var lookup = StrangeAdventures.dataAttachments().GREEN_AVATAR_DATA;
+        final GreenAvatarData data = lookup.getOrCreate(player);
+        final float newMass = Mth.clamp(data.mass() + amount, StrangeAdventuresApi.GREEN_AVATAR_MASS_MIN, StrangeAdventuresApi.GREEN_AVATAR_MASS_MAX);
+        lookup.update(player, data.withMass(newMass));
+        return newMass;
+    }
+
+    @Override
     public boolean greenAvatarRegrow(final ServerPlayer player) {
         final List<BlockPos> regrowPosList = new LinkedList<>();
         for (final BlockPos pos : BlockPos.betweenClosed(player.getBlockX() - GREEN_AVATAR_REGROW_RANGE, player.getBlockY() - GREEN_AVATAR_REGROW_RANGE, player.getBlockZ() - GREEN_AVATAR_REGROW_RANGE,
@@ -165,6 +184,7 @@ public class InternalMethodsImpl implements InternalMethods {
         player.clearFire();
         player.clearFreeze();
         player.removeAllEffects();
+        greenAvatarSetMass(player, 0.5f);
         player.setHealth(player.getMaxHealth() / 2);
         player.addEffect(new MobEffectInstance(ModEffects.GREEN_AVATAR_REGROW_BLOCK, 5 * 60 * 20));
         return true;

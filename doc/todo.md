@@ -12,3 +12,5 @@
 * fix AotG cannot go through Cactus bug
 ### after release
 * add project ids to gradle.properties
+### at some point
+* better command feedback via chat messages

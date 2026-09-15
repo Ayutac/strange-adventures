@@ -39,6 +39,26 @@ public interface InternalMethods {
     boolean greenAvatarDeactivate(final ServerPlayer player);
 
     /**
+     * Sets the mass of the given player (but no other AotG data fields) to the specified amount,
+     * clamped between {@link StrangeAdventuresApi#GREEN_AVATAR_MASS_MIN} and {@link StrangeAdventuresApi#GREEN_AVATAR_MASS_MAX}.
+     * @param player the player to change the Avatar of the Green mass of
+     * @param amount the amount to set
+     * @return The mass after the change.
+     */
+    float greenAvatarSetMass(final ServerPlayer player, float amount);
+
+    /**
+     * Changes the mass of the given player (but no other AotG data fields) by the specified amount,
+     * clamped between {@link StrangeAdventuresApi#GREEN_AVATAR_MASS_MIN} and {@link StrangeAdventuresApi#GREEN_AVATAR_MASS_MAX}.
+     * <br>
+     * Note that if the player didn't have mass previously, the amount here will be added to <code>1f</code>.
+     * @param player the player to change the Avatar of the Green mass of
+     * @param amount the amount to change, can be negative
+     * @return The total mass after the change.
+     */
+    float greenAvatarAddMass(final ServerPlayer player, float amount);
+
+    /**
      * Regrows the player like an Avatar of the Green. Doesn't check conditions for this regrow, only executes it.
      * @param player the player to regrow
      * @return <code>true</code> if the regrow was successful, else <code>false</code> (for example when no appropriate
