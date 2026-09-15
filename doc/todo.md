@@ -1,7 +1,9 @@
 ## TODO
 ### for 26.3
-* https://fabricmc.net/2026/09/15/263.html
 * https://minecraft.wiki/w/Java_Edition_26.3
+* https://fabricmc.net/2026/09/15/263.html
+* (nothing for NF rn)
+* https://balm.twelveiterations.com/migration/26.3
 ### before release
 * add description to gradle.properties
 * assign proper map colors to the blocks
