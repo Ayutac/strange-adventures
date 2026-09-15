@@ -9,6 +9,7 @@ public final class ModBlockTags {
     public static final TagKey<Block> GREEN_FARMLAND_CONVERTIBLE = TagKey.create(Registries.BLOCK, StrangeAdventures.id("green_farmland_convertible"));
     public static final TagKey<Block> WEIR_LOGS = TagKey.create(Registries.BLOCK, StrangeAdventures.id("weir_logs"));
     public static final TagKey<Block> IGNORED_BY_GREEN_AVATAR = TagKey.create(Registries.BLOCK, StrangeAdventures.id("ignored_by_green_avatar"));
+    public static final TagKey<Block> GREEN_AVATAR_CAN_REGROW_IN = TagKey.create(Registries.BLOCK, StrangeAdventures.id("green_avatar_can_regrow_in"));
 
     public static final TagKey<Block> MAKES_ACACIA_SAP = TagKey.create(Registries.BLOCK, StrangeAdventures.id("makes_acadia_sap"));
     public static final TagKey<Block> MAKES_BIRCH_SAP = TagKey.create(Registries.BLOCK, StrangeAdventures.id("makes_birch_sap"));

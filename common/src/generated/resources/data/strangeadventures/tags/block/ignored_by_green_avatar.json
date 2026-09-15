@@ -1,6 +1,11 @@
 {
   "values": [
     "#minecraft:logs",
-    "#minecraft:leaves"
+    "#minecraft:leaves",
+    "minecraft:cactus",
+    "minecraft:bamboo",
+    "minecraft:moss_block",
+    "minecraft:azalea",
+    "minecraft:flowering_azalea"
   ]
 }

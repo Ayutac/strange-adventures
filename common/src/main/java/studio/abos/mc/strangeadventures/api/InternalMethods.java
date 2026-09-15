@@ -1,6 +1,7 @@
 package studio.abos.mc.strangeadventures.api;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
@@ -14,5 +15,7 @@ public interface InternalMethods {
     void tpGreenToOverworld(final LivingEntity toTeleport, final BlockPos startPos);
 
     DamageSource createTreeTransformatorDamageSource(final Level level, final @Nullable Entity attacker);
+
+    boolean greenAvatarRegrow(final ServerPlayer player);
 
 }

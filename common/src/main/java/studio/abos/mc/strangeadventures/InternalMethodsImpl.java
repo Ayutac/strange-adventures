@@ -5,7 +5,9 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Relative;
@@ -18,8 +20,12 @@ import org.jspecify.annotations.Nullable;
 import studio.abos.mc.strangeadventures.api.InternalMethods;
 import studio.abos.mc.strangeadventures.api.StrangeAdventuresApi;
 import studio.abos.mc.strangeadventures.block.ModBlocks;
+import studio.abos.mc.strangeadventures.effect.ModEffects;
+import studio.abos.mc.strangeadventures.tag.ModBlockTags;
 
 import java.util.EnumSet;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Optional;
 import java.util.function.UnaryOperator;
 
@@ -27,6 +33,7 @@ public class InternalMethodsImpl implements InternalMethods {
 
     private static final int[] XZ_TP_RANGE = new int[] {0,-1,1,-2,2};
     private static final int[] Y_TP_RANGE = new int[] {0,-1,1,-2,2,-3,3,-4,4};
+    private static final int GREEN_AVATAR_REGROW_RANGE = 16;
 
     private static Optional<BlockPos> findBestTpPosition(final LevelAccessor level, final BlockPos idealPos, final int height) {
         if (height <= 0) {
@@ -104,6 +111,25 @@ public class InternalMethodsImpl implements InternalMethods {
     @Override
     public DamageSource createTreeTransformatorDamageSource(final Level level, final @Nullable Entity attacker) {
         return new DamageSource(level.registryAccess().lookupOrThrow(Registries.DAMAGE_TYPE).getOrThrow(StrangeAdventuresApi.TREE_TRANSFORMATOR_DAMAGE_TYPE), attacker);
+    }
+
+    @Override
+    public boolean greenAvatarRegrow(final ServerPlayer player) {
+        final List<BlockPos> regrowPosList = new LinkedList<>();
+        for (final BlockPos pos : BlockPos.betweenClosed(player.getBlockX() - GREEN_AVATAR_REGROW_RANGE, player.getBlockY() - GREEN_AVATAR_REGROW_RANGE, player.getBlockZ() - GREEN_AVATAR_REGROW_RANGE,
+                player.getBlockX() + GREEN_AVATAR_REGROW_RANGE, player.getBlockY() + GREEN_AVATAR_REGROW_RANGE, player.getBlockZ() + GREEN_AVATAR_REGROW_RANGE)) {
+            if (!pos.equals(player.blockPosition()) && player.level().getBlockState(pos).is(ModBlockTags.GREEN_AVATAR_CAN_REGROW_IN)) {
+                regrowPosList.add(pos.immutable());
+            }
+        }
+        if (regrowPosList.isEmpty()) {
+            return false;
+        }
+        final BlockPos regrowPos = regrowPosList.get(player.getRandom().nextInt(regrowPosList.size()));
+        player.teleportTo(regrowPos.getX() + 0.5, regrowPos.getY(), regrowPos.getZ() + 0.5);
+        player.setHealth(player.getMaxHealth() / 2);
+        player.addEffect(new MobEffectInstance(ModEffects.GREEN_AVATAR_REGROW_BLOCK, 5 * 60 * 20));
+        return true;
     }
 
 }

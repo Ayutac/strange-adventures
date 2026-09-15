@@ -57,7 +57,11 @@ public class ModBlockTagProvider extends FabricTagsProvider.BlockTagsProvider {
                 ModBlocks.WEIR_WOOD.asResourceKey(), ModBlocks.STRIPPED_WEIR_WOOD.asResourceKey());
         builder(ModBlockTags.IGNORED_BY_GREEN_AVATAR).forceAddTag(BlockItemTags.LOGS.block());
         builder(ModBlockTags.IGNORED_BY_GREEN_AVATAR).forceAddTag(BlockItemTags.LEAVES.block());
-        builder(ModBlockTags.IGNORED_BY_GREEN_AVATAR).add(BlockItemIds.CACTUS, BlockItemIds.BAMBOO);
+        builder(ModBlockTags.IGNORED_BY_GREEN_AVATAR).add(
+                BlockItemIds.CACTUS, BlockItemIds.BAMBOO, BlockItemIds.MOSS_BLOCK,
+                BlockItemIds.AZALEA, BlockItemIds.FLOWERING_AZALEA);
+        builder(ModBlockTags.GREEN_AVATAR_CAN_REGROW_IN).addTag(ModBlockTags.IGNORED_BY_GREEN_AVATAR);
+        builder(ModBlockTags.GREEN_AVATAR_CAN_REGROW_IN).forceAddTag(BlockItemTags.FLOWERS.block());
 
         builder(ModBlockTags.MAKES_ACACIA_SAP).add(
                 BlockItemIds.ACACIA_LOG, BlockItemIds.STRIPPED_ACACIA_LOG,

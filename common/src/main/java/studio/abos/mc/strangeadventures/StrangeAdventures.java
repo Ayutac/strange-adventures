@@ -2,8 +2,10 @@ package studio.abos.mc.strangeadventures;
 
 import net.blay09.mods.balm.Balm;
 import net.blay09.mods.balm.core.BalmRegistrars;
+import net.blay09.mods.balm.platform.event.callback.LivingEntityCallback;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.Identifier;
+import net.minecraft.server.level.ServerPlayer;
 import org.jspecify.annotations.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -64,6 +66,16 @@ public class StrangeAdventures {
         registrars.dataAttachmentTypes(registrar -> dataAttachments = new ModDataAttachments(registrar));
 
         ModCommands.initialize(Balm.commands());
+
+        LivingEntityCallback.Damage.Before.EVENT.register((entity, damageSource, damageAmount) -> {
+            final var lookup = StrangeAdventures.dataAttachments().GREEN_AVATAR_DATA;
+            if (damageAmount >= entity.getHealth() && entity instanceof final ServerPlayer player && lookup.has(player) && !player.hasEffect(ModEffects.GREEN_AVATAR_REGROW_BLOCK)) {
+                if (StrangeAdventuresApi.INTERNAL_METHODS.greenAvatarRegrow(player)) {
+                    return 0f;
+                }
+            }
+            return damageAmount;
+        });
     }
 
 }
