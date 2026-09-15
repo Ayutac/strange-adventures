@@ -6,6 +6,9 @@ import net.blay09.mods.balm.platform.event.callback.LivingEntityCallback;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.Identifier;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.tags.DamageTypeTags;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import org.jspecify.annotations.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -69,6 +72,12 @@ public class StrangeAdventures {
 
         LivingEntityCallback.Damage.Before.EVENT.register((entity, damageSource, damageAmount) -> {
             if (entity instanceof final ServerPlayer player && StrangeAdventuresApi.INTERNAL_METHODS.greenAvatarActive(player)) {
+                if (damageSource.is(DamageTypeTags.IS_FIRE)) {
+                    damageAmount *= 2;
+                }
+                else if (damageSource.is(DamageTypeTags.IS_FREEZING)) {
+                    player.addEffect(new MobEffectInstance(MobEffects.SLOWNESS, 3 * 20));
+                }
                 if (damageAmount >= entity.getHealth() && !player.hasEffect(ModEffects.GREEN_AVATAR_REGROW_BLOCK)) {
                     if (StrangeAdventuresApi.INTERNAL_METHODS.greenAvatarRegrow(player)) {
                         return 0f;
