@@ -1,5 +1,6 @@
 package studio.abos.mc.strangeadventures;
 
+import net.minecraft.commands.arguments.EntityAnchorArgument;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.Registries;
@@ -16,6 +17,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.Vec3;
 import org.apache.commons.lang3.function.TriConsumer;
 import org.jspecify.annotations.Nullable;
 import studio.abos.mc.strangeadventures.api.InternalMethods;
@@ -155,7 +157,13 @@ public class InternalMethodsImpl implements InternalMethods {
             return false;
         }
         final BlockPos regrowPos = regrowPosList.get(player.getRandom().nextInt(regrowPosList.size()));
+        final Vec3 oldPos = player.position();
+        player.getInventory().dropAll();
         player.teleportTo(regrowPos.getX() + 0.5, regrowPos.getY(), regrowPos.getZ() + 0.5);
+        player.lookAt(EntityAnchorArgument.Anchor.EYES, oldPos);
+        player.clearFire();
+        player.clearFreeze();
+        player.removeAllEffects();
         player.setHealth(player.getMaxHealth() / 2);
         player.addEffect(new MobEffectInstance(ModEffects.GREEN_AVATAR_REGROW_BLOCK, 5 * 60 * 20));
         return true;
