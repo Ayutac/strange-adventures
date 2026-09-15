@@ -9,6 +9,7 @@ import studio.abos.mc.strangeadventures.tag.ModFluidTags;
 import java.util.concurrent.CompletableFuture;
 
 public class ModFluidTagProvider extends FabricTagsProvider.FluidTagsProvider {
+
     public ModFluidTagProvider(FabricPackOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
         super(output, registriesFuture);
     }
