@@ -77,6 +77,16 @@ public class StrangeAdventures {
             }
             return damageAmount;
         });
+        LivingEntityCallback.Fall.Before.EVENT.register((entity, fallDamage) -> {
+            if (entity instanceof final ServerPlayer player && StrangeAdventuresApi.INTERNAL_METHODS.greenAvatarActive(player)) {
+                if (fallDamage >= entity.getHealth() && !player.hasEffect(ModEffects.GREEN_AVATAR_REGROW_BLOCK)) {
+                    if (StrangeAdventuresApi.INTERNAL_METHODS.greenAvatarRegrow(player)) {
+                        return 0f;
+                    }
+                }
+            }
+            return fallDamage;
+        });
     }
 
 }
