@@ -147,6 +147,15 @@ public class InternalMethodsImpl implements InternalMethods {
     }
 
     @Override
+    public float greenAvatarGetMass(final Player player) {
+        final var lookup = StrangeAdventures.dataAttachments().GREEN_AVATAR_DATA;
+        if (!lookup.has(player)) {
+            return 1f;
+        }
+        return lookup.get(player).mass();
+    }
+
+    @Override
     public float greenAvatarSetMass(final ServerPlayer player, final float amount) {
         final var lookup = StrangeAdventures.dataAttachments().GREEN_AVATAR_DATA;
         final GreenAvatarData data = lookup.getOrCreate(player);

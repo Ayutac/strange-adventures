@@ -24,8 +24,8 @@ public class StrangeAdventuresApi {
 
     public static final InternalMethods INTERNAL_METHODS;
 
-    public static final float GREEN_AVATAR_MASS_MIN = 1 / 16f;
-    public static final float GREEN_AVATAR_MASS_MAX = 16f;
+    public static final float GREEN_AVATAR_MASS_MIN = 1 / 8f;
+    public static final float GREEN_AVATAR_MASS_MAX = 8f;
 
     static {
         try {

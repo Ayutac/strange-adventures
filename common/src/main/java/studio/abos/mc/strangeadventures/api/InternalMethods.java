@@ -39,6 +39,14 @@ public interface InternalMethods {
     boolean greenAvatarDeactivate(final ServerPlayer player);
 
     /**
+     * Gets the AotG mass of the given player,
+     * clamped between {@link StrangeAdventuresApi#GREEN_AVATAR_MASS_MIN} and {@link StrangeAdventuresApi#GREEN_AVATAR_MASS_MAX}.
+     * @param player the player to get the Avatar of the Green mass of
+     * @return The mass of the Avatar of the Green.
+     */
+    float greenAvatarGetMass(final Player player);
+
+    /**
      * Sets the mass of the given player (but no other AotG data fields) to the specified amount,
      * clamped between {@link StrangeAdventuresApi#GREEN_AVATAR_MASS_MIN} and {@link StrangeAdventuresApi#GREEN_AVATAR_MASS_MAX}.
      * @param player the player to change the Avatar of the Green mass of
