@@ -154,12 +154,18 @@ public class InternalMethodsImpl implements InternalMethods {
         final float mass = greenAvatarGetMass(player);
         player.getAttribute(Attributes.MAX_HEALTH).addOrReplacePermanentModifier(
                 new AttributeModifier(StrangeAdventuresApi.MODIFIER_ID_GREEN_AVATAR, mass - 1d, AttributeModifier.Operation.ADD_MULTIPLIED_BASE));
+        player.getAttribute(Attributes.ARMOR).addOrReplacePermanentModifier(
+                new AttributeModifier(StrangeAdventuresApi.MODIFIER_ID_GREEN_AVATAR, 20 /* full dia value */, AttributeModifier.Operation.ADD_VALUE));
+        player.getAttribute(Attributes.ARMOR_TOUGHNESS).addOrReplacePermanentModifier(
+                new AttributeModifier(StrangeAdventuresApi.MODIFIER_ID_GREEN_AVATAR, 6 /* full dia value */, AttributeModifier.Operation.ADD_VALUE));
         player.getAttribute(Attributes.SCALE).addOrReplacePermanentModifier(
                 new AttributeModifier(StrangeAdventuresApi.MODIFIER_ID_GREEN_AVATAR, mass - 1d, AttributeModifier.Operation.ADD_MULTIPLIED_BASE));
     }
 
     private void clearGreenAvatarAttributes(final ServerPlayer player) {
         player.getAttribute(Attributes.MAX_HEALTH).removeModifier(StrangeAdventuresApi.MODIFIER_ID_GREEN_AVATAR);
+        player.getAttribute(Attributes.ARMOR).removeModifier(StrangeAdventuresApi.MODIFIER_ID_GREEN_AVATAR);
+        player.getAttribute(Attributes.ARMOR_TOUGHNESS).removeModifier(StrangeAdventuresApi.MODIFIER_ID_GREEN_AVATAR);
         player.getAttribute(Attributes.SCALE).removeModifier(StrangeAdventuresApi.MODIFIER_ID_GREEN_AVATAR);
     }
 
