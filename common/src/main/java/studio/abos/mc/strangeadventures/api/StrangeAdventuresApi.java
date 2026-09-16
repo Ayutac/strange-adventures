@@ -2,6 +2,7 @@ package studio.abos.mc.strangeadventures.api;
 
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.level.Level;
@@ -26,6 +27,7 @@ public class StrangeAdventuresApi {
 
     public static final float GREEN_AVATAR_MASS_MIN = 1 / 4f;
     public static final float GREEN_AVATAR_MASS_MAX = 4f;
+    public static final Identifier MODIFIER_ID_GREEN_AVATAR = StrangeAdventures.id("green_avatar");
 
     static {
         try {

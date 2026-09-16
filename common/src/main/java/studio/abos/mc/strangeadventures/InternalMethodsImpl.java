@@ -128,8 +128,7 @@ public class InternalMethodsImpl implements InternalMethods {
         }
         final GreenAvatarData data = lookup.getOrCreate(player);
         lookup.update(player, data.withActive(true));
-        player.getAttribute(Attributes.SCALE).addOrReplacePermanentModifier(
-                new AttributeModifier(StrangeAdventures.id("green_avatar"), data.mass() - 1d, AttributeModifier.Operation.ADD_MULTIPLIED_BASE));
+        updateGreenAvatarAttributes(player);
         return false;
     }
 
@@ -147,8 +146,21 @@ public class InternalMethodsImpl implements InternalMethods {
         }
         final GreenAvatarData data = lookup.get(player);
         lookup.update(player, data.withActive(false));
-        player.getAttribute(Attributes.SCALE).removeModifier(StrangeAdventures.id("green_avatar"));
+        clearGreenAvatarAttributes(player);
         return true;
+    }
+
+    private void updateGreenAvatarAttributes(final ServerPlayer player) {
+        final float mass = greenAvatarGetMass(player);
+        player.getAttribute(Attributes.MAX_HEALTH).addOrReplacePermanentModifier(
+                new AttributeModifier(StrangeAdventuresApi.MODIFIER_ID_GREEN_AVATAR, mass - 1d, AttributeModifier.Operation.ADD_MULTIPLIED_BASE));
+        player.getAttribute(Attributes.SCALE).addOrReplacePermanentModifier(
+                new AttributeModifier(StrangeAdventuresApi.MODIFIER_ID_GREEN_AVATAR, mass - 1d, AttributeModifier.Operation.ADD_MULTIPLIED_BASE));
+    }
+
+    private void clearGreenAvatarAttributes(final ServerPlayer player) {
+        player.getAttribute(Attributes.MAX_HEALTH).removeModifier(StrangeAdventuresApi.MODIFIER_ID_GREEN_AVATAR);
+        player.getAttribute(Attributes.SCALE).removeModifier(StrangeAdventuresApi.MODIFIER_ID_GREEN_AVATAR);
     }
 
     @Override
@@ -167,8 +179,7 @@ public class InternalMethodsImpl implements InternalMethods {
         final float newMass = Mth.clamp(amount, StrangeAdventuresApi.GREEN_AVATAR_MASS_MIN, StrangeAdventuresApi.GREEN_AVATAR_MASS_MAX);
         lookup.update(player, data.withMass(newMass));
         if (data.active()) {
-            player.getAttribute(Attributes.SCALE).addOrReplacePermanentModifier(
-                    new AttributeModifier(StrangeAdventures.id("green_avatar"), newMass - 1d, AttributeModifier.Operation.ADD_MULTIPLIED_BASE));
+            updateGreenAvatarAttributes(player);
         }
         return newMass;
     }
@@ -180,8 +191,7 @@ public class InternalMethodsImpl implements InternalMethods {
         final float newMass = Mth.clamp(data.mass() + amount, StrangeAdventuresApi.GREEN_AVATAR_MASS_MIN, StrangeAdventuresApi.GREEN_AVATAR_MASS_MAX);
         lookup.update(player, data.withMass(newMass));
         if (data.active()) {
-            player.getAttribute(Attributes.SCALE).addOrReplacePermanentModifier(
-                    new AttributeModifier(StrangeAdventures.id("green_avatar"), newMass - 1d, AttributeModifier.Operation.ADD_MULTIPLIED_BASE));
+            updateGreenAvatarAttributes(player);
         }
         return newMass;
     }
