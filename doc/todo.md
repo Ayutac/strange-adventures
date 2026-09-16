@@ -10,6 +10,7 @@
 * assign proper map colors to the blocks
 * fix Essence Cauldron bug
 * fix AotG cannot go through Cactus bug
+* replace @Inject with @ModifyReturnValue
 ### after release
 * add project ids to gradle.properties
 ### at some point

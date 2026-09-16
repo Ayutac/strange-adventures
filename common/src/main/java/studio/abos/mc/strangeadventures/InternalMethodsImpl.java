@@ -28,6 +28,7 @@ import studio.abos.mc.strangeadventures.api.StrangeAdventuresApi;
 import studio.abos.mc.strangeadventures.block.ModBlocks;
 import studio.abos.mc.strangeadventures.data.GreenAvatarData;
 import studio.abos.mc.strangeadventures.effect.ModEffects;
+import studio.abos.mc.strangeadventures.mixin.InventoryAccessor;
 import studio.abos.mc.strangeadventures.tag.ModBlockTags;
 
 import java.util.EnumSet;
@@ -129,6 +130,7 @@ public class InternalMethodsImpl implements InternalMethods {
         final GreenAvatarData data = lookup.getOrCreate(player);
         lookup.update(player, data.withActive(true));
         updateGreenAvatarAttributes(player);
+        ((InventoryAccessor)player.getInventory()).getEquipment().dropAll(player);
         return false;
     }
 
