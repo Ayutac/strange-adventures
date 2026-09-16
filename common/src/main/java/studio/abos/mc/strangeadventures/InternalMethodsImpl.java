@@ -13,6 +13,8 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Relative;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
@@ -126,6 +128,8 @@ public class InternalMethodsImpl implements InternalMethods {
         }
         final GreenAvatarData data = lookup.getOrCreate(player);
         lookup.update(player, data.withActive(true));
+        player.getAttribute(Attributes.SCALE).addOrReplacePermanentModifier(
+                new AttributeModifier(StrangeAdventures.id("green_avatar"), data.mass() - 1d, AttributeModifier.Operation.ADD_MULTIPLIED_BASE));
         return false;
     }
 
@@ -143,6 +147,7 @@ public class InternalMethodsImpl implements InternalMethods {
         }
         final GreenAvatarData data = lookup.get(player);
         lookup.update(player, data.withActive(false));
+        player.getAttribute(Attributes.SCALE).removeModifier(StrangeAdventures.id("green_avatar"));
         return true;
     }
 
@@ -161,6 +166,10 @@ public class InternalMethodsImpl implements InternalMethods {
         final GreenAvatarData data = lookup.getOrCreate(player);
         final float newMass = Mth.clamp(amount, StrangeAdventuresApi.GREEN_AVATAR_MASS_MIN, StrangeAdventuresApi.GREEN_AVATAR_MASS_MAX);
         lookup.update(player, data.withMass(newMass));
+        if (data.active()) {
+            player.getAttribute(Attributes.SCALE).addOrReplacePermanentModifier(
+                    new AttributeModifier(StrangeAdventures.id("green_avatar"), newMass - 1d, AttributeModifier.Operation.ADD_MULTIPLIED_BASE));
+        }
         return newMass;
     }
 
@@ -170,6 +179,10 @@ public class InternalMethodsImpl implements InternalMethods {
         final GreenAvatarData data = lookup.getOrCreate(player);
         final float newMass = Mth.clamp(data.mass() + amount, StrangeAdventuresApi.GREEN_AVATAR_MASS_MIN, StrangeAdventuresApi.GREEN_AVATAR_MASS_MAX);
         lookup.update(player, data.withMass(newMass));
+        if (data.active()) {
+            player.getAttribute(Attributes.SCALE).addOrReplacePermanentModifier(
+                    new AttributeModifier(StrangeAdventures.id("green_avatar"), newMass - 1d, AttributeModifier.Operation.ADD_MULTIPLIED_BASE));
+        }
         return newMass;
     }
 
