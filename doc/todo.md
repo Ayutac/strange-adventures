@@ -10,7 +10,7 @@
 * assign proper map colors to the blocks
 * fix Essence Cauldron bug
 * fix AotG cannot go through Cactus bug
-* replace @Inject with @ModifyReturnValue
+* fix NF bug of fluid properties (try walking into it)
 ### after release
 * add project ids to gradle.properties
 ### at some point
