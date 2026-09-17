@@ -6,11 +6,13 @@
   "mixins": [
   ],
   "client": [
+    "client.HeartTypeMixin"
   ],
   "injectors": {
     "defaultRequire": 1
   },
   "overwrites": {
     "requireAnnotations": true
-  }
+  },
+  "accessWidener": "strangeadventures.classtweaker"
 }

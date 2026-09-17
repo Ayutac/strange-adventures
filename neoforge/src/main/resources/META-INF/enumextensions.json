@@ -1,0 +1,13 @@
+{
+  "entries": [
+    {
+      "enum": "net/minecraft/client/gui/Hud$HeartType",
+      "name": "STRANGEADVENTURES_GREEN_AVATAR",
+      "constructor": "(Lnet/minecraft/resources/Identifier;Lnet/minecraft/resources/Identifier;Lnet/minecraft/resources/Identifier;Lnet/minecraft/resources/Identifier;Lnet/minecraft/resources/Identifier;Lnet/minecraft/resources/Identifier;Lnet/minecraft/resources/Identifier;Lnet/minecraft/resources/Identifier;)V",
+      "parameters": {
+        "class": "studio/abos/mc/strangeadventures/neoforge/client/ModEnumParamsClient",
+        "field": "HEART_TYPE_GREEN_AVATAR_PROXY"
+      }
+    }
+  ]
+}

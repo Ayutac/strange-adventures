@@ -7,6 +7,7 @@
     "AbstractSapFluidMixin"
   ],
   "client": [
+    "client.HeartTypeMixin"
   ],
   "injectors": {
     "defaultRequire": 1

@@ -11,6 +11,7 @@ logoFile="${mod_id}.png"
 credits="${credits}"
 authors="${mod_author}"
 description='''${description}'''
+enumExtensions="META-INF/enumextensions.json"
 [[mixins]]
 config = "${mod_id}.mixins.json"
 [[mixins]]
