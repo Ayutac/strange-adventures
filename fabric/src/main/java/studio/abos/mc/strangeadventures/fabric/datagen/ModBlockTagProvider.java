@@ -106,6 +106,27 @@ public class ModBlockTagProvider extends FabricTagsProvider.BlockTagsProvider {
         builder(ModBlockTags.SUPPORTS_DESERT_PLANTS).forceAddTag(BlockItemTags.SAND.block());
         builder(ModBlockTags.SUPPORTS_ROOTS).forceAddTag(BlockItemTags.DIRT.block());
         builder(ModBlockTags.SUPPORTS_ROOTS).forceAddTag(BlockItemTags.GRASS_BLOCKS.block());
+
+        builder(ModBlockTags.GREEN_MASS_LOW).forceAddTag(BlockItemTags.LEAVES.block());
+        builder(ModBlockTags.GREEN_MASS_LOW).forceAddTag(BlockItemTags.SAPLINGS.block());
+        builder(ModBlockTags.GREEN_MASS_LOW).add(
+                BlockItemIds.MOSS_CARPET, BlockItemIds.PALE_MOSS_CARPET,
+                BlockItemIds.KELP, BlockItemIds.SEAGRASS,
+                BlockItemIds.SHORT_GRASS, BlockItemIds.FERN);
+        builder(ModBlockTags.GREEN_MASS_LOW_MEDIUM);
+        builder(ModBlockTags.GREEN_MASS_MEDIUM).forceAddTag(BlockItemTags.FLOWERS.block());
+        builder(ModBlockTags.GREEN_MASS_LOW).add(
+                BlockItemIds.TALL_GRASS, BlockItemIds.LARGE_FERN);
+        builder(ModBlockTags.GREEN_MASS_MEDIUM_HIGH).add(
+                BlockItemIds.HAY_BLOCK.block(),
+                BlockItemIds.MELON.block(), BlockItemIds.PUMPKIN.block());
+        builder(ModBlockTags.GREEN_MASS_HIGH).add(
+                BlockItemIds.MOSS_BLOCK.block(), BlockItemIds.PALE_MOSS_BLOCK.block());
+        builder(ModBlockTags.GREEN_MASS).addTag(ModBlockTags.GREEN_MASS_LOW);
+        builder(ModBlockTags.GREEN_MASS).addTag(ModBlockTags.GREEN_MASS_LOW_MEDIUM);
+        builder(ModBlockTags.GREEN_MASS).addTag(ModBlockTags.GREEN_MASS_MEDIUM);
+        builder(ModBlockTags.GREEN_MASS).addTag(ModBlockTags.GREEN_MASS_MEDIUM_HIGH);
+        builder(ModBlockTags.GREEN_MASS).addTag(ModBlockTags.GREEN_MASS_HIGH);
     }
 
 }

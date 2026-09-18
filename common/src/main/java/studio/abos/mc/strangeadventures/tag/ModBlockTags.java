@@ -28,4 +28,11 @@ public final class ModBlockTags {
     public static final TagKey<Block> SUPPORTS_DESERT_PLANTS = TagKey.create(Registries.BLOCK, StrangeAdventures.id("supports_desert_plants"));
     public static final TagKey<Block> SUPPORTS_ROOTS = TagKey.create(Registries.BLOCK, StrangeAdventures.id("supports_roots"));
 
+    public static final TagKey<Block> GREEN_MASS_LOW = TagKey.create(Registries.BLOCK, StrangeAdventures.id("green_mass_low"));
+    public static final TagKey<Block> GREEN_MASS_LOW_MEDIUM = TagKey.create(Registries.BLOCK, StrangeAdventures.id("green_mass_low_medium"));
+    public static final TagKey<Block> GREEN_MASS_MEDIUM = TagKey.create(Registries.BLOCK, StrangeAdventures.id("green_mass_medium"));
+    public static final TagKey<Block> GREEN_MASS_MEDIUM_HIGH = TagKey.create(Registries.BLOCK, StrangeAdventures.id("green_mass_medium_high"));
+    public static final TagKey<Block> GREEN_MASS_HIGH = TagKey.create(Registries.BLOCK, StrangeAdventures.id("green_mass_high"));
+    public static final TagKey<Block> GREEN_MASS = TagKey.create(Registries.BLOCK, StrangeAdventures.id("green_mass"));
+
 }

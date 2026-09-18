@@ -205,6 +205,40 @@ public class InternalMethodsImpl implements InternalMethods {
     }
 
     @Override
+    public boolean greenAvatarAttemptToEat(final Player player, final Level level, final BlockPos pos, @Nullable BlockState state) {
+        if (state == null) {
+            state = level.getBlockState(pos);
+        }
+        if (!state.is(ModBlockTags.GREEN_MASS)) {
+            return false;
+        }
+        if (level.isClientSide()) {
+            return true;
+        }
+        level.setBlockAndUpdate(pos, Blocks.AIR.defaultBlockState());
+        float greenMass = 0f;
+        if (state.is(ModBlockTags.GREEN_MASS_HIGH)) {
+            greenMass = 1f;
+        }
+        else if (state.is(ModBlockTags.GREEN_MASS_MEDIUM_HIGH)) {
+            greenMass = 0.85f;
+        }
+        else if (state.is(ModBlockTags.GREEN_MASS_MEDIUM)) {
+            greenMass = 0.65f;
+        }
+        else if (state.is(ModBlockTags.GREEN_MASS_LOW_MEDIUM)) {
+            greenMass = 0.5f;
+        }
+        else if (state.is(ModBlockTags.GREEN_MASS_LOW)) {
+            greenMass = 0.3f;
+        }
+        if (greenMass > 0f) {
+            greenAvatarAddMass((ServerPlayer)player, greenMass * (float)Math.max(1e-4, Math.pow((Math.cos(Math.PI * greenAvatarGetMass(player) / StrangeAdventuresApi.GREEN_AVATAR_MASS_MAX) + 1) / 2, 4)));
+        }
+        return true;
+    }
+
+    @Override
     public boolean greenAvatarRegrow(final ServerPlayer player) {
         final List<BlockPos> regrowPosList = new LinkedList<>();
         for (final BlockPos pos : BlockPos.betweenClosed(player.getBlockX() - GREEN_AVATAR_REGROW_RANGE, player.getBlockY() - GREEN_AVATAR_REGROW_RANGE, player.getBlockZ() - GREEN_AVATAR_REGROW_RANGE,

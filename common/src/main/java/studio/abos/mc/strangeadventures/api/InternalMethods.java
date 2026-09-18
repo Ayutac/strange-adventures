@@ -7,6 +7,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.BlockState;
 import org.jspecify.annotations.Nullable;
 
 public interface InternalMethods {
@@ -65,6 +66,16 @@ public interface InternalMethods {
      * @return The total mass after the change.
      */
     float greenAvatarAddMass(final ServerPlayer player, float amount);
+
+    /**
+     * Attempts to eat the specified block as AotG, replacing it with air.
+     * @param player the player who tries to eat; no checks will be done if the player has AotG active
+     * @param level the level of the attempt
+     * @param pos the position of the block
+     * @param state the state of the block; if <code>null</code>, will be looked up via <code>level</code> and <code>pos</code>
+     * @return <code>true</code> if the consumption was successful (or would be), else <code>false</code>.
+     */
+    boolean greenAvatarAttemptToEat(final Player player, final Level level, final BlockPos pos, @Nullable BlockState state);
 
     /**
      * Regrows the player like an Avatar of the Green. Doesn't check conditions for this regrow, only executes it.

@@ -2,13 +2,10 @@ package studio.abos.mc.strangeadventures.mixin;
 
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import net.minecraft.core.BlockPos;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.tags.BlockItemTags;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
@@ -45,13 +42,10 @@ public abstract class BlockBehaviorMixin {
 
     @ModifyReturnValue(method = "useWithoutItem(Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/phys/BlockHitResult;)Lnet/minecraft/world/InteractionResult;", at = @At("RETURN"))
     protected InteractionResult strangeadventures$eatCompostable(final InteractionResult original, final BlockState state, final Level level, final BlockPos pos, final Player player, final BlockHitResult hitResult) {
-        if (original == InteractionResult.PASS && StrangeAdventuresApi.INTERNAL_METHODS.greenAvatarActive(player) && state.is(BlockItemTags.LEAVES.block())) {
-            if (level.isClientSide()) {
+        if (original == InteractionResult.PASS && StrangeAdventuresApi.INTERNAL_METHODS.greenAvatarActive(player)) {
+            if (StrangeAdventuresApi.INTERNAL_METHODS.greenAvatarAttemptToEat(player, level, pos, state)) {
                 return InteractionResult.SUCCESS;
             }
-            level.setBlockAndUpdate(pos, Blocks.AIR.defaultBlockState());
-            StrangeAdventuresApi.INTERNAL_METHODS.greenAvatarAddMass((ServerPlayer)player, 0.3f * (float)(Math.max(1e-4, Math.pow((Math.cos(Math.PI * StrangeAdventuresApi.INTERNAL_METHODS.greenAvatarGetMass(player) / StrangeAdventuresApi.GREEN_AVATAR_MASS_MAX) + 1) / 2, 4))));
-            return InteractionResult.SUCCESS;
         }
         return original;
     }
