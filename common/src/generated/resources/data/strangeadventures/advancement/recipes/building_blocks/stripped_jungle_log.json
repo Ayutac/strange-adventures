@@ -3,7 +3,7 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "strangeadventures:stripped_jungle_log"
+        "recipes": "strangeadventures:stripped_jungle_log"
       },
       "trigger": "minecraft:recipe_unlocked"
     },

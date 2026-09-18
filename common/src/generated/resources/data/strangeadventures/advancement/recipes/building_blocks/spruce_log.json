@@ -3,7 +3,7 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "strangeadventures:spruce_log"
+        "recipes": "strangeadventures:spruce_log"
       },
       "trigger": "minecraft:recipe_unlocked"
     },

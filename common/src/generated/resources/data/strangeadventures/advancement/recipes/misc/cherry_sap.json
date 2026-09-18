@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "strangeadventures:cherry_sap"
+        "recipes": "strangeadventures:cherry_sap"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

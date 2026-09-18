@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "strangeadventures:living_sap"
+        "recipes": "strangeadventures:living_sap"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

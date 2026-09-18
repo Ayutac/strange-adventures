@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "strangeadventures:crude_living_sap"
+        "recipes": "strangeadventures:crude_living_sap"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

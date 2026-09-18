@@ -12,7 +12,7 @@ import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.functions.EnchantedCountIncreaseFunction;
 import net.minecraft.world.level.storage.loot.predicates.LootItemEntityPropertyCondition;
-import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
+import net.minecraft.world.level.storage.loot.providers.number.floats.ContextFloatProviders;
 import studio.abos.mc.strangeadventures.entity.ModEntityTypes;
 
 import java.util.concurrent.CompletableFuture;
@@ -28,7 +28,7 @@ public class ModEntityLootTableProvider extends FabricEntityLootSubProvider {
         add(ModEntityTypes.HINDERING_ROOTS.value(), LootTable.lootTable().withPool(
                 LootPool.lootPool().add(
                         LootItem.lootTableItem(Items.HANGING_ROOTS)
-                                .apply(EnchantedCountIncreaseFunction.lootingMultiplier(registries, UniformGenerator.between(0f, 1f)))
+                                .apply(EnchantedCountIncreaseFunction.lootingMultiplier(enchantments, ContextFloatProviders.between(0f, 1f)))
                                 .when(LootItemEntityPropertyCondition.hasProperties(
                                         LootContext.EntityTarget.THIS,
                                         EntityPredicate.Builder.entity().flags(EntityFlagsPredicate.Builder.flags().setOnFire(false)))

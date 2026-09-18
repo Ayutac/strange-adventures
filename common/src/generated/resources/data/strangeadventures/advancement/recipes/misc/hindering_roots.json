@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "strangeadventures:hindering_roots"
+        "recipes": "strangeadventures:hindering_roots"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

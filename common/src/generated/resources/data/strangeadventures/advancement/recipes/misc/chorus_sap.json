@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "strangeadventures:chorus_sap"
+        "recipes": "strangeadventures:chorus_sap"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

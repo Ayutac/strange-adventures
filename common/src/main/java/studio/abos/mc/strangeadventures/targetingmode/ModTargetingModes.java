@@ -20,16 +20,16 @@ public final class ModTargetingModes {
     public static Holder<TargetingMode> RANDOM;
 
     public static void initialize(BalmRegistrar.Scoped<TargetingMode> targetingModes) {
-        ALL = targetingModes.register("all", _ -> new All());
-        NORTH = targetingModes.register("north", _ -> new FurthestAlong(Direction.NORTH.getUnitVec3()));
-        EAST = targetingModes.register("east", _ -> new FurthestAlong(Direction.EAST.getUnitVec3()));
-        SOUTH = targetingModes.register("south", _ -> new FurthestAlong(Direction.SOUTH.getUnitVec3()));
-        WEST = targetingModes.register("west", _ -> new FurthestAlong(Direction.WEST.getUnitVec3()));
-        UP = targetingModes.register("up", _ -> new FurthestAlong(Direction.UP.getUnitVec3()));
-        DOWN = targetingModes.register("down", _ -> new FurthestAlong(Direction.DOWN.getUnitVec3()));
-        NEAREST = targetingModes.register("nearest", _ -> new Nearest());
-        FURTHEST = targetingModes.register("furthest", _ -> new Furthest());
-        RANDOM = targetingModes.register("random", _ -> new Randomize(new Random()));
+        ALL = targetingModes.register("all", _ -> new All()).asHolder();
+        NORTH = targetingModes.register("north", _ -> new FurthestAlong(Direction.NORTH.getUnitVec3())).asHolder();
+        EAST = targetingModes.register("east", _ -> new FurthestAlong(Direction.EAST.getUnitVec3())).asHolder();
+        SOUTH = targetingModes.register("south", _ -> new FurthestAlong(Direction.SOUTH.getUnitVec3())).asHolder();
+        WEST = targetingModes.register("west", _ -> new FurthestAlong(Direction.WEST.getUnitVec3())).asHolder();
+        UP = targetingModes.register("up", _ -> new FurthestAlong(Direction.UP.getUnitVec3())).asHolder();
+        DOWN = targetingModes.register("down", _ -> new FurthestAlong(Direction.DOWN.getUnitVec3())).asHolder();
+        NEAREST = targetingModes.register("nearest", _ -> new Nearest()).asHolder();
+        FURTHEST = targetingModes.register("furthest", _ -> new Furthest()).asHolder();
+        RANDOM = targetingModes.register("random", _ -> new Randomize(new Random())).asHolder();
     }
 
 }

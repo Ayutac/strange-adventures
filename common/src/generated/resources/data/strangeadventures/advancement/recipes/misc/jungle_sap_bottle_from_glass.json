@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "strangeadventures:jungle_sap_bottle_from_glass"
+        "recipes": "strangeadventures:jungle_sap_bottle_from_glass"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

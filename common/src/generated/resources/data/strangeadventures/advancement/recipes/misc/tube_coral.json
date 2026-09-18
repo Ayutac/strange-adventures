@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "strangeadventures:tube_coral"
+        "recipes": "strangeadventures:tube_coral"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

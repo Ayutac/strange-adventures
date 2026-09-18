@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "strangeadventures:weir_sign"
+        "recipes": "strangeadventures:weir_sign"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

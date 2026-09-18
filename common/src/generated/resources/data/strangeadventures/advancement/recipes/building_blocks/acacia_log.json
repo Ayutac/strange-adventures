@@ -3,7 +3,7 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "strangeadventures:acacia_log"
+        "recipes": "strangeadventures:acacia_log"
       },
       "trigger": "minecraft:recipe_unlocked"
     },

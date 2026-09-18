@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "strangeadventures:green_dye"
+        "recipes": "strangeadventures:green_dye"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

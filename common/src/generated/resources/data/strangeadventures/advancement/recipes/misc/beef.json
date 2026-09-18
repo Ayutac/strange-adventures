@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "strangeadventures:beef"
+        "recipes": "strangeadventures:beef"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

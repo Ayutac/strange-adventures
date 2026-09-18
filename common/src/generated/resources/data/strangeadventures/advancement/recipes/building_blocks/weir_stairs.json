@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "strangeadventures:weir_stairs"
+        "recipes": "strangeadventures:weir_stairs"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

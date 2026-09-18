@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "strangeadventures:crimson_sap_bottle"
+        "recipes": "strangeadventures:crimson_sap_bottle"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

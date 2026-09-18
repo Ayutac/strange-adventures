@@ -3,7 +3,7 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "strangeadventures:stripped_warped_stem"
+        "recipes": "strangeadventures:stripped_warped_stem"
       },
       "trigger": "minecraft:recipe_unlocked"
     },

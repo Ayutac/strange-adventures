@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "strangeadventures:chicken"
+        "recipes": "strangeadventures:chicken"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

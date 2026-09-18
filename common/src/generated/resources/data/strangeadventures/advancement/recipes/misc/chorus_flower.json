@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "strangeadventures:chorus_flower"
+        "recipes": "strangeadventures:chorus_flower"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

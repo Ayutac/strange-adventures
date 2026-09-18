@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "strangeadventures:warped_sap_bucket"
+        "recipes": "strangeadventures:warped_sap_bucket"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

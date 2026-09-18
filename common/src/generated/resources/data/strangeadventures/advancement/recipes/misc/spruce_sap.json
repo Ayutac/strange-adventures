@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "strangeadventures:spruce_sap"
+        "recipes": "strangeadventures:spruce_sap"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

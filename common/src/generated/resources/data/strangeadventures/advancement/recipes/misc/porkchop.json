@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "strangeadventures:porkchop"
+        "recipes": "strangeadventures:porkchop"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

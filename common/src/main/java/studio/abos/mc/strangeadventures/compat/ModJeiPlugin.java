@@ -25,8 +25,8 @@ import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.client.renderer.block.FluidModel;
 import net.minecraft.core.HolderSet;
-import net.minecraft.core.RegistryCodecs;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.codec.RegistryCodecs;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.ItemStack;
@@ -108,7 +108,7 @@ public class ModJeiPlugin implements IModPlugin {
         };
 
         public static final Codec<BlocksIngredient> CODEC = RecordCodecBuilder.create(instance -> instance.group(
-                    RegistryCodecs.homogeneousList(BuiltInRegistries.BLOCK.key()).fieldOf("blocks").forGetter(BlocksIngredient::blocks)
+                    RegistryCodecs.holderSet(BuiltInRegistries.BLOCK.key()).fieldOf("blocks").forGetter(BlocksIngredient::blocks)
             ).apply(instance, BlocksIngredient::new));
 
     }
@@ -221,7 +221,7 @@ public class ModJeiPlugin implements IModPlugin {
         };
 
         public static final Codec<FluidsIngredient> CODEC = RecordCodecBuilder.create(instance -> instance.group(
-                RegistryCodecs.homogeneousList(BuiltInRegistries.FLUID.key()).fieldOf("fluids").forGetter(FluidsIngredient::fluids)
+                RegistryCodecs.holderSet(BuiltInRegistries.FLUID.key()).fieldOf("fluids").forGetter(FluidsIngredient::fluids)
         ).apply(instance, FluidsIngredient::new));
 
     }

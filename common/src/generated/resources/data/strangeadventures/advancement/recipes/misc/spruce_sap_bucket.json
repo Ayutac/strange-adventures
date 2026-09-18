@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "strangeadventures:spruce_sap_bucket"
+        "recipes": "strangeadventures:spruce_sap_bucket"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

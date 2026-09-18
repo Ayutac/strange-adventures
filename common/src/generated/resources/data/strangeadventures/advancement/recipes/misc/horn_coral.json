@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "strangeadventures:horn_coral"
+        "recipes": "strangeadventures:horn_coral"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

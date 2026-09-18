@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "strangeadventures:salmon"
+        "recipes": "strangeadventures:salmon"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

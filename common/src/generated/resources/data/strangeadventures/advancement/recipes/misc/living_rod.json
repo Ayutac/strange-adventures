@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "strangeadventures:living_rod"
+        "recipes": "strangeadventures:living_rod"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

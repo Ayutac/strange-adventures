@@ -2,16 +2,17 @@ package studio.abos.mc.strangeadventures.fabric.datagen;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
+import net.minecraft.advancements.Advancement;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.recipes.RecipeCategory;
-import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.data.recipes.SimpleCookingRecipeBuilder;
+import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.tags.BlockItemTags;
 import net.minecraft.world.flag.FeatureFlagSet;
 import net.minecraft.world.flag.FeatureFlags;
@@ -19,6 +20,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.CookingBookCategory;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.material.Fluid;
@@ -39,8 +41,8 @@ public class ModRecipeProvider extends FabricRecipeProvider {
     }
 
     @Override
-    protected RecipeProvider createRecipeProvider(HolderLookup.Provider registryLookup, RecipeOutput exporter) {
-        return new AbstractRecipeProvider(registryLookup, exporter) {
+    protected RecipeProvider createRecipeProvider(final HolderLookup.Provider registryLookup, final BootstrapContext<Recipe<?>> recipeOutput, final BootstrapContext<Advancement> advancementOutput) {
+        return new AbstractRecipeProvider(registryLookup, recipeOutput, advancementOutput) {
 
             @Override
             public void buildRecipes() {
@@ -83,12 +85,12 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                         .requires(Items.BUCKET)
                         .requires(sap.getBottle(), 3)
                         .unlockedBy("has_bottle", has(sap.getBottle()))
-                        .save(exporter);
+                        .save(output);
                 shapeless(RecipeCategory.MISC, sap.getBottle(), 3)
                         .requires(sap.getBucket())
                         .requires(Items.GLASS_BOTTLE, 3)
                         .unlockedBy("has_bucket", has(sap.getBucket()))
-                        .save(exporter);
+                        .save(output);
                 String bottleId = sap.getBottle().getDescriptionId();
                 bottleId = bottleId.substring(bottleId.lastIndexOf('.') + 1);
                 shaped(RecipeCategory.MISC, sap.getBottle(), 3)
@@ -97,13 +99,13 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                         .define('B', sap.getBucket())
                         .define('G', Items.GLASS)
                         .unlockedBy("has_bucket", has(sap.getBucket()))
-                        .save(exporter, bottleId + "_from_glass");
+                        .save(output, bottleId + "_from_glass");
             }
 
             private void cookingRecipes() {
                 SimpleCookingRecipeBuilder.smelting(Ingredient.of(ModBlocks.GREEN_CACTUS.asItem()), RecipeCategory.MISC, CookingBookCategory.MISC, Items.DYE.green(), 1.0F, 200)
                         .unlockedBy("has_green_cactus", has(ModBlocks.GREEN_CACTUS))
-                        .save(exporter);
+                        .save(output);
             }
 
             private void miscRecipes() {
@@ -111,12 +113,12 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                         .requires(Items.CACTUS)
                         .requires(ModItems.GREEN_SAFEGUARD)
                         .unlockedBy("has_cactus", has(Items.CACTUS))
-                        .save(exporter);
+                        .save(output);
                 shapeless(RecipeCategory.MISC, ModBlocks.GREEN_FARMLAND)
                         .requires(Items.FARMLAND)
                         .requires(ModItems.GREEN_SAFEGUARD)
                         .unlockedBy("has_farmland", has(Items.FARMLAND))
-                        .save(exporter);
+                        .save(output);
                 shaped(RecipeCategory.MISC, ModBlocks.SAP_SIPPER)
                         .pattern("GNG")
                         .pattern("PBP")
@@ -126,25 +128,25 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                         .define('N', Items.COPPER_NUGGET)
                         .define('P', BlockItemTags.PLANKS.item())
                         .unlockedBy("has_bucket", has(Items.BUCKET))
-                        .save(exporter);
+                        .save(output);
                 shaped(RecipeCategory.MISC, ModItems.LIVING_ROD, 4)
                         .pattern("W")
                         .pattern("W")
                         .define('W', ModBlocks.LIVING_WOOD)
                         .unlockedBy("has_living_wood", has(ModBlocks.LIVING_WOOD))
-                        .save(exporter);
+                        .save(output);
 //                String description = ModBlocks.SLEEPING_WOOD.asItem().getDescriptionId();
 //                description = description.substring(description.lastIndexOf('.') + 1);
                 shapeless(RecipeCategory.BUILDING_BLOCKS, ModBlocks.SLEEPING_WOOD)
                         .requires(Items.ANCIENT_DEBRIS)
                         .requires(ModItems.LIVING_SAP_BUCKET, 8)
                         .unlockedBy("has_ancient_debris", has(Items.ANCIENT_DEBRIS))
-                        .save(exporter);
+                        .save(output);
                 shapeless(RecipeCategory.BUILDING_BLOCKS, ModBlocks.LIVING_WOOD)
                         .requires(ModBlocks.SLEEPING_WOOD)
                         .requires(ModItems.LIVING_SAP_BUCKET, 8)
                         .unlockedBy("has_sleeping_wood", has(ModBlocks.SLEEPING_WOOD))
-                        .save(exporter);
+                        .save(output);
             }
 
             private void livingSapRevivalRecipes() {
@@ -164,7 +166,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                         .requires(((AbstractSapFluid)ModFluids.CHORUS_SAP_STILL.value()).getBottle())
                         .requires(ModItems.LIVING_SAP_BOTTLE)
                         .unlockedBy("has_chorus_sap", has(((AbstractSapFluid)ModFluids.CHORUS_SAP_STILL.value()).getBottle()))
-                        .save(exporter);
+                        .save(output);
             }
 
             private void livingSapCoralRevivalRecipes() {
@@ -193,7 +195,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                     buider = buider.requires(Items.WATER_BUCKET);
                 }
                 buider.unlockedBy("has_living_sap_bucket", has(ModItems.LIVING_SAP_BUCKET))
-                        .save(exporter);
+                        .save(output);
             }
 
             private void reviveWithBottle(final ItemLike dead, final ItemLike living, final boolean requiresWater) {
@@ -204,7 +206,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                     builder = builder.requires(Items.WATER_BUCKET);
                 }
                 builder.unlockedBy("has_living_sap_bottle", has(ModItems.LIVING_SAP_BOTTLE))
-                        .save(exporter);
+                        .save(output);
             }
 
             private void livingSapWoodRepairRecipes() {
@@ -271,7 +273,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                         .requires(ModItems.LIVING_SAP_BOTTLE)
                         .requires(treeSap.getBottle())
                         .unlockedBy("has_tree_sap_bottle", has(treeSap.getBottle()))
-                        .save(exporter);
+                        .save(output);
             }
 
             private void planksToStrippedWood(ItemLike planks, AbstractSapFluid treeSap, ItemLike strippedLog) {
@@ -280,7 +282,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                         .requires(ModItems.LIVING_SAP_BOTTLE)
                         .requires(treeSap.getBottle())
                         .unlockedBy("has_tree_sap_bottle", has(treeSap.getBottle()))
-                        .save(exporter);
+                        .save(output);
             }
 
             private void stairsToPlanks(ItemLike stairs, ItemLike planks) {
@@ -290,7 +292,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                         .requires(stairs, 4)
                         .requires(ModItems.LIVING_SAP_BOTTLE)
                         .unlockedBy("has_living_sap_bottle", has(ModItems.LIVING_SAP_BOTTLE))
-                        .save(exporter, description);
+                        .save(output, description);
             }
 
             private void slabsToPlanks(ItemLike slabs, ItemLike planks) {
@@ -300,7 +302,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                         .requires(slabs, 2)
                         .requires(ModItems.LIVING_SAP_BOTTLE)
                         .unlockedBy("has_living_sap_bottle", has(ModItems.LIVING_SAP_BOTTLE))
-                        .save(exporter, description);
+                        .save(output, description);
             }
 
             private void sapSipperRecipes() {
@@ -309,79 +311,79 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                         .ticks(10)
                         .amount(2)
                         .unlockedBy("has_sipper", has(ModBlocks.SAP_SIPPER))
-                        .save(exporter);
+                        .save(output);
                 sapSipper(ModFluids.BIRCH_SAP_STILL)
                         .requires(ModBlockTags.MAKES_BIRCH_SAP)
                         .ticks(10)
                         .amount(2)
                         .unlockedBy("has_sipper", has(ModBlocks.SAP_SIPPER))
-                        .save(exporter);
+                        .save(output);
                 sapSipper(ModFluids.CACTUS_SAP_STILL)
                         .requires(ModBlockTags.MAKES_CACTUS_SAP)
                         .ticks(10)
                         .amount(2)
                         .unlockedBy("has_sipper", has(ModBlocks.SAP_SIPPER))
-                        .save(exporter);
+                        .save(output);
                 sapSipper(ModFluids.CHERRY_SAP_STILL)
                         .requires(ModBlockTags.MAKES_CHERRY_SAP)
                         .ticks(10)
                         .amount(2)
                         .unlockedBy("has_sipper", has(ModBlocks.SAP_SIPPER))
-                        .save(exporter);
+                        .save(output);
                 sapSipper(ModFluids.CHORUS_SAP_STILL)
                         .requires(ModBlockTags.MAKES_CHORUS_SAP)
                         .ticks(10)
                         .amount(2)
                         .unlockedBy("has_sipper", has(ModBlocks.SAP_SIPPER))
-                        .save(exporter);
+                        .save(output);
                 sapSipper(ModFluids.CRIMSON_SAP_STILL)
                         .requires(ModBlockTags.MAKES_CRIMSON_SAP)
                         .ticks(10)
                         .amount(2)
                         .unlockedBy("has_sipper", has(ModBlocks.SAP_SIPPER))
-                        .save(exporter);
+                        .save(output);
                 sapSipper(ModFluids.CRUDE_LIVING_SAP_STILL)
                         .requires(ModBlockTags.MAKES_CRUDE_LIVING_SAP)
                         .ticks(10)
                         .amount(1)
                         .unlockedBy("has_sipper", has(ModBlocks.SAP_SIPPER))
-                        .save(exporter);
+                        .save(output);
                 sapSipper(ModFluids.JUNGLE_SAP_STILL)
                         .requires(ModBlockTags.MAKES_JUNGLE_SAP)
                         .ticks(10)
                         .amount(2)
                         .unlockedBy("has_sipper", has(ModBlocks.SAP_SIPPER))
-                        .save(exporter);
+                        .save(output);
                 sapSipper(ModFluids.LIVING_SAP_STILL)
                         .requires(ModBlockTags.MAKES_LIVING_SAP)
                         .ticks(40)
                         .amount(1)
                         .unlockedBy("has_sipper", has(ModBlocks.SAP_SIPPER))
-                        .save(exporter);
+                        .save(output);
                 sapSipper(ModFluids.MANGROVE_SAP_STILL)
                         .requires(ModBlockTags.MAKES_MANGROVE_SAP)
                         .ticks(10)
                         .amount(2)
                         .unlockedBy("has_sipper", has(ModBlocks.SAP_SIPPER))
-                        .save(exporter);
+                        .save(output);
                 sapSipper(ModFluids.OAK_SAP_STILL)
                         .requires(ModBlockTags.MAKES_OAK_SAP)
                         .ticks(10)
                         .amount(2)
                         .unlockedBy("has_sipper", has(ModBlocks.SAP_SIPPER))
-                        .save(exporter);
+                        .save(output);
                 sapSipper(ModFluids.SPRUCE_SAP_STILL)
                         .requires(ModBlockTags.MAKES_SPRUCE_SAP)
                         .ticks(10)
                         .amount(2)
                         .unlockedBy("has_sipper", has(ModBlocks.SAP_SIPPER))
-                        .save(exporter);
+                        .save(output);
                 sapSipper(ModFluids.WARPED_SAP_STILL)
                         .requires(ModBlockTags.MAKES_WARPED_SAP)
                         .ticks(10)
                         .amount(2)
                         .unlockedBy("has_sipper", has(ModBlocks.SAP_SIPPER))
-                        .save(exporter);
+                        .save(output);
             }
 
             private void essenceCauldronRecipes() {
@@ -391,14 +393,14 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                         .requiresFluid(ModFluidTags.OVERWORLD_TREE_SAP)
                         .requiresFluid(ModFluidTags.OVERWORLD_TREE_SAP)
                         .unlockedBy("has_essence_cauldron", has(ModBlocks.ESSENCE_CAULDRON))
-                        .save(exporter);
+                        .save(output);
                 essenceCauldron(ModItems.HINDERING_ROOTS.asHolder())
                         .requiresItem(BuiltInRegistries.ITEM.wrapAsHolder(Items.HANGING_ROOTS))
                         .requiresItem(BuiltInRegistries.ITEM.wrapAsHolder(Items.MANGROVE_ROOTS))
                         .requiresItem(BuiltInRegistries.ITEM.wrapAsHolder(Items.COBWEB))
                         .requiresFluid(ModFluidTags.ANY_LIVING_SAP)
                         .unlockedBy("has_essence_cauldron", has(ModBlocks.ESSENCE_CAULDRON))
-                        .save(exporter);
+                        .save(output);
             }
 
         };
@@ -415,11 +417,11 @@ public class ModRecipeProvider extends FabricRecipeProvider {
         protected final HolderGetter<Block> blocks;
         protected final HolderGetter<Fluid> fluids;
 
-        public AbstractRecipeProvider(final HolderLookup.Provider registryLookup, final RecipeOutput exporter) {
-            super(registryLookup, exporter);
-            items = registries.lookupOrThrow(Registries.ITEM);
-            blocks = registries.lookupOrThrow(Registries.BLOCK);
-            fluids = registries.lookupOrThrow(Registries.FLUID);
+        public AbstractRecipeProvider(final HolderLookup.Provider registryLookup, final BootstrapContext<Recipe<?>> recipeOutput, final BootstrapContext<Advancement> advancementOutput) {
+            super(recipeOutput, advancementOutput);
+            items = registryLookup.lookupOrThrow(Registries.ITEM);
+            blocks = registryLookup.lookupOrThrow(Registries.BLOCK);
+            fluids = registryLookup.lookupOrThrow(Registries.FLUID);
         }
 
         protected SapSipperRecipeBuilder sapSipper(final Holder<Fluid> sapResult) {

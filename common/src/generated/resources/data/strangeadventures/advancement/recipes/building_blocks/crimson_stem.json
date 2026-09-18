@@ -3,7 +3,7 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "strangeadventures:crimson_stem"
+        "recipes": "strangeadventures:crimson_stem"
       },
       "trigger": "minecraft:recipe_unlocked"
     },

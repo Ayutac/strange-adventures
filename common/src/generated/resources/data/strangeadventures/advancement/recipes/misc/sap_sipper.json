@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "strangeadventures:sap_sipper"
+        "recipes": "strangeadventures:sap_sipper"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

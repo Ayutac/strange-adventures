@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "strangeadventures:weir_wood"
+        "recipes": "strangeadventures:weir_wood"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

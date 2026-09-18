@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "strangeadventures:stripped_weir_wood"
+        "recipes": "strangeadventures:stripped_weir_wood"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

@@ -5,8 +5,8 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import lombok.Getter;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderSet;
-import net.minecraft.core.RegistryCodecs;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.codec.RegistryCodecs;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
@@ -27,7 +27,7 @@ public class SapSipperRecipe implements Recipe<SingleBlockRecipeInput> {
     public static final MapCodec<SapSipperRecipe> CODEC = RecordCodecBuilder.mapCodec(instance ->
             instance.group(
                     BuiltInRegistries.FLUID.holderByNameCodec().fieldOf("sapResult").forGetter(SapSipperRecipe::getSapResult),
-                    RegistryCodecs.homogeneousList(BuiltInRegistries.BLOCK.key()).fieldOf("sapBlocks").forGetter(SapSipperRecipe::getSapBlocks),
+                    RegistryCodecs.holderSet(BuiltInRegistries.BLOCK.key()).fieldOf("sapBlocks").forGetter(SapSipperRecipe::getSapBlocks),
                     ExtraCodecs.POSITIVE_INT.fieldOf("ticksPerSap").forGetter(SapSipperRecipe::getTicksPerSap),
                     ExtraCodecs.POSITIVE_INT.fieldOf("amountPerSap").forGetter(SapSipperRecipe::getAmountPerSap)
             ).apply(instance, SapSipperRecipe::new));

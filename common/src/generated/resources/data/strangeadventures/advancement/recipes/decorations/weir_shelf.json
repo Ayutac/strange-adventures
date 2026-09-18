@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "strangeadventures:weir_shelf"
+        "recipes": "strangeadventures:weir_shelf"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

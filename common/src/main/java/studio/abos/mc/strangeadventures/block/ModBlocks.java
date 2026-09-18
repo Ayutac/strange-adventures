@@ -93,24 +93,24 @@ public final class ModBlocks {
                 .noCollision()
                 .sound(SoundType.GRASS)
                 .offsetType(BlockBehaviour.OffsetType.XZ)
-                .pushReaction(PushReaction.DESTROY)
+                .pushReaction(PushReaction.POPPED)
                 .mapColor(MapColor.PLANT)).withDefaultItem().asDeferredBlock();
         POTTED_GREEN_FLOWER = blocks.register("potted_green_flower", props -> new FlowerPotBlock(GREEN_FLOWER.asBlock(), props), props -> props
                 .instabreak()
                 .noOcclusion()
-                .pushReaction(PushReaction.DESTROY)).asDeferredBlock();
+                .pushReaction(PushReaction.POPPED)).asDeferredBlock();
         GREEN_FARMLAND = blocks.register("green_farmland", GreenFarmlandBlock::new, props -> props
                 .strength(0.6F)
                 .randomTicks()
                 .sound(SoundType.GRAVEL)
-                .isViewBlocking((_, _, _) -> true)
+                .isViewBlocking((_, _, _, _) -> true)
                 .isSuffocating((_, _, _) -> true)
                 .mapColor(Blocks.FARMLAND.defaultMapColor())).withDefaultItem().asDeferredBlock();
         GREEN_CACTUS = blocks.register("green_cactus", GreenCactusBlock::new, props -> props
                 .strength(0.4F)
                 .randomTicks()
                 .sound(SoundType.WOOL)
-                .pushReaction(PushReaction.DESTROY)
+                .pushReaction(PushReaction.POPPED)
                 .mapColor(MapColor.PLANT)).withDefaultItem().asDeferredBlock();
 
         WEIR_LOG = blocks.register("weir_log", RotatedPillarBlock::new, props -> props
@@ -143,23 +143,23 @@ public final class ModBlocks {
                 .sound(SoundType.GRASS)
                 .noOcclusion()
 //                .isValidSpawn(Blocks::ocelotOrParrot)
-                .isViewBlocking((_, _, _) -> false)
+                .isViewBlocking((_, _, _, _) -> false)
                 .isSuffocating((_, _, _) -> false)
                 .isRedstoneConductor((_, _, _) -> false)
                 .ignitedByLava()
-                .pushReaction(PushReaction.DESTROY)
+                .pushReaction(PushReaction.POPPED)
                 .mapColor(MapColor.PLANT)).withDefaultItem().asDeferredBlock();
         WEIR_SAPLING = blocks.register("weir_sapling", props -> SaplingBlockAccessor.newSaplingBlock(ModTreeFeatures.WEIR_GROWER, props), props -> props
                 .instabreak()
                 .randomTicks()
                 .noCollision()
                 .sound(SoundType.GRASS)
-                .pushReaction(PushReaction.DESTROY)
+                .pushReaction(PushReaction.POPPED)
                 .mapColor(MapColor.PLANT)).withDefaultItem().asDeferredBlock();
         POTTED_WEIR_SAPLING = blocks.register("potted_weir_sapling", props -> new FlowerPotBlock(WEIR_SAPLING.asBlock(), props), props -> props
                 .instabreak()
                 .noOcclusion()
-                .pushReaction(PushReaction.DESTROY)).asDeferredBlock();
+                .pushReaction(PushReaction.POPPED)).asDeferredBlock();
         WEIR_CORE = blocks.register("weir_core", Block::new, props -> props
                 .strength(10f)
                 .requiresCorrectToolForDrops()
@@ -216,7 +216,7 @@ public final class ModBlocks {
                 .noCollision()
                 .ignitedByLava()
                 .instrument(NoteBlockInstrument.BASS)
-                .pushReaction(PushReaction.DESTROY)
+                .pushReaction(PushReaction.POPPED)
                 .mapColor(MapColor.COLOR_BROWN)).withDefaultItem().asDeferredBlock();
         WEIR_TRAPDOOR = blocks.register("weir_trapdoor", props -> TrapdoorBlockAccessor.newTrapdoorBlock(WEIR_BLOCK_SET_TYPE, props), props -> props
                 .strength(3f)
@@ -228,7 +228,7 @@ public final class ModBlocks {
         WEIR_BUTTON = blocks.register("weir_button", props -> ButtonBlockAccessor.newButtonBlock(WEIR_BLOCK_SET_TYPE, 30, props), props -> props
                 .strength(0.5f)
                 .noCollision()
-                .pushReaction(PushReaction.DESTROY)).withDefaultItem().asDeferredBlock();
+                .pushReaction(PushReaction.POPPED)).withDefaultItem().asDeferredBlock();
         WEIR_STAIRS = blocks.register("weir_stairs", props -> StairBlockAccessor.newStairBlock(WEIR_PLANKS.defaultBlockState(), props), props -> props
                 .strength(2f, 3f)
                 .ignitedByLava()
@@ -256,7 +256,7 @@ public final class ModBlocks {
         WEIR_DOOR = blocks.register("weir_door", props -> DoorBlockAccessor.newDoorBlock(WEIR_BLOCK_SET_TYPE, props), props -> props
                 .strength(2f, 3f)
                 .noOcclusion()
-                .pushReaction(PushReaction.DESTROY)
+                .pushReaction(PushReaction.POPPED)
                 .ignitedByLava()
                 .instrument(NoteBlockInstrument.BASS)
                 .mapColor(MapColor.COLOR_BROWN)).withDefaultItem().asDeferredBlock();
@@ -327,7 +327,7 @@ public final class ModBlocks {
                 .replaceable()
                 .noCollision()
                 .strength(100.0F)
-                .pushReaction(PushReaction.DESTROY)
+                .pushReaction(PushReaction.POPPED)
                 .noLootTable()
                 .liquid()
                 .sound(SoundType.EMPTY);

@@ -5,8 +5,8 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import lombok.Getter;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderSet;
-import net.minecraft.core.RegistryCodecs;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.codec.RegistryCodecs;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
@@ -31,8 +31,8 @@ public class EssenceCauldronRecipe implements Recipe<EssenceCauldronRecipeInput>
             instance.group(
                     BuiltInRegistries.ITEM.holderByNameCodec().fieldOf("result").forGetter(EssenceCauldronRecipe::getResult),
                     ExtraCodecs.POSITIVE_INT.fieldOf("amount").forGetter(EssenceCauldronRecipe::getAmount),
-                    RegistryCodecs.homogeneousList(BuiltInRegistries.ITEM.key()).listOf().fieldOf("items").forGetter(EssenceCauldronRecipe::getItems),
-                    RegistryCodecs.homogeneousList(BuiltInRegistries.FLUID.key()).listOf().fieldOf("fluids").forGetter(EssenceCauldronRecipe::getFluids)
+                    RegistryCodecs.holderSet(BuiltInRegistries.ITEM.key()).listOf().fieldOf("items").forGetter(EssenceCauldronRecipe::getItems),
+                    RegistryCodecs.holderSet(BuiltInRegistries.FLUID.key()).listOf().fieldOf("fluids").forGetter(EssenceCauldronRecipe::getFluids)
             ).apply(instance, EssenceCauldronRecipe::new));
 
     public static final StreamCodec<RegistryFriendlyByteBuf, EssenceCauldronRecipe> STREAM_CODEC = StreamCodec.composite(

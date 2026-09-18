@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "strangeadventures:oak_sap"
+        "recipes": "strangeadventures:oak_sap"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

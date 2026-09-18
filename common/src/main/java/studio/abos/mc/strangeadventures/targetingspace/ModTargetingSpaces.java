@@ -11,10 +11,10 @@ public final class ModTargetingSpaces {
     public static Holder<TargetingSpace> TOP_BOX;
 
     public static void initialize(BalmRegistrar.Scoped<TargetingSpace> targetingSpaces) {
-        BOX = targetingSpaces.register("box", _ -> new Box());
-        CYLINDER = targetingSpaces.register("cylinder", _ -> new Cylinder());
-        ELLIPSOID = targetingSpaces.register("ellipsoid", _ -> new Ellipsoid());
-        TOP_BOX = targetingSpaces.register("top_box", _ -> new TopBox());
+        BOX = targetingSpaces.register("box", _ -> new Box()).asHolder();
+        CYLINDER = targetingSpaces.register("cylinder", _ -> new Cylinder()).asHolder();
+        ELLIPSOID = targetingSpaces.register("ellipsoid", _ -> new Ellipsoid()).asHolder();
+        TOP_BOX = targetingSpaces.register("top_box", _ -> new TopBox()).asHolder();
     }
 
 }

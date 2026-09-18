@@ -44,15 +44,17 @@ public class ModModelProvider extends FabricModelProvider {
     }
 
     protected void createGreenFarmland(final BlockModelGenerators blockStateModelGenerator) {
-        TextureMapping dryTextures = new TextureMapping()
-                .put(TextureSlot.DIRT, TextureMapping.getBlockTexture(Blocks.DIRT))
+        final TextureMapping dryTextures = new TextureMapping()
+                .put(TextureSlot.SIDE, TextureMapping.getBlockTexture(Blocks.DIRT))
+                .put(TextureSlot.BOTTOM, TextureMapping.getBlockTexture(Blocks.DIRT))
                 .put(TextureSlot.TOP, TextureMapping.getBlockTexture(ModBlocks.GREEN_FARMLAND.asBlock()));
-        TextureMapping moistTextures = new TextureMapping()
-                .put(TextureSlot.DIRT, TextureMapping.getBlockTexture(Blocks.DIRT))
+        final TextureMapping moistTextures = new TextureMapping()
+                .put(TextureSlot.SIDE, TextureMapping.getBlockTexture(Blocks.DIRT))
+                .put(TextureSlot.BOTTOM, TextureMapping.getBlockTexture(Blocks.DIRT))
                 .put(TextureSlot.TOP, TextureMapping.getBlockTexture(ModBlocks.GREEN_FARMLAND.asBlock(), "_moist"));
-        MultiVariant dryModel = BlockModelGenerators.plainVariant(ModelTemplates.FARMLAND.create(ModBlocks.GREEN_FARMLAND.asBlock(), dryTextures, blockStateModelGenerator.modelOutput));
-        MultiVariant moistModel = BlockModelGenerators.plainVariant(
-                ModelTemplates.FARMLAND.create(ModelLocationUtils.getModelLocation(ModBlocks.GREEN_FARMLAND.asBlock(), "_moist"), moistTextures, blockStateModelGenerator.modelOutput)
+        final MultiVariant dryModel = BlockModelGenerators.plainVariant(ModelTemplates.CUBE_BOTTOM_TOP_INDENTED.create(ModBlocks.GREEN_FARMLAND.asBlock(), dryTextures, blockStateModelGenerator.modelOutput));
+        final MultiVariant moistModel = BlockModelGenerators.plainVariant(
+                ModelTemplates.CUBE_BOTTOM_TOP_INDENTED.create(ModelLocationUtils.getModelLocation(ModBlocks.GREEN_FARMLAND.asBlock(), "_moist"), moistTextures, blockStateModelGenerator.modelOutput)
         );
         blockStateModelGenerator.blockStateOutput.accept(MultiVariantGenerator
                 .dispatch(ModBlocks.GREEN_FARMLAND.asBlock())

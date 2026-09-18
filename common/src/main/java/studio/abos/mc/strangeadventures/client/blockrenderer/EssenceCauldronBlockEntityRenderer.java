@@ -147,7 +147,7 @@ public class EssenceCauldronBlockEntityRenderer implements BlockEntityRenderer<E
         // center everything for rotation and back
         poseStack.pushPose();
         poseStack.translate(0.5f, 0f, 0.5f);
-        poseStack.mulPose(Axis.YP.rotationDegrees(renderState.getRotation()));
+        poseStack.rotate(Axis.YP.rotationDegrees(renderState.getRotation()));
         poseStack.translate(-0.5f, 0f, -0.5f);
         final int light = renderState.lightCoords;
         if (fluidCount == 0) {
@@ -162,9 +162,9 @@ public class EssenceCauldronBlockEntityRenderer implements BlockEntityRenderer<E
                 poseStack.pushPose();
                 poseStack.scale(0.333f, 0.333f, 0.333f);
                 poseStack.translate(-0.5f, 0f, -0.5f);
-                poseStack.mulPose(Axis.YP.rotationDegrees(ROT_DEG[i]));
+                poseStack.rotate(Axis.YP.rotationDegrees(ROT_DEG[i]));
                 poseStack.translate(0.5f, 0f, 0.5f);
-                poseStack.mulPose(Axis.XP.rotationDegrees(90f));
+                poseStack.rotate(Axis.XP.rotationDegrees(90f));
                 itemRenderState.renderState().submit(poseStack, queue, light, OverlayTexture.NO_OVERLAY, 0);
                 poseStack.popPose();
                 poseStack.popPose();
@@ -181,7 +181,7 @@ public class EssenceCauldronBlockEntityRenderer implements BlockEntityRenderer<E
                 poseStack.translate(itemRenderState.relPos());
                 poseStack.scale(0.333f, 0.333f, 0.333f);
                 poseStack.pushPose();
-                poseStack.mulPose(Axis.YP.rotation(itemRenderState.rotation()));
+                poseStack.rotate(Axis.YP.rotation(itemRenderState.rotation()));
                 itemRenderState.renderState().submit(poseStack, queue, light, OverlayTexture.NO_OVERLAY, 0);
                 poseStack.popPose();
                 poseStack.popPose();

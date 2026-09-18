@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "strangeadventures:cactus_sap"
+        "recipes": "strangeadventures:cactus_sap"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

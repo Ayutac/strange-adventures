@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "strangeadventures:pale_oak_planks_from_stairs"
+        "recipes": "strangeadventures:pale_oak_planks_from_stairs"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

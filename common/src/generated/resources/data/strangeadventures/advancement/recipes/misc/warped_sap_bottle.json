@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "strangeadventures:warped_sap_bottle"
+        "recipes": "strangeadventures:warped_sap_bottle"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

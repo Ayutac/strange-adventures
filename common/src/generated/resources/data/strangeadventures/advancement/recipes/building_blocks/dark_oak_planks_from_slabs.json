@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "strangeadventures:dark_oak_planks_from_slabs"
+        "recipes": "strangeadventures:dark_oak_planks_from_slabs"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

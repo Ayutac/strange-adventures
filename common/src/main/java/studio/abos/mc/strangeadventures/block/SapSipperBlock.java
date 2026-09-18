@@ -1,6 +1,5 @@
 package studio.abos.mc.strangeadventures.block;
 
-import com.mojang.serialization.MapCodec;
 import net.blay09.mods.balm.platform.fluid.FluidTank;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
@@ -28,15 +27,8 @@ import studio.abos.mc.strangeadventures.fluid.ModFluids;
 
 public class SapSipperBlock extends BaseEntityBlock {
 
-    public static final MapCodec<SapSipperBlock> CODEC = simpleCodec(SapSipperBlock::new);
-
     protected SapSipperBlock(final Properties properties) {
         super(properties);
-    }
-
-    @Override
-    protected MapCodec<? extends BaseEntityBlock> codec() {
-        return CODEC;
     }
 
     @Override

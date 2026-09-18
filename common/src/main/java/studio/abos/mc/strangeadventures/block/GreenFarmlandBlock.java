@@ -3,13 +3,14 @@ package studio.abos.mc.strangeadventures.block;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FarmlandBlock;
 import net.minecraft.world.level.block.state.BlockState;
 
 public class GreenFarmlandBlock extends FarmlandBlock {
 
     protected GreenFarmlandBlock(final Properties properties) {
-        super(properties);
+        super(Blocks.DIRT, properties);
     }
 
     @Override

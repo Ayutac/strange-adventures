@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "strangeadventures:acacia_sap"
+        "recipes": "strangeadventures:acacia_sap"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

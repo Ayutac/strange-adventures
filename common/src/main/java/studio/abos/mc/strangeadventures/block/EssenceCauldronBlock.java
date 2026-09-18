@@ -1,6 +1,5 @@
 package studio.abos.mc.strangeadventures.block;
 
-import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponents;
@@ -44,17 +43,11 @@ import studio.abos.mc.strangeadventures.recipe.ModRecipeTypes;
 
 public class EssenceCauldronBlock extends BaseEntityBlock {
 
-    public static final MapCodec<EssenceCauldronBlock> CODEC = simpleCodec(EssenceCauldronBlock::new);
     private static final VoxelShape SHAPE_INSIDE = Block.column(12d, 4d, 16d);
     protected static final VoxelShape SHAPE = Util.make(() -> Shapes.join(Shapes.block(), Shapes.or(Block.column(16d, 8d, 0d, 3d), Block.column(8d, 16d, 0d, 3d), Block.column(12d, 0d, 3d), SHAPE_INSIDE), BooleanOp.ONLY_FIRST));
 
     public EssenceCauldronBlock(final Properties properties) {
         super(properties);
-    }
-
-    @Override
-    protected MapCodec<? extends BaseEntityBlock> codec() {
-        return CODEC;
     }
 
     @Override

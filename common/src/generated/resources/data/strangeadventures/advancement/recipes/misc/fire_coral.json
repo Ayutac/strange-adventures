@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "strangeadventures:fire_coral"
+        "recipes": "strangeadventures:fire_coral"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

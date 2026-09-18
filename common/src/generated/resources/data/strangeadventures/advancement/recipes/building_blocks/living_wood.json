@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "strangeadventures:living_wood"
+        "recipes": "strangeadventures:living_wood"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

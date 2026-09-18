@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "strangeadventures:rabbit"
+        "recipes": "strangeadventures:rabbit"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

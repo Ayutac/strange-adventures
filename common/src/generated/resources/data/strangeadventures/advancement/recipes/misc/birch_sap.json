@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "strangeadventures:birch_sap"
+        "recipes": "strangeadventures:birch_sap"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

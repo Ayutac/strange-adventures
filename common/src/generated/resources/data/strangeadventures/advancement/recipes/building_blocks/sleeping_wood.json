@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "strangeadventures:sleeping_wood"
+        "recipes": "strangeadventures:sleeping_wood"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
