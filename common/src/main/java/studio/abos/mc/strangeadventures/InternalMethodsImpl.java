@@ -128,8 +128,8 @@ public class InternalMethodsImpl implements InternalMethods {
             return false;
         }
         final GreenAvatarData data = lookup.getOrCreate(player);
+        updateGreenAvatarAttributes(player); // must be before setting the flag
         lookup.update(player, data.withActive(true));
-        updateGreenAvatarAttributes(player);
         ((InventoryAccessor)player.getInventory()).getEquipment().dropAll(player);
         return false;
     }
@@ -147,13 +147,15 @@ public class InternalMethodsImpl implements InternalMethods {
             return false;
         }
         final GreenAvatarData data = lookup.get(player);
-        lookup.update(player, data.withActive(false));
+        lookup.update(player, data.withActive(false)); // must be after updating the flag
         clearGreenAvatarAttributes(player);
         return true;
     }
 
     private void updateGreenAvatarAttributes(final ServerPlayer player) {
         final float mass = greenAvatarGetMass(player);
+        player.getFoodData().setFoodLevel(10);
+        player.getFoodData().setSaturation(0f);
         player.getAttribute(Attributes.MAX_HEALTH).addOrReplacePermanentModifier(
                 new AttributeModifier(StrangeAdventuresApi.MODIFIER_ID_GREEN_AVATAR, mass - 1d, AttributeModifier.Operation.ADD_MULTIPLIED_BASE));
         player.getAttribute(Attributes.ARMOR).addOrReplacePermanentModifier(
@@ -165,6 +167,9 @@ public class InternalMethodsImpl implements InternalMethods {
     }
 
     private void clearGreenAvatarAttributes(final ServerPlayer player) {
+        final float mass = greenAvatarGetMass(player);
+        player.getFoodData().setFoodLevel((int)(Math.min(mass, 2f) * 10));
+        player.getFoodData().setSaturation(mass * 5f);
         player.getAttribute(Attributes.MAX_HEALTH).removeModifier(StrangeAdventuresApi.MODIFIER_ID_GREEN_AVATAR);
         player.getAttribute(Attributes.ARMOR).removeModifier(StrangeAdventuresApi.MODIFIER_ID_GREEN_AVATAR);
         player.getAttribute(Attributes.ARMOR_TOUGHNESS).removeModifier(StrangeAdventuresApi.MODIFIER_ID_GREEN_AVATAR);
