@@ -20,6 +20,7 @@
     "PlayerMixin",
     "PressurePlateBlockAccessor",
     "SaplingBlockAccessor",
+    "ServerPlayerMixin",
     "StairBlockAccessor",
     "StemBlockAccessor",
     "TrapdoorBlockAccessor",

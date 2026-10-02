@@ -85,4 +85,11 @@ public interface InternalMethods {
      */
     boolean greenAvatarRegrow(final ServerPlayer player);
 
+    /**
+     * Takes care of regeneration and other tickly needs for the Avatar of the Green.
+     * Does not check if the player is currently an AotG.
+     * @param player the player to tick
+     */
+    void greenAvatarTick(final ServerPlayer player);
+
 }

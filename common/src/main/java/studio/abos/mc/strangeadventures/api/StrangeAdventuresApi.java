@@ -27,6 +27,8 @@ public class StrangeAdventuresApi {
 
     public static final float GREEN_AVATAR_MASS_MIN = 1 / 4f;
     public static final float GREEN_AVATAR_MASS_MAX = 4f;
+    public static final int GREEN_AVATAR_REGEN_COOLDOWN = 5 * 20;
+    public static final int GREEN_AVATAR_REGEN_DURATION = 4 * 20;
     public static final Identifier MODIFIER_ID_GREEN_AVATAR = StrangeAdventures.id("green_avatar");
 
     static {

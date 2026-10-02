@@ -273,4 +273,29 @@ public class InternalMethodsImpl implements InternalMethods {
         return true;
     }
 
+    @Override
+    public void greenAvatarTick(final ServerPlayer player) {
+        final var lookup = StrangeAdventures.dataAttachments().GREEN_AVATAR_DATA;
+        final GreenAvatarData data = lookup.getOrCreate(player);
+        // regenerate
+        if (player.wasHurtRecently() && (data.lastHurtTick() > 0 || data.regenerationTick() > 0)) {
+            lookup.update(player, data.withRegenerationReset());
+        }
+        else {
+            // only heal in full sunlight
+            if (player.level().getEffectiveSkyBrightness(player.blockPosition()) >= 15) {
+                if (data.lastHurtTick() > StrangeAdventuresApi.GREEN_AVATAR_REGEN_COOLDOWN &&
+                        data.regenerationTick() >= StrangeAdventuresApi.GREEN_AVATAR_REGEN_DURATION) {
+                    player.heal(1f);
+                }
+                lookup.update(player, data.withIncreasedRegenerationTicks());
+            }
+            else if (data.regenerationTick() > 0) { // to reduce the amount of updating
+                lookup.update(player, data.withRegenerationTick(0));
+            }
+        }
+        // other stuff
+        // (none yet)
+    }
+
 }
