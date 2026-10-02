@@ -285,8 +285,8 @@ public class InternalMethodsImpl implements InternalMethods {
             lookup.update(player, data.withRegenerationReset());
         }
         else {
-            // only heal in full sunlight
-            if (player.level().getEffectiveSkyBrightness(player.blockPosition()) >= 15) {
+            // only heal in full sunlight when not frozen
+            if (player.level().getEffectiveSkyBrightness(player.blockPosition()) >= 15 && !player.isFreezing()) {
                 if (data.lastHurtTick() > StrangeAdventuresApi.GREEN_AVATAR_REGEN_COOLDOWN &&
                         data.regenerationTick() >= StrangeAdventuresApi.GREEN_AVATAR_REGEN_DURATION) {
                     player.heal(1f);
