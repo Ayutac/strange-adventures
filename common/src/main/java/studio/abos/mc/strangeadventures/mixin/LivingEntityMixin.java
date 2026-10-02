@@ -8,7 +8,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import studio.abos.mc.strangeadventures.api.StrangeAdventuresApi;
 
 @Mixin(LivingEntity.class)
-public class LivingEntityMixin {
+public abstract class LivingEntityMixin {
 
     @ModifyReturnValue(method = "canBreatheUnderwater()Z", at = @At("RETURN"))
     public boolean strangeadventures$greenAvatarCanBreatheUnderwater(final boolean original) {
