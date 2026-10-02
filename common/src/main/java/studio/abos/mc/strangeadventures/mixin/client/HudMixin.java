@@ -1,8 +1,10 @@
 package studio.abos.mc.strangeadventures.mixin.client;
 
+import com.llamalad7.mixinextras.expression.Definition;
 import com.llamalad7.mixinextras.expression.Expression;
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import com.llamalad7.mixinextras.injector.v2.WrapWithCondition;
+import com.llamalad7.mixinextras.sugar.Local;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.Hud;
 import net.minecraft.world.entity.player.Player;
@@ -25,11 +27,12 @@ public abstract class HudMixin {
     protected abstract Player getCameraPlayer();
 
     // > You cannot Wrap(WithCondition|Operation) anything with a local variable assignment, due to the potential to create invalid bytecode
-    @Expression("? - 10")
+    @Definition(id = "yLineAir", local = @Local(type = int.class, name = "yLineAir"))
+    @Expression("yLineAir = yLineAir + @(-10)")
     @ModifyExpressionValue(method = "extractPlayerHealth(Lnet/minecraft/client/gui/GuiGraphicsExtractor;)V", at = @At(value = "MIXINEXTRAS:EXPRESSION"))
     private int strangeadventures$greenAvatarDoesntRenderFoodLine(final int original) {
         if (getCameraPlayer() instanceof final Player player && StrangeAdventuresApi.INTERNAL_METHODS.greenAvatarActive(player)) {
-            return original + 10; // cancel out the -10 from the hunger bar
+            return 0; // remove -10 of the hunger bar
         }
         return original;
     }
