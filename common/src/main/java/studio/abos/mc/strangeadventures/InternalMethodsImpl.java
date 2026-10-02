@@ -7,11 +7,13 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Mth;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Pose;
 import net.minecraft.world.entity.Relative;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -147,7 +149,7 @@ public class InternalMethodsImpl implements InternalMethods {
             return false;
         }
         final GreenAvatarData data = lookup.get(player);
-        lookup.update(player, data.withActive(false)); // must be after updating the flag
+        lookup.update(player, data.withUprooted().withActive(false)); // must be after updating the flag
         clearGreenAvatarAttributes(player);
         return true;
     }
@@ -277,19 +279,50 @@ public class InternalMethodsImpl implements InternalMethods {
     }
 
     @Override
+    public boolean greenAvatarTryTakeRoot(final ServerPlayer player) {
+        if (player.level().getBlockState(player.getOnPos()).is(BlockTags.SUBSTRATE_OVERWORLD)) {
+            player.teleportTo(player.getX(), player.getY() - player.getBbHeight() / 3, player.getZ());
+            player.setPose(Pose.STANDING);
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean greenAvatarRooted(final Player player) {
+        final var lookup = StrangeAdventures.dataAttachments().GREEN_AVATAR_DATA;
+        return lookup.getOrCreate(player).rooted();
+    }
+
+    @Override
+    public void greenAvatarUproot(final Player player) {
+        final var lookup = StrangeAdventures.dataAttachments().GREEN_AVATAR_DATA;
+        lookup.update(player, lookup.getOrCreate(player).withUprooted());
+    }
+
+    @Override
     public void greenAvatarTick(final ServerPlayer player) {
         final var lookup = StrangeAdventures.dataAttachments().GREEN_AVATAR_DATA;
-        final GreenAvatarData data = lookup.getOrCreate(player);
         // regenerate
-        if (player.wasHurtRecently() && (data.lastHurtTick() > 0 || data.regenerationTick() > 0)) {
-            lookup.update(player, data.withRegenerationReset());
+        GreenAvatarData data = lookup.getOrCreate(player);
+        if (player.wasHurtRecently()) {
+            if (data.lastHurtTick() > 0 || data.regenerationTick() > 0) {
+                lookup.update(player, data.withRegenerationReset());
+            }
         }
         else {
-            // only heal in full sunlight when not frozen
-            if (player.level().getEffectiveSkyBrightness(player.blockPosition()) >= 15 && !player.isFreezing()) {
+            float healAmount = 0f;
+            if (player.level().getEffectiveSkyBrightness(player.blockPosition()) >= 15) {
+                healAmount += 1f;
+            }
+            if (data.rooted()) {
+                healAmount += 1f;
+            }
+            // only heal when not frozen
+            if (!player.isFreezing() && healAmount > 0f) {
                 if (data.lastHurtTick() > StrangeAdventuresApi.GREEN_AVATAR_REGEN_COOLDOWN &&
                         data.regenerationTick() >= StrangeAdventuresApi.GREEN_AVATAR_REGEN_DURATION) {
-                    player.heal(1f);
+                    player.heal(healAmount);
                 }
                 lookup.update(player, data.withIncreasedRegenerationTicks());
             }
@@ -297,8 +330,22 @@ public class InternalMethodsImpl implements InternalMethods {
                 lookup.update(player, data.withRegenerationTick(0));
             }
         }
-        // other stuff
-        // (none yet)
+        // take root
+        data = lookup.getOrCreate(player); // refresh data in case changed earlier
+        if (!player.isCrouching()) {
+            if (data.sneakTick() > 0) {
+                lookup.update(player, data.withSneakTick(0));
+            }
+        }
+        else {
+            if (data.sneakTick() >= StrangeAdventuresApi.GREEN_AVATAR_ROOTING_TIME && !data.rooted()) {
+                if (greenAvatarTryTakeRoot(player)) {
+                    lookup.update(player, data.withRooted(true));
+                    data = lookup.getOrCreate(player);
+                }
+            }
+            lookup.update(player, data.withSneakTick(data.sneakTick() + 1));
+        }
     }
 
 }

@@ -15,7 +15,7 @@ import studio.abos.mc.strangeadventures.tag.ModDamageTypeTags;
 public abstract class PlayerMixin {
 
     @ModifyReturnValue(method = "isInvulnerableTo(Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/damagesource/DamageSource;)Z", at = @At("RETURN"))
-    public boolean strangeadventures$dontHurtGreenAvatar(final boolean original, final ServerLevel level, final DamageSource source) {
+    public boolean strangeadventures$greenAvatarImmunities(final boolean original, final ServerLevel level, final DamageSource source) {
         if (StrangeAdventuresApi.INTERNAL_METHODS.greenAvatarActive((Player)(Object)this) && source.is(ModDamageTypeTags.GREEN_AVATAR_IMMUNITIES) && !original) {
             return true;
         }
@@ -34,5 +34,13 @@ public abstract class PlayerMixin {
     private boolean strangeadventures$greenAvatarDoesntGetFoodExhaustion(final FoodData instance, final float amount) {
         return !StrangeAdventuresApi.INTERNAL_METHODS.greenAvatarActive((Player)(Object)this);
     }
+
+    /*@Inject(method = "travel(Lnet/minecraft/world/phys/Vec3;)V", at = @At("RETURN"))
+    private void strangeadventures$greenAvatarTravellingUproots(final Vec3 input, final CallbackInfo ci) {
+        if (input != Vec3.ZERO && (Player)(Object)this instanceof final ServerPlayer player &&
+                StrangeAdventuresApi.INTERNAL_METHODS.greenAvatarActive(player) && StrangeAdventuresApi.INTERNAL_METHODS.greenAvatarRooted(player)) {
+            StrangeAdventuresApi.INTERNAL_METHODS.greenAvatarUproot(player);
+        }
+    }*/
 
 }

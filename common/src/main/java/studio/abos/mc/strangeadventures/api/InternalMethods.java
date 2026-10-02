@@ -86,6 +86,26 @@ public interface InternalMethods {
     boolean greenAvatarRegrow(final ServerPlayer player);
 
     /**
+     * Roots the player. Doesn't check for AotG to be active, only tries to root.
+     * @param player the player to take root
+     * @return <code>true</code> if rooting was successful, else <code>false</code>
+     */
+    boolean greenAvatarTryTakeRoot(final ServerPlayer player);
+
+    /**
+     * Checks if the player is rooted (independent of checking for AotG).
+     * @param player the player to check
+     * @return <code>true</code> if the player is rooted, else <code>false</code>
+     */
+    boolean greenAvatarRooted(final Player player);
+
+    /**
+     * Uproots the player. Doesn't check if they were rooted or even are AotG
+     * @param player the player to uproot
+     */
+    void greenAvatarUproot(final Player player);
+
+    /**
      * Takes care of regeneration and other tickly needs for the Avatar of the Green.
      * Does not check if the player is currently an AotG.
      * @param player the player to tick

@@ -22,6 +22,7 @@ import studio.abos.mc.strangeadventures.effect.ModEffects;
 import studio.abos.mc.strangeadventures.entity.ModEntityTypes;
 import studio.abos.mc.strangeadventures.fluid.ModFluids;
 import studio.abos.mc.strangeadventures.item.ModItems;
+import studio.abos.mc.strangeadventures.platform.ModPlatform;
 import studio.abos.mc.strangeadventures.recipe.ModRecipeTypes;
 import studio.abos.mc.strangeadventures.targetingmode.ModTargetingModes;
 import studio.abos.mc.strangeadventures.targetingspace.ModTargetingSpaces;
@@ -36,6 +37,8 @@ public class StrangeAdventures {
 
     private static @Nullable ModDataAttachments dataAttachments;
 
+    private static @Nullable ModPlatform platformProxy;
+
     public static Identifier id(String path) {
         return Identifier.fromNamespaceAndPath(MOD_ID, path);
     }
@@ -46,6 +49,10 @@ public class StrangeAdventures {
 
     public static ModDataAttachments dataAttachments() {
         return Objects.requireNonNull(dataAttachments);
+    }
+
+    public static ModPlatform platformProxy() {
+        return Objects.requireNonNull(platformProxy);
     }
 
     public static void initialize(BalmRegistrars registrars) {
@@ -69,6 +76,11 @@ public class StrangeAdventures {
         registrars.dataAttachmentTypes(registrar -> dataAttachments = new ModDataAttachments(registrar));
 
         ModCommands.initialize(Balm.commands());
+
+        platformProxy = (ModPlatform)Balm.platformProxy()
+                .withFabric("studio.abos.mc.strangeadventures.fabric.platform.ModPlatformFabric")
+                .withNeoForge("studio.abos.mc.strangeadventures.neoforge.platform.ModPlatformNeoForge")
+                .build();
 
         LivingEntityCallback.Damage.Before.EVENT.register((entity, damageSource, damageAmount) -> {
             if (entity instanceof final ServerPlayer player && StrangeAdventuresApi.INTERNAL_METHODS.greenAvatarActive(player)) {
