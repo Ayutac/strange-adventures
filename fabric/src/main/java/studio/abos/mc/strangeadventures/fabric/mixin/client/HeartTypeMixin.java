@@ -30,7 +30,7 @@ public enum HeartTypeMixin {
 
     @ModifyReturnValue(method = "forPlayer(Lnet/minecraft/world/entity/player/Player;)Lnet/minecraft/client/gui/Hud$HeartType;", at = @At("RETURN"))
     private static Hud.HeartType strangeadventures$greenAvatarHearts(final Hud.HeartType original, final Player player) {
-        if (original == Hud.HeartType.NORMAL && StrangeAdventuresApi.INTERNAL_METHODS.greenAvatarActive(player)) {
+        if ((original == Hud.HeartType.NORMAL || original == Hud.HeartType.POISIONED) && StrangeAdventuresApi.INTERNAL_METHODS.greenAvatarActive(player)) {
             return Hud.HeartType.STRANGE_ADVENTURES_GREEN_AVATAR;
         }
         return original;

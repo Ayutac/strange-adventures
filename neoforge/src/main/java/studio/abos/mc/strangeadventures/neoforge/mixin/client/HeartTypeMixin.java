@@ -16,7 +16,7 @@ public abstract class HeartTypeMixin {
 
     @ModifyReturnValue(method = "forPlayer(Lnet/minecraft/world/entity/player/Player;)Lnet/minecraft/client/gui/Hud$HeartType;", at = @At("RETURN"))
     private static Hud.HeartType strangeadventures$greenAvatarHearts(final Hud.HeartType original, final Player player) {
-        if (original == Hud.HeartType.NORMAL && StrangeAdventuresApi.INTERNAL_METHODS.greenAvatarActive(player)) {
+        if ((original == Hud.HeartType.NORMAL || original == Hud.HeartType.POISIONED) && StrangeAdventuresApi.INTERNAL_METHODS.greenAvatarActive(player)) {
             if (strangeadventures$greenAvatar == null) {
                 strangeadventures$greenAvatar = Hud.HeartType.valueOf("STRANGEADVENTURES_GREEN_AVATAR");
             }
