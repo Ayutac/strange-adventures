@@ -4,7 +4,8 @@
   "package": "studio.abos.mc.strangeadventures.neoforge.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "AbstractSapFluidMixin"
+    "AbstractSapFluidMixin",
+    "HungerMobEffectMixin"
   ],
   "client": [
     "client.HeartTypeMixin"

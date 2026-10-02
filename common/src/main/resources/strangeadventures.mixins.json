@@ -18,6 +18,7 @@
     "LiquidBlockAccessor",
     "LivingEntityMixin",
     "PlayerMixin",
+    "PoisonMobEffectMixin",
     "PressurePlateBlockAccessor",
     "SaplingBlockAccessor",
     "ServerPlayerMixin",
