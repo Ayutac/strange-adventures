@@ -222,11 +222,14 @@ public class InternalMethodsImpl implements InternalMethods {
         }
         level.setBlockAndUpdate(pos, Blocks.AIR.defaultBlockState());
         float greenMass = 0f;
+        float additionalHealth = 0f;
         if (state.is(ModBlockTags.GREEN_MASS_HIGH)) {
             greenMass = 1f;
+            additionalHealth = 2f;
         }
         else if (state.is(ModBlockTags.GREEN_MASS_MEDIUM_HIGH)) {
             greenMass = 0.85f;
+            additionalHealth = 1f;
         }
         else if (state.is(ModBlockTags.GREEN_MASS_MEDIUM)) {
             greenMass = 0.65f;
@@ -240,6 +243,7 @@ public class InternalMethodsImpl implements InternalMethods {
         if (greenMass > 0f) {
             greenAvatarAddMass((ServerPlayer)player, greenMass * (float)Math.max(1e-4, Math.pow((Math.cos(Math.PI * greenAvatarGetMass(player) / StrangeAdventuresApi.GREEN_AVATAR_MASS_MAX) + 1) / 2, 4)));
         }
+        player.heal(additionalHealth);
         return true;
     }
 

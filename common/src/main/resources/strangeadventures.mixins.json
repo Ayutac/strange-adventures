@@ -4,11 +4,16 @@
   "package": "studio.abos.mc.strangeadventures.mixin",
   "refmap": "strangeadventures.refmap.json",
   "compatibilityLevel": "JAVA_17",
+  "mixinextras": {
+    "minVersion": "0.5.2"
+  },
   "mixins": [
     "ArmorSlotMixin",
     "BlockBehaviorMixin",
     "ButtonBlockAccessor",
+    "CakeBlockMixin",
     "DoorBlockAccessor",
+    "FoodPropertiesMixin",
     "InventoryAccessor",
     "LiquidBlockAccessor",
     "PlayerMixin",
@@ -20,6 +25,7 @@
     "TreeGrowerAccessor"
   ],
   "client": [
+    "client.HudMixin"
   ],
   "injectors": {
     "defaultRequire": 1
