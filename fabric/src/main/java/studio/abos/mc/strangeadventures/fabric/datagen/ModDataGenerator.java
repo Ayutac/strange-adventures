@@ -24,5 +24,6 @@ public class ModDataGenerator implements DataGeneratorEntrypoint {
     @Override
     public void buildRegistry(final RegistrySetBuilder registryBuilder) {
         registryBuilder.add(StrangeAdventuresApi.BIOME_TREE_REGISTRY_KEY, ModDynamicProvider::configureBiomeTrees);
+        registryBuilder.add(StrangeAdventuresApi.GREEN_AVATAR_CONVERSION_REGISTRY_KEY, ModDynamicProvider::configureGreenAvatarConversions);
     }
 }

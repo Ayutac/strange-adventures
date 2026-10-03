@@ -13,6 +13,7 @@ import net.minecraft.world.effect.MobEffects;
 import org.jspecify.annotations.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import studio.abos.mc.strangeadventures.api.GreenAvatarConversion;
 import studio.abos.mc.strangeadventures.api.StrangeAdventuresApi;
 import studio.abos.mc.strangeadventures.api.BiomeTree;
 import studio.abos.mc.strangeadventures.block.ModBlocks;
@@ -62,6 +63,7 @@ public class StrangeAdventures {
         registrars.registrar().createCustomRegistry(StrangeAdventuresApi.TARGETING_MODE_REGISTRY_KEY);
         registrars.registrar().createCustomRegistry(StrangeAdventuresApi.TARGETING_SPACE_REGISTRY_KEY);
         registrars.registrar().createDynamicRegistry(StrangeAdventuresApi.BIOME_TREE_REGISTRY_KEY, BiomeTree.CODEC);
+        registrars.registrar().createDynamicRegistry(StrangeAdventuresApi.GREEN_AVATAR_CONVERSION_REGISTRY_KEY, GreenAvatarConversion.CODEC);
 
         registrars.registrar(Registries.FLUID, ModFluids::initialize);
         registrars.blocks(ModBlocks::initialize);

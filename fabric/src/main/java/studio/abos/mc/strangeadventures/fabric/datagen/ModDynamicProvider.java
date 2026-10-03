@@ -2,16 +2,24 @@ package studio.abos.mc.strangeadventures.fabric.datagen;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricDynamicRegistryProvider;
+import net.minecraft.core.HolderGetter;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.HolderSet;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
+import net.minecraft.references.BlockItemIds;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.tags.BlockItemTags;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.grower.TreeGrower;
 import studio.abos.mc.strangeadventures.StrangeAdventures;
+import studio.abos.mc.strangeadventures.api.GreenAvatarConversion;
 import studio.abos.mc.strangeadventures.api.StrangeAdventuresApi;
 import studio.abos.mc.strangeadventures.api.BiomeTree;
 import studio.abos.mc.strangeadventures.mixin.TreeGrowerAccessor;
@@ -27,6 +35,7 @@ public class ModDynamicProvider extends FabricDynamicRegistryProvider {
     @Override
     protected void configure(final HolderLookup.Provider registries, final Entries entries) {
         entries.addAll(registries.lookupOrThrow(StrangeAdventuresApi.BIOME_TREE_REGISTRY_KEY));
+        entries.addAll(registries.lookupOrThrow(StrangeAdventuresApi.GREEN_AVATAR_CONVERSION_REGISTRY_KEY));
     }
 
     public static void configureBiomeTrees(final BootstrapContext<BiomeTree> context) {
@@ -83,6 +92,52 @@ public class ModDynamicProvider extends FabricDynamicRegistryProvider {
                 ResourceKey.create(StrangeAdventuresApi.BIOME_TREE_REGISTRY_KEY, StrangeAdventures.id(name)),
                 new BiomeTree(biome.identifier(), ((TreeGrowerAccessor)(Object)treeGrower).getName(), BuiltInRegistries.BLOCK.getKey(fallback))
         );
+    }
+
+    public static void configureGreenAvatarConversions(final BootstrapContext<GreenAvatarConversion> context) {
+        final HolderGetter<Block> blocks = context.lookup(Registries.BLOCK);
+        registerGreenAvatarConversion(context, blocks, "nylium", BlockItemIds.NETHERRACK.block(), BlockTags.NYLIUM);
+        registerGreenAvatarConversion(context, blocks, "dirt_from_sand", BlockItemTags.SAND.block(), BlockItemIds.DIRT.block());
+        registerGreenAvatarConversion(context, blocks, "grass_from_dirt", BlockItemTags.DIRT.block(), BlockItemIds.GRASS_BLOCK.block());
+    }
+
+    public static void registerGreenAvatarConversion(final BootstrapContext<GreenAvatarConversion> context, final String name, final HolderSet<Block> input, final HolderSet<Block> output) {
+        context.register(
+                ResourceKey.create(StrangeAdventuresApi.GREEN_AVATAR_CONVERSION_REGISTRY_KEY, StrangeAdventures.id(name)),
+                new GreenAvatarConversion(input, output)
+        );
+    }
+
+    public static void registerGreenAvatarConversion(final BootstrapContext<GreenAvatarConversion> context, final HolderGetter<Block> blocks, final String name, final HolderSet<Block> input, final ResourceKey<Block> output) {
+        registerGreenAvatarConversion(context, name, input, HolderSet.direct(blocks.getOrThrow(output)));
+    }
+
+    public static void registerGreenAvatarConversion(final BootstrapContext<GreenAvatarConversion> context, final HolderGetter<Block> blocks, final String name, final HolderSet<Block> input, final TagKey<Block> output) {
+        registerGreenAvatarConversion(context, name, input, blocks.getOrThrow(output));
+    }
+
+    public static void registerGreenAvatarConversion(final BootstrapContext<GreenAvatarConversion> context, final HolderGetter<Block> blocks, final String name, final ResourceKey<Block> input, final HolderSet<Block> output) {
+        registerGreenAvatarConversion(context, name, HolderSet.direct(blocks.getOrThrow(input)), output);
+    }
+
+    public static void registerGreenAvatarConversion(final BootstrapContext<GreenAvatarConversion> context, final HolderGetter<Block> blocks, final String name, final ResourceKey<Block> input, final ResourceKey<Block> output) {
+        registerGreenAvatarConversion(context, name, HolderSet.direct(blocks.getOrThrow(input)), HolderSet.direct(blocks.getOrThrow(output)));
+    }
+
+    public static void registerGreenAvatarConversion(final BootstrapContext<GreenAvatarConversion> context, final HolderGetter<Block> blocks, final String name, final ResourceKey<Block> input, final TagKey<Block> output) {
+        registerGreenAvatarConversion(context, name, HolderSet.direct(blocks.getOrThrow(input)), blocks.getOrThrow(output));
+    }
+
+    public static void registerGreenAvatarConversion(final BootstrapContext<GreenAvatarConversion> context, final HolderGetter<Block> blocks, final String name, final TagKey<Block> input, final HolderSet<Block> output) {
+        registerGreenAvatarConversion(context, name, blocks.getOrThrow(input), output);
+    }
+
+    public static void registerGreenAvatarConversion(final BootstrapContext<GreenAvatarConversion> context, final HolderGetter<Block> blocks, final String name, final TagKey<Block> input, final ResourceKey<Block> output) {
+        registerGreenAvatarConversion(context, name, blocks.getOrThrow(input), HolderSet.direct(blocks.getOrThrow(output)));
+    }
+
+    public static void registerGreenAvatarConversion(final BootstrapContext<GreenAvatarConversion> context, final HolderGetter<Block> blocks, final String name, final TagKey<Block> input, final TagKey<Block> output) {
+        registerGreenAvatarConversion(context, name, blocks.getOrThrow(input), blocks.getOrThrow(output));
     }
 
     @Override

@@ -17,6 +17,7 @@ public class StrangeAdventuresApi {
     public static final ResourceKey<Registry<TargetingMode>> TARGETING_MODE_REGISTRY_KEY = ResourceKey.createRegistryKey(StrangeAdventures.id("targeting_mode"));
     public static final ResourceKey<Registry<TargetingSpace>> TARGETING_SPACE_REGISTRY_KEY = ResourceKey.createRegistryKey(StrangeAdventures.id("targeting_space"));
     public static final ResourceKey<Registry<BiomeTree>> BIOME_TREE_REGISTRY_KEY = ResourceKey.createRegistryKey(StrangeAdventures.id("biome_tree"));
+    public static final ResourceKey<Registry<GreenAvatarConversion>> GREEN_AVATAR_CONVERSION_REGISTRY_KEY = ResourceKey.createRegistryKey(StrangeAdventures.id("green_avatar_conversion"));
 
     public static final ResourceKey<Level> GREEN_DIMENSION = ResourceKey.create(Registries.DIMENSION, StrangeAdventures.id("green"));
     public static final int GREEN_DIMENSION_FACTOR = 8;
