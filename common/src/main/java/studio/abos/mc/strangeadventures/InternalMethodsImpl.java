@@ -305,9 +305,10 @@ public class InternalMethodsImpl implements InternalMethods {
         final var lookup = StrangeAdventures.dataAttachments().GREEN_AVATAR_DATA;
         // regenerate
         GreenAvatarData data = lookup.getOrCreate(player);
+        final GreenAvatarData originalData = data;
         if (player.wasHurtRecently()) {
             if (data.lastHurtTick() > 0 || data.regenerationTick() > 0) {
-                lookup.update(player, data.withRegenerationReset());
+                data = data.withRegenerationReset();
             }
         }
         else {
@@ -324,27 +325,33 @@ public class InternalMethodsImpl implements InternalMethods {
                         data.regenerationTick() >= StrangeAdventuresApi.GREEN_AVATAR_REGEN_DURATION) {
                     player.heal(healAmount);
                 }
-                lookup.update(player, data.withIncreasedRegenerationTicks());
+                data = data.withIncreasedRegenerationTicks();
             }
             else if (data.regenerationTick() > 0) { // to reduce the amount of updating
-                lookup.update(player, data.withRegenerationTick(0));
+                data = data.withRegenerationTick(0);
             }
         }
         // take root
-        data = lookup.getOrCreate(player); // refresh data in case changed earlier
-        if (!player.isCrouching()) {
+        if (!player.isCrouching() || !player.onGround()) {
             if (data.sneakTick() > 0) {
-                lookup.update(player, data.withSneakTick(0));
+                data = data.withSneakTick(0);
             }
         }
         else {
             if (data.sneakTick() >= StrangeAdventuresApi.GREEN_AVATAR_ROOTING_TIME && !data.rooted()) {
                 if (greenAvatarTryTakeRoot(player)) {
-                    lookup.update(player, data.withRooted(true));
-                    data = lookup.getOrCreate(player);
+                    data = data.withRooted(true);
                 }
             }
-            lookup.update(player, data.withSneakTick(data.sneakTick() + 1));
+            data = data.withSneakTick(data.sneakTick() + 1);
+        }
+        // unroot if falling
+        if (!player.onGround() && player.level().getBlockState(player.getOnPos()).isAir()) {
+            data = data.withUprooted();
+        }
+        // update the AotG data
+        if (!data.equals(originalData)) {
+            lookup.update(player, data);
         }
     }
 
