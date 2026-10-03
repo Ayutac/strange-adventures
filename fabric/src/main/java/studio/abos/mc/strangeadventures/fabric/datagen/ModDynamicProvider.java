@@ -99,6 +99,14 @@ public class ModDynamicProvider extends FabricDynamicRegistryProvider {
         registerGreenAvatarConversion(context, blocks, "nylium", BlockItemIds.NETHERRACK.block(), BlockTags.NYLIUM);
         registerGreenAvatarConversion(context, blocks, "dirt_from_sand", BlockItemTags.SAND.block(), BlockItemIds.DIRT.block());
         registerGreenAvatarConversion(context, blocks, "grass_from_dirt", BlockItemTags.DIRT.block(), BlockItemIds.GRASS_BLOCK.block());
+        registerGreenAvatarConversion(context, blocks, "mossy_cobblestone", BlockItemIds.COBBLESTONE.block(), BlockItemIds.MOSSY_COBBLESTONE.block());
+        registerGreenAvatarConversion(context, blocks, "mossy_cobblestone_stairs", BlockItemIds.COBBLESTONE_STAIRS.block(), BlockItemIds.MOSSY_COBBLESTONE_STAIRS.block());
+        registerGreenAvatarConversion(context, blocks, "mossy_cobblestone_slab", BlockItemIds.COBBLESTONE_SLAB.block(), BlockItemIds.MOSSY_COBBLESTONE_SLAB.block());
+        registerGreenAvatarConversion(context, blocks, "mossy_cobblestone_wall", BlockItemIds.COBBLESTONE_WALL.block(), BlockItemIds.MOSSY_COBBLESTONE_WALL.block());
+        registerGreenAvatarConversion(context, blocks, "mossy_stone_bricks", BlockItemIds.STONE_BRICKS.block(), BlockItemIds.MOSSY_STONE_BRICKS.block());
+        registerGreenAvatarConversion(context, blocks, "mossy_stone_brick_stairs", BlockItemIds.STONE_BRICK_STAIRS.block(), BlockItemIds.MOSSY_STONE_BRICK_STAIRS.block());
+        registerGreenAvatarConversion(context, blocks, "mossy_stone_brick_slab", BlockItemIds.STONE_BRICK_SLAB.block(), BlockItemIds.MOSSY_STONE_BRICK_SLAB.block());
+        registerGreenAvatarConversion(context, blocks, "mossy_stone_brick_wall", BlockItemIds.STONE_BRICK_WALL.block(), BlockItemIds.MOSSY_STONE_BRICK_WALL.block());
     }
 
     public static void registerGreenAvatarConversion(final BootstrapContext<GreenAvatarConversion> context, final String name, final HolderSet<Block> input, final HolderSet<Block> output) {

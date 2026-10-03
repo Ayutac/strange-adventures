@@ -9,6 +9,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
@@ -25,6 +26,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 import org.apache.commons.lang3.function.TriConsumer;
 import org.jspecify.annotations.Nullable;
+import studio.abos.mc.strangeadventures.api.GreenAvatarConversion;
 import studio.abos.mc.strangeadventures.api.InternalMethods;
 import studio.abos.mc.strangeadventures.api.StrangeAdventuresApi;
 import studio.abos.mc.strangeadventures.block.ModBlocks;
@@ -351,6 +353,16 @@ public class InternalMethodsImpl implements InternalMethods {
         // unroot if falling
         if (!player.onGround() && player.level().getBlockState(player.getOnPos()).isAir()) {
             data = data.withUprooted();
+        }
+        // convert random block maybe
+        final RandomSource rng = player.getRandom();
+        if (rng.nextDouble() < data.mass() * StrangeAdventuresApi.GREEN_AVATAR_CONVERSION_BASE_CHANCE) {
+            final int radius = Math.round(data.mass() * StrangeAdventuresApi.GREEN_AVATAR_CONVERSION_BASE_RADIUS);
+            GreenAvatarConversion.convert(player.level(), new BlockPos(
+                    player.getBlockX() + rng.nextIntBetweenInclusive(-radius, radius),
+                    player.getBlockY() + rng.nextIntBetweenInclusive(-radius, radius),
+                    player.getBlockZ() + rng.nextIntBetweenInclusive(-radius, radius)
+            ));
         }
         // update the AotG data
         if (!data.equals(originalData)) {
