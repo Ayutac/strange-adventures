@@ -168,6 +168,8 @@ public class InternalMethodsImpl implements InternalMethods {
                 new AttributeModifier(StrangeAdventuresApi.MODIFIER_ID_GREEN_AVATAR, mass * mass, AttributeModifier.Operation.ADD_MULTIPLIED_BASE));
         player.getAttribute(Attributes.SCALE).addOrReplacePermanentModifier(
                 new AttributeModifier(StrangeAdventuresApi.MODIFIER_ID_GREEN_AVATAR, mass - 1d, AttributeModifier.Operation.ADD_MULTIPLIED_BASE));
+        player.getAttribute(Attributes.STEP_HEIGHT).addOrReplacePermanentModifier(
+                new AttributeModifier(StrangeAdventuresApi.MODIFIER_ID_GREEN_AVATAR, 0.5 * mass + 0.5, AttributeModifier.Operation.ADD_MULTIPLIED_BASE));
     }
 
     private void clearGreenAvatarAttributes(final ServerPlayer player) {
@@ -179,6 +181,7 @@ public class InternalMethodsImpl implements InternalMethods {
         player.getAttribute(Attributes.ARMOR_TOUGHNESS).removeModifier(StrangeAdventuresApi.MODIFIER_ID_GREEN_AVATAR);
         player.getAttribute(Attributes.ATTACK_DAMAGE).removeModifier(StrangeAdventuresApi.MODIFIER_ID_GREEN_AVATAR);
         player.getAttribute(Attributes.SCALE).removeModifier(StrangeAdventuresApi.MODIFIER_ID_GREEN_AVATAR);
+        player.getAttribute(Attributes.STEP_HEIGHT).removeModifier(StrangeAdventuresApi.MODIFIER_ID_GREEN_AVATAR);
     }
 
     @Override
