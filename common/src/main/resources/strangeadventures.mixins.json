@@ -27,7 +27,8 @@
     "TreeGrowerAccessor"
   ],
   "client": [
-    "client.HudMixin"
+    "client.HudMixin",
+    "client.LocalPlayerMixin"
   ],
   "injectors": {
     "defaultRequire": 1
