@@ -78,6 +78,12 @@ public interface InternalMethods {
     boolean greenAvatarAttemptToEat(final Player player, final Level level, final BlockPos pos, @Nullable BlockState state);
 
     /**
+     * Resets the alive ticks of this AotG data. Doesn't check if the player is an active AotG
+     * @param player the player to reset the alive ticks of
+     */
+    void greenAvatarResetAliveTick(ServerPlayer player);
+
+    /**
      * Regrows the player like an Avatar of the Green. Doesn't check conditions for this regrow, only executes it.
      * @param player the player to regrow
      * @return <code>true</code> if the regrow was successful, else <code>false</code> (for example when no appropriate

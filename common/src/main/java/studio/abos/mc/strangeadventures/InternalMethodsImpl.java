@@ -258,6 +258,15 @@ public class InternalMethodsImpl implements InternalMethods {
     }
 
     @Override
+    public void greenAvatarResetAliveTick(final ServerPlayer player) {
+        final var lookup = StrangeAdventures.dataAttachments().GREEN_AVATAR_DATA;
+        final GreenAvatarData data = lookup.getOrCreate(player);
+        if (data.aliveTick() > 0) {
+            lookup.update(player, data.withAliveTick(0));
+        }
+    }
+
+    @Override
     public boolean greenAvatarRegrow(final ServerPlayer player) {
         final List<BlockPos> regrowPosList = new LinkedList<>();
         for (final BlockPos pos : BlockPos.betweenClosed(player.getBlockX() - GREEN_AVATAR_REGROW_RANGE, player.getBlockY() - GREEN_AVATAR_REGROW_RANGE, player.getBlockZ() - GREEN_AVATAR_REGROW_RANGE,
@@ -278,6 +287,7 @@ public class InternalMethodsImpl implements InternalMethods {
         player.clearFreeze();
         player.removeAllEffects();
         greenAvatarSetMass(player, 0.5f);
+        greenAvatarResetAliveTick(player);
         player.setHealth(player.getMaxHealth() / 2);
         player.addEffect(new MobEffectInstance(ModEffects.GREEN_AVATAR_REGROW_BLOCK, 5 * 60 * 20));
         return true;
@@ -364,9 +374,14 @@ public class InternalMethodsImpl implements InternalMethods {
                     player.getBlockZ() + rng.nextIntBetweenInclusive(-radius, radius)
             ));
         }
+        data = data.withAliveTick(data.aliveTick() + 1);
         // update the AotG data
         if (!data.equals(originalData)) {
             lookup.update(player, data);
+        }
+        // grow maybe
+        if (data.aliveTick() >= StrangeAdventuresApi.GREEN_AVATAR_GROWTH_DELAY) {
+            greenAvatarAddMass(player, 1e-4f);
         }
     }
 

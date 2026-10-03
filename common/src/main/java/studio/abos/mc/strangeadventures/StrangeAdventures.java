@@ -85,6 +85,7 @@ public class StrangeAdventures {
                 .withNeoForge("studio.abos.mc.strangeadventures.neoforge.platform.ModPlatformNeoForge")
                 .build();
 
+        // damage manipulation
         LivingEntityCallback.Damage.Before.EVENT.register((entity, damageSource, damageAmount) -> {
             if (entity instanceof final ServerPlayer player && StrangeAdventuresApi.INTERNAL_METHODS.greenAvatarActive(player)) {
                 // invulnerabilities are in PlayerMixin
@@ -102,6 +103,14 @@ public class StrangeAdventures {
             }
             return damageAmount;
         });
+        // death preparation
+        LivingEntityCallback.Death.Before.EVENT.register((entity, _, _) -> {
+            if (entity instanceof final ServerPlayer player && StrangeAdventuresApi.INTERNAL_METHODS.greenAvatarActive(player)) {
+                StrangeAdventuresApi.INTERNAL_METHODS.greenAvatarResetAliveTick(player);
+            }
+            return true;
+        });
+        // fallback manipulation
         LivingEntityCallback.Fall.Before.EVENT.register((entity, fallDamage) -> {
             if (entity instanceof final ServerPlayer player && StrangeAdventuresApi.INTERNAL_METHODS.greenAvatarActive(player)) {
                 if (fallDamage >= entity.getHealth() && !player.hasEffect(ModEffects.GREEN_AVATAR_REGROW_BLOCK)) {
@@ -112,6 +121,7 @@ public class StrangeAdventures {
             }
             return fallDamage;
         });
+        // player ticks
         ServerTickCallback.ServerPlayerTick.AFTER.register(player -> {
             if (StrangeAdventuresApi.INTERNAL_METHODS.greenAvatarActive(player)) {
                 StrangeAdventuresApi.INTERNAL_METHODS.greenAvatarTick(player);
