@@ -48,6 +48,13 @@ public interface InternalMethods {
     float greenAvatarGetMass(final Player player);
 
     /**
+     * Updates the attributes of the given entity assuming it is a AotG player or AotG clone.
+     * @param entity the entity to update
+     * @param mass the mass to use for the update
+     */
+    void updateGreenAvatarAttributes(final LivingEntity entity, final float mass);
+
+    /**
      * Sets the mass of the given player (but no other AotG data fields) to the specified amount,
      * clamped between {@link StrangeAdventuresApi#GREEN_AVATAR_MASS_MIN} and {@link StrangeAdventuresApi#GREEN_AVATAR_MASS_MAX}.
      * @param player the player to change the Avatar of the Green mass of

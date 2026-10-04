@@ -159,17 +159,22 @@ public class InternalMethodsImpl implements InternalMethods {
         final float mass = greenAvatarGetMass(player);
         player.getFoodData().setFoodLevel(10);
         player.getFoodData().setSaturation(0f);
-        player.getAttribute(Attributes.MAX_HEALTH).addOrReplacePermanentModifier(
+        updateGreenAvatarAttributes(player, mass);
+    }
+
+    @Override
+    public void updateGreenAvatarAttributes(final LivingEntity entity, final float mass) {
+        entity.getAttribute(Attributes.MAX_HEALTH).addOrReplacePermanentModifier(
                 new AttributeModifier(StrangeAdventuresApi.MODIFIER_ID_GREEN_AVATAR, mass - 1d, AttributeModifier.Operation.ADD_MULTIPLIED_BASE));
-        player.getAttribute(Attributes.ARMOR).addOrReplacePermanentModifier(
+        entity.getAttribute(Attributes.ARMOR).addOrReplacePermanentModifier(
                 new AttributeModifier(StrangeAdventuresApi.MODIFIER_ID_GREEN_AVATAR, 20 /* full dia value */, AttributeModifier.Operation.ADD_VALUE));
-        player.getAttribute(Attributes.ARMOR_TOUGHNESS).addOrReplacePermanentModifier(
+        entity.getAttribute(Attributes.ARMOR_TOUGHNESS).addOrReplacePermanentModifier(
                 new AttributeModifier(StrangeAdventuresApi.MODIFIER_ID_GREEN_AVATAR, 6 /* full dia value */, AttributeModifier.Operation.ADD_VALUE));
-        player.getAttribute(Attributes.ATTACK_DAMAGE).addOrReplacePermanentModifier(
+        entity.getAttribute(Attributes.ATTACK_DAMAGE).addOrReplacePermanentModifier(
                 new AttributeModifier(StrangeAdventuresApi.MODIFIER_ID_GREEN_AVATAR, mass * mass, AttributeModifier.Operation.ADD_MULTIPLIED_BASE));
-        player.getAttribute(Attributes.SCALE).addOrReplacePermanentModifier(
+        entity.getAttribute(Attributes.SCALE).addOrReplacePermanentModifier(
                 new AttributeModifier(StrangeAdventuresApi.MODIFIER_ID_GREEN_AVATAR, mass - 1d, AttributeModifier.Operation.ADD_MULTIPLIED_BASE));
-        player.getAttribute(Attributes.STEP_HEIGHT).addOrReplacePermanentModifier(
+        entity.getAttribute(Attributes.STEP_HEIGHT).addOrReplacePermanentModifier(
                 new AttributeModifier(StrangeAdventuresApi.MODIFIER_ID_GREEN_AVATAR, 0.5 * mass + 0.5, AttributeModifier.Operation.ADD_MULTIPLIED_BASE));
     }
 

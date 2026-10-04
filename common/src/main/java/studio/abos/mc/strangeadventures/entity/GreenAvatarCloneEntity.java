@@ -4,6 +4,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.util.Mth;
 import net.minecraft.world.entity.EntityReference;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -27,6 +28,7 @@ import net.minecraft.world.level.pathfinder.WalkNodeEvaluator;
 import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
 import org.jspecify.annotations.Nullable;
+import studio.abos.mc.strangeadventures.api.StrangeAdventuresApi;
 import studio.abos.mc.strangeadventures.entity.ai.goal.FollowGreenAvatarGoal;
 import studio.abos.mc.strangeadventures.entity.ai.goal.target.GreenAvatarOwnerHurtByTargetGoal;
 import studio.abos.mc.strangeadventures.entity.ai.goal.target.GreenAvatarOwnerHurtTargetGoal;
@@ -37,33 +39,50 @@ public class GreenAvatarCloneEntity extends PathfinderMob implements OwnableEnti
 
     protected static final EntityDataAccessor<Optional<EntityReference<LivingEntity>>> DATA_OWNERUUID_ID =
             SynchedEntityData.defineId(GreenAvatarCloneEntity.class, EntityDataSerializers.OPTIONAL_LIVING_ENTITY_REFERENCE);
+    protected static final EntityDataAccessor<Float> DATA_MASS_ID =
+            SynchedEntityData.defineId(GreenAvatarCloneEntity.class, EntityDataSerializers.FLOAT);
+
+    public static final float MASS_DEFAULT = 0.5f;
 
     public GreenAvatarCloneEntity(final EntityType<GreenAvatarCloneEntity> type, final Level level) {
         super(type, level);
+        StrangeAdventuresApi.INTERNAL_METHODS.updateGreenAvatarAttributes(this, MASS_DEFAULT);
     }
 
     @Override
     public @Nullable EntityReference<LivingEntity> getOwnerReference() {
-        return (EntityReference)((Optional)this.entityData.get(DATA_OWNERUUID_ID)).orElse(null);
+        return (EntityReference)((Optional)entityData.get(DATA_OWNERUUID_ID)).orElse(null);
     }
 
     public void setOwnerReference(final @Nullable EntityReference<LivingEntity> owner) {
-        this.entityData.set(DATA_OWNERUUID_ID, Optional.ofNullable(owner));
+        entityData.set(DATA_OWNERUUID_ID, Optional.ofNullable(owner));
     }
 
     public void setOwner(final @Nullable LivingEntity owner) {
-        this.entityData.set(DATA_OWNERUUID_ID, Optional.ofNullable(owner).map(EntityReference::of));
+        entityData.set(DATA_OWNERUUID_ID, Optional.ofNullable(owner).map(EntityReference::of));
+    }
+
+    public float getMass() {
+        return entityData.get(DATA_MASS_ID);
+    }
+
+    public void setMass(final float newMass) {
+        final float mass = Mth.clamp(newMass, StrangeAdventuresApi.GREEN_AVATAR_MASS_MIN, StrangeAdventuresApi.GREEN_AVATAR_MASS_MAX);
+        entityData.set(DATA_MASS_ID, mass);
+        StrangeAdventuresApi.INTERNAL_METHODS.updateGreenAvatarAttributes(this, mass);
     }
 
     protected void defineSynchedData(final SynchedEntityData.Builder entityData) {
         super.defineSynchedData(entityData);
         entityData.define(DATA_OWNERUUID_ID, Optional.empty());
+        entityData.define(DATA_MASS_ID, MASS_DEFAULT);
     }
 
     protected void addAdditionalSaveData(final ValueOutput output) {
         super.addAdditionalSaveData(output);
         EntityReference<LivingEntity> owner = this.getOwnerReference();
         EntityReference.store(owner, output, "Owner");
+        output.putFloat("Mass", getMass());
     }
 
     protected void readAdditionalSaveData(final ValueInput input) {
@@ -74,6 +93,7 @@ public class GreenAvatarCloneEntity extends PathfinderMob implements OwnableEnti
         } else {
             this.entityData.set(DATA_OWNERUUID_ID, Optional.empty());
         }
+        setMass(input.getFloatOr("Mass", MASS_DEFAULT));
     }
 
     @Override
