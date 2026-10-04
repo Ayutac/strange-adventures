@@ -21,6 +21,7 @@
     "PoisonMobEffectMixin",
     "PressurePlateBlockAccessor",
     "SaplingBlockAccessor",
+    "ServerPlayerMixin",
     "StairBlockAccessor",
     "StemBlockAccessor",
     "TrapdoorBlockAccessor",

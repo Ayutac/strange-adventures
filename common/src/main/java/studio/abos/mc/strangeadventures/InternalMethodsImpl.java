@@ -14,7 +14,6 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.Pose;
 import net.minecraft.world.entity.Relative;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -297,7 +296,6 @@ public class InternalMethodsImpl implements InternalMethods {
     public boolean greenAvatarTryTakeRoot(final ServerPlayer player) {
         if (player.level().getBlockState(player.getOnPos()).is(BlockTags.SUBSTRATE_OVERWORLD)) {
             player.teleportTo(player.getX(), player.getY() - player.getBbHeight() / 3, player.getZ());
-            player.setPose(Pose.STANDING);
             return true;
         }
         return false;
@@ -346,16 +344,20 @@ public class InternalMethodsImpl implements InternalMethods {
                 data = data.withRegenerationTick(0);
             }
         }
-        // take root
+        // take root and maybe switch dimensions
+        boolean switchDimensions = false;
         if (!player.isCrouching() || !player.onGround()) {
             if (data.sneakTick() > 0) {
                 data = data.withSneakTick(0);
             }
         }
         else {
-            if (data.sneakTick() >= StrangeAdventuresApi.GREEN_AVATAR_ROOTING_TIME && !data.rooted()) {
+            if (data.sneakTick() >= StrangeAdventuresApi.GREEN_AVATAR_DIMENSION_TIME && data.rooted()) {
+                switchDimensions = true;
+            }
+            else if (data.sneakTick() >= StrangeAdventuresApi.GREEN_AVATAR_ROOTING_TIME && !data.rooted()) {
                 if (greenAvatarTryTakeRoot(player)) {
-                    data = data.withRooted(true);
+                    data = data.withRooted(true).withSneakTick(0);
                 }
             }
             data = data.withSneakTick(data.sneakTick() + 1);
@@ -374,11 +376,21 @@ public class InternalMethodsImpl implements InternalMethods {
                     player.getBlockZ() + rng.nextIntBetweenInclusive(-radius, radius)
             ));
         }
+        // ah, ah, ah, ah, staying alive
         data = data.withAliveTick(data.aliveTick() + 1);
-        // update the AotG data
-        if (!data.equals(originalData)) {
-            lookup.update(player, data);
+        // actually switch dimensions
+        if (switchDimensions) {
+            if (player.level().dimension() == Level.OVERWORLD) {
+                tpOverworldToGreen(player, player.blockPosition());
+                data = data.withUprooted();
+            }
+            else if (player.level().dimension() == StrangeAdventuresApi.GREEN_DIMENSION) {
+                tpGreenToOverworld(player, player.blockPosition());
+                data = data.withUprooted();
+            }
         }
+        // update the AotG data
+        lookup.update(player, data);
         // grow maybe
         if (data.aliveTick() >= StrangeAdventuresApi.GREEN_AVATAR_GROWTH_DELAY) {
             greenAvatarAddMass(player, 1e-4f);

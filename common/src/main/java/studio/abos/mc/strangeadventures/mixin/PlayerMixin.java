@@ -1,7 +1,11 @@
 package studio.abos.mc.strangeadventures.mixin;
 
+import com.llamalad7.mixinextras.expression.Definition;
+import com.llamalad7.mixinextras.expression.Expression;
+import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import com.llamalad7.mixinextras.injector.v2.WrapWithCondition;
+import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.player.Player;
@@ -35,12 +39,30 @@ public abstract class PlayerMixin {
         return !StrangeAdventuresApi.INTERNAL_METHODS.greenAvatarActive((Player)(Object)this);
     }
 
-    /*@Inject(method = "travel(Lnet/minecraft/world/phys/Vec3;)V", at = @At("RETURN"))
-    private void strangeadventures$greenAvatarTravellingUproots(final Vec3 input, final CallbackInfo ci) {
-        if (input != Vec3.ZERO && (Player)(Object)this instanceof final ServerPlayer player &&
-                StrangeAdventuresApi.INTERNAL_METHODS.greenAvatarActive(player) && StrangeAdventuresApi.INTERNAL_METHODS.greenAvatarRooted(player)) {
-            StrangeAdventuresApi.INTERNAL_METHODS.greenAvatarUproot(player);
+    @Definition(id = "canPlayerFitWithinBlocksAndEntitiesWhen", method = "Lnet/minecraft/world/entity/player/Player;canPlayerFitWithinBlocksAndEntitiesWhen(Lnet/minecraft/world/entity/Pose;)Z")
+    @Definition(id = "SWIMMING", field = "Lnet/minecraft/world/entity/Pose;SWIMMING:Lnet/minecraft/world/entity/Pose;")
+    @Expression("this.canPlayerFitWithinBlocksAndEntitiesWhen(SWIMMING)")
+    @ModifyExpressionValue(method = "updatePlayerPose()V", at = @At("MIXINEXTRAS:EXPRESSION"))
+    protected boolean strangeadventures$greenAvatarCanCrouchWhenRooted(final boolean original) {
+        if (!original && (Object)this instanceof final LocalPlayer player &&
+                StrangeAdventuresApi.INTERNAL_METHODS.greenAvatarActive(player) &&
+                StrangeAdventuresApi.INTERNAL_METHODS.greenAvatarRooted(player)) {
+            return true;
         }
-    }*/
+        return original;
+    }
+
+    @Definition(id = "canPlayerFitWithinBlocksAndEntitiesWhen", method = "Lnet/minecraft/world/entity/player/Player;canPlayerFitWithinBlocksAndEntitiesWhen(Lnet/minecraft/world/entity/Pose;)Z")
+    @Definition(id = "CROUCHING", field = "Lnet/minecraft/world/entity/Pose;CROUCHING:Lnet/minecraft/world/entity/Pose;")
+    @Expression("this.canPlayerFitWithinBlocksAndEntitiesWhen(CROUCHING)")
+    @ModifyExpressionValue(method = "updatePlayerPose()V", at = @At("MIXINEXTRAS:EXPRESSION"))
+    protected boolean strangeadventures$greenAvatarCanCrouchWhenRooted2(final boolean original) {
+        if (!original && (Object)this instanceof final LocalPlayer player &&
+                StrangeAdventuresApi.INTERNAL_METHODS.greenAvatarActive(player) &&
+                StrangeAdventuresApi.INTERNAL_METHODS.greenAvatarRooted(player)) {
+            return true;
+        }
+        return original;
+    }
 
 }

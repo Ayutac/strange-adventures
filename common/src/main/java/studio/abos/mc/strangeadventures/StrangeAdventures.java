@@ -3,7 +3,6 @@ package studio.abos.mc.strangeadventures;
 import net.blay09.mods.balm.Balm;
 import net.blay09.mods.balm.core.BalmRegistrars;
 import net.blay09.mods.balm.platform.event.callback.LivingEntityCallback;
-import net.blay09.mods.balm.platform.event.callback.ServerTickCallback;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.Identifier;
 import net.minecraft.server.level.ServerPlayer;
@@ -121,12 +120,13 @@ public class StrangeAdventures {
             }
             return fallDamage;
         });
-        // player ticks
+        // doesn't allow teleporting players
+        /*// player ticks
         ServerTickCallback.ServerPlayerTick.AFTER.register(player -> {
             if (StrangeAdventuresApi.INTERNAL_METHODS.greenAvatarActive(player)) {
                 StrangeAdventuresApi.INTERNAL_METHODS.greenAvatarTick(player);
             }
-        });
+        });*/
     }
 
 }

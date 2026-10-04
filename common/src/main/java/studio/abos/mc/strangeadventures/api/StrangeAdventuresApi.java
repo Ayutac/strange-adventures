@@ -31,6 +31,7 @@ public class StrangeAdventuresApi {
     public static final int GREEN_AVATAR_REGEN_COOLDOWN = 5 * 20;
     public static final int GREEN_AVATAR_REGEN_DURATION = 4 * 20;
     public static final int GREEN_AVATAR_ROOTING_TIME = 5 * 20;
+    public static final int GREEN_AVATAR_DIMENSION_TIME = 5 * 20;
     public static final double GREEN_AVATAR_CONVERSION_BASE_CHANCE = 0.05; // per tick
     public static final float GREEN_AVATAR_CONVERSION_BASE_RADIUS = 4f;
     public static final int GREEN_AVATAR_GROWTH_DELAY = 5 * 24000; // 5 in-game days

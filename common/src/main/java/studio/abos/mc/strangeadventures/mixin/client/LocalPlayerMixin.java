@@ -16,7 +16,7 @@ public class LocalPlayerMixin {
     @Expression("this.canPlayerFitWithinBlocksAndEntitiesWhen(CROUCHING)")
     @ModifyExpressionValue(method = "aiStep()V", at = @At("MIXINEXTRAS:EXPRESSION"))
     public boolean strangeadventures$greenAvatarCanCrouchWhenRooted(final boolean original) {
-        if (!original && (LocalPlayer)(Object)this instanceof final LocalPlayer player &&
+        if (!original && (Object)this instanceof final LocalPlayer player &&
                 StrangeAdventuresApi.INTERNAL_METHODS.greenAvatarActive(player) &&
                 StrangeAdventuresApi.INTERNAL_METHODS.greenAvatarRooted(player)) {
             return true;
@@ -29,7 +29,7 @@ public class LocalPlayerMixin {
     @Expression("this.canPlayerFitWithinBlocksAndEntitiesWhen(STANDING)")
     @ModifyExpressionValue(method = "aiStep()V", at = @At("MIXINEXTRAS:EXPRESSION"))
     public boolean strangeadventures$greenAvatarCanUncrouchWhenRooted(final boolean original) {
-        if (!original && (LocalPlayer)(Object)this instanceof final LocalPlayer player &&
+        if (!original && (Object)this instanceof final LocalPlayer player &&
                 StrangeAdventuresApi.INTERNAL_METHODS.greenAvatarActive(player) &&
                 StrangeAdventuresApi.INTERNAL_METHODS.greenAvatarRooted(player)) {
             return true;
