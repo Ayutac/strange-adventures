@@ -8,6 +8,7 @@ import net.minecraft.world.entity.PathfinderMob;
 
 public final class ModEntityTypes {
 
+    public static Holder<EntityType<GreenAvatarCloneEntity>> GREEN_AVATAR_CLONE;
     public static Holder<EntityType<HinderingRootsEntity>> HINDERING_ROOTS;
     public static Holder<EntityType<SpikyCactusEntity>> SPIKY_CACTUS;
 
@@ -15,6 +16,11 @@ public final class ModEntityTypes {
     public static Holder<EntityType<TreeTransformatorProjectile>> TREE_TRANSFORMATOR_PROJECTILE;
 
     public static void initialize(final BalmEntityTypeRegistrar entityTypes) {
+        GREEN_AVATAR_CLONE = entityTypes.register("green_avatar_clone", () ->
+                        EntityType.Builder.of(GreenAvatarCloneEntity::new, MobCategory.MISC)
+                                .sized(0.6f, 1.8f))
+                .withDefaultAttributes(PathfinderMob::createMobAttributes)
+                .asHolder();
         HINDERING_ROOTS = entityTypes.register("hindering_roots", () ->
                         EntityType.Builder.of(HinderingRootsEntity::new, MobCategory.MISC)
                                 .sized(1f, 0.25f))
