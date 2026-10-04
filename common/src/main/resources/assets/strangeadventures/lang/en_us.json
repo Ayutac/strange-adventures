@@ -115,6 +115,8 @@
   "item.strangeadventures.warped_sap_bottle": "Warped Sap Bottle",
   "item.strangeadventures.warped_sap_bucket": "Warped Sap Bucket",
   "itemGroup.strangeadventures.strangeadventures": "Strange Adventures",
+  "key.category.strangeadventures.default": "Strange Adventures",
+  "key.strangeadventures.green_avatar_split": "Split Avatar of the Green",
   "tag.block.strangeadventures.green_avatar_can_regrow_in": "Avatar of the Green can regrow in",
   "tag.block.strangeadventures.green_farmland_convertible": "Green Farmland Convertible",
   "tag.block.strangeadventures.green_mass": "Has Green Mass",

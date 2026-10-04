@@ -31,6 +31,7 @@ import studio.abos.mc.strangeadventures.api.StrangeAdventuresApi;
 import studio.abos.mc.strangeadventures.block.ModBlocks;
 import studio.abos.mc.strangeadventures.data.GreenAvatarData;
 import studio.abos.mc.strangeadventures.effect.ModEffects;
+import studio.abos.mc.strangeadventures.entity.GreenAvatarCloneEntity;
 import studio.abos.mc.strangeadventures.mixin.InventoryAccessor;
 import studio.abos.mc.strangeadventures.tag.ModBlockTags;
 
@@ -316,6 +317,27 @@ public class InternalMethodsImpl implements InternalMethods {
     public void greenAvatarUproot(final Player player) {
         final var lookup = StrangeAdventures.dataAttachments().GREEN_AVATAR_DATA;
         lookup.update(player, lookup.getOrCreate(player).withUprooted());
+    }
+
+    @Override
+    public boolean greenAvatarSplit(final ServerPlayer player) {
+        final var lookup = StrangeAdventures.dataAttachments().GREEN_AVATAR_DATA;
+        final GreenAvatarData data = lookup.get(player);
+        if (data == null) {
+            return false;
+        }
+        if (data.mass() < StrangeAdventuresApi.GREEN_AVATAR_MASS_MIN * 2f || player.getHealth() < 2f) {
+            return false;
+        }
+        float newMass = Math.max(StrangeAdventuresApi.GREEN_AVATAR_MASS_MIN, data.mass() / 2f);
+        final GreenAvatarCloneEntity clone = GreenAvatarCloneEntity.create(player, newMass);
+        if (clone != null) {
+            greenAvatarSetMass(player, newMass);
+            player.setHealth(player.getHealth() / 2f);
+            player.level().addFreshEntity(clone);
+            return true;
+        }
+        return false;
     }
 
     @Override

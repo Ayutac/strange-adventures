@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import studio.abos.mc.strangeadventures.StrangeAdventures;
 import studio.abos.mc.strangeadventures.api.StrangeAdventuresApi;
-import studio.abos.mc.strangeadventures.network.ServerboundUprootPayload;
+import studio.abos.mc.strangeadventures.network.ServerboundGreenAvatarUprootPayload;
 
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin {
@@ -29,7 +29,7 @@ public abstract class LivingEntityMixin {
         if ((LivingEntity)(Object)this instanceof final LocalPlayer player && (!input.equals(Vec3.ZERO) || player.isJumping()) &&
                 StrangeAdventuresApi.INTERNAL_METHODS.greenAvatarActive(player) &&
                 StrangeAdventuresApi.INTERNAL_METHODS.greenAvatarRooted(player)) {
-            StrangeAdventures.platformProxy().c2s(ServerboundUprootPayload.INSTANCE);
+            StrangeAdventures.platformProxy().c2s(ServerboundGreenAvatarUprootPayload.INSTANCE);
         }
     }
 

@@ -4,8 +4,10 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.EntityReference;
+import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.OwnableEntity;
@@ -170,6 +172,20 @@ public class GreenAvatarCloneEntity extends PathfinderMob implements OwnableEnti
                 return this.level().noCollision(this, this.getBoundingBox().move(delta));
             }
         }
+    }
+
+    @Nullable
+    public static GreenAvatarCloneEntity create(final ServerPlayer original, final float mass) {
+        final var clone = ModEntityTypes.GREEN_AVATAR_CLONE.value().create(original.level(), EntitySpawnReason.EVENT);
+        if (clone != null) {
+            clone.setMass(mass);
+            clone.setOwner(original);
+            clone.setHealth(original.getHealth() / 2f);
+            clone.setPos(original.position());
+            clone.setXRot(original.getXRot());
+            clone.setYRot(original.getYRot());
+        }
+        return clone;
     }
 
 }

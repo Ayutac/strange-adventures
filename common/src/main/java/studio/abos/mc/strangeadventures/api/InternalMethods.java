@@ -113,10 +113,18 @@ public interface InternalMethods {
     boolean greenAvatarRooted(final Player player);
 
     /**
-     * Uproots the player. Doesn't check if they were rooted or even are AotG
+     * Uproots the player. Doesn't check if they were rooted or even are an AotG.
      * @param player the player to uproot
      */
     void greenAvatarUproot(final Player player);
+
+    /**
+     * Splits off a {@link studio.abos.mc.strangeadventures.entity.GreenAvatarCloneEntity} from the player.
+     * This method <i>does check</i> if the player is an AotG and if they are big enough to split
+     * @param player the player to split off a clone
+     * @return <code>true</code> if the player is an AotG, has enough mass to split and split successfully, else <code>false</code>
+     */
+    boolean greenAvatarSplit(final ServerPlayer player);
 
     /**
      * Takes care of regeneration and other tickly needs for the Avatar of the Green.
@@ -124,5 +132,4 @@ public interface InternalMethods {
      * @param player the player to tick
      */
     void greenAvatarTick(final ServerPlayer player);
-
 }

@@ -11,7 +11,8 @@ import studio.abos.mc.strangeadventures.StrangeAdventures;
 import studio.abos.mc.strangeadventures.api.StrangeAdventuresApi;
 import studio.abos.mc.strangeadventures.block.ModBlockFamilies;
 import studio.abos.mc.strangeadventures.block.ModBlocks;
-import studio.abos.mc.strangeadventures.network.ServerboundUprootPayload;
+import studio.abos.mc.strangeadventures.network.ServerboundGreenAvatarAttemptSplitPayload;
+import studio.abos.mc.strangeadventures.network.ServerboundGreenAvatarUprootPayload;
 
 public final class FabricStrangeAdventures implements ModInitializer {
 
@@ -24,13 +25,17 @@ public final class FabricStrangeAdventures implements ModInitializer {
         BlockEntityTypes.HANGING_SIGN.addValidBlock(ModBlocks.WEIR_HANGING_SIGN.asBlock());
         BlockEntityTypes.HANGING_SIGN.addValidBlock(ModBlocks.WEIR_WALL_HANGING_SIGN.asBlock());
 
-        PayloadTypeRegistry.serverboundPlay().register(ServerboundUprootPayload.TYPE, ServerboundUprootPayload.CODEC);
-        ServerPlayNetworking.registerGlobalReceiver(ServerboundUprootPayload.TYPE, (_, context) -> {
+        PayloadTypeRegistry.serverboundPlay().register(ServerboundGreenAvatarUprootPayload.TYPE, ServerboundGreenAvatarUprootPayload.CODEC);
+        ServerPlayNetworking.registerGlobalReceiver(ServerboundGreenAvatarUprootPayload.TYPE, (_, context) -> {
             final ServerPlayer player = context.player();
             if (StrangeAdventuresApi.INTERNAL_METHODS.greenAvatarActive(player) && StrangeAdventuresApi.INTERNAL_METHODS.greenAvatarRooted(player)) {
                 StrangeAdventuresApi.INTERNAL_METHODS.greenAvatarUproot(player);
             }
         });
+        PayloadTypeRegistry.serverboundPlay().register(ServerboundGreenAvatarAttemptSplitPayload.TYPE, ServerboundGreenAvatarAttemptSplitPayload.CODEC);
+        ServerPlayNetworking.registerGlobalReceiver(ServerboundGreenAvatarAttemptSplitPayload.TYPE, (_, context) ->
+                StrangeAdventuresApi.INTERNAL_METHODS.greenAvatarSplit(context.player())
+        );
     }
 
 }
