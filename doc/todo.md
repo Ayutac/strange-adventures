@@ -11,6 +11,8 @@
 * fix Essence Cauldron bug
 * fix AotG cannot go through Cactus bug
 * fix NF bug of fluid properties (try walking into it)
+* add config options, especially for AotG
+* add chat feedback for commands
 ### after release
 * add project ids to gradle.properties
 ### at some point

@@ -19,7 +19,7 @@ public final class ModEntityTypes {
         GREEN_AVATAR_CLONE = entityTypes.register("green_avatar_clone", () ->
                         EntityType.Builder.of(GreenAvatarCloneEntity::new, MobCategory.MISC)
                                 .sized(0.6f, 1.8f))
-                .withDefaultAttributes(PathfinderMob::createMobAttributes)
+                .withDefaultAttributes(GreenAvatarCloneEntity::createAttributes)
                 .asHolder();
         HINDERING_ROOTS = entityTypes.register("hindering_roots", () ->
                         EntityType.Builder.of(HinderingRootsEntity::new, MobCategory.MISC)
