@@ -175,7 +175,7 @@ public class InternalMethodsImpl implements InternalMethods {
         entity.getAttribute(Attributes.SCALE).addOrReplacePermanentModifier(
                 new AttributeModifier(StrangeAdventuresApi.MODIFIER_ID_GREEN_AVATAR, mass - 1d, AttributeModifier.Operation.ADD_MULTIPLIED_BASE));
         entity.getAttribute(Attributes.STEP_HEIGHT).addOrReplacePermanentModifier(
-                new AttributeModifier(StrangeAdventuresApi.MODIFIER_ID_GREEN_AVATAR, 0.5 * mass + 0.5, AttributeModifier.Operation.ADD_MULTIPLIED_BASE));
+                new AttributeModifier(StrangeAdventuresApi.MODIFIER_ID_GREEN_AVATAR, 0.5 * mass - 0.5, AttributeModifier.Operation.ADD_MULTIPLIED_BASE));
     }
 
     private void clearGreenAvatarAttributes(final ServerPlayer player) {
