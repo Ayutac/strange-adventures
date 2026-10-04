@@ -1,6 +1,11 @@
 package studio.abos.mc.strangeadventures.client.entityrenderer;
 
-import net.minecraft.client.renderer.entity.state.EntityRenderState;
+import lombok.Getter;
+import lombok.Setter;
+import net.minecraft.client.renderer.entity.state.AvatarRenderState;
 
-public class GreenAvatarCloneEntityRendererState extends EntityRenderState {
+@Getter
+@Setter
+public class GreenAvatarCloneEntityRendererState extends AvatarRenderState {
+
 }
