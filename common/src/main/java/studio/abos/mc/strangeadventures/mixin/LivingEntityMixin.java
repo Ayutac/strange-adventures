@@ -1,6 +1,7 @@
 package studio.abos.mc.strangeadventures.mixin;
 
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
+import net.blay09.mods.balm.Balm;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -9,7 +10,6 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import studio.abos.mc.strangeadventures.StrangeAdventures;
 import studio.abos.mc.strangeadventures.api.StrangeAdventuresApi;
 import studio.abos.mc.strangeadventures.network.ServerboundGreenAvatarUprootPayload;
 
@@ -29,7 +29,7 @@ public abstract class LivingEntityMixin {
         if ((LivingEntity)(Object)this instanceof final LocalPlayer player && (!input.equals(Vec3.ZERO) || player.isJumping()) &&
                 StrangeAdventuresApi.INTERNAL_METHODS.greenAvatarActive(player) &&
                 StrangeAdventuresApi.INTERNAL_METHODS.greenAvatarRooted(player)) {
-            StrangeAdventures.platformProxy().c2s(ServerboundGreenAvatarUprootPayload.INSTANCE);
+            Balm.networking().sendToServer(ServerboundGreenAvatarUprootPayload.INSTANCE);
         }
     }
 

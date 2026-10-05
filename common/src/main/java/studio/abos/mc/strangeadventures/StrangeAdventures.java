@@ -23,6 +23,8 @@ import studio.abos.mc.strangeadventures.effect.ModEffects;
 import studio.abos.mc.strangeadventures.entity.ModEntityTypes;
 import studio.abos.mc.strangeadventures.fluid.ModFluids;
 import studio.abos.mc.strangeadventures.item.ModItems;
+import studio.abos.mc.strangeadventures.network.ServerboundGreenAvatarAttemptSplitPayload;
+import studio.abos.mc.strangeadventures.network.ServerboundGreenAvatarUprootPayload;
 import studio.abos.mc.strangeadventures.platform.ModPlatform;
 import studio.abos.mc.strangeadventures.recipe.ModRecipeTypes;
 import studio.abos.mc.strangeadventures.targetingmode.ModTargetingModes;
@@ -83,6 +85,17 @@ public class StrangeAdventures {
                 .withFabric("studio.abos.mc.strangeadventures.fabric.platform.ModPlatformFabric")
                 .withNeoForge("studio.abos.mc.strangeadventures.neoforge.platform.ModPlatformNeoForge")
                 .build();
+
+        // uproot AotG
+        Balm.networking().registerServerboundPacket(ServerboundGreenAvatarUprootPayload.TYPE, ServerboundGreenAvatarUprootPayload.class, ServerboundGreenAvatarUprootPayload.CODEC, (player, _) -> {
+            if (StrangeAdventuresApi.INTERNAL_METHODS.greenAvatarActive(player) && StrangeAdventuresApi.INTERNAL_METHODS.greenAvatarRooted(player)) {
+                StrangeAdventuresApi.INTERNAL_METHODS.greenAvatarUproot(player);
+            }
+        });
+        // split AotG
+        Balm.networking().registerServerboundPacket(ServerboundGreenAvatarAttemptSplitPayload.TYPE, ServerboundGreenAvatarAttemptSplitPayload.class, ServerboundGreenAvatarAttemptSplitPayload.CODEC, (player, _) -> {
+            StrangeAdventuresApi.INTERNAL_METHODS.greenAvatarSplit(player);
+        });
 
         // damage manipulation
         LivingEntityCallback.Damage.Before.EVENT.register((entity, damageSource, damageAmount) -> {

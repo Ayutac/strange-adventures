@@ -1,6 +1,7 @@
 package studio.abos.mc.strangeadventures.client;
 
 import com.mojang.blaze3d.platform.InputConstants;
+import net.blay09.mods.balm.Balm;
 import net.blay09.mods.kuma.api.InputBinding;
 import net.blay09.mods.kuma.api.Kuma;
 import net.blay09.mods.kuma.api.ManagedKeyMapping;
@@ -15,8 +16,8 @@ public class ModKeyMappings {
     public static void initialize() {
         greenAvatarSplitKey = Kuma.createKeyMapping(StrangeAdventures.id("green_avatar_split"))
                 .withDefault(InputBinding.key(InputConstants.KEY_Z))
-                .handleWorldInput(e -> {
-                    StrangeAdventures.platformProxy().c2s(ServerboundGreenAvatarAttemptSplitPayload.INSTANCE);
+                .handleWorldInput(_ -> {
+                    Balm.networking().sendToServer(ServerboundGreenAvatarAttemptSplitPayload.INSTANCE);
                     return true;
                 })
                 .build();
