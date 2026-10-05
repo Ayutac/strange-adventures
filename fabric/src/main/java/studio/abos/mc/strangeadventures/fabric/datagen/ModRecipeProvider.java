@@ -132,7 +132,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                         .pattern("G G")
                         .pattern("GGG")
                         .define('G', Items.GLASS)
-                        .unlockedBy("has_glass", has(Items.FLINT))
+                        .unlockedBy("has_glass", has(Items.GLASS))
                         .save(output);
                 shaped(RecipeCategory.MISC, ModBlocks.SAP_SIPPER)
                         .pattern("GNG")
