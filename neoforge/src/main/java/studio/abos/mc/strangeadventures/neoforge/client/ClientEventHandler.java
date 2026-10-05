@@ -50,6 +50,11 @@ public class ClientEventHandler {
                         null, null),
                 ModFluids.OAK_SAP_STILL.value(), ModFluids.OAK_SAP_FLOWING.value());
         event.register(new FluidModel.Unbaked(
+                        new Material(StrangeAdventures.id("block/poplar_sap_still")),
+                        new Material(StrangeAdventures.id("block/poplar_sap_flow")),
+                        null, null),
+                ModFluids.POPLAR_SAP_STILL.value(), ModFluids.POPLAR_SAP_FLOWING.value());
+        event.register(new FluidModel.Unbaked(
                         new Material(StrangeAdventures.id("block/spruce_sap_still")),
                         new Material(StrangeAdventures.id("block/spruce_sap_flow")),
                         null, null),

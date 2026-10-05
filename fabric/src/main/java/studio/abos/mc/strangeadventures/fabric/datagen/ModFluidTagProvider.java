@@ -38,6 +38,8 @@ public class ModFluidTagProvider extends FabricTagsProvider.FluidTagsProvider {
         builder(ModFluidTags.MANGROVE_SAP).add(ModFluidIds.MANGROVE_SAP_FLOWING);
         builder(ModFluidTags.OAK_SAP).add(ModFluidIds.OAK_SAP_STILL);
         builder(ModFluidTags.OAK_SAP).add(ModFluidIds.OAK_SAP_FLOWING);
+        builder(ModFluidTags.POPLAR_SAP).add(ModFluidIds.POPLAR_SAP_STILL);
+        builder(ModFluidTags.POPLAR_SAP).add(ModFluidIds.POPLAR_SAP_FLOWING);
         builder(ModFluidTags.SPRUCE_SAP).add(ModFluidIds.SPRUCE_SAP_STILL);
         builder(ModFluidTags.SPRUCE_SAP).add(ModFluidIds.SPRUCE_SAP_FLOWING);
         builder(ModFluidTags.WARPED_SAP).add(ModFluidIds.WARPED_SAP_STILL);
@@ -49,6 +51,7 @@ public class ModFluidTagProvider extends FabricTagsProvider.FluidTagsProvider {
         builder(ModFluidTags.OVERWORLD_TREE_SAP).addTag(ModFluidTags.JUNGLE_SAP);
         builder(ModFluidTags.OVERWORLD_TREE_SAP).addTag(ModFluidTags.MANGROVE_SAP);
         builder(ModFluidTags.OVERWORLD_TREE_SAP).addTag(ModFluidTags.OAK_SAP);
+        builder(ModFluidTags.OVERWORLD_TREE_SAP).addTag(ModFluidTags.POPLAR_SAP);
         builder(ModFluidTags.OVERWORLD_TREE_SAP).addTag(ModFluidTags.SPRUCE_SAP);
 
         builder(ModFluidTags.ANY_LIVING_SAP).addTag(ModFluidTags.CRUDE_LIVING_SAP);
@@ -63,6 +66,7 @@ public class ModFluidTagProvider extends FabricTagsProvider.FluidTagsProvider {
         builder(ModFluidTags.SAP).addTag(ModFluidTags.JUNGLE_SAP);
         builder(ModFluidTags.SAP).addTag(ModFluidTags.MANGROVE_SAP);
         builder(ModFluidTags.SAP).addTag(ModFluidTags.OAK_SAP);
+        builder(ModFluidTags.SAP).addTag(ModFluidTags.POPLAR_SAP);
         builder(ModFluidTags.SAP).addTag(ModFluidTags.SPRUCE_SAP);
         builder(ModFluidTags.SAP).addTag(ModFluidTags.WARPED_SAP);
     }

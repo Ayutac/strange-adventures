@@ -19,6 +19,7 @@ public final class ModFluidTags {
     public static final TagKey<Fluid> LIVING_SAP = TagKey.create(Registries.FLUID, StrangeAdventures.id("living_sap"));
     public static final TagKey<Fluid> MANGROVE_SAP = TagKey.create(Registries.FLUID, StrangeAdventures.id("mangrove_sap"));
     public static final TagKey<Fluid> OAK_SAP = TagKey.create(Registries.FLUID, StrangeAdventures.id("oak_sap"));
+    public static final TagKey<Fluid> POPLAR_SAP = TagKey.create(Registries.FLUID, StrangeAdventures.id("poplar_sap"));
     public static final TagKey<Fluid> SPRUCE_SAP = TagKey.create(Registries.FLUID, StrangeAdventures.id("spruce_sap"));
     public static final TagKey<Fluid> WARPED_SAP = TagKey.create(Registries.FLUID, StrangeAdventures.id("warped_sap"));
     public static final TagKey<Fluid> OVERWORLD_TREE_SAP = TagKey.create(Registries.FLUID, StrangeAdventures.id("overworld_tree_sap"));

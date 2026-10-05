@@ -40,6 +40,8 @@ public final class ModItems {
     public static DeferredItem MANGROVE_SAP_BUCKET;
     public static DeferredItem OAK_SAP_BOTTLE;
     public static DeferredItem OAK_SAP_BUCKET;
+    public static DeferredItem POPLAR_SAP_BOTTLE;
+    public static DeferredItem POPLAR_SAP_BUCKET;
     public static DeferredItem SPRUCE_SAP_BOTTLE;
     public static DeferredItem SPRUCE_SAP_BUCKET;
     public static DeferredItem WARPED_SAP_BOTTLE;
@@ -73,6 +75,8 @@ public final class ModItems {
         MANGROVE_SAP_BOTTLE = items.register("mangrove_sap_bottle", props -> new BottleItem(ModFluids.MANGROVE_SAP_STILL.value(), sapBottle(props))).asDeferredItem();
         OAK_SAP_BUCKET = items.register("oak_sap_bucket", props -> new BucketItem(ModFluids.OAK_SAP_STILL.value(), sapBucket(props))).asDeferredItem();
         OAK_SAP_BOTTLE = items.register("oak_sap_bottle", props -> new BottleItem(ModFluids.OAK_SAP_STILL.value(), sapBottle(props))).asDeferredItem();
+        POPLAR_SAP_BUCKET = items.register("poplar_sap_bucket", props -> new BucketItem(ModFluids.POPLAR_SAP_STILL.value(), sapBucket(props))).asDeferredItem();
+        POPLAR_SAP_BOTTLE = items.register("poplar_sap_bottle", props -> new BottleItem(ModFluids.POPLAR_SAP_STILL.value(), sapBottle(props))).asDeferredItem();
         SPRUCE_SAP_BUCKET = items.register("spruce_sap_bucket", props -> new BucketItem(ModFluids.SPRUCE_SAP_STILL.value(), sapBucket(props))).asDeferredItem();
         SPRUCE_SAP_BOTTLE = items.register("spruce_sap_bottle", props -> new BottleItem(ModFluids.SPRUCE_SAP_STILL.value(), sapBottle(props))).asDeferredItem();
         WARPED_SAP_BUCKET = items.register("warped_sap_bucket", props -> new BucketItem(ModFluids.WARPED_SAP_STILL.value(), sapBucket(props))).asDeferredItem();
@@ -126,6 +130,7 @@ public final class ModItems {
                             output.accept(ACACIA_SAP_BOTTLE);
                             output.accept(MANGROVE_SAP_BOTTLE);
                             output.accept(CHERRY_SAP_BOTTLE);
+                            output.accept(POPLAR_SAP_BOTTLE);
                             output.accept(CACTUS_SAP_BOTTLE);
                             output.accept(CRIMSON_SAP_BOTTLE);
                             output.accept(WARPED_SAP_BOTTLE);
@@ -140,6 +145,7 @@ public final class ModItems {
                             output.accept(ACACIA_SAP_BUCKET);
                             output.accept(MANGROVE_SAP_BUCKET);
                             output.accept(CHERRY_SAP_BUCKET);
+                            output.accept(POPLAR_SAP_BUCKET);
                             output.accept(CACTUS_SAP_BUCKET);
                             output.accept(CRIMSON_SAP_BUCKET);
                             output.accept(WARPED_SAP_BUCKET);

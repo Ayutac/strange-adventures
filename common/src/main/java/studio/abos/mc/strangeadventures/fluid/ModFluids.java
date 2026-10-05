@@ -31,6 +31,8 @@ public final class ModFluids {
     public static Holder<Fluid> MANGROVE_SAP_FLOWING;
     public static Holder<Fluid> OAK_SAP_STILL;
     public static Holder<Fluid> OAK_SAP_FLOWING;
+    public static Holder<Fluid> POPLAR_SAP_STILL;
+    public static Holder<Fluid> POPLAR_SAP_FLOWING;
     public static Holder<Fluid> SPRUCE_SAP_STILL;
     public static Holder<Fluid> SPRUCE_SAP_FLOWING;
     public static Holder<Fluid> WARPED_SAP_STILL;
@@ -59,6 +61,8 @@ public final class ModFluids {
         MANGROVE_SAP_FLOWING = fluids.register(ModFluidIds.MANGROVE_SAP_FLOWING.identifier().getPath(), _ -> new MangroveSapFluid.Flowing()).asHolder();
         OAK_SAP_STILL = fluids.register(ModFluidIds.OAK_SAP_STILL.identifier().getPath(), _ -> new OakSapFluid.Source()).asHolder();
         OAK_SAP_FLOWING = fluids.register(ModFluidIds.OAK_SAP_FLOWING.identifier().getPath(), _ -> new OakSapFluid.Flowing()).asHolder();
+        POPLAR_SAP_STILL = fluids.register(ModFluidIds.POPLAR_SAP_STILL.identifier().getPath(), _ -> new PoplarSapFluid.Source()).asHolder();
+        POPLAR_SAP_FLOWING = fluids.register(ModFluidIds.POPLAR_SAP_FLOWING.identifier().getPath(), _ -> new PoplarSapFluid.Flowing()).asHolder();
         SPRUCE_SAP_STILL = fluids.register(ModFluidIds.SPRUCE_SAP_STILL.identifier().getPath(), _ -> new SpruceSapFluid.Source()).asHolder();
         SPRUCE_SAP_FLOWING = fluids.register(ModFluidIds.SPRUCE_SAP_FLOWING.identifier().getPath(), _ -> new SpruceSapFluid.Flowing()).asHolder();
         WARPED_SAP_STILL = fluids.register(ModFluidIds.WARPED_SAP_STILL.identifier().getPath(), _ -> new WarpedSapFluid.Source()).asHolder();

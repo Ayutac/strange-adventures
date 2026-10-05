@@ -76,6 +76,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 sapRecipes((AbstractSapFluid)ModFluids.LIVING_SAP_STILL.value());
                 sapRecipes((AbstractSapFluid)ModFluids.MANGROVE_SAP_STILL.value());
                 sapRecipes((AbstractSapFluid)ModFluids.OAK_SAP_STILL.value());
+                sapRecipes((AbstractSapFluid)ModFluids.POPLAR_SAP_STILL.value());
                 sapRecipes((AbstractSapFluid)ModFluids.SPRUCE_SAP_STILL.value());
                 sapRecipes((AbstractSapFluid)ModFluids.WARPED_SAP_STILL.value());
             }
@@ -270,6 +271,11 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 planksToStrippedWood(Items.PALE_OAK_PLANKS, (AbstractSapFluid)ModFluids.OAK_SAP_STILL.value(), Items.STRIPPED_PALE_OAK_LOG);
                 stairsToPlanks(Items.PALE_OAK_STAIRS, Items.PALE_OAK_PLANKS);
                 slabsToPlanks(Items.PALE_OAK_SLAB, Items.PALE_OAK_PLANKS);
+                // poplar
+                strippedWoodToWood(Items.STRIPPED_POPLAR_LOG, (AbstractSapFluid)ModFluids.POPLAR_SAP_STILL.value(), Items.POPLAR_LOG);
+                planksToStrippedWood(Items.POPLAR_PLANKS, (AbstractSapFluid)ModFluids.POPLAR_SAP_STILL.value(), Items.STRIPPED_POPLAR_LOG);
+                stairsToPlanks(Items.POPLAR_STAIRS, Items.POPLAR_PLANKS);
+                slabsToPlanks(Items.POPLAR_SLAB, Items.POPLAR_PLANKS);
                 // spruce
                 strippedWoodToWood(Items.STRIPPED_SPRUCE_LOG, (AbstractSapFluid)ModFluids.SPRUCE_SAP_STILL.value(), Items.SPRUCE_LOG);
                 planksToStrippedWood(Items.SPRUCE_PLANKS, (AbstractSapFluid)ModFluids.SPRUCE_SAP_STILL.value(), Items.STRIPPED_SPRUCE_LOG);
@@ -383,6 +389,12 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                         .save(output);
                 sapSipper(ModFluids.OAK_SAP_STILL)
                         .requires(ModBlockTags.MAKES_OAK_SAP)
+                        .ticks(10)
+                        .amount(2)
+                        .unlockedBy("has_sipper", has(ModBlocks.SAP_SIPPER))
+                        .save(output);
+                sapSipper(ModFluids.POPLAR_SAP_STILL)
+                        .requires(ModBlockTags.MAKES_POPLAR_SAP)
                         .ticks(10)
                         .amount(2)
                         .unlockedBy("has_sipper", has(ModBlocks.SAP_SIPPER))

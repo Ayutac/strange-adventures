@@ -96,6 +96,9 @@ public class ModBlockTagProvider extends FabricTagsProvider.BlockTagsProvider {
                 BlockItemIds.DARK_OAK_WOOD, BlockItemIds.STRIPPED_DARK_OAK_WOOD,
                 BlockItemIds.PALE_OAK_LOG, BlockItemIds.STRIPPED_PALE_OAK_LOG,
                 BlockItemIds.PALE_OAK_WOOD, BlockItemIds.STRIPPED_PALE_OAK_WOOD);
+        builder(ModBlockTags.MAKES_POPLAR_SAP).add(
+                BlockItemIds.POPLAR_LOG, BlockItemIds.STRIPPED_POPLAR_LOG,
+                BlockItemIds.POPLAR_WOOD, BlockItemIds.STRIPPED_POPLAR_WOOD);
         builder(ModBlockTags.MAKES_SPRUCE_SAP).add(
                 BlockItemIds.SPRUCE_LOG, BlockItemIds.STRIPPED_SPRUCE_LOG,
                 BlockItemIds.SPRUCE_WOOD, BlockItemIds.STRIPPED_SPRUCE_WOOD);

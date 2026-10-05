@@ -29,6 +29,8 @@ public final class ModFluidIds {
     public static final ResourceKey<Fluid> MANGROVE_SAP_FLOWING = ResourceKey.create(Registries.FLUID, StrangeAdventures.id("flowing_mangrove_sap"));
     public static final ResourceKey<Fluid> OAK_SAP_STILL = ResourceKey.create(Registries.FLUID, StrangeAdventures.id("oak_sap"));
     public static final ResourceKey<Fluid> OAK_SAP_FLOWING = ResourceKey.create(Registries.FLUID, StrangeAdventures.id("flowing_oak_sap"));
+    public static final ResourceKey<Fluid> POPLAR_SAP_STILL = ResourceKey.create(Registries.FLUID, StrangeAdventures.id("poplar_sap"));
+    public static final ResourceKey<Fluid> POPLAR_SAP_FLOWING = ResourceKey.create(Registries.FLUID, StrangeAdventures.id("flowing_poplar_sap"));
     public static final ResourceKey<Fluid> SPRUCE_SAP_STILL = ResourceKey.create(Registries.FLUID, StrangeAdventures.id("spruce_sap"));
     public static final ResourceKey<Fluid> SPRUCE_SAP_FLOWING = ResourceKey.create(Registries.FLUID, StrangeAdventures.id("flowing_spruce_sap"));
     public static final ResourceKey<Fluid> WARPED_SAP_STILL = ResourceKey.create(Registries.FLUID, StrangeAdventures.id("warped_sap"));

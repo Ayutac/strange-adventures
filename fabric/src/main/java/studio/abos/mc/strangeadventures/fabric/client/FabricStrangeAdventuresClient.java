@@ -69,6 +69,13 @@ public class FabricStrangeAdventuresClient implements ClientModInitializer {
                         null, null)
         );
         FluidRenderingRegistry.register(
+                ModFluids.POPLAR_SAP_STILL.value(), ModFluids.POPLAR_SAP_FLOWING.value(),
+                new FluidModel.Unbaked(
+                        new Material(StrangeAdventures.id("block/poplar_sap_still")),
+                        new Material(StrangeAdventures.id("block/poplar_sap_flow")),
+                        null, null)
+        );
+        FluidRenderingRegistry.register(
                 ModFluids.SPRUCE_SAP_STILL.value(), ModFluids.SPRUCE_SAP_FLOWING.value(),
                 new FluidModel.Unbaked(
                         new Material(StrangeAdventures.id("block/spruce_sap_still")),
