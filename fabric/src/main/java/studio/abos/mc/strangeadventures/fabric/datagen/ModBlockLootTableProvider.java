@@ -41,6 +41,7 @@ public class ModBlockLootTableProvider extends FabricBlockLootSubProvider {
         dropPottedContents(ModBlocks.POTTED_WEIR_SAPLING.asBlock());
         dropSelf(ModBlocks.SLEEPING_WOOD.asBlock());
         dropSelf(ModBlocks.LIVING_WOOD.asBlock());
+        dropSelf(ModBlocks.JAR.asBlock());
         dropSelf(ModBlocks.SAP_SIPPER.asBlock());
         dropSelf(ModBlocks.ESSENCE_CAULDRON.asBlock());
     }

@@ -70,6 +70,7 @@ public final class ModBlocks {
     public static DeferredBlock SLEEPING_WOOD;
     public static DeferredBlock LIVING_WOOD;
 
+    public static DeferredBlock JAR;
     public static DeferredBlock SAP_SIPPER;
     public static DeferredBlock ESSENCE_CAULDRON;
 
@@ -272,6 +273,14 @@ public final class ModBlocks {
                 .sound(SoundType.ANCIENT_DEBRIS)
                 .mapColor(MapColor.COLOR_BROWN)).withDefaultItem(Item.Properties::fireResistant).asDeferredBlock();
 
+        JAR = blocks.register("jar", JarBlock::new, props -> props
+                .strength(0.3f)
+                .instrument(NoteBlockInstrument.HAT)
+                .sound(SoundType.GLASS)
+                .noOcclusion()
+                .isValidSpawn((_, _, _, _) -> false)
+                .isRedstoneConductor((_, _, _) -> false)
+                .isSuffocating((_, _, _) -> false)).withDefaultItem().asDeferredBlock();
         SAP_SIPPER = blocks.register("sap_sipper", SapSipperBlock::new, props -> props
                 .strength(3.5f)
                 .instrument(NoteBlockInstrument.BASEDRUM)

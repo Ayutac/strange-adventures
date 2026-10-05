@@ -113,6 +113,7 @@ public final class ModItems {
                             output.accept(ModBlocks.LIVING_WOOD);
                             output.accept(LIVING_ROD);
 
+                            output.accept(ModBlocks.JAR);
                             output.accept(ModBlocks.SAP_SIPPER);
                             output.accept(ModBlocks.ESSENCE_CAULDRON);
                             output.accept(HINDERING_ROOTS);
