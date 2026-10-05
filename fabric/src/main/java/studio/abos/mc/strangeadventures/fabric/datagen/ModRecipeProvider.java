@@ -119,6 +119,21 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                         .requires(ModItems.GREEN_SAFEGUARD)
                         .unlockedBy("has_farmland", has(Items.FARMLAND))
                         .save(output);
+                shaped(RecipeCategory.MISC, ModBlocks.ESSENCE_CAULDRON)
+                        .pattern("GGG")
+                        .pattern("ICI")
+                        .pattern(" I ")
+                        .define('C', Items.CAULDRON)
+                        .define('G', Items.GOLD_INGOT)
+                        .define('I', Items.COPPER_INGOT)
+                        .unlockedBy("has_cauldron", has(Items.CAULDRON))
+                        .save(output);
+                shaped(RecipeCategory.MISC, ModBlocks.JAR)
+                        .pattern("G G")
+                        .pattern("GGG")
+                        .define('G', Items.GLASS)
+                        .unlockedBy("has_glass", has(Items.FLINT))
+                        .save(output);
                 shaped(RecipeCategory.MISC, ModBlocks.SAP_SIPPER)
                         .pattern("GNG")
                         .pattern("PBP")

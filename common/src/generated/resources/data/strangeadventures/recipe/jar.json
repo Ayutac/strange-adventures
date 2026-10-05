@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "G": "minecraft:glass"
+  },
+  "pattern": [
+    "G G",
+    "GGG"
+  ],
+  "result": {
+    "id": "strangeadventures:jar"
+  }
+}

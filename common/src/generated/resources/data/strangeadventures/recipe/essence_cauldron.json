@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "C": "minecraft:cauldron",
+    "G": "minecraft:gold_ingot",
+    "I": "minecraft:copper_ingot"
+  },
+  "pattern": [
+    "GGG",
+    "ICI",
+    " I "
+  ],
+  "result": {
+    "id": "strangeadventures:essence_cauldron"
+  }
+}
