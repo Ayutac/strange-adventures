@@ -33,7 +33,7 @@ public class EssenceCauldronBlockEntity extends BlockEntity implements BalmFluid
     public static final int MAX_ITEMS = 3;
 
     protected final NonNullList<ItemStack> items = NonNullList.withSize(MAX_ITEMS, ItemStack.EMPTY);
-    protected final EssenceCauldronBlockEntity.Tank tank = new EssenceCauldronBlockEntity.Tank();
+    protected final Tank tank = new Tank();
 
     public EssenceCauldronBlockEntity(final BlockPos pos, final BlockState state) {
         super(ModBlockEntities.ESSENCE_CAULDRON.value(), pos, state);

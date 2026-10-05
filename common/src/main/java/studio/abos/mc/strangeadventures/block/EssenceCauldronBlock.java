@@ -99,6 +99,7 @@ public class EssenceCauldronBlock extends BaseEntityBlock {
                 if (tank.fill(bucket.getContent(), false, true) == ModFluids.BUCKET_AMOUNT) {
                     itemStack.consume(1, player);
                     player.getInventory().add(new ItemStack(Items.BUCKET));
+                    return InteractionResult.SUCCESS;
                 }
             }
         }
