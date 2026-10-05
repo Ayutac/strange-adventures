@@ -13,7 +13,6 @@ import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -126,10 +125,6 @@ public class EssenceCauldronBlockEntity extends BlockEntity implements BalmFluid
         }
         final BlockState blockState = getBlockState();
         level.sendBlockUpdated(getBlockPos(), blockState, blockState, Block.UPDATE_ALL);
-    }
-
-    public static void tick(final Level level, final BlockPos pos, final BlockState state, final EssenceCauldronBlockEntity entity) {
-
     }
 
     public class Tank implements FluidTank {
