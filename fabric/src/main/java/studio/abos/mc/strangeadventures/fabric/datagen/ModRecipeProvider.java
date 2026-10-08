@@ -52,6 +52,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 miscRecipes();
                 livingSapRevivalRecipes();
                 sapSipperRecipes();
+                jarRecipes();
                 essenceCauldronRecipes();
             }
 
@@ -411,6 +412,9 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                         .amount(2)
                         .unlockedBy("has_sipper", has(ModBlocks.SAP_SIPPER))
                         .save(output);
+            }
+
+            private void jarRecipes() {
             }
 
             private void essenceCauldronRecipes() {

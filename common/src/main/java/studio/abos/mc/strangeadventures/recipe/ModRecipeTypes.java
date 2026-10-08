@@ -11,15 +11,19 @@ import java.util.List;
 
 public final class ModRecipeTypes {
 
-    public static DeferredRecipeType<SingleBlockRecipeInput, SapSipperRecipe> SAP_SIPPER;
     public static DeferredRecipeType<EssenceCauldronRecipeInput, EssenceCauldronRecipe> ESSENCE_CAULDRON;
+    public static DeferredRecipeType<JarRecipeInput, JarRecipe> JAR;
+    public static DeferredRecipeType<SingleBlockRecipeInput, SapSipperRecipe> SAP_SIPPER;
 
     public static void initialize(final BalmRecipeTypeRegistrar recipeTypes) {
-        SAP_SIPPER = recipeTypes.register("sap_sipper", SapSipperRecipe.class)
-                .withSerializer(() -> new RecipeSerializer<>(SapSipperRecipe.CODEC, SapSipperRecipe.STREAM_CODEC))
-                .asDeferredRecipeType();
         ESSENCE_CAULDRON = recipeTypes.register("essence_cauldron", EssenceCauldronRecipe.class)
                 .withSerializer(() -> new RecipeSerializer<>(EssenceCauldronRecipe.CODEC, EssenceCauldronRecipe.STREAM_CODEC))
+                .asDeferredRecipeType();
+        JAR = recipeTypes.register("jar", JarRecipe.class)
+                .withSerializer(() -> new RecipeSerializer<>(JarRecipe.CODEC, JarRecipe.STREAM_CODEC))
+                .asDeferredRecipeType();
+        SAP_SIPPER = recipeTypes.register("sap_sipper", SapSipperRecipe.class)
+                .withSerializer(() -> new RecipeSerializer<>(SapSipperRecipe.CODEC, SapSipperRecipe.STREAM_CODEC))
                 .asDeferredRecipeType();
     }
 
